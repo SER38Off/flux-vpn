@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flux VPN | Быстрый и безопасный доступ</title>
+    <title>Flux VPN | Безопасный и свободный интернет</title>
     <style>
-        :root { --primary: #3b82f6; --bg: #0f172a; --card: #1e293b; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; line-height: 1.6; }
-        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); }
-        h1 { font-size: 3rem; margin-bottom: 20px; }
-        .description { max-width: 600px; margin: 0 auto 40px; color: #cbd5e1; }
+        :root { --primary: #3b82f6; --bg: #0f172a; --card: #1e293b; --text: #cbd5e1; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: white; line-height: 1.6; }
         
-        .buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px; }
-        .btn { display: inline-block; background: var(--primary); color: white; padding: 15px 30px; border-radius: 12px; text-decoration: none; font-weight: bold; width: 250px; text-align: center; transition: background 0.3s; }
-        .btn:hover { background: #2563eb; }
+        /* Главный экран */
+        .hero { text-align: center; padding: 60px 20px; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid #334155; }
+        h1 { font-size: 3rem; margin-bottom: 20px; color: #fff; }
+        .description { max-width: 700px; margin: 0 auto 40px; color: var(--text); font-size: 1.1rem; }
+        .highlight { color: #60a5fa; font-weight: bold; }
         
-        .features { display: flex; justify-content: center; gap: 20px; padding: 50px 20px; flex-wrap: wrap; }
-        .card { background: var(--card); padding: 30px; border-radius: 20px; width: 280px; text-align: center; }
-        footer { text-align: center; padding: 40px; color: #64748b; }
+        /* Кнопки */
+        .buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none; font-weight: bold; min-width: 180px; text-align: center; transition: background 0.3s, transform 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+        .btn-vk { background: #0077FF; } .btn-vk:hover { background: #005ce6; }
+        .btn-tiktok { background: #ff0050; } .btn-tiktok:hover { background: #cc0040; }
+        .btn-boost { background: #8b5cf6; } .btn-boost:hover { background: #7c3aed; }
+
+        /* Контейнеры секций */
+        .section { max-width: 900px; margin: 0 auto; padding: 50px 20px; }
+        h2 { text-align: center; font-size: 2rem; margin-bottom: 30px; border-bottom: 2px solid #3b82f6; display: inline-block; padding-bottom: 10px; }
+        .center-heading { text-align: center; }
+
+        /* Карточки инструкций */
+        .card { background: var(--card); padding: 25px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .card h3 { margin-top: 0; color: #60a5fa; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        
+        /* Блок с кодом/ссылкой */
+        .config-box { background: #0f172a; padding: 15px; border-radius: 8px; font-family: monospace; word-wrap: break-word; color: #a7f3d0; border: 1px solid #334155; margin: 15px 0; }
+        
+        /* Списки */
+        ul { padding-left: 20px; color: var(--text); }
+        li { margin-bottom: 8px; }
+
+        /* Донат */
+        .donate-box { background: linear-gradient(135deg, #1e293b, #334155); text-align: center; }
+        .card-number { font-size: 1.5rem; letter-spacing: 2px; color: #fbbf24; font-family: monospace; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px; display: inline-block; margin: 15px 0; }
+
+        footer { text-align: center; padding: 30px; color: #64748b; border-top: 1px solid #1e293b; margin-top: 40px; }
     </style>
 </head>
 <body>
@@ -25,32 +50,93 @@
     <section class="hero">
         <h1>Flux VPN</h1>
         <p class="description">
-            Flux VPN — это современное решение для обеспечения вашей цифровой свободы. 
-            Мы гарантируем высокую скорость соединения, полную конфиденциальность и отсутствие логов. 
-            Обходите любые ограничения в один клик.
+            Современное решение для обеспечения вашей цифровой свободы. 
+            <span class="highlight">Наш VPN эффективно обходит глушилки интернета</span> и любые ограничения. 
+            Мы гарантируем высокую скорость соединения, полную конфиденциальность и отсутствие логов.
         </p>
 
         <div class="buttons">
-            <a href="https://t.me/FluxVPNOff" class="btn">Наш Telegram-канал</a>
-            <a href="https://t.me/FluxVPNOff_bot" class="btn">Telegram-бот</a>
-            <a href="https://t.me/FluxVPNSup" class="btn">Техподдержка</a>
+            <a href="https://t.me/FluxVPNOff" target="_blank" class="btn">Telegram-канал</a>
+            <a href="https://t.me/FluxVPNOff_bot" target="_blank" class="btn">Telegram-бот</a>
+            <a href="https://t.me/FluxVPNSup" target="_blank" class="btn">Техподдержка</a>
+            <a href="https://vk.com/club236107757" target="_blank" class="btn btn-vk">Группа ВК</a>
+            <a href="https://www.tiktok.com/@fluxvpnoff" target="_blank" class="btn btn-tiktok">Наш TikTok</a>
+            <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="btn btn-boost">🔥 Буст канала</a>
         </div>
     </section>
 
-    <section class="features">
+    <div class="section">
+        <div class="center-heading"><h2>Умная подписка [Автообновление]</h2></div>
         <div class="card">
-            <h3>⚡ Скорость</h3>
-            <p>Оптимизированные серверы для работы без задержек.</p>
+            <p>В этой подписке встроено автоматическое обновление серверов. Если РКН блокирует текущие серверы, подписка сама переходит на рабочие резервы. Ваш VPN будет работать стабильно — достаточно просто нажать на кнопку обновления 🔄 в приложении.</p>
+            <p><strong>Ссылка на конфигурацию:</strong></p>
+            <div class="config-box">
+                https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt
+            </div>
+            <p><small><em>Совет: После добавления подписки нажмите на значок «спидометра». Выберите сервер, где пинг (мс) меньше — там скорость лучше. Если написано н/а или н/д, этот сервер сейчас недоступен.</em></small></p>
         </div>
+
+        <div class="center-heading"><h2>Инструкции по настройке (Happ)</h2></div>
+        
         <div class="card">
-            <h3>🛡️ Защита</h3>
-            <p>Шифрование данных и полная анонимность в сети.</p>
+            <h3>📱 Android (телефон / планшет)</h3>
+            <ul>
+                <li>Открой Happ</li>
+                <li>Перейди в <strong>Подписки</strong> или <strong>Профили</strong></li>
+                <li>Нажми <strong>➕ Добавить</strong> -> Выбери <strong>Добавить по ссылке</strong></li>
+                <li>Вставь ссылку подписки (из блока выше) и нажми <strong>Сохранить</strong></li>
+                <li>Вернись на главный экран и включи VPN ✅</li>
+            </ul>
         </div>
+
         <div class="card">
-            <h3>🌍 Свобода</h3>
-            <p>Доступ к любимому контенту из любой точки мира.</p>
+            <h3>🍎 iPhone / iPad (iOS)</h3>
+            <ul>
+                <li>Открой Happ -> Перейди в <strong>Profiles / Subscriptions</strong></li>
+                <li>Нажми <strong>Add</strong> -> Выбери <strong>Import from URL</strong></li>
+                <li>Вставь ссылку подписки и подтверди добавление профиля</li>
+                <li>Разреши VPN в системном окне iOS <em>(Первый раз iOS попросит разрешение — это нормально)</em> ⚠️</li>
+                <li>Включи VPN в приложении</li>
+            </ul>
         </div>
-    </section>
+
+        <div class="card">
+            <h3>💻 Компьютер (Windows / macOS / Linux)</h3>
+            <ul>
+                <li>Запусти Happ -> Открой <strong>Profiles / Subscriptions</strong></li>
+                <li>Нажми <strong>Add</strong> -> Вставь ссылку подписки и сохрани</li>
+                <li>Выбери сервер (если нужно) и нажми <strong>Connect</strong></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📺 Android TV</h3>
+            <ul>
+                <li>Запусти Happ -> Зайди в <strong>Subscriptions / Profiles</strong></li>
+                <li>Нажми <strong>Add</strong> -> Выбери <strong>From URL</strong></li>
+                <li>Вставь ссылку <em>(если неудобно вводить с пульта, используй Google Keyboard на телефоне или скопируй заранее)</em></li>
+                <li>Сохрани и включи VPN</li>
+            </ul>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #f59e0b;">
+            <h3>🔁 Если подписка не работает:</h3>
+            <ul>
+                <li>Нажми <strong>Обновить подписку / Update</strong> 🔄</li>
+                <li>Удали подписку и добавь ее заново по ссылке</li>
+                <li>Перезапусти приложение</li>
+            </ul>
+        </div>
+
+        <div class="center-heading"><h2>Поддержать проект</h2></div>
+        <div class="card donate-box">
+            <p>Если вам нравится наш сервис и вы хотите поддержать разработчика, вы можете отправить донат. Это помогает поддерживать и улучшать серверы!</p>
+            <p><strong>Способ 1: Прямой перевод по карте (Без комиссии)</strong></p>
+            <div class="card-number">2202 2067 8926 6512</div>
+            <p><strong>Способ 2: Через DonationAlerts</strong></p>
+            <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn" style="background: #f97316;">Отправить донат</a>
+        </div>
+    </div>
 
     <footer>
         &copy; 2026 Flux VPN. Все права защищены.
