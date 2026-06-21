@@ -1,683 +1,1363 @@
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <meta name="theme-color" content="#000000">
+
     <title>Flux VPN</title>
+
     <style>
+
         @font-face {
+
             font-family: 'SF Pro Display';
+
             src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), sans-serif;
+
         }
 
+
+
         :root {
+
             --bg-body: #0a0a0c;
+
             --app-bg: #000000;
+
             --surface: #1c1c1e;
+
             --primary: #0a84ff;
+
             --primary-gradient: linear-gradient(135deg, #0a84ff, #5e5ce6);
+
             --text-main: #ffffff;
+
             --text-sec: #ebebf599;
+
             --danger: #ff453a;
+
             --success: #32d74b;
+
             --warning: #ffd60a;
+
             --purple: #bf5af2;
+
             --radius-lg: 24px;
+
             --radius-md: 16px;
+
             --radius-sm: 10px;
+
         }
+
+
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
+
+
         body {
+
             margin: 0;
+
             background-color: var(--bg-body);
+
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
             color: var(--text-main);
+
             display: flex;
+
             justify-content: center;
+
             min-height: 100vh;
+
             scroll-behavior: smooth;
+
         }
+
+
 
         .app-container {
+
             width: 100%;
+
             max-width: 100%;
+
             background-color: var(--app-bg);
+
             position: relative;
+
             overflow-x: hidden;
+
             padding-bottom: 140px;
+
         }
 
+
+
         .ambient-glow {
+
             position: absolute;
+
             top: -100px;
+
             left: 50%;
+
             transform: translateX(-50%);
+
             width: 80vw;
+
             max-width: 800px;
+
             height: 300px;
+
             background: radial-gradient(circle, rgba(10, 132, 255, 0.15), transparent 70%);
+
             z-index: 0;
+
             pointer-events: none;
+
         }
+
+
 
         .content-wrapper { position: relative; z-index: 1; padding: 20px; max-width: 900px; margin: 0 auto; }
 
+
+
         h1 { font-size: 34px; font-weight: 800; letter-spacing: 0.3px; margin: 40px 0 10px; text-align: center; }
+
         .subtitle { color: var(--text-sec); font-size: 16px; line-height: 1.5; margin-top: 0; text-align: center; margin-bottom: 30px; }
+
         h2 { font-size: 22px; font-weight: 700; margin: 40px 0 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+
         
+
         .status-card {
+
             background: var(--primary-gradient);
+
             border-radius: var(--radius-lg);
+
             padding: 30px 24px;
+
             text-align: center;
+
             box-shadow: 0 10px 30px rgba(10, 132, 255, 0.2);
+
             margin-bottom: 20px;
+
         }
+
         .status-card h2 { margin: 0; font-size: 28px; color: #fff; border: none; padding: 0; }
+
         .status-card p { color: rgba(255,255,255,0.8); margin-top: 8px; margin-bottom: 25px; font-size: 15px; }
+
         
+
         .btn-main {
+
             display: inline-block;
+
             background: #ffffff;
+
             color: var(--primary);
+
             font-weight: 700;
+
             font-size: 17px;
+
             text-align: center;
+
             padding: 16px 40px;
+
             border-radius: 30px;
+
             text-decoration: none;
+
             transition: transform 0.1s;
+
             animation: pulse-glow 2.5s infinite;
+
             width: 100%;
+
             max-width: 300px;
+
         }
+
         .btn-main:active { transform: scale(0.96); animation: none; }
 
+
+
         @keyframes pulse-glow {
+
             0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+
             70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+
             100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+
         }
 
+
+
         /* Радар конфиденциальности */
+
         .radar-card { background: rgba(28, 28, 30, 0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 40px; backdrop-filter: blur(10px); }
+
         .radar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px; margin-bottom: 12px; }
+
         .radar-title { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+
         .radar-status { font-weight: 800; font-size: 13px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+
         .radar-status.loading { background: rgba(255,255,255,0.1); color: #fff; }
+
         .radar-status.unsafe { background: rgba(255,69,58,0.15); color: var(--danger); border: 1px solid rgba(255,69,58,0.3); }
+
         .radar-status.safe { background: rgba(50,215,75,0.15); color: var(--success); border: 1px solid rgba(50,215,75,0.3); }
+
         .radar-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
         .radar-item { display: flex; flex-direction: column; gap: 2px; }
+
         .radar-label { font-size: 11px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
+
         .radar-value { font-size: 15px; font-weight: 600; font-family: monospace; color: var(--primary); }
 
+
+
         .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 40px; }
+
         .btn-social { background: var(--surface); color: var(--text-main); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-md); padding: 16px 10px; font-size: 13px; font-weight: 600; text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: background 0.2s, transform 0.1s; }
+
         .btn-social:hover { background: #2c2c2e; border-color: rgba(255,255,255,0.1); }
+
         .btn-social:active { transform: scale(0.95); }
+
         .btn-social span { font-size: 24px; transition: transform 0.3s; }
+
         .btn-social:hover span { transform: translateY(-3px); }
 
+
+
         .ios-list { background: var(--surface); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
+
         .scrollable-list { max-height: 550px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
         .scrollable-list::-webkit-scrollbar { width: 5px; }
+
         .scrollable-list::-webkit-scrollbar-track { background: transparent; }
+
         .scrollable-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
+
+
         .ios-item { flex-direction: column; align-items: stretch; gap: 0; padding: 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s; }
+
         .ios-item:last-child { border-bottom: none; }
+
         .ios-item.expanded { background: rgba(255,255,255,0.02); }
+
         
+
         .ios-item-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 15px; cursor: pointer; }
+
         .ios-item-left { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+
         .ios-item-title { font-size: 16px; font-weight: 600; display: flex; align-items: center; }
+
         
+
         .chevron { font-size: 10px; color: #666; margin-left: 8px; transition: transform 0.3s; display: inline-block; }
+
         .ios-item.expanded .chevron { transform: rotate(180deg); color: var(--primary); }
 
+
+
         .tags-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
+
         .badge { padding: 3px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3px; }
+
         .badge-success { background: rgba(50, 215, 75, 0.15); color: var(--success); border: 1px solid rgba(50, 215, 75, 0.3); }
+
         .badge-error { background: rgba(255, 69, 58, 0.15); color: var(--danger); border: 1px solid rgba(255, 69, 58, 0.3); }
+
         .badge-shield { background: rgba(10, 132, 255, 0.15); color: var(--primary); border: 1px solid rgba(10, 132, 255, 0.3); }
+
         .badge-speed { background: rgba(255, 214, 10, 0.15); color: var(--warning); border: 1px solid rgba(255, 214, 10, 0.3); }
+
         .badge-ping { background: rgba(191, 90, 242, 0.15); color: var(--purple); border: 1px solid rgba(191, 90, 242, 0.3); }
+
         .badge-ru { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); }
+
         .badge-auto { background: linear-gradient(45deg, #ff007f, #7000ff); color: #fff; border: none; }
+
+
 
         .ios-item-subtitle { font-size: 12px; color: var(--text-sec); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: monospace; opacity: 0.7; }
 
+
+
         .btn-group { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; align-items: flex-end; }
+
         .btn-get { background: rgba(255,255,255,0.1); color: #ffffff; border: none; border-radius: 20px; padding: 8px 14px; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.2s; white-space: nowrap; width: 100%; text-align: center; }
+
         .btn-get:hover { background: rgba(255,255,255,0.15); }
+
         .btn-get:active { transform: scale(0.9); }
+
         .btn-get.success { background: var(--success); color: #fff; transform: scale(1.05); }
+
         .btn-import { background: rgba(10, 132, 255, 0.15); color: var(--primary); border: 1px solid rgba(10, 132, 255, 0.3); }
+
         .btn-import:hover { background: rgba(10, 132, 255, 0.25); }
 
+
+
         .ios-item-body { display: none; padding: 0 20px 16px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 5px; padding-top: 12px; }
+
         .ios-item.expanded .ios-item-body { display: block; animation: fadeInBody 0.3s ease; }
+
         .config-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); font-size: 13px; }
+
         .config-row:last-child { border-bottom: none; padding-bottom: 0; }
+
         
+
         .config-info-wrapper { display: flex; flex-direction: column; gap: 6px; max-width: 70%; }
+
         .config-info { color: var(--text-main); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
         .micro-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
         .m-tag { font-size: 9px; padding: 2px 5px; border-radius: 4px; background: rgba(255,255,255,0.1); color: var(--text-sec); font-family: monospace; text-transform: uppercase; }
+
         .m-tag.proto { background: rgba(10, 132, 255, 0.2); color: var(--primary); }
+
         .m-tag.sec { background: rgba(191, 90, 242, 0.2); color: var(--purple); }
 
+
+
         .ping-value { font-weight: 700; font-size: 12px; font-family: monospace; }
+
         .ping-loading { color: var(--text-sec); font-weight: normal; font-size: 11px; }
+
         .ping-good { color: var(--success); }
+
         .ping-ok { color: var(--warning); }
+
         .ping-bad { color: var(--danger); }
 
+
+
         .loader { border: 2px solid rgba(255,255,255,0.1); border-top: 2px solid var(--primary); border-radius: 50%; width: 16px; height: 16px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 8px; }
+
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(3600deg); } }
 
+
+
         @keyframes fadeInBody { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
         .status-dot { display: inline-block; width: 8px; height: 8px; background-color: var(--success); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 8px var(--success); animation: blink 2s infinite; }
+
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; box-shadow: 0 0 2px var(--success); } }
 
+
+
         /* Гайд стили */
+
         .guide-block { background: var(--surface); border-radius: var(--radius-lg); padding: 25px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
+
         .guide-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
         .guide-icon { font-size: 32px; }
+
         .guide-title { font-size: 18px; font-weight: 700; color: var(--primary); margin: 0; }
+
         .guide-steps { margin: 0; padding-left: 20px; color: var(--text-sec); font-size: 14px; line-height: 1.6; }
+
         .guide-steps li { margin-bottom: 10px; }
+
         .guide-steps strong { color: var(--text-main); }
 
+
+
         .donate-card { background: linear-gradient(145deg, #1c1c1e, #0a0a0c); border-radius: var(--radius-lg); padding: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.1); }
+
         .card-number { font-family: monospace; font-size: 26px; color: var(--primary); letter-spacing: 3px; margin: 20px 0; background: rgba(0,0,0,0.5); padding: 15px; border-radius: var(--radius-md); border: 1px dashed rgba(10, 132, 255, 0.3); }
 
+
+
         .tab-bar-container { position: fixed; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 100; pointer-events: none; }
+
         .tab-bar { pointer-events: auto; background: rgba(30, 30, 32, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px; display: flex; align-items: center; padding: 6px 10px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); gap: 5px; }
+
         .tab-item { color: var(--text-sec); text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 10px 18px; border-radius: 40px; transition: all 0.3s; }
+
         .tab-item span { font-size: 22px; transition: transform 0.3s; filter: grayscale(100%) opacity(0.7); }
+
         .tab-item.active { background: rgba(10, 132, 255, 0.15); color: var(--primary); }
+
         .tab-item.active span { filter: grayscale(0%) opacity(1); transform: scale(1.15) translateY(-2px); }
+
         @media (max-width: 400px) { .tab-item { padding: 10px 12px; } }
 
+
+
         .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+
         .fade-up.visible { opacity: 1; transform: translateY(0); }
+
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <div class="app-container">
+
         <div class="ambient-glow"></div>
+
         
+
         <div class="content-wrapper" id="home">
+
             <h1 class="fade-up visible">Flux VPN</h1>
+
             <p class="subtitle fade-up visible">Твоя цифровая свобода без ограничений. Обход DPI, высокая скорость, полная анонимность.</p>
 
+
+
             <div class="status-card fade-up visible">
+
                 <h2>Официальное приложение</h2>
+
                 <p>Доступ к Happ для всех устройств. Скачай, добавь подписку и наслаждайся свободным интернетом.</p>
+
                 <a href="https://happ.info/" target="_blank" class="btn-main">📥 Установить Happ</a>
+
             </div>
+
+
 
             <div class="radar-card fade-up delay-1 visible" id="privacy-radar">
+
                 <div class="radar-header">
+
                     <div class="radar-title"><span>📡</span> Ваш статус сети</div>
+
                     <div class="radar-status loading" id="radar-badge">Анализ...</div>
+
                 </div>
+
                 <div class="radar-info-grid">
+
                     <div class="radar-item">
+
                         <span class="radar-label">IP Адрес</span>
+
                         <span class="radar-value" id="radar-ip">...</span>
+
                     </div>
+
                     <div class="radar-item">
+
                         <span class="radar-label">Локация</span>
+
                         <span class="radar-value" id="radar-loc">...</span>
+
                     </div>
+
                     <div class="radar-item">
+
                         <span class="radar-label">Провайдер</span>
+
                         <span class="radar-value" id="radar-isp" style="color: var(--text-main);">...</span>
+
                     </div>
+
                 </div>
+
             </div>
+
+
 
             <div class="social-grid">
+
                 <a href="https://t.me/FluxVPNOff" target="_blank" class="btn-social fade-up delay-1"><span>✈️</span> Канал</a>
+
                 <a href="https://t.me/FluxVPNOff_bot" target="_blank" class="btn-social fade-up delay-2"><span>🤖</span> Бот</a>
+
                 <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-social fade-up delay-3"><span>🛠</span> Поддержка</a>
+
                 <a href="https://vk.com/club236107757" target="_blank" class="btn-social fade-up delay-1"><span>🌐</span> ВКонтакте</a>
+
                 <a href="https://www.tiktok.com/@fluxvpnoff" target="_blank" class="btn-social fade-up delay-2"><span>🎵</span> TikTok</a>
+
                 <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="btn-social fade-up delay-3"><span>🚀</span> Буст</a>
+
             </div>
+
+
 
             <h2 id="subs" class="fade-up">Свежее (Подписки дня)</h2>
+
             <p class="fade-up" style="font-size: 13px; text-align: center; margin-bottom: 15px; color: var(--primary);">Скрипт автоматически подбирает 3 новые подписки каждый день 🔄</p>
+
             <div class="ios-list fade-up" id="dynamic-subs-container">
+
                 </div>
+
+
 
             <h2 class="fade-up">Базовые конфигурации</h2>
+
             <div class="ios-list fade-up">
+
                 <div class="ios-item">
+
                     <div class="ios-item-left">
+
                         <div class="ios-item-title"><span class="status-dot"></span> 🔥 Основная (Рекомендуется)</div>
+
                         <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span><span class="badge badge-speed">⚡ Высокая скорость</span></div>
+
                         <div class="ios-item-subtitle" id="sub1">https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt</div>
+
                     </div>
+
                     <div class="btn-group"><button class="btn-get" onclick="copyLink('sub1', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('sub1')">Добавить в Happ</button></div>
+
                 </div>
+
                 <div class="ios-item">
+
                     <div class="ios-item-left">
+
                         <div class="ios-item-title"><span class="status-dot"></span> ⚡ VLESS Серверы</div>
+
                         <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span><span class="badge badge-ping">🎮 Низкий пинг</span></div>
+
                         <div class="ios-item-subtitle" id="sub2">https://vpnkeys.me/sub/happ/vless</div>
+
                     </div>
+
                     <div class="btn-group"><button class="btn-get" onclick="copyLink('sub2', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('sub2')">Добавить в Happ</button></div>
+
                 </div>
+
                 <div class="ios-item">
+
                     <div class="ios-item-left">
+
                         <div class="ios-item-title"><span class="status-dot"></span> 🇷🇺 RU Серверы (Внутренние)</div>
+
                         <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-ru">🇷🇺 Для Госуслуг и банков</span></div>
+
                         <div class="ios-item-subtitle" id="sub3">https://vpnkeys.me/sub/happ/RU</div>
+
                     </div>
+
                     <div class="btn-group"><button class="btn-get" onclick="copyLink('sub3', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('sub3')">Добавить в Happ</button></div>
+
                 </div>
+
             </div>
+
+
 
             <h2 id="guide" class="fade-up">Подробный гайд по настройке</h2>
+
             
+
             <div class="guide-block fade-up">
+
                 <div class="guide-header">
+
                     <div class="guide-icon">🍎</div>
+
                     <h3 class="guide-title">Настройка для iOS (iPhone / iPad)</h3>
+
                 </div>
+
                 <ul class="guide-steps">
+
                     <li>Установите приложение <strong>Happ</strong> из App Store по кнопке в самом верху сайта.</li>
+
                     <li>Вернитесь на наш сайт и выберите подходящую подписку. Нажмите синюю кнопку <strong>«Добавить в Happ»</strong>.</li>
+
                     <li>Приложение откроется автоматически. Нажмите <strong>Save / Import</strong> (Сохранить).</li>
+
                     <li>Если кнопка не сработала: нажмите <strong>Скопировать</strong>. Затем в Happ перейдите в <em>Profiles</em> (Профили) ➔ <em>Add</em> (Плюс) ➔ <em>Import from URL</em> и вставьте ссылку.</li>
+
                     <li>Разрешите добавление VPN-конфигурации в настройках iPhone (это стандартная защита Apple).</li>
+
                     <li>На главном экране выберите сервер с самым низким пингом и нажмите большую кнопку включения.</li>
+
                 </ul>
+
             </div>
 
+
+
             <div class="guide-block fade-up">
+
                 <div class="guide-header">
+
                     <div class="guide-icon">🤖</div>
+
                     <h3 class="guide-title">Настройка для Android</h3>
+
                 </div>
+
                 <ul class="guide-steps">
+
                     <li>Загрузите <strong>Happ</strong> из Google Play.</li>
+
                     <li>На нашем сайте нажмите <strong>«Добавить в Happ»</strong> рядом с нужной подпиской.</li>
+
                     <li>Если не перекидывает, скопируйте ссылку. В приложении Happ откройте меню <em>Подписки</em> ➔ Нажмите <strong>➕</strong> ➔ <em>Импорт по ссылке</em>. Вставьте ссылку и сохраните.</li>
+
                     <li><strong>Важно:</strong> Нажмите значок <strong>Обновить 🔄</strong> (круговые стрелки) в правом верхнем углу, чтобы приложение скачало список свежих серверов.</li>
+
                     <li>Зайдите в ⚙️ <em>Настройки</em> ➔ <em>Пинг (Ping)</em> ➔ выберите <strong>TCP</strong> для точного замера скорости.</li>
+
                     <li>Выберите сервер из списка и подключайтесь!</li>
+
                 </ul>
+
             </div>
 
+
+
             <div class="guide-block fade-up">
+
                 <div class="guide-header">
+
                     <div class="guide-icon">💻</div>
+
                     <h3 class="guide-title">Настройка для ПК (Windows, macOS, Linux)</h3>
+
                 </div>
+
                 <ul class="guide-steps">
+
                     <li>Скачайте и установите десктопную версию <strong>Happ</strong>.</li>
+
                     <li>Скопируйте любую подписку с нашего сайта (кнопка <strong>Скопировать</strong>).</li>
+
                     <li>Откройте Happ на компьютере ➔ перейдите в раздел <em>Subscriptions</em> (или <em>Profiles / Servers</em>).</li>
+
                     <li>Нажмите <strong>Add</strong> (Добавить) и вставьте вашу ссылку. Сохраните.</li>
+
                     <li>Обязательно нажмите <strong>Update</strong> (Обновить), чтобы подтянуть сервера из интернета.</li>
+
                     <li>Выберите сервер с минимальным пингом и нажмите <strong>Connect</strong>.</li>
+
                 </ul>
+
             </div>
 
+
+
             <div class="guide-block fade-up">
+
                 <div class="guide-header">
+
                     <div class="guide-icon">📺</div>
+
                     <h3 class="guide-title">Настройка для Android TV</h3>
+
                 </div>
+
                 <ul class="guide-steps">
+
                     <li>Найдите приложение <strong>Happ</strong> во встроенном магазине телевизора (или установите через APK).</li>
+
                     <li>Скопируйте ссылку на подписку с телефона и отправьте её себе в «Избранное» Telegram или любой мессенджер.</li>
+
                     <li>Откройте Happ на телевизоре ➔ зайдите в <em>Subscriptions</em> ➔ <em>Add from URL</em>.</li>
+
                     <li>Введите скопированную ссылку. <em>(Совет: используйте приложение Android TV Remote на смартфоне, чтобы вставить текст как с клавиатуры).</em></li>
+
                     <li>Сохраните, нажмите кнопку обновления списка серверов и подключайтесь.</li>
+
                 </ul>
+
             </div>
+
+
 
             <h2 id="donate" class="fade-up">Поддержать проект</h2>
+
             <div class="donate-card fade-up">
+
                 <p>Ваша поддержка помогает оплачивать серверы и делать сервис лучше!</p>
+
                 <div style="font-size: 15px; margin-top: 20px; color: var(--text-sec);">Без комиссии (перевод по карте):</div>
+
                 <div class="card-number" id="cardNum">2202 2067 8926 6512</div>
+
                 <button class="btn-get" style="width: 100%; padding: 14px; margin-bottom: 25px; font-size: 16px; border-radius: 12px; background: rgba(255,255,255,0.1);" onclick="copyLink('cardNum', this)">Скопировать номер карты</button>
+
                 <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn-main" style="width: 100%; max-width: 100%; background: #ff8c00; color: #fff; padding: 14px; border-radius: 12px; animation: none;">Отправить донат 💸</a>
+
             </div>
+
+
 
             <h2 id="backup" class="fade-up">Мега-База (Резерв)</h2>
+
             <p class="fade-up" style="font-size: 13px; text-align: center; margin-bottom: 15px; color: var(--primary);">Нажмите на подписку для рентгена конфигов и проверки пинга 👇</p>
+
             
+
             <div class="ios-list scrollable-list fade-up">
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">VLESS Reality Core</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div><div class="ios-item-subtitle" id="r1">https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/reality</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r1', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r1')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">Premium VLESS</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span><span class="badge badge-speed">⚡ Fast</span></div><div class="ios-item-subtitle" id="r2">https://raw.githubusercontent.com/2023-vpn/vpn-configs/main/vless.txt</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r2', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r2')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">Barry-far Aggregator</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div><div class="ios-item-subtitle" id="r4">https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub1.txt</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r4', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r4')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">SS Aggregator VLESS</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div><div class="ios-item-subtitle" id="r5">https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity.txt</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r5', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r5')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">Lexiie Proxy Mix</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div><div class="ios-item-subtitle" id="r8">https://raw.githubusercontent.com/Lexiie/all_proxy/main/file/all</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r8', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r8')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">Mfuu Backup</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span></div><div class="ios-item-subtitle" id="r10">https://raw.githubusercontent.com/mfuu/v2ray/master/v2ray</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r10', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r10')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">Ermaozi Sub</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div><div class="ios-item-subtitle" id="r11">https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r11', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r11')">Добавить в Happ</button></div></div>
+
                 <div class="ios-item"><div class="ios-item-left"><div class="ios-item-title">Shabane Configs</div><div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div><div class="ios-item-subtitle" id="r12">https://raw.githubusercontent.com/shabane/v2ray-configs/main/v2ray</div></div><div class="btn-group"><button class="btn-get" onclick="copyLink('r12', this)">Скопировать</button><button class="btn-get btn-import" onclick="openInHapp('r12')">Добавить в Happ</button></div></div>
+
             </div>
+
+
 
             <div class="fade-up" style="text-align: center; margin-top: 50px; color: #666; font-size: 13px;">
+
                 Flux VPN &copy; 2026. Все права защищены.
+
             </div>
+
         </div>
+
+
 
         <div class="tab-bar-container">
+
             <div class="tab-bar">
+
                 <a href="#home" class="tab-item active"><span>🏠</span> Главная</a>
+
                 <a href="#subs" class="tab-item"><span>🔗</span> Конфиги</a>
+
                 <a href="#guide" class="tab-item"><span>📖</span> Гайд</a>
+
                 <a href="#donate" class="tab-item"><span>❤️</span> Донат</a>
+
             </div>
+
         </div>
+
     </div>
 
+
+
     <script>
+
         function copyLink(elementId, btnElement) {
+
             let el = document.getElementById(elementId);
+
             if(!el) return;
+
             const textToCopy = el.innerText.trim();
+
             navigator.clipboard.writeText(textToCopy).then(() => {
+
                 const originalText = btnElement.innerText;
+
                 btnElement.innerText = "✓ Скопировано";
+
                 btnElement.classList.add('success');
+
                 setTimeout(() => {
+
                     btnElement.innerText = originalText;
+
                     btnElement.classList.remove('success');
+
                 }, 1500);
+
             }).catch(err => console.error('Ошибка:', err));
+
         }
+
+
 
         function openInHapp(elementId) {
+
             let el = document.getElementById(elementId);
-            if(!el) return;
+
+            if (!el) return;
+
             const urlToImport = el.innerText.trim();
-            const deepLink = "happ://import?url=" + encodeURIComponent(urlToImport);
-            window.location.href = deepLink;
+
+            window.location.href = "happ://" + urlToImport;
+
         }
+
+
 
         async function checkPrivacyStatus() {
+
             try {
+
                 const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+
                 const data = await response.json();
+
                 
+
                 document.getElementById('radar-ip').innerText = data.ip;
+
                 document.getElementById('radar-loc').innerText = `${data.city || 'Неизвестно'}, ${data.country || ''}`;
+
                 document.getElementById('radar-isp').innerText = data.organization || 'Неизвестно';
+
                 
+
                 const badge = document.getElementById('radar-badge');
+
                 badge.classList.remove('loading');
+
                 
+
                 if (data.country === 'RU' || data.country === 'BY') {
+
                     badge.innerText = '⚠️ Ты не защищен';
+
                     badge.classList.add('unsafe');
+
                 } else {
+
                     badge.innerText = '✅ Соединение скрыто';
+
                     badge.classList.add('safe');
+
                 }
+
             } catch (error) {
+
                 const badge = document.getElementById('radar-badge');
+
                 badge.innerText = 'Ошибка анализа';
+
                 badge.classList.remove('loading');
+
             }
+
         }
+
         checkPrivacyStatus();
 
+
+
         const masterSubPool = [
+
             { name: "Global Proxy Network", url: "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2" },
+
             { name: "Extreme V2Ray Collection", url: "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub" },
+
             { name: "Warp+ Configs Hub", url: "https://raw.githubusercontent.com/w1770946466/Auto_Proxy/main/Main" },
+
             { name: "Snzmac Daily Nodes", url: "https://raw.githubusercontent.com/snzmac/v2ray-config/main/v2ray.txt" },
+
             { name: "Chengaopan VLESS", url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt" },
+
             { name: "Alvin9999 High-Speed", url: "https://raw.githubusercontent.com/Alvin9999/new-pac/master/v2ray.txt" },
+
             { name: "Peasoft NoMoreWalls", url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt" },
+
             { name: "XXF098 VLESS Lite", url: "https://raw.githubusercontent.com/xxf098/Lite-v2ray/main/v2ray" },
+
             { name: "TheBeast Routing", url: "https://raw.githubusercontent.com/TheBeast999/v2ray-configs/main/vless" },
+
             { name: "BoringCat Free Nodes", url: "https://raw.githubusercontent.com/BoringCat/free-node/master/v2ray.txt" },
+
             { name: "Mianfeifq Community", url: "https://raw.githubusercontent.com/mianfeifq/share/main/v2ray.txt" }
+
         ];
 
+
+
         function generateDailySubs() {
+
             const dateStr = new Date().toDateString();
+
             let hash = 0;
+
             for (let i = 0; i < dateStr.length; i++) hash = dateStr.charCodeAt(i) + ((hash << 5) - hash);
+
             
+
             const container = document.getElementById('dynamic-subs-container');
+
             let html = '';
+
             
+
             for(let i=0; i<3; i++) {
+
                 const index = Math.abs((hash + i*13)) % masterSubPool.length;
+
                 const sub = masterSubPool[index];
+
                 const uid = "dyn_" + i;
+
                 
+
                 html += `
+
                 <div class="ios-item">
+
                     <div class="ios-item-left">
+
                         <div class="ios-item-title"><span class="status-dot"></span> ${sub.name}</div>
+
                         <div class="tags-row">
+
                             <span class="badge badge-auto">🔄 Обновлено сегодня</span>
+
                             <span class="badge badge-success">✅ Свежая база</span>
+
                         </div>
+
                         <div class="ios-item-subtitle" id="${uid}">${sub.url}</div>
+
                     </div>
+
                     <div class="btn-group">
+
                         <button class="btn-get" onclick="copyLink('${uid}', this)">Скопировать</button>
+
                         <button class="btn-get btn-import" onclick="openInHapp('${uid}')">Добавить в Happ</button>
+
                     </div>
+
                 </div>`;
+
             }
+
             container.innerHTML = html;
+
         }
+
         generateDailySubs();
 
+
+
         async function measurePing(host) {
+
             const start = performance.now();
+
             const controller = new AbortController();
+
             const timeoutId = setTimeout(() => controller.abort(), 2500);
+
             try {
+
                 await fetch(`https://${host}`, { mode: 'no-cors', signal: controller.signal, cache: 'no-store' });
+
                 clearTimeout(timeoutId);
+
                 return Math.round(performance.now() - start);
+
             } catch(e) {
+
                 clearTimeout(timeoutId);
+
                 const duration = Math.round(performance.now() - start);
+
                 if (e.name === 'AbortError' || duration >= 2400) return null;
+
                 return duration; 
+
             }
+
         }
+
+
 
         function parseConfigLink(line) {
+
             try {
+
                 let protocol = line.split('://')[0].toUpperCase();
+
                 let nameParts = line.split('#');
+
                 let name = nameParts.length > 1 ? decodeURIComponent(nameParts[1]) : 'Безымянный узел';
+
                 let mainPart = nameParts[0];
+
                 
+
                 let host = '', port = '', type = 'TCP', security = 'NONE';
+
                 
+
                 if (mainPart.includes('@')) {
+
                     let afterAt = mainPart.split('@')[1]; 
+
                     let hostPort = afterAt.split('?')[0];
+
                     host = hostPort.split(':')[0];
+
                     port = hostPort.split(':')[1] || '443';
+
                     
+
                     if (mainPart.includes('?')) {
+
                         let paramsStr = mainPart.split('?')[1];
+
                         let params = new URLSearchParams(paramsStr);
+
                         if (params.get('type')) type = params.get('type').toUpperCase();
+
                         if (params.get('security')) security = params.get('security').toUpperCase();
+
                     }
+
                 }
+
                 return { valid: true, protocol, name, host, port, type, security };
+
             } catch (e) {
+
                 return { valid: false };
+
             }
+
         }
+
+
 
         async function fetchRealConfigs(url, container) {
+
             container.innerHTML = `<span class="loader"></span> Разбор (Рентген) конфигурации...`;
+
             try {
+
                 let res = await fetch(url);
+
                 if (!res.ok) throw new Error();
+
                 let text = await res.text();
+
                 let lines = text.split('\n').map(l => l.trim()).filter(l => l);
 
+
+
                 if (lines.length > 0 && !lines[0].includes('://')) {
+
                     try {
+
                         let decoded = atob(lines.join(''));
+
                         lines = decoded.split('\n').map(l => l.trim()).filter(l => l);
+
                     } catch(e) {}
+
                 }
+
+
 
                 let html = '<div style="font-size: 11px; color: #888; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">Детальный анализ узлов (Первые 10):</div>';
+
                 let validNodes = [];
 
+
+
                 lines.forEach(line => {
+
                     if (validNodes.length >= 10) return;
+
                     if (line.includes('://')) {
+
                         let parsed = parseConfigLink(line);
+
                         if(parsed.valid && parsed.host) {
+
                             validNodes.push(parsed);
+
                         }
+
                     }
+
                 });
+
+
 
                 if (validNodes.length === 0) {
+
                     container.innerHTML = '<div style="color: var(--warning); font-size: 13px;">Узлы не найдены или формат не поддерживается.</div>';
+
                     return;
+
                 }
+
+
 
                 validNodes.forEach((node, index) => {
+
                     const uniqueId = `ping-${Math.random().toString(36).substr(2, 9)}-${index}`;
+
                     html += `<div class="config-row">
+
                         <div class="config-info-wrapper">
+
                             <div class="config-info">🌐 ${node.name}</div>
+
                             <div class="micro-tags">
+
                                 <span class="m-tag proto">${node.protocol}</span>
+
                                 ${node.security !== 'NONE' ? `<span class="m-tag sec">${node.security}</span>` : ''}
+
                                 <span class="m-tag">${node.type}</span>
+
                                 <span class="m-tag">PORT ${node.port}</span>
+
                             </div>
+
                         </div>
+
                         <div class="ping-value ping-loading" id="${uniqueId}">Замер...</div>
+
                     </div>`;
+
                     
+
                     measurePing(node.host).then(rtt => {
+
                         const pingElement = document.getElementById(uniqueId);
+
                         if(!pingElement) return;
+
                         if (rtt === null) {
+
                             pingElement.innerText = "🛑 Тайм-аут";
+
                             pingElement.className = "ping-value ping-bad";
+
                         } else {
+
                             pingElement.innerText = `${rtt} мс`;
+
                             if (rtt < 90) pingElement.className = "ping-value ping-good";
+
                             else if (rtt < 180) pingElement.className = "ping-value ping-ok";
+
                             else pingElement.className = "ping-value ping-bad";
+
                         }
+
                     });
+
                 });
+
                 container.innerHTML = html;
 
+
+
             } catch(e) {
+
                 container.innerHTML = `<div style="color: var(--warning); font-size: 13px; padding-top: 5px;">⚠️ Ошибка загрузки списка (защита браузера). Но вы можете проверить узлы сами — просто добавьте подписку в приложение Happ!</div>`;
+
             }
+
         }
 
+
+
         function initAccordions() {
+
             document.querySelectorAll('.ios-item').forEach(item => {
+
                 if (item.classList.contains('accordion-inited')) return;
+
                 item.classList.add('accordion-inited');
 
+
+
                 const header = document.createElement('div');
+
                 header.className = 'ios-item-header';
+
                 
+
                 const left = item.querySelector('.ios-item-left');
+
                 const right = item.querySelector('.btn-group');
+
                 if(left) header.appendChild(left);
+
                 
+
                 const title = header.querySelector('.ios-item-title');
+
                 if(title) {
+
                     const chevron = document.createElement('span');
+
                     chevron.className = 'chevron';
+
                     chevron.innerHTML = '▼';
+
                     title.appendChild(chevron);
+
                 }
+
                 
+
                 if(right) header.appendChild(right);
+
                 item.appendChild(header);
 
+
+
                 const body = document.createElement('div');
+
                 body.className = 'ios-item-body';
+
                 item.appendChild(body);
+
+
 
                 let isLoaded = false;
 
+
+
                 header.addEventListener('click', (e) => {
+
                     if(e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+
                     
+
                     const isExpanded = item.classList.toggle('expanded');
+
                     const isError = header.querySelector('.badge-error');
+
                     
+
                     if (isError && isExpanded) {
+
                         body.innerHTML = '<div style="text-align: center; padding: 10px; color: var(--danger); font-size: 12px;">Узлы недоступны (Сервер не отвечает)</div>';
+
                         return;
+
                     }
+
+
 
                     if (isExpanded && !isLoaded) {
+
                         const subtitle = header.querySelector('.ios-item-subtitle');
+
                         if (subtitle) {
+
                             fetchRealConfigs(subtitle.innerText.trim(), body);
+
                             isLoaded = true;
+
                         }
+
                     }
+
                 });
+
             });
+
         }
+
         
+
         initAccordions();
 
+
+
         const tabs = document.querySelectorAll('.tab-item');
+
         tabs.forEach(tab => {
+
             tab.addEventListener('click', () => {
+
                 tabs.forEach(t => t.classList.remove('active'));
+
                 tab.classList.add('active');
+
             });
+
         });
+
+
 
         document.addEventListener("DOMContentLoaded", function() {
+
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+
             const observer = new IntersectionObserver((entries, observer) => {
+
                 entries.forEach(entry => {
+
                     if (entry.isIntersecting) {
+
                         entry.target.classList.add('visible');
+
                         observer.unobserve(entry.target); 
+
                     }
+
                 });
+
             }, observerOptions);
 
+
+
             document.querySelectorAll('.fade-up').forEach((elem) => {
+
                 if(elem.getBoundingClientRect().top < window.innerHeight) {
+
                     elem.classList.add('visible');
+
                 } else {
+
                     observer.observe(elem);
+
                 }
+
             });
+
         });
+
     </script>
+
 </body>
+
 </html>
