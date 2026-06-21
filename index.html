@@ -812,11 +812,11 @@
 
             let el = document.getElementById(elementId);
 
-            if (!el) return;
+            if(!el) return;
 
             const urlToImport = el.innerText.trim();
 
-            window.location.href = "happ://" + urlToImport;
+            window.location.href = "happ://add/" + urlToImport;
 
         }
 
