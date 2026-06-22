@@ -216,8 +216,8 @@
         .btn-get:hover { background: rgba(128,128,128,0.25); }
         .btn-get:active { transform: scale(0.9); }
         .btn-get.success { background: var(--success); color: #fff; transform: scale(1.05); }
-        .btn-import { background: var(--primary); color: #fff; opacity: 0.9; }
-        .btn-import:hover { opacity: 1; }
+        .btn-import { background: rgba(10, 132, 255, 0.15); color: var(--primary); border: 1px solid rgba(10, 132, 255, 0.3); }
+        .btn-import:hover { background: rgba(10, 132, 255, 0.25); }
 
         .ios-item-body { display: none; padding: 0 20px 16px; border-top: 1px solid rgba(128,128,128,0.1); margin-top: 5px; padding-top: 12px; }
         .ios-item.expanded .ios-item-body { display: block; animation: fadeInBody 0.3s ease; }
@@ -242,7 +242,7 @@
         .status-dot { display: inline-block; width: 8px; height: 8px; background-color: var(--success); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 8px var(--success); animation: blink 2s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; box-shadow: 0 0 2px var(--success); } }
 
-        /* Мастер настройки (Wizard) */
+        /* Мастер настройки */
         .wizard-container { background: var(--surface); border-radius: var(--radius-lg); padding: 25px; margin-bottom: 20px; border: 1px solid rgba(128,128,128,0.15); transition: background 0.5s; }
         .wizard-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
         .wizard-tab { background: rgba(128,128,128,0.05); border: 1px solid rgba(128,128,128,0.15); padding: 15px 10px; border-radius: var(--radius-md); text-align: center; cursor: pointer; color: var(--text-sec); font-weight: 600; font-size: 13px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -258,7 +258,7 @@
         .donate-card { background: var(--surface); border-radius: var(--radius-lg); padding: 30px; text-align: center; border: 1px solid rgba(128,128,128,0.15); transition: background 0.5s; }
         .card-number { font-family: monospace; font-size: 26px; color: var(--primary); letter-spacing: 3px; margin: 20px 0; background: rgba(128,128,128,0.1); padding: 15px; border-radius: var(--radius-md); border: 1px dashed var(--primary); }
 
-        /* ТАБ БАР (ДИЗАЙН С ФОТО) */
+        /* ТАБ БАР 4.0.0 */
         .tab-bar-container { position: fixed; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 100; pointer-events: none; }
         .tab-bar { 
             pointer-events: auto; 
@@ -318,6 +318,7 @@
         .theme-circle.active-theme { border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
         .close-modal { width: 100%; background: rgba(128,128,128,0.2); color: var(--text-main); border: none; padding: 12px; border-radius: var(--radius-md); margin-top: 20px; font-weight: 700; cursor: pointer; }
 
+        /* Анимация скрытых элементов для IntersectionObserver */
         .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
         .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
@@ -404,7 +405,7 @@
                     <div class="ios-item-header">
                         <div class="ios-item-left">
                             <div class="ios-item-title"><span class="status-dot"></span> 🇷🇺 RU Серверы (Внутренние)</div>
-                            <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-ru">🇷🇺 Для Госуслуг и банков</span></div>
+                            <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-ru">🇷🇺 Для Госуслуг</span></div>
                             <div class="ios-item-subtitle" id="sub3">https://vpnkeys.me/sub/happ/RU</div>
                         </div>
                         <div class="btn-group">
@@ -581,7 +582,7 @@
 
             // 50+ Мега-База для обхода блокировок
             const megaBasePool = [
-                // Стандартные (из предыдущей версии)
+                // Стандартные
                 { name: "Yebekhe Reality Core", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/reality" },
                 { name: "Yebekhe VLESS", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/vless" },
                 { name: "Yebekhe Trojan", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/trojan" },
@@ -637,7 +638,7 @@
                 { name: "Infinity Reality Mix", url: "https://raw.githubusercontent.com/LonUp/NodeList/main/V2RAY.txt" },
                 { name: "Freedom Trojan Net", url: "https://raw.githubusercontent.com/LonUp/NodeList/main/TROJAN.txt" },
                 { name: "Premium XTLS Core", url: "https://raw.githubusercontent.com/Flik6/NodeFree/main/vless.txt" },
-                // НОВЫЕ ПОДПИСКИ ДЛЯ ОБХОДА ГЛУШИЛОК (Обход DPI)
+                // Новые для обхода DPI
                 { name: "Anti-DPI Reality Hub", url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/reality.txt" },
                 { name: "Stealth VLESS Multi", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/normal/vless" },
                 { name: "Bypass Iran/RU Net", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/vless" },
@@ -843,7 +844,7 @@
             let el = document.getElementById(elementId);
             if(!el) return;
             const urlToImport = el.innerText.trim();
-            const deepLink = "happ://import?url=" + encodeURIComponent(urlToImport);
+            const deepLink = "happ://add/" + urlToImport;
             window.location.href = deepLink;
         }
 
