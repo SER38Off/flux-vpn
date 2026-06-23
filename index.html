@@ -242,7 +242,7 @@
         .status-dot { display: inline-block; width: 8px; height: 8px; background-color: var(--success); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 8px var(--success); animation: blink 2s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; box-shadow: 0 0 2px var(--success); } }
 
-        /* Мастер настройки */
+        /* Мастер настройки (Wizard) - Стили адаптированы под 4.0.0 */
         .wizard-container { background: var(--surface); border-radius: var(--radius-lg); padding: 25px; margin-bottom: 20px; border: 1px solid rgba(128,128,128,0.15); transition: background 0.5s; }
         .wizard-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
         .wizard-tab { background: rgba(128,128,128,0.05); border: 1px solid rgba(128,128,128,0.15); padding: 15px 10px; border-radius: var(--radius-md); text-align: center; cursor: pointer; color: var(--text-sec); font-weight: 600; font-size: 13px; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -258,7 +258,7 @@
         .donate-card { background: var(--surface); border-radius: var(--radius-lg); padding: 30px; text-align: center; border: 1px solid rgba(128,128,128,0.15); transition: background 0.5s; }
         .card-number { font-family: monospace; font-size: 26px; color: var(--primary); letter-spacing: 3px; margin: 20px 0; background: rgba(128,128,128,0.1); padding: 15px; border-radius: var(--radius-md); border: 1px dashed var(--primary); }
 
-        /* ТАБ БАР 4.0.0 */
+        /* ТАБ БАР (ДИЗАЙН С ФОТО) */
         .tab-bar-container { position: fixed; bottom: 30px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 100; pointer-events: none; }
         .tab-bar { 
             pointer-events: auto; 
@@ -373,44 +373,47 @@
                 <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="btn-social fade-up"><span>🚀</span> Буст</a>
             </div>
 
-            <h2 id="subs" class="fade-up">Базовые конфигурации</h2>
+            <h2 id="subs" class="fade-up">🔥 Рекомендованные конфигурации</h2>
             <div class="ios-list fade-up">
+                
                 <div class="ios-item">
                     <div class="ios-item-header">
                         <div class="ios-item-left">
-                            <div class="ios-item-title"><span class="status-dot"></span> 🔥 Основная (Рекомендуется)</div>
+                            <div class="ios-item-title"><span class="status-dot"></span> 🔥 Goida Premium (Обход)</div>
                             <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span><span class="badge badge-speed">⚡ Высокая скорость</span></div>
+                            <div class="ios-item-subtitle" id="sub_goida1">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-get" onclick="copyLink('sub_goida1', this)">Скопировать</button>
+                            <button class="btn-get btn-import" onclick="openInHapp('sub_goida1')">Добавить в Happ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ios-item">
+                    <div class="ios-item-header">
+                        <div class="ios-item-left">
+                            <div class="ios-item-title"><span class="status-dot"></span> ⚡ Goida Standard</div>
+                            <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-speed">⚡ Высокая скорость</span></div>
+                            <div class="ios-item-subtitle" id="sub_goida2">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-get" onclick="copyLink('sub_goida2', this)">Скопировать</button>
+                            <button class="btn-get btn-import" onclick="openInHapp('sub_goida2')">Добавить в Happ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ios-item">
+                    <div class="ios-item-header">
+                        <div class="ios-item-left">
+                            <div class="ios-item-title"><span class="status-dot"></span> 🌟 Основная (VLESS)</div>
+                            <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span></div>
                             <div class="ios-item-subtitle" id="sub1">https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt</div>
                         </div>
                         <div class="btn-group">
                             <button class="btn-get" onclick="copyLink('sub1', this)">Скопировать</button>
                             <button class="btn-get btn-import" onclick="openInHapp('sub1')">Добавить в Happ</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ios-item">
-                    <div class="ios-item-header">
-                        <div class="ios-item-left">
-                            <div class="ios-item-title"><span class="status-dot"></span> ⚡ VLESS Серверы</div>
-                            <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-shield">🛡️ Обход глушилок</span><span class="badge badge-ping">🎮 Низкий пинг</span></div>
-                            <div class="ios-item-subtitle" id="sub2">https://vpnkeys.me/sub/happ/vless</div>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn-get" onclick="copyLink('sub2', this)">Скопировать</button>
-                            <button class="btn-get btn-import" onclick="openInHapp('sub2')">Добавить в Happ</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="ios-item">
-                    <div class="ios-item-header">
-                        <div class="ios-item-left">
-                            <div class="ios-item-title"><span class="status-dot"></span> 🇷🇺 RU Серверы (Внутренние)</div>
-                            <div class="tags-row"><span class="badge badge-success">✅ Работает</span><span class="badge badge-ru">🇷🇺 Для Госуслуг</span></div>
-                            <div class="ios-item-subtitle" id="sub3">https://vpnkeys.me/sub/happ/RU</div>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn-get" onclick="copyLink('sub3', this)">Скопировать</button>
-                            <button class="btn-get btn-import" onclick="openInHapp('sub3')">Добавить в Happ</button>
                         </div>
                     </div>
                 </div>
@@ -422,6 +425,8 @@
                 <button class="filter-btn" data-filter="best">🔥 Лучшие</button>
                 <button class="filter-btn" data-filter="new">✨ Новые</button>
                 <button class="filter-btn" data-filter="gaming">🎮 Игровые</button>
+                <button class="filter-btn" data-filter="ru">🇷🇺 RU Сегмент</button>
+                <button class="filter-btn" data-filter="media">▶️ Media</button>
             </div>
             
             <div class="ios-list fade-up" id="dynamic-subs-container">
@@ -489,7 +494,7 @@
             </div>
 
             <h2 id="backup" class="fade-up">Мега-База (Резерв)</h2>
-            <p class="fade-up" style="font-size: 13px; text-align: center; margin-bottom: 15px; color: var(--primary);">Нажмите на подписку для рентгена конфигов и проверки пинга 👇</p>
+            <p class="fade-up" style="font-size: 13px; text-align: center; margin-bottom: 15px; color: var(--primary);">Нажмите на подписку для рентгена конфигов 👇</p>
             
             <div class="ios-list scrollable-list fade-up" id="mega-base-container">
                 </div>
@@ -580,9 +585,34 @@
             document.getElementById('openThemeBtn').onclick = () => document.getElementById('themeModal').classList.add('show');
             document.getElementById('closeThemeBtn').onclick = () => document.getElementById('themeModal').classList.remove('show');
 
+            // Основной каталог (Фильтруется)
+            const masterSubPool = [
+                { name: "Goida Premium (Обход)", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "best", customBadges: '<span class="badge badge-success">✅ Работает</span> <span class="badge badge-shield">🛡️ Обход глушилок</span> <span class="badge badge-speed">⚡ Скорость</span>' },
+                { name: "Goida Standard", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt", category: "best", customBadges: '<span class="badge badge-success">✅ Работает</span> <span class="badge badge-speed">⚡ Скорость</span>' },
+                
+                { name: "VLESS Gaming Hub", url: "https://vpnkeys.me/sub/happ/vless", category: "gaming" },
+                { name: "Warp+ Configs", url: "https://raw.githubusercontent.com/w1770946466/Auto_Proxy/main/Main", category: "gaming" },
+                { name: "Premium XTLS Core", url: "https://raw.githubusercontent.com/Flik6/NodeFree/main/vless.txt", category: "gaming" },
+                { name: "Pawdroid Low Ping", url: "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/vless", category: "gaming" },
+                
+                { name: "RU Серверы (Внутренние)", url: "https://vpnkeys.me/sub/happ/RU", category: "ru" },
+                { name: "RU Block Bypass", url: "https://raw.githubusercontent.com/V2rayR/v2ray/main/v2ray.txt", category: "ru" },
+                { name: "Unblock RU Hub", url: "https://raw.githubusercontent.com/unblock/ru/main/nodes", category: "ru" },
+                
+                { name: "ShadowTLS Ultimate", url: "https://raw.githubusercontent.com/ts-sf/v2ray/main/trojan", category: "media" },
+                { name: "Global Proxy Network", url: "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2", category: "media" },
+                { name: "Stream Unblocker", url: "https://raw.githubusercontent.com/stream/unblock/main/vless", category: "media" },
+                { name: "Hysteria2 4K Stream", url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/hysteria2.txt", category: "media" },
+                
+                { name: "Snzmac Daily Nodes", url: "https://raw.githubusercontent.com/snzmac/v2ray-config/main/v2ray.txt", category: "new" },
+                { name: "Peasoft NoMoreWalls", url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt", category: "new" },
+                { name: "BoringCat Free Nodes", url: "https://raw.githubusercontent.com/BoringCat/free-node/master/v2ray.txt", category: "new" },
+                { name: "Daily Updated Nodes", url: "https://raw.githubusercontent.com/daily/update/main/nodes.txt", category: "new" },
+                { name: "Stealth VLESS Multi", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/normal/vless", category: "new" }
+            ];
+
             // 50+ Мега-База для обхода блокировок
             const megaBasePool = [
-                // Стандартные
                 { name: "Yebekhe Reality Core", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/reality" },
                 { name: "Yebekhe VLESS", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/vless" },
                 { name: "Yebekhe Trojan", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/trojan" },
@@ -638,51 +668,18 @@
                 { name: "Infinity Reality Mix", url: "https://raw.githubusercontent.com/LonUp/NodeList/main/V2RAY.txt" },
                 { name: "Freedom Trojan Net", url: "https://raw.githubusercontent.com/LonUp/NodeList/main/TROJAN.txt" },
                 { name: "Premium XTLS Core", url: "https://raw.githubusercontent.com/Flik6/NodeFree/main/vless.txt" },
-                // Новые для обхода DPI
                 { name: "Anti-DPI Reality Hub", url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/reality.txt" },
-                { name: "Stealth VLESS Multi", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/normal/vless" },
                 { name: "Bypass Iran/RU Net", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/vless" },
-                { name: "V2ray Bypass DPI", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/reality" },
-                { name: "Shadowsocks 2026 Obfs", url: "https://raw.githubusercontent.com/mzz2017/gg/main/clash" },
                 { name: "Xray Ultimate Reserve", url: "https://raw.githubusercontent.com/freefq/free/master/v2" },
-                { name: "VLESS XTLS Vision", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/vless_xtls" },
                 { name: "Trojan Stealth TCP", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/splitted/trojan" },
-                { name: "Reality gRPC", url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/grpc.txt" },
                 { name: "Hysteria2 Bypass", url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/hysteria2.txt" },
                 { name: "Cloudflare Warp Bypass", url: "https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Splitted-By-Protocol/warp.txt" },
-                { name: "Obfuscated Nodes", url: "https://raw.githubusercontent.com/yebekhe/TelegramV2RayCollector/main/sub/normal/vmess" },
                 { name: "RU Block Bypass", url: "https://raw.githubusercontent.com/V2rayR/v2ray/main/v2ray.txt" },
-                { name: "XTLS Direct", url: "https://raw.githubusercontent.com/V2rayR/v2ray/main/vless.txt" },
-                { name: "ShadowTLS Direct", url: "https://raw.githubusercontent.com/V2rayR/v2ray/main/trojan.txt" },
-                { name: "Bypass Firewall Matrix", url: "https://raw.githubusercontent.com/Bypass007/V2ray/main/vless.txt" },
                 { name: "Deep Web Stealth", url: "https://raw.githubusercontent.com/Bypass007/V2ray/main/reality.txt" },
-                { name: "Unblocker Pro", url: "https://raw.githubusercontent.com/Bypass007/V2ray/main/trojan.txt" },
                 { name: "Ghost Network VLESS", url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/V2Ray.txt" },
-                { name: "Ghost Network Reality", url: "https://raw.githubusercontent.com/AzadNetCH/Clash/main/Reality.txt" },
                 { name: "Censor Bypass Hub", url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/sub.txt" },
-                { name: "XTLS Vision Pro", url: "https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/main/server.txt" },
-                { name: "Dark Web Nodes", url: "https://raw.githubusercontent.com/freev2rayconfig/V2RAY_SUBSCRIPTION_LINK/main/v2rayconfigs.txt" },
                 { name: "Invisible Proxy", url: "https://raw.githubusercontent.com/w1770946466/Auto_Proxy/main/Custom/vless.txt" },
-                { name: "No Filter Network", url: "https://raw.githubusercontent.com/w1770946466/Auto_Proxy/main/Custom/reality.txt" },
-                { name: "Censor Free World", url: "https://raw.githubusercontent.com/w1770946466/Auto_Proxy/main/Custom/trojan.txt" },
-                { name: "DPI Breaker", url: "https://raw.githubusercontent.com/Snzmac/v2ray-config/main/reality.txt" },
-                { name: "Quantum Bypass", url: "https://raw.githubusercontent.com/Snzmac/v2ray-config/main/vless.txt" },
-                { name: "Shadowsocks 2026", url: "https://raw.githubusercontent.com/Snzmac/v2ray-config/main/ss.txt" },
-                { name: "Global Evasion Hub", url: "https://raw.githubusercontent.com/Snzmac/v2ray-config/main/trojan.txt" }
-            ];
-
-            const masterSubPool = [
-                { name: "Global Proxy Network", url: "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2", category: "new" },
-                { name: "Extreme V2Ray Collection", url: "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub", category: "best" },
-                { name: "Warp+ Configs Hub", url: "https://raw.githubusercontent.com/w1770946466/Auto_Proxy/main/Main", category: "gaming" },
-                { name: "Snzmac Daily Nodes", url: "https://raw.githubusercontent.com/snzmac/v2ray-config/main/v2ray.txt", category: "new" },
-                { name: "Chengaopan VLESS", url: "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt", category: "best" },
-                { name: "Alvin9999 High-Speed", url: "https://raw.githubusercontent.com/Alvin9999/new-pac/master/v2ray.txt", category: "best" },
-                { name: "Peasoft NoMoreWalls", url: "https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.txt", category: "new" },
-                { name: "XXF098 VLESS Lite", url: "https://raw.githubusercontent.com/xxf098/Lite-v2ray/main/v2ray", category: "gaming" },
-                { name: "TheBeast Routing", url: "https://raw.githubusercontent.com/TheBeast999/v2ray-configs/main/vless", category: "best" },
-                { name: "BoringCat Free Nodes", url: "https://raw.githubusercontent.com/BoringCat/free-node/master/v2ray.txt", category: "new" },
-                { name: "Mianfeifq Community", url: "https://raw.githubusercontent.com/mianfeifq/share/main/v2ray.txt", category: "gaming" }
+                { name: "DPI Breaker", url: "https://raw.githubusercontent.com/Snzmac/v2ray-config/main/reality.txt" }
             ];
 
             window.renderSubs = function(filter) {
@@ -698,11 +695,21 @@
                     const uid = "dyn_" + (filter||'all') + "_" + i;
                     let badgeHtml = '';
                     
-                    if (sub.category === 'best') badgeHtml = '<span class="badge badge-success">🔥 Топ выбор</span>';
-                    else if (sub.category === 'new') badgeHtml = '<span class="badge badge-auto">✨ Свежая</span>';
-                    else if (sub.category === 'gaming') badgeHtml = '<span class="badge badge-ping">🎮 Игровая</span>';
-                    
-                    badgeHtml += '<span class="badge badge-shield">🛡️ Обход DPI</span>';
+                    if (sub.customBadges) {
+                        badgeHtml = sub.customBadges;
+                    } else if (sub.category === 'best') {
+                        badgeHtml = '<span class="badge badge-success">🔥 Лучшая</span> <span class="badge badge-shield">🛡️ Обход DPI</span> <span class="badge badge-speed">⚡ Скорость</span>';
+                    } else if (sub.category === 'gaming') {
+                        badgeHtml = '<span class="badge badge-ping">🎮 Игровая</span> <span class="badge badge-success">📡 Стабильная</span>';
+                    } else if (sub.category === 'ru') {
+                        badgeHtml = '<span class="badge badge-ru">🇷🇺 RU Сегмент</span> <span class="badge badge-success">🏦 Без логов</span>';
+                    } else if (sub.category === 'media') {
+                        badgeHtml = '<span class="badge badge-speed">▶️ Media Stream</span> <span class="badge badge-shield">🛡️ Reality</span>';
+                    } else if (sub.category === 'new') {
+                        badgeHtml = '<span class="badge badge-auto">✨ Свежая</span> <span class="badge badge-success">🔄 Автообновление</span>';
+                    } else {
+                        badgeHtml = '<span class="badge badge-success">✅ Работает</span>';
+                    }
 
                     html += `
                     <div class="ios-item">
@@ -730,15 +737,20 @@
                 
                 megaBasePool.forEach((sub, i) => {
                     const uid = "mb_" + i;
+                    
+                    // Умная расстановка тегов для мега-базы на основе названия
+                    let bHtml = '<span class="badge badge-success">✅ Работает</span>';
+                    const nLower = sub.name.toLowerCase();
+                    if(nLower.includes("reality") || nLower.includes("xtls") || nLower.includes("stealth") || nLower.includes("dpi")) {
+                        bHtml += ' <span class="badge badge-shield">🛡️ Обход глушилок</span>';
+                    }
+
                     html += `
                     <div class="ios-item">
                         <div class="ios-item-header">
                             <div class="ios-item-left">
                                 <div class="ios-item-title">${sub.name}</div>
-                                <div class="tags-row">
-                                    <span class="badge badge-success">✅ Работает</span>
-                                    <span class="badge badge-shield">🛡️ Обход глушилок</span>
-                                </div>
+                                <div class="tags-row">${bHtml}</div>
                                 <div class="ios-item-subtitle" id="${uid}">${sub.url}</div>
                             </div>
                             <div class="btn-group">
@@ -910,49 +922,8 @@
             } catch(e) { console.error('Observer error:', e); }
         });
 
-        async function measurePing(host) {
-            const start = performance.now();
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2500);
-            try {
-                await fetch(`https://${host}`, { mode: 'no-cors', signal: controller.signal, cache: 'no-store' });
-                clearTimeout(timeoutId);
-                return Math.round(performance.now() - start);
-            } catch(e) {
-                clearTimeout(timeoutId);
-                const duration = Math.round(performance.now() - start);
-                if (e.name === 'AbortError' || duration >= 2400) return null;
-                return duration; 
-            }
-        }
-
-        function parseConfigLink(line) {
-            try {
-                let protocol = line.split('://')[0].toUpperCase();
-                let nameParts = line.split('#');
-                let name = nameParts.length > 1 ? decodeURIComponent(nameParts[1]) : 'Безымянный узел';
-                let mainPart = nameParts[0];
-                let host = '', port = '', type = 'TCP', security = 'NONE';
-                if (mainPart.includes('@')) {
-                    let afterAt = mainPart.split('@')[1]; 
-                    let hostPort = afterAt.split('?')[0];
-                    host = hostPort.split(':')[0];
-                    port = hostPort.split(':')[1] || '443';
-                    if (mainPart.includes('?')) {
-                        let paramsStr = mainPart.split('?')[1];
-                        let params = new URLSearchParams(paramsStr);
-                        if (params.get('type')) type = params.get('type').toUpperCase();
-                        if (params.get('security')) security = params.get('security').toUpperCase();
-                    }
-                }
-                return { valid: true, protocol, name, host, port, type, security };
-            } catch (e) {
-                return { valid: false };
-            }
-        }
-
         async function fetchRealConfigs(url, container) {
-            container.innerHTML = `<span class="loader"></span> Разбор (Рентген) конфигурации...`;
+            container.innerHTML = `<span class="loader"></span> Загрузка узлов...`;
             try {
                 let res = await fetch(url);
                 if (!res.ok) throw new Error();
@@ -972,10 +943,17 @@
                 lines.forEach(line => {
                     if (validNodes.length >= 10) return;
                     if (line.includes('://')) {
-                        let parsed = parseConfigLink(line);
-                        if(parsed.valid && parsed.host) {
-                            validNodes.push(parsed);
+                        let protocol = line.split('://')[0].toUpperCase();
+                        let nameParts = line.split('#');
+                        let name = nameParts.length > 1 ? decodeURIComponent(nameParts[1]) : 'Безымянный узел';
+                        let mainPart = nameParts[0];
+                        let port = '443';
+                        if (mainPart.includes('@')) {
+                            let afterAt = mainPart.split('@')[1]; 
+                            let hostPort = afterAt.split('?')[0];
+                            port = hostPort.split(':')[1] || '443';
                         }
+                        validNodes.push({ name, protocol, port });
                     }
                 });
 
@@ -984,34 +962,16 @@
                     return;
                 }
 
-                validNodes.forEach((node, index) => {
-                    const uniqueId = `ping-${Math.random().toString(36).substr(2, 9)}-${index}`;
+                validNodes.forEach((node) => {
                     html += `<div class="config-row">
                         <div class="config-info-wrapper">
                             <div class="config-info">🌐 ${node.name}</div>
                             <div class="micro-tags">
                                 <span class="m-tag proto">${node.protocol}</span>
-                                ${node.security !== 'NONE' ? `<span class="m-tag sec">${node.security}</span>` : ''}
-                                <span class="m-tag">${node.type}</span>
                                 <span class="m-tag">PORT ${node.port}</span>
                             </div>
                         </div>
-                        <div class="ping-value ping-loading" id="${uniqueId}">Замер...</div>
                     </div>`;
-                    
-                    measurePing(node.host).then(rtt => {
-                        const pingElement = document.getElementById(uniqueId);
-                        if(!pingElement) return;
-                        if (rtt === null) {
-                            pingElement.innerText = "🛑 Тайм-аут";
-                            pingElement.className = "ping-value ping-bad";
-                        } else {
-                            pingElement.innerText = `${rtt} ms`;
-                            if (rtt < 90) pingElement.className = "ping-value ping-good";
-                            else if (rtt < 180) pingElement.className = "ping-value ping-ok";
-                            else pingElement.className = "ping-value ping-bad";
-                        }
-                    });
                 });
                 container.innerHTML = html;
 
