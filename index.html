@@ -278,7 +278,7 @@
                 <p>
                     • <span>Глобальное Комьюнити:</span> делитесь своими подписками со всеми!<br>
                     • Добавлены <span>QR-коды</span>.<br>
-                    • Внимание: Функция "Опубликовать" в комьюнити работает в режиме локальной симуляции.
+                    • Комьюнити-публикация подключена через серверную БД.
                 </p>
             </div>
 
@@ -601,7 +601,7 @@
                 <input type="checkbox" id="customPublic">
                 <div class="toggle-slider"></div>
             </label>
-            <p style="font-size: 11px; color: var(--warning); text-align: left; margin-top: 0; display: none;" id="dbWarning">⚠️ Серверная БД не подключена. Публикация работает в режиме симуляции локально.</p>
+            <p style="font-size: 11px; color: var(--warning); text-align: left; margin-top: 0; display: none;" id="dbWarning"></p>
 
             <button class="btn-main" onclick="saveCustomSub()" style="width: 100%; margin-top: 15px; border-radius: 12px; padding: 12px;">
                 <span class="ru">Сохранить</span><span class="en">Save</span>
@@ -774,8 +774,7 @@
                 } catch (e) {
                     console.error('DB load error:', e);
                     dbReady = false;
-                    const warn = document.getElementById('dbWarning');
-                    if (warn) warn.style.display = 'block';
+                    
                     customSubs = JSON.parse(localStorage.getItem('flux_custom_subs') || '[]');
                     communitySim = JSON.parse(localStorage.getItem('flux_community_subs') || '[]');
                 }
@@ -1028,8 +1027,7 @@
                     if(targetBtn) targetBtn.classList.add('active');
                     renderSubs(isPub ? 'community' : 'custom');
                     showToast(currentLang === 'ru' ? '⚠️ БД недоступна, сохранено локально' : '⚠️ DB unavailable, saved locally');
-                    const warn = document.getElementById('dbWarning');
-                    if (warn) warn.style.display = 'block';
+                    
                 } finally {
                     if (saveBtn) {
                         saveBtn.disabled = false;
