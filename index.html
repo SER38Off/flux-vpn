@@ -425,7 +425,7 @@
 
             <div class="filter-container fade-up visible">
                 <button type="button" class="filter-btn active" data-filter="all"><span class="ru">Все</span><span class="en">All</span></button>
-                <button type="button" class="filter-btn" data-filter="custom">👥 <span class="ru">Пользовательские</span><span class="en">Shared</span></button>
+                <button type="button" class="filter-btn" data-filter="custom">👤 <span class="ru">Мои подписки</span><span class="en">My Subs</span></button>
                 <button type="button" class="filter-btn" data-filter="community">🌍 <span class="ru">Комьюнити</span><span class="en">Community</span></button>
                 <button type="button" class="filter-btn" data-filter="best">🔥 <span class="ru">Лучшие</span><span class="en">Best</span></button>
                 <button type="button" class="filter-btn" data-filter="gaming">🎮 <span class="ru">Игровые</span><span class="en">Gaming</span></button>
@@ -590,12 +590,16 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <h3 style="margin-top: 0; text-align: center;"><span class="ru">Добавить свою подписку</span><span class="en">Add Custom Config</span></h3>
             <p style="font-size: 13px; color: var(--text-sec); margin-bottom: 20px;">
-                <span class="ru">Подписка будет опубликована для всех пользователей.</span>
-                <span class="en">This subscription will be visible to all users.</span>
+                <span class="ru">Конфиг будет доступен в разделе «Мои» или «Комьюнити».</span>
+                <span class="en">Config will be available in "My Subs" or "Community".</span>
             </p>
             <input type="text" id="customName" placeholder="Название / Name" class="search-bar" style="margin-bottom: 10px;">
             <input type="text" id="customUrl" placeholder="Ссылка / URL" class="search-bar" style="margin-bottom: 15px;">
-            <p style="font-size: 11px; color: var(--warning); text-align: left; margin-top: 0; display: none;" id="dbWarning"></p>
+            
+            <div class="toggle-switch" style="justify-content: flex-start; gap: 10px;">
+                <span style="font-size: 14px; font-weight: 600;"><span class="ru">🌍 Подписка будет опубликована в Комьюнити</span><span class="en">🌍 Subscription will be published to Community</span></span>
+            </div>
+            <p style="font-size: 11px; color: var(--warning); text-align: left; margin-top: 0; display: none;" id="dbWarning">⚠️ Серверная БД недоступна. Подписка сохранится локально и появится в разделе «Комьюнити» только на этом устройстве.</p>
 
             <button class="btn-main" onclick="saveCustomSub()" style="width: 100%; margin-top: 15px; border-radius: 12px; padding: 12px;">
                 <span class="ru">Сохранить</span><span class="en">Save</span>
@@ -605,6 +609,8 @@
             </button>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
         // УВЕДОМЛЕНИЯ (Toasts)
@@ -616,6 +622,14 @@
             container.appendChild(toast);
             setTimeout(() => { toast.remove(); }, 3000);
         }
+
+
+        // SUPABASE
+        const SUPABASE_URL = 'https://ikgmsaoxlwmhccntdqdp.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        let dbReady = false;
+        let currentUser = null;
 
         // ЛОКАЛИЗАЦИЯ (EN/RU)
         let currentLang = localStorage.getItem('flux_lang') || 'ru';
@@ -691,6 +705,76 @@
             let customSubs = [];
             let communitySim = [];
 
+
+            async function ensureAuth() {
+                if (currentUser) return currentUser;
+                try {
+                    const { data: userData } = await supabaseClient.auth.getUser();
+                    if (userData?.user) {
+                        currentUser = userData.user;
+                        dbReady = true;
+                        return currentUser;
+                    }
+                    const { data, error } = await supabaseClient.auth.signInAnonymously();
+                    if (error) throw error;
+                    currentUser = data.user;
+                    dbReady = true;
+                    return currentUser;
+                } catch (e) {
+                    console.error('Supabase auth error:', e);
+                    dbReady = false;
+                    return null;
+                }
+            }
+
+            async function loadDbSubs() {
+                try {
+                    const user = await ensureAuth();
+                    if (!user) throw new Error('No auth user');
+
+                    const { data: myData, error: myError } = await supabaseClient
+                        .from('subscriptions')
+                        .select('id,name,url,is_public,created_at,user_id')
+                        .eq('user_id', user.id)
+                        .order('created_at', { ascending: false });
+
+                    if (myError) throw myError;
+                    customSubs = (myData || []).map(item => ({
+                        id: String(item.id),
+                        name: item.name,
+                        url: item.url,
+                        category: 'custom',
+                        is_public: !!item.is_public
+                    }));
+
+                    const { data: pubData, error: pubError } = await supabaseClient
+                        .from('subscriptions')
+                        .select('id,name,url,is_public,created_at,user_id')
+                        .eq('is_public', true)
+                        .order('created_at', { ascending: false });
+
+                    if (pubError) throw pubError;
+                    communitySim = (pubData || []).map(item => ({
+                        id: String(item.id),
+                        name: item.name,
+                        url: item.url,
+                        category: 'community',
+                        isOwner: item.user_id === user.id
+                    }));
+
+                    dbReady = true;
+                    const warn = document.getElementById('dbWarning');
+                    if (warn) warn.style.display = 'none';
+                } catch (e) {
+                    console.error('DB load error:', e);
+                    dbReady = false;
+                    const warn = document.getElementById('dbWarning');
+                    if (warn) warn.style.display = 'block';
+                    customSubs = JSON.parse(localStorage.getItem('flux_custom_subs') || '[]');
+                    communitySim = JSON.parse(localStorage.getItem('flux_community_subs') || '[]');
+                }
+            }
+
             // Основной каталог
             const masterSubPool = [
                 { name: "🔥 Goida Premium", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "best", customBadges: '<span class="badge badge-success"><span class="ru">✅ Работает</span><span class="en">✅ Online</span></span> <span class="badge badge-shield"><span class="ru">🛡️ Обход глушилок (SNI/CIDR)</span><span class="en">🛡️ Bypass DPI</span></span> <span class="badge badge-speed"><span class="ru">⚡ Скорость</span><span class="en">⚡ Fast</span></span>' },
@@ -755,7 +839,7 @@
                     }
 
                     let deleteBtn = '';
-                    if(sub.category === 'custom' || (sub.category === 'community' && sub.isOwner)) {
+                    if(sub.category === 'custom' || (sub.category === 'community' && (sub.isOwner || customSubs.find(s=>String(s.id)===String(sub.id))))) {
                         deleteBtn = `<button type="button" class="btn-get btn-delete btn-icon" onclick="deleteCustomSub('${sub.id}')" title="Удалить"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`;
                     }
 
@@ -783,7 +867,7 @@
                 });
                 
                 if (html === '' && filter === 'custom') {
-                    html = currentLang === 'ru' ? '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">Пока нет опубликованных подписок. Нажмите "+" чтобы добавить.</div>' : '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">No shared subscriptions yet. Click "+" to add one.</div>';
+                    html = currentLang === 'ru' ? '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">У вас пока нет своих подписок. Нажмите "+" чтобы добавить.</div>' : '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">You have no custom subscriptions. Click "+" to add.</div>';
                 }
                 
                 container.innerHTML = html;
@@ -899,40 +983,45 @@
                     const user = await ensureAuth();
                     if (!user) throw new Error('No auth user');
 
-                    const { error } = await supabaseClient
+                    const { data, error } = await supabaseClient
                         .from('subscriptions')
-                        .insert([{ user_id: user.id, name, url, is_public: isPub }]);
+                        .insert([{ user_id: user.id, name, url, is_public: isPub }])
+                        .select()
+                        .single();
 
                     if (error) throw error;
 
                     document.getElementById('addCustomModal').classList.remove('show');
                     document.getElementById('customName').value = '';
                     document.getElementById('customUrl').value = '';
-
+                    
                     await loadDbSubs();
 
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                     const targetBtn = document.querySelector('[data-filter="community"]');
                     if(targetBtn) targetBtn.classList.add('active');
                     renderSubs('community');
-                    showToast(currentLang === 'ru' ? '✅ Подписка опубликована' : '✅ Subscription published');
+                    showToast(currentLang === 'ru' ? '✅ Подписка сохранена в БД' : '✅ Subscription saved');
                 } catch (e) {
                     console.error('Save error:', e);
-                    const newSub = { id: 'cust_' + Date.now(), name, url, category: 'custom', isOwner: true };
-                    customSubs.unshift(newSub);
-                    communitySim.unshift({ ...newSub, category: 'community' });
+                    const newSub = { id: 'cust_' + Date.now(), name, url, category: 'custom' };
+                    customSubs.push(newSub);
                     localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
-                    localStorage.setItem('flux_community_subs', JSON.stringify(communitySim));
-
+                    if (isPub) {
+                        const comSub = { id: newSub.id, name: name + " [User]", url, category: 'community' };
+                        communitySim.unshift(comSub);
+                        localStorage.setItem('flux_community_subs', JSON.stringify(communitySim));
+                    }
                     document.getElementById('addCustomModal').classList.remove('show');
                     document.getElementById('customName').value = '';
                     document.getElementById('customUrl').value = '';
-
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                     const targetBtn = document.querySelector('[data-filter="community"]');
                     if(targetBtn) targetBtn.classList.add('active');
                     renderSubs('community');
                     showToast(currentLang === 'ru' ? '⚠️ БД недоступна, сохранено локально' : '⚠️ DB unavailable, saved locally');
+                    const warn = document.getElementById('dbWarning');
+                    if (warn) warn.style.display = 'block';
                 } finally {
                     if (saveBtn) {
                         saveBtn.disabled = false;
@@ -960,7 +1049,6 @@
                     console.error('Delete error:', e);
                     showToast(currentLang === 'ru' ? '❌ Ошибка удаления' : '❌ Delete error');
                 }
-            }
             }
 
         } catch(e) { console.error('Render error:', e); }
