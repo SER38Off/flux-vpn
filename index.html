@@ -278,7 +278,7 @@
                 <p>
                     • <span>Глобальное Комьюнити:</span> делитесь своими подписками со всеми!<br>
                     • Добавлены <span>QR-коды</span>.<br>
-                    • Комьюнити-публикация подключена через серверную БД.
+                    • Внимание: Функция "Опубликовать" в комьюнити работает в режиме локальной симуляции.
                 </p>
             </div>
 
@@ -425,7 +425,7 @@
 
             <div class="filter-container fade-up visible">
                 <button type="button" class="filter-btn active" data-filter="all"><span class="ru">Все</span><span class="en">All</span></button>
-                <button type="button" class="filter-btn" data-filter="custom">👤 <span class="ru">Мои подписки</span><span class="en">My Subs</span></button>
+                <button type="button" class="filter-btn" data-filter="custom">👥 <span class="ru">Пользовательские</span><span class="en">Shared</span></button>
                 <button type="button" class="filter-btn" data-filter="community">🌍 <span class="ru">Комьюнити</span><span class="en">Community</span></button>
                 <button type="button" class="filter-btn" data-filter="best">🔥 <span class="ru">Лучшие</span><span class="en">Best</span></button>
                 <button type="button" class="filter-btn" data-filter="gaming">🎮 <span class="ru">Игровые</span><span class="en">Gaming</span></button>
@@ -590,17 +590,11 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <h3 style="margin-top: 0; text-align: center;"><span class="ru">Добавить свою подписку</span><span class="en">Add Custom Config</span></h3>
             <p style="font-size: 13px; color: var(--text-sec); margin-bottom: 20px;">
-                <span class="ru">Конфиг будет доступен в разделе «Мои» или «Комьюнити».</span>
-                <span class="en">Config will be available in "My Subs" or "Community".</span>
+                <span class="ru">Подписка будет опубликована для всех пользователей.</span>
+                <span class="en">This subscription will be visible to all users.</span>
             </p>
             <input type="text" id="customName" placeholder="Название / Name" class="search-bar" style="margin-bottom: 10px;">
             <input type="text" id="customUrl" placeholder="Ссылка / URL" class="search-bar" style="margin-bottom: 15px;">
-            
-            <label class="toggle-switch">
-                <span style="font-size: 14px; font-weight: 600;"><span class="ru">Опубликовать для всех</span><span class="en">Publish for all</span></span>
-                <input type="checkbox" id="customPublic">
-                <div class="toggle-slider"></div>
-            </label>
             <p style="font-size: 11px; color: var(--warning); text-align: left; margin-top: 0; display: none;" id="dbWarning"></p>
 
             <button class="btn-main" onclick="saveCustomSub()" style="width: 100%; margin-top: 15px; border-radius: 12px; padding: 12px;">
@@ -612,8 +606,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script>
         // УВЕДОМЛЕНИЯ (Toasts)
         window.showToast = function(message) {
@@ -624,14 +616,6 @@
             container.appendChild(toast);
             setTimeout(() => { toast.remove(); }, 3000);
         }
-
-
-        // SUPABASE
-        const SUPABASE_URL = 'https://ikgmsaoxlwmhccntdqdp.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls';
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        let dbReady = false;
-        let currentUser = null;
 
         // ЛОКАЛИЗАЦИЯ (EN/RU)
         let currentLang = localStorage.getItem('flux_lang') || 'ru';
@@ -704,81 +688,8 @@
                 themeGrid.appendChild(circle);
             });
 
-            document.getElementById('customPublic').addEventListener('change', function() {
-                document.getElementById('dbWarning').style.display = this.checked ? 'block' : 'none';
-            });
-
             let customSubs = [];
             let communitySim = [];
-
-
-            async function ensureAuth() {
-                if (currentUser) return currentUser;
-                try {
-                    const { data: userData } = await supabaseClient.auth.getUser();
-                    if (userData?.user) {
-                        currentUser = userData.user;
-                        dbReady = true;
-                        return currentUser;
-                    }
-                    const { data, error } = await supabaseClient.auth.signInAnonymously();
-                    if (error) throw error;
-                    currentUser = data.user;
-                    dbReady = true;
-                    return currentUser;
-                } catch (e) {
-                    console.error('Supabase auth error:', e);
-                    dbReady = false;
-                    return null;
-                }
-            }
-
-            async function loadDbSubs() {
-                try {
-                    const user = await ensureAuth();
-                    if (!user) throw new Error('No auth user');
-
-                    const { data: myData, error: myError } = await supabaseClient
-                        .from('subscriptions')
-                        .select('id,name,url,is_public,created_at,user_id')
-                        .eq('user_id', user.id)
-                        .order('created_at', { ascending: false });
-
-                    if (myError) throw myError;
-                    customSubs = (myData || []).map(item => ({
-                        id: String(item.id),
-                        name: item.name,
-                        url: item.url,
-                        category: 'custom',
-                        is_public: !!item.is_public
-                    }));
-
-                    const { data: pubData, error: pubError } = await supabaseClient
-                        .from('subscriptions')
-                        .select('id,name,url,is_public,created_at,user_id')
-                        .eq('is_public', true)
-                        .order('created_at', { ascending: false });
-
-                    if (pubError) throw pubError;
-                    communitySim = (pubData || []).map(item => ({
-                        id: String(item.id),
-                        name: item.name,
-                        url: item.url,
-                        category: 'community',
-                        isOwner: item.user_id === user.id
-                    }));
-
-                    dbReady = true;
-                    const warn = document.getElementById('dbWarning');
-                    if (warn) warn.style.display = 'none';
-                } catch (e) {
-                    console.error('DB load error:', e);
-                    dbReady = false;
-                    
-                    customSubs = JSON.parse(localStorage.getItem('flux_custom_subs') || '[]');
-                    communitySim = JSON.parse(localStorage.getItem('flux_community_subs') || '[]');
-                }
-            }
 
             // Основной каталог
             const masterSubPool = [
@@ -844,7 +755,7 @@
                     }
 
                     let deleteBtn = '';
-                    if(sub.category === 'custom' || (sub.category === 'community' && (sub.isOwner || customSubs.find(s=>String(s.id)===String(sub.id))))) {
+                    if(sub.category === 'custom' || (sub.category === 'community' && sub.isOwner)) {
                         deleteBtn = `<button type="button" class="btn-get btn-delete btn-icon" onclick="deleteCustomSub('${sub.id}')" title="Удалить"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`;
                     }
 
@@ -872,7 +783,7 @@
                 });
                 
                 if (html === '' && filter === 'custom') {
-                    html = currentLang === 'ru' ? '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">У вас пока нет своих подписок. Нажмите "+" чтобы добавить.</div>' : '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">You have no custom subscriptions. Click "+" to add.</div>';
+                    html = currentLang === 'ru' ? '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">Пока нет опубликованных подписок. Нажмите "+" чтобы добавить.</div>' : '<div style="text-align: center; padding: 20px; color: var(--text-sec); font-size: 14px;">No shared subscriptions yet. Click "+" to add one.</div>';
                 }
                 
                 container.innerHTML = html;
@@ -971,7 +882,7 @@
             window.saveCustomSub = async function() {
                 const name = document.getElementById('customName').value.trim();
                 const url = document.getElementById('customUrl').value.trim();
-                const isPub = document.getElementById('customPublic').checked;
+                const isPub = true;
 
                 if(!name || !url) {
                     showToast(currentLang === 'ru' ? '⚠️ Заполните все поля!' : '⚠️ Fill all fields!');
@@ -988,46 +899,40 @@
                     const user = await ensureAuth();
                     if (!user) throw new Error('No auth user');
 
-                    const { data, error } = await supabaseClient
+                    const { error } = await supabaseClient
                         .from('subscriptions')
-                        .insert([{ user_id: user.id, name, url, is_public: isPub }])
-                        .select()
-                        .single();
+                        .insert([{ user_id: user.id, name, url, is_public: isPub }]);
 
                     if (error) throw error;
 
                     document.getElementById('addCustomModal').classList.remove('show');
                     document.getElementById('customName').value = '';
                     document.getElementById('customUrl').value = '';
-                    document.getElementById('customPublic').checked = false;
 
                     await loadDbSubs();
 
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    const targetBtn = document.querySelector(`[data-filter="${isPub?'community':'custom'}"]`);
+                    const targetBtn = document.querySelector('[data-filter="community"]');
                     if(targetBtn) targetBtn.classList.add('active');
-                    renderSubs(isPub ? 'community' : 'custom');
-                    showToast(currentLang === 'ru' ? '✅ Подписка сохранена в БД' : '✅ Subscription saved');
+                    renderSubs('community');
+                    showToast(currentLang === 'ru' ? '✅ Подписка опубликована' : '✅ Subscription published');
                 } catch (e) {
                     console.error('Save error:', e);
-                    const newSub = { id: 'cust_' + Date.now(), name, url, category: 'custom' };
-                    customSubs.push(newSub);
+                    const newSub = { id: 'cust_' + Date.now(), name, url, category: 'custom', isOwner: true };
+                    customSubs.unshift(newSub);
+                    communitySim.unshift({ ...newSub, category: 'community' });
                     localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
-                    if (isPub) {
-                        const comSub = { id: newSub.id, name: name + " [User]", url, category: 'community' };
-                        communitySim.unshift(comSub);
-                        localStorage.setItem('flux_community_subs', JSON.stringify(communitySim));
-                    }
+                    localStorage.setItem('flux_community_subs', JSON.stringify(communitySim));
+
                     document.getElementById('addCustomModal').classList.remove('show');
                     document.getElementById('customName').value = '';
                     document.getElementById('customUrl').value = '';
-                    document.getElementById('customPublic').checked = false;
+
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    const targetBtn = document.querySelector(`[data-filter="${isPub?'community':'custom'}"]`);
+                    const targetBtn = document.querySelector('[data-filter="community"]');
                     if(targetBtn) targetBtn.classList.add('active');
-                    renderSubs(isPub ? 'community' : 'custom');
+                    renderSubs('community');
                     showToast(currentLang === 'ru' ? '⚠️ БД недоступна, сохранено локально' : '⚠️ DB unavailable, saved locally');
-                    
                 } finally {
                     if (saveBtn) {
                         saveBtn.disabled = false;
@@ -1055,6 +960,7 @@
                     console.error('Delete error:', e);
                     showToast(currentLang === 'ru' ? '❌ Ошибка удаления' : '❌ Delete error');
                 }
+            }
             }
 
         } catch(e) { console.error('Render error:', e); }
