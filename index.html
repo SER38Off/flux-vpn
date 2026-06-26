@@ -1,1081 +1,1458 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="default">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#000000">
-    <title>Flux VPN Titanium</title>
-    <style>
-        :root {
-            --bg-body: #0a0a0c; --app-bg: #000000; --surface: #1c1c1e; --primary: #0a84ff;
-            --primary-gradient: linear-gradient(135deg, #0a84ff, #5e5ce6); --text-main: #ffffff;
-            --text-sec: #ebebf599; --danger: #ff453a; --success: #32d74b; --warning: #ffd60a;
-            --purple: #bf5af2; --radius-lg: 24px; --radius-md: 16px; --radius-sm: 10px;
-        }
-        [data-theme="cyberpunk"]{--bg-body:#0d0221;--app-bg:#0d0221;--surface:#1a0033;--primary:#ff007f;--primary-gradient:linear-gradient(135deg,#ff007f,#00f0ff);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.7)}
-        [data-theme="matrix"]{--bg-body:#000000;--app-bg:#000000;--surface:#051a05;--primary:#00ff00;--primary-gradient:linear-gradient(135deg,#00ff00,#005500);--text-main:#e0ffe0;--text-sec:rgba(0,255,0,0.6)}
-        [data-theme="blood"]{--bg-body:#0a0000;--app-bg:#0a0000;--surface:#1f0000;--primary:#ff2a2a;--primary-gradient:linear-gradient(135deg,#ff2a2a,#aa0000);--text-main:#ffffff;--text-sec:rgba(255,150,150,0.7)}
-        [data-theme="ocean"]{--bg-body:#000f1a;--app-bg:#000f1a;--surface:#001f33;--primary:#00d4ff;--primary-gradient:linear-gradient(135deg,#00d4ff,#0055ff);--text-main:#ffffff;--text-sec:rgba(200,240,255,0.7)}
-        [data-theme="gold"]{--bg-body:#111111;--app-bg:#111111;--surface:#222222;--primary:#ffd700;--primary-gradient:linear-gradient(135deg,#ffd700,#ff8c00);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.6)}
-        [data-theme="purple"]{--bg-body:#10001a;--app-bg:#10001a;--surface:#260040;--primary:#b026ff;--primary-gradient:linear-gradient(135deg,#b026ff,#5100ff);--text-main:#ffffff;--text-sec:rgba(230,200,255,0.7)}
-        [data-theme="sunset"]{--bg-body:#1a0800;--app-bg:#1a0800;--surface:#331100;--primary:#ff6a00;--primary-gradient:linear-gradient(135deg,#ff6a00,#ff0040);--text-main:#ffffff;--text-sec:rgba(255,200,150,0.7)}
-        [data-theme="hacker"]{--bg-body:#050505;--app-bg:#050505;--surface:#111111;--primary:#39ff14;--primary-gradient:linear-gradient(135deg,#39ff14,#006600);--text-main:#ffffff;--text-sec:rgba(150,255,150,0.6)}
-        [data-theme="amethyst"]{--bg-body:#151020;--app-bg:#151020;--surface:#2a2040;--primary:#9b5de5;--primary-gradient:linear-gradient(135deg,#9b5de5,#f15bb5);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.7)}
-        [data-theme="midnight"]{--bg-body:#020617;--app-bg:#020617;--surface:#0f172a;--primary:#3b82f6;--primary-gradient:linear-gradient(135deg,#3b82f6,#1d4ed8);--text-main:#f8fafc;--text-sec:#94a3b8}
-        [data-theme="synthwave"]{--bg-body:#0a0118;--app-bg:#0a0118;--surface:#1e053a;--primary:#ff9e00;--primary-gradient:linear-gradient(135deg,#ff9e00,#b000ff);--text-main:#ffffff;--text-sec:rgba(255,200,255,0.7)}
-        [data-theme="mint"]{--bg-body:#001a14;--app-bg:#001a14;--surface:#003328;--primary:#00ffaa;--primary-gradient:linear-gradient(135deg,#00ffaa,#0099cc);--text-main:#ffffff;--text-sec:rgba(200,255,240,0.7)}
-        [data-theme="neonpink"]{--bg-body:#1a0011;--app-bg:#1a0011;--surface:#330022;--primary:#ff00aa;--primary-gradient:linear-gradient(135deg,#ff00aa,#aa00ff);--text-main:#ffffff;--text-sec:rgba(255,200,230,0.7)}
-        [data-theme="aqua"]{--bg-body:#00141a;--app-bg:#00141a;--surface:#002b33;--primary:#00ffff;--primary-gradient:linear-gradient(135deg,#00ffff,#0088ff);--text-main:#ffffff;--text-sec:rgba(200,255,255,0.7)}
-        [data-theme="dracula"]{--bg-body:#282a36;--app-bg:#282a36;--surface:#44475a;--primary:#ff79c6;--primary-gradient:linear-gradient(135deg,#ff79c6,#bd93f9);--text-main:#f8f8f2;--text-sec:#6272a4}
-        [data-theme="monochrome"]{--bg-body:#000000;--app-bg:#000000;--surface:#1a1a1a;--primary:#ffffff;--primary-gradient:linear-gradient(135deg,#ffffff,#888888);--text-main:#ffffff;--text-sec:#888888}
-        [data-theme="light"]{--bg-body:#f4f4f5;--app-bg:#f4f4f5;--surface:#ffffff;--primary:#2563eb;--primary-gradient:linear-gradient(135deg,#2563eb,#60a5fa);--text-main:#0f172a;--text-sec:#64748b}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#000000">
+<title>Flux VPN Titanium</title>
+<style>
+:root{--bg-body:#0a0a0c;--app-bg:#000000;--surface:#1c1c1e;--primary:#0a84ff;--primary-gradient:linear-gradient(135deg,#0a84ff,#5e5ce6);--text-main:#ffffff;--text-sec:#ebebf599;--danger:#ff453a;--success:#32d74b;--warning:#ffd60a;--purple:#bf5af2;--radius-lg:24px;--radius-md:16px;--radius-sm:10px}
+[data-theme="cyberpunk"]{--bg-body:#0d0221;--app-bg:#0d0221;--surface:#1a0033;--primary:#ff007f;--primary-gradient:linear-gradient(135deg,#ff007f,#00f0ff);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.7)}
+[data-theme="matrix"]{--bg-body:#000000;--app-bg:#000000;--surface:#051a05;--primary:#00ff00;--primary-gradient:linear-gradient(135deg,#00ff00,#005500);--text-main:#e0ffe0;--text-sec:rgba(0,255,0,0.6)}
+[data-theme="blood"]{--bg-body:#0a0000;--app-bg:#0a0000;--surface:#1f0000;--primary:#ff2a2a;--primary-gradient:linear-gradient(135deg,#ff2a2a,#aa0000);--text-main:#ffffff;--text-sec:rgba(255,150,150,0.7)}
+[data-theme="ocean"]{--bg-body:#000f1a;--app-bg:#000f1a;--surface:#001f33;--primary:#00d4ff;--primary-gradient:linear-gradient(135deg,#00d4ff,#0055ff);--text-main:#ffffff;--text-sec:rgba(200,240,255,0.7)}
+[data-theme="gold"]{--bg-body:#111111;--app-bg:#111111;--surface:#222222;--primary:#ffd700;--primary-gradient:linear-gradient(135deg,#ffd700,#ff8c00);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.6)}
+[data-theme="purple"]{--bg-body:#10001a;--app-bg:#10001a;--surface:#260040;--primary:#b026ff;--primary-gradient:linear-gradient(135deg,#b026ff,#5100ff);--text-main:#ffffff;--text-sec:rgba(230,200,255,0.7)}
+[data-theme="sunset"]{--bg-body:#1a0800;--app-bg:#1a0800;--surface:#331100;--primary:#ff6a00;--primary-gradient:linear-gradient(135deg,#ff6a00,#ff0040);--text-main:#ffffff;--text-sec:rgba(255,200,150,0.7)}
+[data-theme="hacker"]{--bg-body:#050505;--app-bg:#050505;--surface:#111111;--primary:#39ff14;--primary-gradient:linear-gradient(135deg,#39ff14,#006600);--text-main:#ffffff;--text-sec:rgba(150,255,150,0.6)}
+[data-theme="amethyst"]{--bg-body:#151020;--app-bg:#151020;--surface:#2a2040;--primary:#9b5de5;--primary-gradient:linear-gradient(135deg,#9b5de5,#f15bb5);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.7)}
+[data-theme="midnight"]{--bg-body:#020617;--app-bg:#020617;--surface:#0f172a;--primary:#3b82f6;--primary-gradient:linear-gradient(135deg,#3b82f6,#1d4ed8);--text-main:#f8fafc;--text-sec:#94a3b8}
+[data-theme="synthwave"]{--bg-body:#0a0118;--app-bg:#0a0118;--surface:#1e053a;--primary:#ff9e00;--primary-gradient:linear-gradient(135deg,#ff9e00,#b000ff);--text-main:#ffffff;--text-sec:rgba(255,200,255,0.7)}
+[data-theme="mint"]{--bg-body:#001a14;--app-bg:#001a14;--surface:#003328;--primary:#00ffaa;--primary-gradient:linear-gradient(135deg,#00ffaa,#0099cc);--text-main:#ffffff;--text-sec:rgba(200,255,240,0.7)}
+[data-theme="neonpink"]{--bg-body:#1a0011;--app-bg:#1a0011;--surface:#330022;--primary:#ff00aa;--primary-gradient:linear-gradient(135deg,#ff00aa,#aa00ff);--text-main:#ffffff;--text-sec:rgba(255,200,230,0.7)}
+[data-theme="aqua"]{--bg-body:#00141a;--app-bg:#00141a;--surface:#002b33;--primary:#00ffff;--primary-gradient:linear-gradient(135deg,#00ffff,#0088ff);--text-main:#ffffff;--text-sec:rgba(200,255,255,0.7)}
+[data-theme="dracula"]{--bg-body:#282a36;--app-bg:#282a36;--surface:#44475a;--primary:#ff79c6;--primary-gradient:linear-gradient(135deg,#ff79c6,#bd93f9);--text-main:#f8f8f2;--text-sec:#6272a4}
+[data-theme="monochrome"]{--bg-body:#000000;--app-bg:#000000;--surface:#1a1a1a;--primary:#ffffff;--primary-gradient:linear-gradient(135deg,#ffffff,#888888);--text-main:#ffffff;--text-sec:#888888}
+[data-theme="light"]{--bg-body:#f4f4f5;--app-bg:#f4f4f5;--surface:#ffffff;--primary:#2563eb;--primary-gradient:linear-gradient(135deg,#2563eb,#60a5fa);--text-main:#0f172a;--text-sec:#64748b}
 
-        html[lang="en"] .ru{display:none!important}
-        html[lang="ru"] .en{display:none!important}
-        *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-        body{margin:0;background-color:var(--bg-body);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text-main);display:flex;justify-content:center;min-height:100vh;scroll-behavior:smooth;transition:background-color 0.5s ease;overflow-x:hidden}
-        .app-container{width:100%;max-width:100%;background-color:var(--app-bg);position:relative;padding-bottom:140px;transition:background-color 0.5s ease}
-        .bg-particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
-        .ambient-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:80vw;max-width:800px;height:300px;background:radial-gradient(circle,var(--primary),transparent 70%);opacity:0.15;z-index:0;pointer-events:none;transition:background 0.5s ease}
-        .content-wrapper{position:relative;z-index:1;padding:20px;max-width:900px;margin:0 auto}
-        .top-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:30px;position:relative;z-index:50}
-        .control-btn{width:44px;height:44px;background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:0.2s;color:var(--text-main);font-weight:bold;font-size:13px}
-        .control-btn:hover{transform:scale(1.1)}
-        .control-btn svg{width:22px;height:22px;fill:var(--primary)}
-        .update-banner{background:rgba(10,132,255,0.1);border:1px solid rgba(10,132,255,0.3);border-radius:var(--radius-md);padding:15px;margin-bottom:25px;margin-top:20px}
-        .update-banner h3{margin:0 0 10px 0;color:var(--primary);font-size:16px;display:flex;align-items:center;gap:8px}
-        .update-banner p{margin:0;font-size:13px;color:var(--text-sec);line-height:1.5}
-        .update-banner span{color:var(--text-main);font-weight:bold}
-        h1{font-size:36px;font-weight:800;letter-spacing:0.3px;margin:10px 0 10px;text-align:center}
-        .subtitle{color:var(--text-sec);font-size:16px;line-height:1.5;margin-top:0;text-align:center;margin-bottom:30px}
-        h2{font-size:22px;font-weight:700;margin:40px 0 15px;border-bottom:1px solid rgba(128,128,128,0.2);padding-bottom:10px}
-        .status-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);padding:30px 24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.3);margin-bottom:20px}
-        .status-card h2{border:none;margin:0 0 10px 0;font-size:22px;justify-content:center}
-        .status-card p{margin:0 0 20px 0;font-size:14px;color:var(--text-sec)}
-        .btn-main{display:inline-flex;justify-content:center;align-items:center;background:var(--primary-gradient);color:#ffffff!important;font-weight:700;font-size:17px;padding:16px 40px;border-radius:30px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:transform 0.1s;width:100%;max-width:300px}
-        .btn-main:active{transform:scale(0.96)}
-        .radar-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);padding:25px;margin-bottom:40px;transition:0.5s}
-        .radar-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(128,128,128,0.15);padding-bottom:15px;margin-bottom:15px}
-        .radar-title-box{display:flex;align-items:center;gap:12px}
-        .radar-title-box .icon{font-size:28px;filter:drop-shadow(0 0 8px rgba(255,255,255,0.3))}
-        .radar-title-text{font-weight:700;font-size:16px;line-height:1.2;text-align:left}
-        .radar-status{font-weight:800;font-size:12px;text-transform:uppercase;padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
-        .radar-status.loading{background:rgba(128,128,128,0.2);color:var(--text-main)}
-        .radar-status.unsafe{background:rgba(239,68,68,0.15);color:var(--danger);border:1px solid rgba(239,68,68,0.3)}
-        .radar-status.safe{background:rgba(50,215,75,0.1);color:#4ade80;border:1px solid rgba(50,215,75,0.4)}
-        .radar-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-        .radar-item{display:flex;flex-direction:column;gap:4px}
-        .radar-label{font-size:10px;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.5px}
-        .radar-value{font-size:15px;font-weight:600;font-family:monospace;color:var(--primary)}
-        .social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:40px}
-        .btn-social{background:var(--surface);color:var(--text-main);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-md);padding:16px 10px;font-size:13px;font-weight:600;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:8px;transition:0.2s}
-        .btn-social:hover{opacity:0.8}
-        .btn-social:active{transform:scale(0.95)}
-        .btn-social span{font-size:24px;transition:transform 0.3s}
-        .btn-social:hover span{transform:translateY(-3px)}
-        .search-bar{width:100%;background:rgba(128,128,128,0.05);border:1px solid rgba(128,128,128,0.2);padding:14px 20px;border-radius:var(--radius-md);color:var(--text-main);font-size:15px;outline:none;transition:0.3s;margin-bottom:15px}
-        .search-bar:focus{border-color:var(--primary)}
-        .filter-container{display:flex;gap:10px;margin-bottom:20px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
-        .filter-container::-webkit-scrollbar{display:none}
-        .filter-btn{background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);color:var(--text-sec);padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:0.2s}
-        .filter-btn:hover{background:rgba(128,128,128,0.2)}
-        .filter-btn.active{background:rgba(10,132,255,0.15);color:var(--primary);border-color:rgba(10,132,255,0.3)}
-        .ios-list{background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:30px;border:1px solid rgba(128,128,128,0.15);min-height:100px}
-        .scrollable-list{max-height:550px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-        .scrollable-list::-webkit-scrollbar{width:5px}
-        .scrollable-list::-webkit-scrollbar-thumb{background:rgba(128,128,128,0.3);border-radius:10px}
-        .ios-item{flex-direction:column;align-items:stretch;gap:0;padding:0;border-bottom:1px solid rgba(128,128,128,0.1);transition:0.3s;position:relative}
-        .ios-item:last-child{border-bottom:none}
-        .ios-item-header{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
-        .ios-item-top{display:flex;justify-content:space-between;align-items:flex-start;width:100%}
-        .ios-item-left{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
-        .ios-item-title{font-size:16px;font-weight:600;display:flex;align-items:center}
-        .ios-item-subtitle{font-size:11px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace;opacity:0.7}
-        .tags-row{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
-        .badge{padding:3px 6px;border-radius:6px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.3px;display:inline-flex;align-items:center}
-        .badge-success{background:rgba(50,215,75,0.15);color:var(--success);border:1px solid rgba(50,215,75,0.3)}
-        .badge-shield{background:rgba(10,132,255,0.15);color:var(--primary);border:1px solid rgba(10,132,255,0.3)}
-        .badge-speed{background:rgba(255,214,10,0.15);color:var(--warning);border:1px solid rgba(255,214,10,0.3)}
-        .badge-ping{background:rgba(191,90,242,0.15);color:var(--purple);border:1px solid rgba(191,90,242,0.3)}
-        .badge-ru{background:rgba(128,128,128,0.2);color:var(--text-main);border:1px solid rgba(128,128,128,0.3)}
-        .badge-purple{background:rgba(191,90,242,0.15);color:var(--purple);border:1px solid rgba(191,90,242,0.3)}
-        .badge-community{background:rgba(255,140,0,0.15);color:#ff8c00;border:1px solid rgba(255,140,0,0.3)}
-        .btn-group{display:flex;flex-direction:column;gap:8px;width:100%;margin-top:5px}
-        .btn-actions-row{display:flex;gap:6px;width:100%}
-        .btn-get{background:rgba(128,128,128,0.15);color:var(--text-main);border:none;border-radius:12px;padding:10px 12px;font-weight:700;font-size:12px;cursor:pointer;transition:0.2s;text-align:center;flex:1;display:flex;justify-content:center;align-items:center;gap:6px}
-        .btn-get:hover{background:rgba(128,128,128,0.25)}
-        .btn-get:active{transform:scale(0.95)}
-        .btn-icon{width:40px;flex:none;padding:0;font-size:16px}
-        .btn-icon svg{width:18px;height:18px;fill:currentColor}
-        .btn-import{background:rgba(10,132,255,0.15);color:var(--primary);border:1px solid rgba(10,132,255,0.3)}
-        .btn-import:hover{background:rgba(10,132,255,0.25)}
-        .btn-delete{color:var(--danger);background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3)}
-        .btn-delete:hover{background:rgba(239,68,68,0.2)}
-        .status-dot{display:inline-block;width:8px;height:8px;background-color:var(--success);border-radius:50%;margin-right:8px;box-shadow:0 0 8px var(--success);animation:blink 2s infinite}
-        @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4;box-shadow:0 0 2px var(--success)}}
-        .wizard-container{background:var(--surface);border-radius:var(--radius-lg);padding:25px;margin-bottom:20px;border:1px solid rgba(128,128,128,0.15)}
-        .wizard-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-        .wizard-tab{background:rgba(128,128,128,0.05);border:1px solid rgba(128,128,128,0.15);padding:15px 10px;border-radius:var(--radius-md);text-align:center;cursor:pointer;color:var(--text-sec);font-weight:600;font-size:13px;transition:0.3s;display:flex;flex-direction:column;align-items:center;gap:8px}
-        .wizard-tab svg{width:24px;height:24px;fill:currentColor}
-        .wizard-tab.active{background:rgba(10,132,255,0.15);color:var(--primary);border-color:var(--primary)}
-        .wizard-content{display:none;padding:10px 0}
-        .wizard-content.active{display:block;animation:fadeIn 0.3s ease}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        .guide-steps{margin:0;padding-left:20px;color:var(--text-sec);font-size:14px;line-height:1.6}
-        .guide-steps li{margin-bottom:12px}
-        .guide-steps strong{color:var(--text-main)}
-        .donate-card{background:var(--surface);border-radius:var(--radius-lg);padding:30px;text-align:center;border:1px solid rgba(128,128,128,0.15)}
-        .card-number{font-family:monospace;font-size:26px;color:var(--primary);letter-spacing:3px;margin:20px 0;background:rgba(128,128,128,0.1);padding:15px;border-radius:var(--radius-md);border:1px dashed var(--primary)}
-        .tab-bar-container{position:fixed;bottom:30px;left:0;width:100%;display:flex;justify-content:center;z-index:100;pointer-events:none}
-        .tab-bar{pointer-events:auto;background:rgba(15,17,26,0.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);border-radius:40px;display:flex;align-items:center;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.8);gap:5px}
-        .tab-item{color:#7b819e;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:500;padding:10px 18px;border-radius:30px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-        .tab-item svg{width:22px;height:22px;transition:all 0.3s;stroke:currentColor;fill:none;stroke-width:2}
-        .tab-item.active{background:rgba(41,98,255,0.15);color:var(--primary)}
-        @media(max-width:400px){.tab-item{padding:10px 12px}}
-        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);z-index:1000;display:none;justify-content:center;align-items:center;opacity:0;transition:opacity 0.3s}
-        .modal-overlay.show{display:flex;opacity:1}
-        .modal-content{background:var(--surface);width:90%;max-width:400px;border-radius:var(--radius-lg);padding:25px;border:1px solid rgba(128,128,128,0.15);transform:translateY(20px);transition:transform 0.3s;text-align:center}
-        .modal-overlay.show .modal-content{transform:translateY(0)}
-        .theme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px;max-height:60vh;overflow-y:auto;padding-bottom:10px}
-        .theme-circle{width:100%;aspect-ratio:1;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;transition:transform 0.2s;display:flex;justify-content:center;align-items:center}
-        .theme-circle:hover{transform:scale(1.1)}
-        .theme-circle.active-theme{border-color:#fff;box-shadow:0 0 10px rgba(255,255,255,0.5)}
-        .close-modal{width:100%;background:rgba(128,128,128,0.2);color:var(--text-main);border:none;padding:12px;border-radius:var(--radius-md);margin-top:20px;font-weight:700;cursor:pointer}
-        #qrImage{width:200px;height:200px;margin:20px auto;display:block;border-radius:10px;background:#fff;padding:10px}
-        .toast-container{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:10px;align-items:center;pointer-events:none}
-        .toast{background:var(--surface);color:var(--text-main);border:1px solid var(--primary);padding:12px 24px;border-radius:30px;box-shadow:0 10px 30px rgba(0,0,0,0.5);font-size:14px;font-weight:600;animation:toastSlide 2.5s ease forwards;display:flex;align-items:center;gap:8px}
-        @keyframes toastSlide{0%{transform:translateY(50px) scale(0.9);opacity:0}10%{transform:translateY(0) scale(1);opacity:1}90%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-50px) scale(0.9);opacity:0}}
-        .toggle-switch{display:flex;align-items:center;justify-content:flex-start;gap:10px;background:rgba(128,128,128,0.05);padding:12px;border-radius:var(--radius-md);margin-bottom:15px;border:1px solid rgba(128,128,128,0.2)}
-        .loader{border:2px solid rgba(128,128,128,0.2);border-top:2px solid var(--primary);border-radius:50%;width:20px;height:20px;animation:spin 1s linear infinite;display:block;margin:30px auto}
-        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-        .db-status{font-size:11px;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;margin-left:10px;font-weight:600}
-        .db-ok{background:rgba(50,215,75,0.1);color:var(--success);border:1px solid rgba(50,215,75,0.3)}
-        .db-err{background:rgba(239,68,68,0.1);color:var(--danger);border:1px solid rgba(239,68,68,0.3)}
-        .fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease-out,transform 0.8s cubic-bezier(0.16,1,0.3,1);will-change:opacity,transform}
-        .fade-up.visible{opacity:1;transform:translateY(0)}
-        .delay-1{transition-delay:0.1s}.delay-2{transition-delay:0.2s}
-        .empty-state{text-align:center;padding:40px 20px;color:var(--text-sec);font-size:14px}
-        .empty-state p{margin:10px 0 0;font-size:13px}
-    </style>
+html[lang="en"] .ru{display:none!important}
+html[lang="ru"] .en{display:none!important}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background-color:var(--bg-body);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text-main);display:flex;justify-content:center;min-height:100vh;scroll-behavior:smooth;transition:background-color 0.5s ease;overflow-x:hidden}
+.app-container{width:100%;max-width:100%;background-color:var(--app-bg);position:relative;padding-bottom:140px;transition:background-color 0.5s ease}
+.ambient-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:80vw;max-width:800px;height:300px;background:radial-gradient(circle,var(--primary),transparent 70%);opacity:0.15;z-index:0;pointer-events:none;transition:background 0.5s ease}
+.content-wrapper{position:relative;z-index:1;padding:20px;max-width:900px;margin:0 auto}
+.top-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:30px;position:relative;z-index:50}
+.control-btn{width:44px;height:44px;background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:0.2s;color:var(--text-main);font-weight:bold;font-size:13px}
+.control-btn:hover{transform:scale(1.1)}
+.control-btn svg{width:22px;height:22px;fill:var(--primary)}
+
+/* === PROGRESS BAR === */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--primary-gradient);z-index:9999;transition:width 0.3s ease,opacity 0.3s ease;pointer-events:none;width:0;opacity:0}
+
+/* === STATS BAR === */
+.stats-bar{display:flex;gap:10px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.stats-bar::-webkit-scrollbar{display:none}
+.stat-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:14px;padding:12px 16px;text-align:center;white-space:nowrap;flex-shrink:0;min-width:80px}
+.stat-num{font-size:24px;font-weight:800;color:var(--primary);display:block;line-height:1}
+.stat-label{font-size:10px;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-top:4px}
+
+/* === FILTER COUNT BADGE === */
+.filter-count{background:rgba(128,128,128,0.25);border-radius:8px;padding:1px 5px;font-size:10px;margin-left:4px;color:var(--text-sec)}
+.filter-btn.active .filter-count{background:rgba(10,132,255,0.3);color:var(--primary)}
+
+/* === FAVORITES === */
+.btn-fav{background:none;border:none;cursor:pointer;font-size:16px;padding:0 2px 0 6px;line-height:1;transition:transform 0.2s;flex-shrink:0}
+.btn-fav:hover{transform:scale(1.4)}
+.btn-fav.active{animation:heartBeat 0.3s ease}
+@keyframes heartBeat{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+
+/* === SCROLL TOP === */
+.scroll-top-btn{position:fixed;bottom:115px;right:16px;width:44px;height:44px;background:var(--surface);border:1px solid rgba(128,128,128,0.2);border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:18px;z-index:98;box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:opacity 0.3s,transform 0.2s;opacity:0;pointer-events:none}
+.scroll-top-btn.visible{opacity:1;pointer-events:all}
+.scroll-top-btn:hover{transform:scale(1.1) translateY(-2px)}
+
+/* === FAB RANDOM === */
+.fab-random{position:fixed;bottom:115px;left:16px;width:48px;height:48px;background:var(--primary-gradient);border:none;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:22px;z-index:98;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform 0.2s}
+.fab-random:hover{transform:scale(1.12) rotate(15deg)}
+.fab-random:active{transform:scale(0.9)}
+
+/* === CONFETTI === */
+@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+/* === SNI BADGE === */
+.badge-sni{background:rgba(0,200,255,0.12);color:#00c8ff;border:1px solid rgba(0,200,255,0.35)}
+.badge-reality{background:rgba(147,51,234,0.12);color:#a855f7;border:1px solid rgba(147,51,234,0.35)}
+.badge-cidr{background:rgba(20,184,166,0.12);color:#14b8a6;border:1px solid rgba(20,184,166,0.35)}
+.badge-new-item{background:rgba(245,158,11,0.12);color:#f59e0b;border:1px solid rgba(245,158,11,0.35)}
+
+/* === UPDATE BANNER === */
+.update-banner{background:rgba(10,132,255,0.08);border:1px solid rgba(10,132,255,0.25);border-radius:var(--radius-md);padding:15px;margin-bottom:25px;margin-top:20px}
+.update-banner h3{margin:0 0 8px 0;color:var(--primary);font-size:15px;display:flex;align-items:center;gap:8px}
+.update-banner p{margin:0;font-size:13px;color:var(--text-sec);line-height:1.6}
+.update-banner span{color:var(--text-main);font-weight:bold}
+h1{font-size:36px;font-weight:800;letter-spacing:0.3px;margin:10px 0 10px;text-align:center}
+.subtitle{color:var(--text-sec);font-size:16px;line-height:1.5;margin-top:0;text-align:center;margin-bottom:30px}
+h2{font-size:22px;font-weight:700;margin:40px 0 15px;border-bottom:1px solid rgba(128,128,128,0.2);padding-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.status-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);padding:30px 24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.3);margin-bottom:20px}
+.status-card h2{border:none;margin:0 0 10px 0;font-size:22px;justify-content:center}
+.status-card p{margin:0 0 20px 0;font-size:14px;color:var(--text-sec)}
+.btn-main{display:inline-flex;justify-content:center;align-items:center;background:var(--primary-gradient);color:#ffffff!important;font-weight:700;font-size:17px;padding:16px 40px;border-radius:30px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:transform 0.1s;width:100%;max-width:300px}
+.btn-main:active{transform:scale(0.96)}
+.radar-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);padding:25px;margin-bottom:40px;transition:0.5s}
+.radar-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(128,128,128,0.15);padding-bottom:15px;margin-bottom:15px}
+.radar-title-box{display:flex;align-items:center;gap:12px}
+.radar-title-box .icon{font-size:28px;filter:drop-shadow(0 0 8px rgba(255,255,255,0.3))}
+.radar-title-text{font-weight:700;font-size:16px;line-height:1.2;text-align:left}
+.radar-status{font-weight:800;font-size:12px;text-transform:uppercase;padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
+.radar-status.loading{background:rgba(128,128,128,0.2);color:var(--text-main)}
+.radar-status.unsafe{background:rgba(239,68,68,0.15);color:var(--danger);border:1px solid rgba(239,68,68,0.3)}
+.radar-status.safe{background:rgba(50,215,75,0.1);color:#4ade80;border:1px solid rgba(50,215,75,0.4)}
+.radar-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.radar-item{display:flex;flex-direction:column;gap:4px}
+.radar-label{font-size:10px;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.5px}
+.radar-value{font-size:15px;font-weight:600;font-family:monospace;color:var(--primary)}
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:40px}
+.btn-social{background:var(--surface);color:var(--text-main);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-md);padding:16px 10px;font-size:13px;font-weight:600;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:8px;transition:0.2s}
+.btn-social:hover{opacity:0.8}
+.btn-social:active{transform:scale(0.95)}
+.btn-social span{font-size:24px;transition:transform 0.3s}
+.btn-social:hover span{transform:translateY(-3px)}
+.search-bar{width:100%;background:rgba(128,128,128,0.05);border:1px solid rgba(128,128,128,0.2);padding:14px 20px;border-radius:var(--radius-md);color:var(--text-main);font-size:15px;outline:none;transition:0.3s;margin-bottom:15px}
+.search-bar:focus{border-color:var(--primary);background:rgba(128,128,128,0.08)}
+.filter-container{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
+.filter-container::-webkit-scrollbar{display:none}
+.filter-btn{background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);color:var(--text-sec);padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:0.2s;display:flex;align-items:center}
+.filter-btn:hover{background:rgba(128,128,128,0.2)}
+.filter-btn.active{background:rgba(10,132,255,0.15);color:var(--primary);border-color:rgba(10,132,255,0.3)}
+.ios-list{background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:30px;border:1px solid rgba(128,128,128,0.15);min-height:80px}
+.scrollable-list{max-height:550px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.scrollable-list::-webkit-scrollbar{width:5px}
+.scrollable-list::-webkit-scrollbar-thumb{background:rgba(128,128,128,0.3);border-radius:10px}
+.ios-item{flex-direction:column;align-items:stretch;gap:0;padding:0;border-bottom:1px solid rgba(128,128,128,0.08);transition:background 0.2s;position:relative}
+.ios-item:last-child{border-bottom:none}
+.ios-item:hover{background:rgba(128,128,128,0.03)}
+.ios-item-header{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.ios-item-top{display:flex;flex-direction:column;gap:4px;width:100%}
+.ios-item-title{font-size:15px;font-weight:600;display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.ios-item-subtitle{font-size:11px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace;opacity:0.6;cursor:pointer;margin-top:2px}
+.ios-item-subtitle:hover{opacity:1;color:var(--primary)}
+.tags-row{display:flex;flex-wrap:wrap;gap:5px;margin:3px 0}
+.badge{padding:3px 7px;border-radius:6px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.3px;display:inline-flex;align-items:center;gap:3px}
+.badge-success{background:rgba(50,215,75,0.12);color:var(--success);border:1px solid rgba(50,215,75,0.3)}
+.badge-shield{background:rgba(10,132,255,0.12);color:var(--primary);border:1px solid rgba(10,132,255,0.3)}
+.badge-speed{background:rgba(255,214,10,0.12);color:var(--warning);border:1px solid rgba(255,214,10,0.3)}
+.badge-ping{background:rgba(191,90,242,0.12);color:var(--purple);border:1px solid rgba(191,90,242,0.3)}
+.badge-ru{background:rgba(128,128,128,0.18);color:var(--text-main);border:1px solid rgba(128,128,128,0.3)}
+.badge-purple{background:rgba(191,90,242,0.12);color:var(--purple);border:1px solid rgba(191,90,242,0.3)}
+.badge-community{background:rgba(255,140,0,0.12);color:#ff8c00;border:1px solid rgba(255,140,0,0.3)}
+.btn-group{display:flex;flex-direction:column;gap:7px;width:100%;margin-top:4px}
+.btn-actions-row{display:flex;gap:5px;width:100%}
+.btn-get{background:rgba(128,128,128,0.12);color:var(--text-main);border:none;border-radius:11px;padding:10px 12px;font-weight:700;font-size:12px;cursor:pointer;transition:0.2s;text-align:center;flex:1;display:flex;justify-content:center;align-items:center;gap:5px}
+.btn-get:hover{background:rgba(128,128,128,0.22)}
+.btn-get:active{transform:scale(0.94)}
+.btn-icon{width:38px;flex:none;padding:0;font-size:15px}
+.btn-icon svg{width:16px;height:16px;fill:currentColor}
+.btn-import{background:rgba(10,132,255,0.12);color:var(--primary);border:1px solid rgba(10,132,255,0.25)}
+.btn-import:hover{background:rgba(10,132,255,0.22)}
+.btn-delete{color:var(--danger);background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25)}
+.btn-delete:hover{background:rgba(239,68,68,0.18)}
+.btn-speed{color:#f59e0b;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);font-size:13px!important}
+.status-dot{display:inline-block;width:7px;height:7px;background-color:var(--success);border-radius:50%;margin-right:7px;box-shadow:0 0 6px var(--success);animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3;box-shadow:0 0 2px var(--success)}}
+.wizard-container{background:var(--surface);border-radius:var(--radius-lg);padding:25px;margin-bottom:20px;border:1px solid rgba(128,128,128,0.15)}
+.wizard-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
+.wizard-tab{background:rgba(128,128,128,0.05);border:1px solid rgba(128,128,128,0.15);padding:12px 8px;border-radius:var(--radius-md);text-align:center;cursor:pointer;color:var(--text-sec);font-weight:600;font-size:12px;transition:0.3s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.wizard-tab svg{width:22px;height:22px;fill:currentColor}
+.wizard-tab.active{background:rgba(10,132,255,0.15);color:var(--primary);border-color:var(--primary)}
+.wizard-content{display:none;padding:10px 0}
+.wizard-content.active{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.guide-steps{margin:0;padding-left:20px;color:var(--text-sec);font-size:14px;line-height:1.6}
+.guide-steps li{margin-bottom:12px}
+.guide-steps strong{color:var(--text-main)}
+.guide-steps code{background:rgba(128,128,128,0.15);padding:2px 6px;border-radius:4px;font-size:12px;font-family:monospace;color:var(--primary)}
+.donate-card{background:var(--surface);border-radius:var(--radius-lg);padding:30px;text-align:center;border:1px solid rgba(128,128,128,0.15)}
+.card-number{font-family:monospace;font-size:24px;color:var(--primary);letter-spacing:3px;margin:20px 0;background:rgba(128,128,128,0.08);padding:15px;border-radius:var(--radius-md);border:1px dashed var(--primary)}
+.tab-bar-container{position:fixed;bottom:30px;left:0;width:100%;display:flex;justify-content:center;z-index:100;pointer-events:none}
+.tab-bar{pointer-events:auto;background:rgba(15,17,26,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);border-radius:40px;display:flex;align-items:center;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.8);gap:4px}
+.tab-item{color:#7b819e;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:10px 16px;border-radius:30px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.tab-item svg{width:22px;height:22px;transition:all 0.3s;stroke:currentColor;fill:none;stroke-width:2}
+.tab-item.active{background:rgba(41,98,255,0.15);color:var(--primary)}
+@media(max-width:400px){.tab-item{padding:10px 10px}.wizard-tabs{grid-template-columns:repeat(3,1fr)}}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);z-index:1000;display:none;justify-content:center;align-items:center;opacity:0;transition:opacity 0.3s}
+.modal-overlay.show{display:flex;opacity:1}
+.modal-content{background:var(--surface);width:90%;max-width:420px;border-radius:var(--radius-lg);padding:25px;border:1px solid rgba(128,128,128,0.15);transform:translateY(20px);transition:transform 0.3s;text-align:center;max-height:85vh;overflow-y:auto}
+.modal-overlay.show .modal-content{transform:translateY(0)}
+.theme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px;max-height:55vh;overflow-y:auto;padding-bottom:10px}
+.theme-circle{width:100%;aspect-ratio:1;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;transition:transform 0.2s;display:flex;justify-content:center;align-items:center}
+.theme-circle:hover{transform:scale(1.12)}
+.theme-circle.active-theme{border-color:#fff;box-shadow:0 0 12px rgba(255,255,255,0.5)}
+.close-modal{width:100%;background:rgba(128,128,128,0.18);color:var(--text-main);border:none;padding:12px;border-radius:var(--radius-md);margin-top:20px;font-weight:700;cursor:pointer;font-size:15px}
+#qrImage{width:200px;height:200px;margin:20px auto;display:block;border-radius:10px;background:#fff;padding:10px}
+.toast-container{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{background:var(--surface);color:var(--text-main);border:1px solid var(--primary);padding:11px 22px;border-radius:30px;box-shadow:0 8px 25px rgba(0,0,0,0.5);font-size:14px;font-weight:600;animation:toastSlide 2.8s ease forwards;display:flex;align-items:center;gap:8px;white-space:nowrap}
+@keyframes toastSlide{0%{transform:translateY(40px) scale(0.9);opacity:0}10%{transform:translateY(0) scale(1);opacity:1}88%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-40px) scale(0.9);opacity:0}}
+.toggle-switch{display:flex;align-items:center;justify-content:flex-start;gap:10px;background:rgba(128,128,128,0.05);padding:12px;border-radius:var(--radius-md);margin-bottom:15px;border:1px solid rgba(128,128,128,0.2)}
+.loader{border:2px solid rgba(128,128,128,0.15);border-top:2px solid var(--primary);border-radius:50%;width:22px;height:22px;animation:spin 0.9s linear infinite;display:block;margin:32px auto}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.db-status{font-size:10px;padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;font-weight:600}
+.db-ok{background:rgba(50,215,75,0.1);color:var(--success);border:1px solid rgba(50,215,75,0.3)}
+.db-err{background:rgba(239,68,68,0.1);color:var(--danger);border:1px solid rgba(239,68,68,0.3)}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease-out,transform 0.7s cubic-bezier(0.16,1,0.3,1);will-change:opacity,transform}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:0.1s}.delay-2{transition-delay:0.2s}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-sec);font-size:14px}
+.empty-state p{margin:8px 0 0;font-size:13px;line-height:1.5}
+/* SNI info box */
+.sni-info-box{background:rgba(0,200,255,0.06);border:1px solid rgba(0,200,255,0.2);border-radius:14px;padding:16px;margin-bottom:16px;font-size:13px;color:var(--text-sec);line-height:1.6}
+.sni-info-box strong{color:#00c8ff}
+/* Speed pulse */
+.ping-checking{animation:pulsePing 0.8s ease infinite}
+@keyframes pulsePing{0%,100%{opacity:1}50%{opacity:0.4}}
+/* Refresh btn */
+.btn-refresh{background:rgba(50,215,75,0.1);color:var(--success);border:1px solid rgba(50,215,75,0.25);font-size:13px!important}
+.btn-refresh:hover{background:rgba(50,215,75,0.2)}
+/* Copied flash */
+@keyframes copyFlash{0%{background:rgba(10,132,255,0.2)}100%{background:transparent}}
+.copy-flash{animation:copyFlash 0.4s ease}
+/* Shortcut hint */
+.shortcut-hint{font-size:11px;color:var(--text-sec);display:flex;align-items:center;gap:6px;margin-top:8px;justify-content:flex-end;opacity:0.6}
+.kbd{background:rgba(128,128,128,0.15);border:1px solid rgba(128,128,128,0.3);border-radius:4px;padding:1px 6px;font-size:10px;font-family:monospace;color:var(--text-sec)}
+</style>
 </head>
 <body>
 
-<div class="content-wrapper" style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;padding-top:15px;z-index:50;pointer-events:none;">
-    <div class="top-controls" style="pointer-events:all;">
-        <div class="control-btn" onclick="toggleLang()" id="langBtn" title="Сменить язык">EN</div>
-        <div class="control-btn" onclick="togglePerf()" id="perfBtn" title="Энергосбережение">🔋</div>
-        <div class="control-btn" onclick="document.getElementById('themeModal').classList.add('show')" title="Сменить тему">
-            <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5c-.828 0-1.5.672-1.5 1.5 0 .393.152.754.4 1.026.242.242.35.58.35.974 0 1.93-1.57 3.5-3.5 3.5zm-5.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3-4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
-        </div>
-    </div>
-</div>
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
 
+<!-- Toast -->
 <div id="toast-container" class="toast-container"></div>
 
-<div class="app-container" style="padding-top:60px;">
-    <div class="bg-particles" id="particles"></div>
-    <div class="ambient-glow" id="glow1"></div>
-    
-    <div class="content-wrapper" id="home">
-        <div class="update-banner fade-up visible">
-            <h3>⚡ Обновление 7.0 (Titanium)</h3>
-            <p>
-                • <span>Supabase БД:</span> подписки сохраняются в облаке — видны на всех устройствах!<br>
-                • <span>Комьюнити:</span> делитесь подписками со всеми пользователями.<br>
-                • <span>Каталог обновлён:</span> только активные репозитории 2026 года.
-            </p>
-        </div>
+<!-- Scroll to top -->
+<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
 
-        <h1 class="fade-up visible">Flux VPN</h1>
-        <p class="subtitle fade-up visible">
-            <span class="ru">Твоя цифровая свобода без ограничений.</span>
-            <span class="en">Your digital freedom without limits.</span>
-        </p>
+<!-- FAB Random -->
+<button class="fab-random" onclick="pickRandom()" title="🎲 Случайный конфиг">🎲</button>
 
-        <div class="status-card fade-up visible">
-            <h2><span class="ru">Официальное приложение</span><span class="en">Official App</span></h2>
-            <p><span class="ru">Доступ к Happ для всех устройств. Скачай, добавь подписку и наслаждайся свободным интернетом.</span><span class="en">Get Happ for all devices. Download, add config, and enjoy free internet.</span></p>
-            <a href="https://happ.info/" target="_blank" class="btn-main">📥 <span class="ru">Установить Happ</span><span class="en">Install Happ</span></a>
-        </div>
-
-        <div class="radar-card fade-up delay-1 visible" id="privacy-radar">
-            <div class="radar-header">
-                <div class="radar-title-box">
-                    <span class="icon">📡</span>
-                    <div class="radar-title-text">
-                        <span class="ru">Ваш статус<br>сети</span>
-                        <span class="en">Your Network<br>Status</span>
-                    </div>
-                </div>
-                <div id="radar-badge" class="radar-status loading">...</div>
-            </div>
-            <div class="radar-info-grid">
-                <div class="radar-item">
-                    <span class="radar-label"><span class="ru">IP Адрес</span><span class="en">IP Address</span></span>
-                    <span class="radar-value" id="radar-ip">...</span>
-                </div>
-                <div class="radar-item">
-                    <span class="radar-label"><span class="ru">Локация</span><span class="en">Location</span></span>
-                    <span class="radar-value" id="radar-loc">...</span>
-                </div>
-                <div class="radar-item" style="grid-column:span 2;">
-                    <span class="radar-label"><span class="ru">Провайдер</span><span class="en">ISP</span></span>
-                    <span class="radar-value" id="radar-isp" style="color:var(--text-main);">...</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="social-grid">
-            <a href="https://t.me/FluxVPNOff" target="_blank" class="btn-social fade-up delay-1"><span>✈️</span> <span class="ru">Канал</span><span class="en">Channel</span></a>
-            <a href="https://t.me/FluxVPNOff_bot" target="_blank" class="btn-social fade-up delay-2"><span>🤖</span> <span class="ru">Бот</span><span class="en">Bot</span></a>
-            <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-social fade-up"><span>🛠</span> <span class="ru">Поддержка</span><span class="en">Support</span></a>
-            <a href="https://vk.com/club236107757" target="_blank" class="btn-social fade-up delay-1"><span>🌐</span> ВКонтакте</a>
-            <a href="https://www.tiktok.com/@fluxvpnoff" target="_blank" class="btn-social fade-up delay-2"><span>🎵</span> TikTok</a>
-            <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="btn-social fade-up"><span>🚀</span> <span class="ru">Буст</span><span class="en">Boost</span></a>
-        </div>
-
-        <!-- ⭐ Популярные конфигурации -->
-        <h2 id="subs" class="fade-up">
-            <span class="ru">⭐ Популярные конфигурации</span>
-            <span class="en">⭐ Popular Configurations</span>
-        </h2>
-        <div class="ios-list fade-up">
-            <div class="ios-item">
-                <div class="ios-item-header">
-                    <div class="ios-item-top">
-                        <div class="ios-item-left">
-                            <div class="ios-item-title"><span class="status-dot"></span>🔥 Goida Premium (Обход)</div>
-                            <div class="tags-row">
-                                <span class="badge badge-success">✅ <span class="ru">Работает</span><span class="en">Online</span></span>
-                                <span class="badge badge-shield">🛡️ <span class="ru">Обход DPI</span><span class="en">Bypass DPI</span></span>
-                                <span class="badge badge-speed">⚡ <span class="ru">Быстрый</span><span class="en">Fast</span></span>
-                            </div>
-                            <div class="ios-item-subtitle" id="sub_goida1">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt</div>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <div class="btn-actions-row">
-                            <button class="btn-get btn-icon" onclick="openQR('sub_goida1')" title="QR">📱</button>
-                            <button class="btn-get btn-icon" onclick="shareNode('Goida Premium','sub_goida1')" title="Поделиться">📤</button>
-                            <button class="btn-get" onclick="copyLink('sub_goida1')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-                        </div>
-                        <button class="btn-get btn-import" onclick="openInHapp('sub_goida1')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-                    </div>
-                </div>
-            </div>
-            <div class="ios-item">
-                <div class="ios-item-header">
-                    <div class="ios-item-top">
-                        <div class="ios-item-left">
-                            <div class="ios-item-title"><span class="status-dot"></span>⚡ Goida Standard</div>
-                            <div class="tags-row">
-                                <span class="badge badge-success">✅ <span class="ru">Работает</span><span class="en">Online</span></span>
-                                <span class="badge badge-speed">⚡ <span class="ru">Быстрый</span><span class="en">Fast</span></span>
-                            </div>
-                            <div class="ios-item-subtitle" id="sub_goida2">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt</div>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <div class="btn-actions-row">
-                            <button class="btn-get btn-icon" onclick="openQR('sub_goida2')" title="QR">📱</button>
-                            <button class="btn-get btn-icon" onclick="shareNode('Goida Standard','sub_goida2')" title="Поделиться">📤</button>
-                            <button class="btn-get" onclick="copyLink('sub_goida2')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-                        </div>
-                        <button class="btn-get btn-import" onclick="openInHapp('sub_goida2')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-                    </div>
-                </div>
-            </div>
-            <div class="ios-item">
-                <div class="ios-item-header">
-                    <div class="ios-item-top">
-                        <div class="ios-item-left">
-                            <div class="ios-item-title"><span class="status-dot"></span>🌟 Основная (VLESS)</div>
-                            <div class="tags-row">
-                                <span class="badge badge-success">✅ <span class="ru">Работает</span><span class="en">Online</span></span>
-                                <span class="badge badge-shield">🛡️ <span class="ru">Обход DPI</span><span class="en">Bypass DPI</span></span>
-                            </div>
-                            <div class="ios-item-subtitle" id="sub1">https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt</div>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <div class="btn-actions-row">
-                            <button class="btn-get btn-icon" onclick="openQR('sub1')" title="QR">📱</button>
-                            <button class="btn-get btn-icon" onclick="shareNode('Основная VLESS','sub1')" title="Поделиться">📤</button>
-                            <button class="btn-get" onclick="copyLink('sub1')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-                        </div>
-                        <button class="btn-get btn-import" onclick="openInHapp('sub1')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 📚 Каталог подписок -->
-        <h2 class="fade-up">
-            <span class="ru">📚 Каталог подписок</span><span class="en">📚 Catalog</span>
-            <span id="db-status-badge" class="db-status db-err" style="font-size:10px;">⏳ БД...</span>
-        </h2>
-        <p style="font-size:13px;color:var(--text-sec);margin-top:0;" class="fade-up">
-            <span class="ru">Актуальные подписки 2026 года. Только активно поддерживаемые репозитории.</span>
-            <span class="en">Updated 2026 subscriptions. Only actively maintained repositories.</span>
-        </p>
-
-        <div style="display:flex;gap:10px;margin-bottom:15px;" class="fade-up">
-            <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Поиск / Search..." oninput="renderSubs()" style="margin-bottom:0;flex:1;">
-            <button type="button" class="btn-main" onclick="document.getElementById('addCustomModal').classList.add('show')" style="padding:0 20px;font-size:20px;border-radius:var(--radius-md);width:auto;" title="Добавить свою подписку">+</button>
-        </div>
-
-        <div class="filter-container fade-up visible">
-            <button type="button" class="filter-btn active" data-filter="all"><span class="ru">Все</span><span class="en">All</span></button>
-            <button type="button" class="filter-btn" data-filter="custom">👤 <span class="ru">Мои</span><span class="en">Mine</span></button>
-            <button type="button" class="filter-btn" data-filter="community">🌍 <span class="ru">Комьюнити</span><span class="en">Community</span></button>
-            <button type="button" class="filter-btn" data-filter="best">🔥 <span class="ru">Лучшие</span><span class="en">Best</span></button>
-            <button type="button" class="filter-btn" data-filter="gaming">🎮 <span class="ru">Игровые</span><span class="en">Gaming</span></button>
-            <button type="button" class="filter-btn" data-filter="ru">🇷🇺 RU</button>
-            <button type="button" class="filter-btn" data-filter="media">▶️ Media</button>
-        </div>
-
-        <div id="dynamic-subs-container" class="ios-list fade-up">
-            <div class="loader"></div>
-        </div>
-
-        <!-- 📖 Инструкция -->
-        <h2 id="guide" class="fade-up"><span class="ru">📖 Инструкция</span><span class="en">📖 Setup Guide</span></h2>
-        <div class="wizard-container fade-up">
-            <div class="wizard-tabs">
-                <div class="wizard-tab active" data-target="w-ios">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.14 14.5c-.32.06-.42-.14-.42-.31v-1.2c0-1.12-.39-1.85-.82-2.22 2.65-.3 5.43-1.32 5.43-5.89 0-1.3-.46-2.37-1.23-3.21.12-.3.54-1.52-.12-3.17 0 0-1-.32-3.3 1.23a11.5 11.5 0 00-6 0C6.38 3.1 5.38 3.42 5.38 3.42c-.66 1.65-.24 2.87-.12 3.17-.77.84-1.23 1.91-1.23 3.21 0 4.56 2.77 5.59 5.41 5.89-.35.31-.66.86-.77 1.66-.69.31-2.45.85-3.53-1.01 0 0-.64-1.16-1.86-1.25 0 0-1.18-.01-.08.76 0 0 .79.37 1.34 1.77 0 0 .71 2.15 4.09 1.45v1.65c0 .17-.1.37-.42.31A10.005 10.005 0 0112 22z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
-                    Apple
-                </div>
-                <div class="wizard-tab" data-target="w-android">
-                    <svg viewBox="0 0 24 24"><path d="M17.523 15.341l1.834-3.177a.236.236 0 00-.086-.322.242.242 0 00-.325.086l-1.868 3.238c-1.428-.65-3.056-1.014-4.81-1.014-1.753 0-3.382.365-4.81 1.014l-1.868-3.238a.242.242 0 00-.325-.086.236.236 0 00-.086.322l1.834 3.177C4.195 16.924 2 19.986 2 23.5h20c0-3.514-2.195-6.576-4.477-8.159zM8.17 20.355c-.563 0-1.02-.452-1.02-1.01 0-.558.457-1.01 1.02-1.01.562 0 1.018.452 1.018 1.01 0 .558-.456 1.01-1.018 1.01zm7.66 0c-.563 0-1.02-.452-1.02-1.01 0-.558.457-1.01 1.02-1.01.562 0 1.018.452 1.018 1.01 0 .558-.456 1.01-1.018 1.01z"/></svg>
-                    Android
-                </div>
-                <div class="wizard-tab" data-target="w-pc">
-                    <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zM4 19h16v2H4z"/></svg>
-                    Windows
-                </div>
-                <div class="wizard-tab" data-target="w-tv">
-                    <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><path d="M8 21h8M12 17v4"></path></svg>
-                    Smart TV
-                </div>
-            </div>
-            <div id="w-ios" class="wizard-content active">
-                <ul class="guide-steps">
-                    <li><span class="ru">Скачайте <strong>Happ</strong> из App Store.</span><span class="en">Download <strong>Happ</strong> from the App Store.</span></li>
-                    <li><span class="ru">Нажмите <strong>Добавить в Happ</strong> у выбранного сервера.</span><span class="en">Tap <strong>Add to Happ</strong> next to a server.</span></li>
-                    <li><span class="ru">Нажмите <strong>Save / Import</strong>.</span><span class="en">Tap <strong>Save / Import</strong>.</span></li>
-                    <li><span class="ru">Подключитесь большой кнопкой.</span><span class="en">Connect with the big button.</span></li>
-                </ul>
-            </div>
-            <div id="w-android" class="wizard-content">
-                <ul class="guide-steps">
-                    <li><span class="ru">Установите <strong>Happ</strong> из Google Play.</span><span class="en">Install <strong>Happ</strong> from Google Play.</span></li>
-                    <li><span class="ru">Нажмите <strong>Добавить в Happ</strong>.</span><span class="en">Tap <strong>Add to Happ</strong>.</span></li>
-                    <li><span class="ru"><strong>Важно:</strong> Нажмите 🔄 в правом верхнем углу для обновления.</span><span class="en"><strong>Important:</strong> Tap 🔄 to refresh the list.</span></li>
-                </ul>
-            </div>
-            <div id="w-pc" class="wizard-content">
-                <ul class="guide-steps">
-                    <li><span class="ru">Скачайте <strong>Happ</strong> для Windows.</span><span class="en">Download <strong>Happ</strong> for Windows.</span></li>
-                    <li><span class="ru">Нажмите <strong>Копировать</strong> на сайте.</span><span class="en">Click <strong>Copy</strong> on the site.</span></li>
-                    <li><span class="ru">В приложении — <em>Импорт из буфера обмена</em>.</span><span class="en">Choose <em>Import from Clipboard</em>.</span></li>
-                </ul>
-            </div>
-            <div id="w-tv" class="wizard-content">
-                <ul class="guide-steps">
-                    <li><span class="ru">Установите <strong>Happ</strong> на Smart TV.</span><span class="en">Install <strong>Happ</strong> on your TV.</span></li>
-                    <li><span class="ru">Скопируйте ссылку и отправьте себе в Telegram.</span><span class="en">Copy link and send to your Telegram.</span></li>
-                    <li><span class="ru">В Happ: <em>Subscriptions → Add from URL</em>.</span><span class="en">In Happ: <em>Subscriptions → Add from URL</em>.</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- ❤️ Донат -->
-        <h2 id="donate" class="fade-up"><span class="ru">❤️ Поддержать проект</span><span class="en">❤️ Support Us</span></h2>
-        <div class="donate-card fade-up">
-            <p><span class="ru">Ваша поддержка помогает оплачивать серверы!</span><span class="en">Your support helps us keep the servers running!</span></p>
-            <div class="card-number" id="cardNum">2202 2067 8926 6512</div>
-            <button class="btn-get" style="width:100%;padding:14px;margin-bottom:25px;font-size:16px;border-radius:12px;" onclick="copyLink('cardNum')">
-                <span class="ru">Скопировать номер карты</span><span class="en">Copy Card Number</span>
-            </button>
-            <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn-main" style="width:100%;max-width:100%;background:#ff8c00;padding:14px;border-radius:12px;">
-                <span class="ru">Отправить донат 💸</span><span class="en">Send Donation 💸</span>
-            </a>
-        </div>
-
-        <!-- 🗄 Мега-База -->
-        <h2 id="backup" class="fade-up"><span class="ru">🗄 Мега-База (Резерв)</span><span class="en">🗄 Mega Base (Backup)</span></h2>
-        <p class="fade-up" style="font-size:13px;color:var(--text-sec);margin-top:0;">
-            <span class="ru">Десятки актуальных конфигов от проверенных репозиториев 2026 года.</span>
-            <span class="en">Dozens of current configs from verified 2026 repositories.</span>
-        </p>
-        <div class="ios-list scrollable-list fade-up" id="mega-base-container">
-            <div class="loader"></div>
-        </div>
-
-        <div class="fade-up" style="text-align:center;margin-top:50px;padding:30px 20px;background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);">
-            <h2 style="margin-top:0;border:none;padding-bottom:0;"><span class="ru">Остались вопросы?</span><span class="en">Any questions?</span></h2>
-            <p style="color:var(--text-sec);margin-bottom:25px;font-size:14px;"><span class="ru">Наша поддержка всегда готова помочь.</span><span class="en">Our support is ready to help.</span></p>
-            <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-main" style="background:var(--primary);max-width:100%;padding:14px 25px;border-radius:12px;">
-                <span class="ru">👨‍💻 Написать в поддержку</span><span class="en">👨‍💻 Contact Support</span>
-            </a>
-        </div>
-
-        <div style="text-align:center;margin-top:40px;color:var(--text-sec);font-size:13px;" class="fade-up">
-            Flux VPN &copy; 2026.<br>
-            <span style="color:var(--primary);font-weight:800;margin-top:8px;display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Версия 7.0.0 (Titanium)</span>
-        </div>
+<!-- Fixed Header Controls -->
+<div class="content-wrapper" style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;padding-top:12px;z-index:50;pointer-events:none;">
+  <div class="top-controls" style="pointer-events:all;">
+    <div class="control-btn" onclick="exportConfigs()" title="Экспорт / Export">📥</div>
+    <div class="control-btn" onclick="toggleLang()" id="langBtn">EN</div>
+    <div class="control-btn" onclick="togglePerf()" id="perfBtn">🔋</div>
+    <div class="control-btn" onclick="document.getElementById('themeModal').classList.add('show')" title="Тема">
+      <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5c-.828 0-1.5.672-1.5 1.5 0 .393.152.754.4 1.026.242.242.35.58.35.974 0 1.93-1.57 3.5-3.5 3.5zm-5.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3-4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
     </div>
-
-    <div class="tab-bar-container">
-        <div class="tab-bar">
-            <a href="#home" class="tab-item active">
-                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                <span class="ru">Главная</span><span class="en">Home</span>
-            </a>
-            <a href="#subs" class="tab-item">
-                <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                <span class="ru">Конфиги</span><span class="en">Configs</span>
-            </a>
-            <a href="#guide" class="tab-item">
-                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span class="ru">Гайд</span><span class="en">Guide</span>
-            </a>
-            <a href="#donate" class="tab-item">
-                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                <span class="ru">Донат</span><span class="en">Donate</span>
-            </a>
-            <a href="https://t.me/FluxVPNSup" target="_blank" class="tab-item">
-                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                <span class="ru">Саппорт</span><span class="en">Support</span>
-            </a>
-        </div>
-    </div>
+  </div>
 </div>
 
-<!-- Модальные окна -->
-<div id="themeModal" class="modal-overlay" onclick="this.classList.remove('show')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <h3 style="margin-top:0;"><span class="ru">Выберите тему</span><span class="en">Select Theme</span></h3>
-        <div class="theme-grid" id="themeGrid"></div>
-        <button class="close-modal" onclick="document.getElementById('themeModal').classList.remove('show')"><span class="ru">Закрыть</span><span class="en">Close</span></button>
+<div class="app-container" style="padding-top:65px;">
+  <div class="ambient-glow" id="glow1"></div>
+
+  <div class="content-wrapper" id="home">
+
+    <!-- Update Banner -->
+    <div class="update-banner fade-up visible">
+      <h3>⚡ Обновление 8.0 (Titanium Ultra)</h3>
+      <p>
+        • <span>SNI/Reality:</span> новая вкладка с конфигами обхода белых списков.<br>
+        • <span>Избранное ⭐:</span> сохраняйте лучшие конфиги кнопкой сердечка.<br>
+        • <span>Speed-чек ⚡:</span> проверяйте доступность конфига в один клик.<br>
+        • <span>Экспорт 📥:</span> скачайте все конфиги одним файлом.<br>
+        • <span>Случайный 🎲:</span> кнопка снизу-слева — рандомный конфиг.<br>
+        • <span>Горячие клавиши:</span> <kbd class="kbd">/</kbd> поиск · <kbd class="kbd">Esc</kbd> закрыть · <kbd class="kbd">R</kbd> рандом
+      </p>
     </div>
+
+    <h1 class="fade-up visible">Flux VPN</h1>
+    <p class="subtitle fade-up visible">
+      <span class="ru">Цифровая свобода без ограничений.</span>
+      <span class="en">Digital freedom without limits.</span>
+    </p>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar fade-up visible" id="stats-bar">
+      <div class="stat-card"><span class="stat-num" id="stat-total">—</span><span class="stat-label"><span class="ru">Конфигов</span><span class="en">Configs</span></span></div>
+      <div class="stat-card"><span class="stat-num" id="stat-fav" style="color:#ff6b9d">—</span><span class="stat-label"><span class="ru">Избранных</span><span class="en">Favorites</span></span></div>
+      <div class="stat-card"><span class="stat-num" id="stat-mine" style="color:#bf5af2">—</span><span class="stat-label"><span class="ru">Моих</span><span class="en">Mine</span></span></div>
+      <div class="stat-card"><span class="stat-num" id="stat-sni" style="color:#00c8ff">—</span><span class="stat-label">SNI/Reality</span></div>
+    </div>
+
+    <!-- Install card -->
+    <div class="status-card fade-up visible">
+      <h2><span class="ru">Официальное приложение</span><span class="en">Official App</span></h2>
+      <p><span class="ru">Скачай Happ, добавь подписку и наслаждайся свободным интернетом.</span><span class="en">Download Happ, add a config, enjoy free internet.</span></p>
+      <a href="https://happ.info/" target="_blank" class="btn-main">📥 <span class="ru">Установить Happ</span><span class="en">Install Happ</span></a>
+    </div>
+
+    <!-- Privacy Radar -->
+    <div class="radar-card fade-up delay-1 visible" id="privacy-radar">
+      <div class="radar-header">
+        <div class="radar-title-box">
+          <span class="icon">📡</span>
+          <div class="radar-title-text">
+            <span class="ru">Ваш статус<br>сети</span>
+            <span class="en">Your Network<br>Status</span>
+          </div>
+        </div>
+        <div id="radar-badge" class="radar-status loading">
+          <span class="ping-checking">⏳</span>
+        </div>
+      </div>
+      <div class="radar-info-grid">
+        <div class="radar-item">
+          <span class="radar-label"><span class="ru">IP Адрес</span><span class="en">IP Address</span></span>
+          <span class="radar-value" id="radar-ip">...</span>
+        </div>
+        <div class="radar-item">
+          <span class="radar-label"><span class="ru">Локация</span><span class="en">Location</span></span>
+          <span class="radar-value" id="radar-loc">...</span>
+        </div>
+        <div class="radar-item" style="grid-column:span 2;">
+          <span class="radar-label"><span class="ru">Провайдер</span><span class="en">ISP</span></span>
+          <span class="radar-value" id="radar-isp" style="color:var(--text-main)">...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <div class="social-grid">
+      <a href="https://t.me/FluxVPNOff" target="_blank" class="btn-social fade-up delay-1"><span>✈️</span><span class="ru">Канал</span><span class="en">Channel</span></a>
+      <a href="https://t.me/FluxVPNOff_bot" target="_blank" class="btn-social fade-up delay-2"><span>🤖</span><span class="ru">Бот</span><span class="en">Bot</span></a>
+      <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-social fade-up"><span>🛠</span><span class="ru">Поддержка</span><span class="en">Support</span></a>
+      <a href="https://vk.com/club236107757" target="_blank" class="btn-social fade-up delay-1"><span>🌐</span>ВКонтакте</a>
+      <a href="https://www.tiktok.com/@fluxvpnoff" target="_blank" class="btn-social fade-up delay-2"><span>🎵</span>TikTok</a>
+      <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="btn-social fade-up"><span>🚀</span><span class="ru">Буст</span><span class="en">Boost</span></a>
+    </div>
+
+    <!-- Popular Configs -->
+    <h2 id="subs" class="fade-up">
+      <span class="ru">⭐ Популярные конфигурации</span>
+      <span class="en">⭐ Popular Configurations</span>
+    </h2>
+    <div class="ios-list fade-up">
+      <div class="ios-item">
+        <div class="ios-item-header">
+          <div class="ios-item-top">
+            <div class="ios-item-title"><span class="status-dot"></span>🔥 Goida Premium (Обход DPI)<button class="btn-fav" onclick="toggleFavById('sub_goida1')" id="fav_sub_goida1">🤍</button></div>
+            <div class="tags-row"><span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ DPI Bypass</span><span class="badge badge-speed">⚡ Fast</span></div>
+            <div class="ios-item-subtitle" id="sub_goida1" ondblclick="copyLink('sub_goida1')">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt</div>
+          </div>
+          <div class="btn-group">
+            <div class="btn-actions-row">
+              <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('sub_goida1',this)" title="Проверить">⚡</button>
+              <button class="btn-get btn-icon" onclick="openQR('sub_goida1')" title="QR">📱</button>
+              <button class="btn-get btn-icon" onclick="shareNode('Goida Premium','sub_goida1')" title="Поделиться">📤</button>
+              <button class="btn-get" onclick="copyLink('sub_goida1')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+            </div>
+            <button class="btn-get btn-import" onclick="openInHapp('sub_goida1')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="ios-item">
+        <div class="ios-item-header">
+          <div class="ios-item-top">
+            <div class="ios-item-title"><span class="status-dot"></span>⚡ Goida Standard<button class="btn-fav" onclick="toggleFavById('sub_goida2')" id="fav_sub_goida2">🤍</button></div>
+            <div class="tags-row"><span class="badge badge-success">✅ Online</span><span class="badge badge-speed">⚡ Fast</span></div>
+            <div class="ios-item-subtitle" id="sub_goida2" ondblclick="copyLink('sub_goida2')">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt</div>
+          </div>
+          <div class="btn-group">
+            <div class="btn-actions-row">
+              <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('sub_goida2',this)" title="Проверить">⚡</button>
+              <button class="btn-get btn-icon" onclick="openQR('sub_goida2')" title="QR">📱</button>
+              <button class="btn-get btn-icon" onclick="shareNode('Goida Standard','sub_goida2')" title="Поделиться">📤</button>
+              <button class="btn-get" onclick="copyLink('sub_goida2')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+            </div>
+            <button class="btn-get btn-import" onclick="openInHapp('sub_goida2')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="ios-item">
+        <div class="ios-item-header">
+          <div class="ios-item-top">
+            <div class="ios-item-title"><span class="status-dot"></span>🌟 Основная (VLESS RU)<button class="btn-fav" onclick="toggleFavById('sub1')" id="fav_sub1">🤍</button></div>
+            <div class="tags-row"><span class="badge badge-success">✅ Online</span><span class="badge badge-sni">🌐 SNI/CIDR</span><span class="badge badge-ru">🇷🇺 RU</span></div>
+            <div class="ios-item-subtitle" id="sub1" ondblclick="copyLink('sub1')">https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt</div>
+          </div>
+          <div class="btn-group">
+            <div class="btn-actions-row">
+              <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('sub1',this)" title="Проверить">⚡</button>
+              <button class="btn-get btn-icon" onclick="openQR('sub1')" title="QR">📱</button>
+              <button class="btn-get btn-icon" onclick="shareNode('VLESS RU','sub1')" title="Поделиться">📤</button>
+              <button class="btn-get" onclick="copyLink('sub1')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+            </div>
+            <button class="btn-get btn-import" onclick="openInHapp('sub1')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Catalog -->
+    <h2 class="fade-up">
+      <span class="ru">📚 Каталог подписок</span><span class="en">📚 Catalog</span>
+      <span id="db-status-badge" class="db-status db-err">⏳</span>
+    </h2>
+    <p style="font-size:13px;color:var(--text-sec);margin-top:-10px;margin-bottom:15px;" class="fade-up">
+      <span class="ru">Только активно поддерживаемые репозитории 2026 года.</span>
+      <span class="en">Only actively maintained 2026 repositories.</span>
+    </p>
+
+    <div style="display:flex;gap:8px;margin-bottom:12px;" class="fade-up">
+      <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Поиск / Search..." oninput="debouncedRender()" style="margin-bottom:0;flex:1;">
+      <button type="button" class="btn-main" onclick="document.getElementById('addCustomModal').classList.add('show')" style="padding:0 18px;font-size:22px;border-radius:var(--radius-md);width:auto;max-width:none;" title="Добавить">+</button>
+    </div>
+
+    <div class="shortcut-hint fade-up"><span class="kbd">/</span> <span class="ru">фокус поиска</span><span class="en">focus search</span> · <span class="kbd">R</span> <span class="ru">рандом</span><span class="en">random</span></div>
+
+    <div class="filter-container fade-up visible" style="margin-top:12px;">
+      <button type="button" class="filter-btn active" data-filter="all"><span class="ru">Все</span><span class="en">All</span> <span class="filter-count" id="fc-all">0</span></button>
+      <button type="button" class="filter-btn" data-filter="favorites">⭐ <span class="ru">Избр.</span><span class="en">Fav</span> <span class="filter-count" id="fc-favorites" style="color:#ff6b9d">0</span></button>
+      <button type="button" class="filter-btn" data-filter="custom">👤 <span class="ru">Мои</span><span class="en">Mine</span> <span class="filter-count" id="fc-custom">0</span></button>
+      <button type="button" class="filter-btn" data-filter="community">🌍 <span class="ru">Комьюнити</span><span class="en">Community</span> <span class="filter-count" id="fc-community">0</span></button>
+      <button type="button" class="filter-btn" data-filter="sni">🔐 SNI/Reality</button>
+      <button type="button" class="filter-btn" data-filter="best">🔥 <span class="ru">Лучшие</span><span class="en">Best</span></button>
+      <button type="button" class="filter-btn" data-filter="gaming">🎮 <span class="ru">Игровые</span><span class="en">Gaming</span></button>
+      <button type="button" class="filter-btn" data-filter="ru">🇷🇺 RU</button>
+      <button type="button" class="filter-btn" data-filter="media">▶️ Media</button>
+      <button type="button" class="filter-btn" data-filter="new">✨ <span class="ru">Новые</span><span class="en">New</span></button>
+    </div>
+
+    <div id="dynamic-subs-container" class="ios-list fade-up">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Guide -->
+    <h2 id="guide" class="fade-up"><span class="ru">📖 Инструкция</span><span class="en">📖 Setup Guide</span></h2>
+    <div class="wizard-container fade-up">
+      <div class="wizard-tabs">
+        <div class="wizard-tab active" data-target="w-ios">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.14 14.5c-.32.06-.42-.14-.42-.31v-1.2c0-1.12-.39-1.85-.82-2.22 2.65-.3 5.43-1.32 5.43-5.89 0-1.3-.46-2.37-1.23-3.21.12-.3.54-1.52-.12-3.17 0 0-1-.32-3.3 1.23a11.5 11.5 0 00-6 0C6.38 3.1 5.38 3.42 5.38 3.42c-.66 1.65-.24 2.87-.12 3.17-.77.84-1.23 1.91-1.23 3.21 0 4.56 2.77 5.59 5.41 5.89-.35.31-.66.86-.77 1.66-.69.31-2.45.85-3.53-1.01 0 0-.64-1.16-1.86-1.25 0 0-1.18-.01-.08.76 0 0 .79.37 1.34 1.77 0 0 .71 2.15 4.09 1.45v1.65c0 .17-.1.37-.42.31A10.005 10.005 0 0112 22z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+          Apple
+        </div>
+        <div class="wizard-tab" data-target="w-android">
+          <svg viewBox="0 0 24 24"><path d="M17.523 15.341l1.834-3.177a.236.236 0 00-.086-.322.242.242 0 00-.325.086l-1.868 3.238c-1.428-.65-3.056-1.014-4.81-1.014-1.753 0-3.382.365-4.81 1.014l-1.868-3.238a.242.242 0 00-.325-.086.236.236 0 00-.086.322l1.834 3.177C4.195 16.924 2 19.986 2 23.5h20c0-3.514-2.195-6.576-4.477-8.159zM8.17 20.355c-.563 0-1.02-.452-1.02-1.01 0-.558.457-1.01 1.02-1.01.562 0 1.018.452 1.018 1.01 0 .558-.456 1.01-1.018 1.01zm7.66 0c-.563 0-1.02-.452-1.02-1.01 0-.558.457-1.01 1.02-1.01.562 0 1.018.452 1.018 1.01 0 .558-.456 1.01-1.018 1.01z"/></svg>
+          Android
+        </div>
+        <div class="wizard-tab" data-target="w-pc">
+          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zM4 19h16v2H4z"/></svg>
+          Windows
+        </div>
+        <div class="wizard-tab" data-target="w-tv">
+          <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"></path></svg>
+          Smart TV
+        </div>
+        <div class="wizard-tab" data-target="w-sni">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          SNI/CIDR
+        </div>
+      </div>
+      <div id="w-ios" class="wizard-content active">
+        <ul class="guide-steps">
+          <li><span class="ru">Скачайте <strong>Happ</strong> из App Store.</span><span class="en">Download <strong>Happ</strong> from the App Store.</span></li>
+          <li><span class="ru">Нажмите <strong>Добавить в Happ</strong> у выбранного конфига.</span><span class="en">Tap <strong>Add to Happ</strong> next to a config.</span></li>
+          <li><span class="ru">Нажмите <strong>Save / Import</strong>.</span><span class="en">Tap <strong>Save / Import</strong>.</span></li>
+          <li><span class="ru">Подключитесь большой кнопкой в центре экрана.</span><span class="en">Connect with the big button in the center.</span></li>
+        </ul>
+      </div>
+      <div id="w-android" class="wizard-content">
+        <ul class="guide-steps">
+          <li><span class="ru">Установите <strong>Happ</strong> из Google Play.</span><span class="en">Install <strong>Happ</strong> from Google Play.</span></li>
+          <li><span class="ru">Нажмите <strong>Добавить в Happ</strong>.</span><span class="en">Tap <strong>Add to Happ</strong>.</span></li>
+          <li><span class="ru"><strong>Важно:</strong> Нажмите 🔄 (обновить) после импорта.</span><span class="en"><strong>Important:</strong> Tap 🔄 to refresh after import.</span></li>
+          <li><span class="ru">Выберите сервер и подключитесь.</span><span class="en">Select a server and connect.</span></li>
+        </ul>
+      </div>
+      <div id="w-pc" class="wizard-content">
+        <ul class="guide-steps">
+          <li><span class="ru">Скачайте <strong>Happ</strong> для Windows с сайта happ.info.</span><span class="en">Download <strong>Happ</strong> for Windows from happ.info.</span></li>
+          <li><span class="ru">Нажмите <strong>Копировать</strong> у нужного конфига.</span><span class="en">Click <strong>Copy</strong> on the desired config.</span></li>
+          <li><span class="ru">В Happ выберите <em>Import → From Clipboard</em>.</span><span class="en">In Happ choose <em>Import → From Clipboard</em>.</span></li>
+          <li><span class="ru">Нажмите <strong>Connect</strong>.</span><span class="en">Click <strong>Connect</strong>.</span></li>
+        </ul>
+      </div>
+      <div id="w-tv" class="wizard-content">
+        <ul class="guide-steps">
+          <li><span class="ru">Установите <strong>Happ</strong> на Smart TV через APK.</span><span class="en">Install <strong>Happ</strong> on TV via APK.</span></li>
+          <li><span class="ru">Скопируйте ссылку конфига и отправьте в Telegram.</span><span class="en">Copy config link and send via Telegram.</span></li>
+          <li><span class="ru">В Happ: <em>Subscriptions → Add from URL</em>.</span><span class="en">In Happ: <em>Subscriptions → Add from URL</em>.</span></li>
+        </ul>
+      </div>
+      <div id="w-sni" class="wizard-content">
+        <div class="sni-info-box">
+          <strong>SNI Bypass</strong> — маскирует VPN-трафик под обычный HTTPS. Провайдер видит запрос к легальному сайту (напр. cloudflare.com), а не к VPN-серверу.<br><br>
+          <strong>XTLS-Reality</strong> — копирует TLS-отпечаток настоящего сайта. Невозможно отличить от легального HTTPS даже при глубоком анализе.<br><br>
+          <strong>CIDR Routing</strong> — только заблокированные IP идут через VPN. Скорость не падает для разблокированных сайтов.
+        </div>
+        <ul class="guide-steps">
+          <li><span class="ru">Выберите конфиг с фильтром <strong>🔐 SNI/Reality</strong> в каталоге.</span><span class="en">Choose a config with the <strong>🔐 SNI/Reality</strong> filter.</span></li>
+          <li><span class="ru">В Happ после импорта: <em>Settings → Routing → «Только заблокированные»</em> — включить белый список РКН/ЦБРФ.</span><span class="en">In Happ after import: <em>Settings → Routing → «Blocked only»</em> to enable RU whitelist mode.</span></li>
+          <li><span class="ru">Для Reality: ищите конфиги с тегом <code>🔐 XTLS-Reality</code> — они обходят даже усиленный DPI.</span><span class="en">For Reality: look for <code>🔐 XTLS-Reality</code> tagged configs — they bypass even deep DPI.</span></li>
+          <li><span class="ru">Если конфиг не работает — нажмите <strong>⚡ Speed-чек</strong> чтобы проверить доступность URL.</span><span class="en">If a config fails — click <strong>⚡ Speed-check</strong> to verify the URL is reachable.</span></li>
+          <li><span class="ru">Конфиги обновляются каждые 30 мин–6 ч автоматически — просто нажмите 🔄 в Happ.</span><span class="en">Configs auto-update every 30 min–6h — just tap 🔄 in Happ.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Donate -->
+    <h2 id="donate" class="fade-up"><span class="ru">❤️ Поддержать проект</span><span class="en">❤️ Support Us</span></h2>
+    <div class="donate-card fade-up">
+      <p><span class="ru">Ваша поддержка помогает оплачивать серверы!</span><span class="en">Your support keeps the servers running!</span></p>
+      <div class="card-number" id="cardNum">2202 2067 8926 6512</div>
+      <button class="btn-get" style="width:100%;padding:14px;margin-bottom:18px;font-size:15px;border-radius:12px;" onclick="copyLink('cardNum')">
+        <span class="ru">Скопировать номер карты</span><span class="en">Copy Card Number</span>
+      </button>
+      <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn-main" style="width:100%;max-width:100%;background:#ff8c00;padding:14px;border-radius:12px;">
+        <span class="ru">Отправить донат 💸</span><span class="en">Send Donation 💸</span>
+      </a>
+    </div>
+
+    <!-- Mega Base -->
+    <h2 id="backup" class="fade-up"><span class="ru">🗄 Мега-База (Резерв)</span><span class="en">🗄 Mega Base (Backup)</span></h2>
+    <p class="fade-up" style="font-size:13px;color:var(--text-sec);margin-top:-10px;">
+      <span class="ru">Десятки актуальных конфигов от проверенных репозиториев 2026 года.</span>
+      <span class="en">Dozens of current configs from verified 2026 repositories.</span>
+    </p>
+    <div class="ios-list scrollable-list fade-up" id="mega-base-container"><div class="loader"></div></div>
+
+    <!-- Footer CTA -->
+    <div class="fade-up" style="text-align:center;margin-top:40px;padding:28px 20px;background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);">
+      <h2 style="margin-top:0;border:none;padding-bottom:0;justify-content:center;"><span class="ru">Остались вопросы?</span><span class="en">Any questions?</span></h2>
+      <p style="color:var(--text-sec);margin-bottom:22px;font-size:14px;"><span class="ru">Наша поддержка готова помочь.</span><span class="en">Our support is ready to help.</span></p>
+      <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-main" style="max-width:100%;padding:14px 25px;border-radius:12px;">
+        <span class="ru">👨‍💻 Написать в поддержку</span><span class="en">👨‍💻 Contact Support</span>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;color:var(--text-sec);font-size:13px;" class="fade-up">
+      Flux VPN &copy; 2026.<br>
+      <span style="color:var(--primary);font-weight:800;margin-top:8px;display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Версия 8.0.0 (Titanium Ultra)</span>
+    </div>
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="tab-bar-container">
+    <div class="tab-bar">
+      <a href="#home" class="tab-item active">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+        <span class="ru">Главная</span><span class="en">Home</span>
+      </a>
+      <a href="#subs" class="tab-item">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        <span class="ru">Конфиги</span><span class="en">Configs</span>
+      </a>
+      <a href="#guide" class="tab-item">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        <span class="ru">Гайд</span><span class="en">Guide</span>
+      </a>
+      <a href="#donate" class="tab-item">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="ru">Донат</span><span class="en">Donate</span>
+      </a>
+      <a href="https://t.me/FluxVPNSup" target="_blank" class="tab-item">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        <span class="ru">Саппорт</span><span class="en">Support</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div id="themeModal" class="modal-overlay" onclick="this.classList.remove('show')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h3 style="margin-top:0;"><span class="ru">Выберите тему</span><span class="en">Select Theme</span></h3>
+    <div class="theme-grid" id="themeGrid"></div>
+    <button class="close-modal" onclick="document.getElementById('themeModal').classList.remove('show')"><span class="ru">Закрыть</span><span class="en">Close</span></button>
+  </div>
 </div>
 
 <div id="qrModal" class="modal-overlay" onclick="this.classList.remove('show')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <h3 style="margin-top:0;"><span class="ru">Сканируйте из Happ</span><span class="en">Scan from Happ</span></h3>
-        <p style="font-size:13px;color:var(--text-sec);margin-bottom:20px;"><span class="ru">Откройте Happ и отсканируйте QR-код.</span><span class="en">Open Happ and scan this QR code.</span></p>
-        <img id="qrImage" src="" alt="QR Code">
-        <button class="close-modal" onclick="document.getElementById('qrModal').classList.remove('show')"><span class="ru">Закрыть</span><span class="en">Close</span></button>
-    </div>
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h3 style="margin-top:0;"><span class="ru">Сканируйте из Happ</span><span class="en">Scan from Happ</span></h3>
+    <p style="font-size:13px;color:var(--text-sec);margin-bottom:10px;"><span class="ru">Откройте Happ и выберите «Import from QR».</span><span class="en">Open Happ and choose «Import from QR».</span></p>
+    <img id="qrImage" src="" alt="QR Code">
+    <button class="close-modal" onclick="document.getElementById('qrModal').classList.remove('show')"><span class="ru">Закрыть</span><span class="en">Close</span></button>
+  </div>
 </div>
 
 <div id="addCustomModal" class="modal-overlay" onclick="this.classList.remove('show')">
-    <div class="modal-content" onclick="event.stopPropagation()">
-        <h3 style="margin-top:0;"><span class="ru">Добавить подписку</span><span class="en">Add Custom Config</span></h3>
-        <p style="font-size:13px;color:var(--text-sec);margin-bottom:20px;">
-            <span class="ru">Сохранится в облаке Supabase и будет видна всем в Комьюнити.</span>
-            <span class="en">Will be saved to Supabase and visible to all in Community.</span>
-        </p>
-        <input type="text" id="customName" placeholder="Название / Name" class="search-bar" style="margin-bottom:10px;">
-        <input type="text" id="customUrl" placeholder="Ссылка / URL (https://...)" class="search-bar" style="margin-bottom:15px;">
-        <div class="toggle-switch">
-            <span style="font-size:13px;font-weight:600;">🌍 <span class="ru">Опубликовать в Комьюнити</span><span class="en">Publish to Community</span></span>
-        </div>
-        <p style="font-size:11px;color:var(--warning);text-align:left;margin-top:0;display:none;" id="dbWarning">
-            ⚠️ <span class="ru">Supabase недоступна. Подписка сохранится только локально.</span><span class="en">Supabase unavailable. Saved locally only.</span>
-        </p>
-        <button class="btn-main" onclick="saveCustomSub()" style="width:100%;margin-top:15px;border-radius:12px;padding:12px;">
-            <span class="ru">Сохранить</span><span class="en">Save</span>
-        </button>
-        <button class="close-modal" onclick="document.getElementById('addCustomModal').classList.remove('show')">
-            <span class="ru">Отмена</span><span class="en">Cancel</span>
-        </button>
-    </div>
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h3 style="margin-top:0;"><span class="ru">Добавить подписку</span><span class="en">Add Custom Config</span></h3>
+    <p style="font-size:13px;color:var(--text-sec);margin-bottom:18px;">
+      <span class="ru">Сохранится в облаке Supabase и будет видна в Комьюнити.</span>
+      <span class="en">Saved to Supabase cloud and visible in Community.</span>
+    </p>
+    <input type="text" id="customName" placeholder="Название / Name" class="search-bar" style="margin-bottom:10px;">
+    <input type="text" id="customUrl" placeholder="URL (https://...)" class="search-bar" style="margin-bottom:15px;" onpaste="setTimeout(()=>validateUrlInput(),50)">
+    <p style="font-size:11px;color:var(--warning);text-align:left;margin-top:0;display:none;" id="dbWarning">
+      ⚠️ <span class="ru">Supabase недоступна — сохранится только локально.</span><span class="en">Supabase unavailable — saved locally only.</span>
+    </p>
+    <button class="btn-main" onclick="saveCustomSub()" style="width:100%;margin-top:12px;border-radius:12px;padding:13px;">
+      <span class="ru">💾 Сохранить</span><span class="en">💾 Save</span>
+    </button>
+    <button class="close-modal" onclick="document.getElementById('addCustomModal').classList.remove('show')">
+      <span class="ru">Отмена</span><span class="en">Cancel</span>
+    </button>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ============================
-// TOAST
-// ============================
-window.showToast = function(msg) {
-    const c = document.getElementById('toast-container');
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.innerHTML = msg;
-    c.appendChild(t);
-    setTimeout(() => t.remove(), 3000);
+'use strict';
+
+// ==============================
+// PROGRESS BAR
+// ==============================
+const Progress = {
+  el: null,
+  init() { this.el = document.getElementById('progress-bar'); },
+  set(v) {
+    if (!this.el) return;
+    this.el.style.opacity = '1';
+    this.el.style.width = v + '%';
+    if (v >= 100) setTimeout(() => { this.el.style.opacity = '0'; this.el.style.width = '0'; }, 400);
+  }
 };
 
-// ============================
-// SUPABASE
-// ============================
-const SUPABASE_URL = 'https://ikgmsaoxlwmhccntdqdp.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls';
-let supabaseClient;
-let dbReady = false;
-let currentUser = null;
-let customSubs = [];
-let communitySubs = [];
+// ==============================
+// TOAST
+// ==============================
+window.showToast = function(msg, duration = 2800) {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), duration + 200);
+};
 
-try {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-} catch(e) {
-    console.error('Supabase init error:', e);
+// ==============================
+// CONFETTI
+// ==============================
+function launchConfetti() {
+  if (perfMode) return;
+  const colors = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#c77dff','#ff9500','#00c8ff'];
+  for (let i = 0; i < 35; i++) {
+    const p = document.createElement('div');
+    const size = Math.random() * 10 + 5;
+    const isCircle = Math.random() > 0.4;
+    p.style.cssText = `position:fixed;left:${10 + Math.random()*80}%;top:-10px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${isCircle?'50%':'3px'};z-index:9999;pointer-events:none;animation:confettiFall ${0.6+Math.random()*1.2}s ease-in forwards;animation-delay:${Math.random()*0.4}s;`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 2000);
+  }
 }
 
+// ==============================
+// HAPTIC
+// ==============================
+function haptic(pattern = [30]) {
+  if (navigator.vibrate) navigator.vibrate(pattern);
+}
+
+// ==============================
+// SUPABASE
+// ==============================
+const SUPABASE_URL = 'https://ikgmsaoxlwmhccntdqdp.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls';
+let supabaseClient, dbReady = false, currentUser = null;
+let customSubs = [], communitySubs = [];
+
+try { supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e) {}
+
 function setDbStatus(ok) {
-    const badge = document.getElementById('db-status-badge');
-    if (!badge) return;
-    if (ok) {
-        badge.className = 'db-status db-ok';
-        badge.textContent = '✅ БД';
-    } else {
-        badge.className = 'db-status db-err';
-        badge.textContent = '⚠️ Локально';
-    }
+  const badge = document.getElementById('db-status-badge');
+  if (!badge) return;
+  badge.className = 'db-status ' + (ok ? 'db-ok' : 'db-err');
+  badge.textContent = ok ? '✅ Cloud' : '⚠️ Local';
 }
 
 async function ensureAuth() {
-    if (currentUser) return currentUser;
-    if (!supabaseClient) return null;
-    try {
-        const { data: { user } } = await supabaseClient.auth.getUser();
-        if (user) { currentUser = user; return currentUser; }
-        const { data, error } = await supabaseClient.auth.signInAnonymously();
-        if (error) throw error;
-        currentUser = data.user;
-        return currentUser;
-    } catch(e) {
-        console.error('Auth error:', e);
-        return null;
-    }
+  if (currentUser) return currentUser;
+  if (!supabaseClient) return null;
+  try {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (user) { currentUser = user; return user; }
+    const { data, error } = await supabaseClient.auth.signInAnonymously();
+    if (error) throw error;
+    currentUser = data.user;
+    return currentUser;
+  } catch(e) { return null; }
 }
 
 async function loadDbSubs() {
-    if (!supabaseClient) {
-        loadLocalSubs();
-        return;
-    }
-    try {
-        const user = await ensureAuth();
-        if (!user) throw new Error('No user');
-
-        // Мои подписки
-        const { data: myData, error: myErr } = await supabaseClient
-            .from('subscriptions')
-            .select('id,name,url,is_public,created_at,user_id')
-            .eq('user_id', user.id)
-            .order('created_at', { ascending: false });
-        if (myErr) throw myErr;
-
-        customSubs = (myData || []).map(r => ({
-            id: String(r.id),
-            name: r.name,
-            url: r.url,
-            category: 'custom',
-            is_public: !!r.is_public,
-            isOwner: true
-        }));
-
-        // Публичные (Комьюнити)
-        const { data: pubData, error: pubErr } = await supabaseClient
-            .from('subscriptions')
-            .select('id,name,url,is_public,created_at,user_id')
-            .eq('is_public', true)
-            .order('created_at', { ascending: false });
-        if (pubErr) throw pubErr;
-
-        communitySubs = (pubData || [])
-            .filter(r => r.user_id !== user.id) // не дублировать свои
-            .map(r => ({
-                id: String(r.id),
-                name: r.name,
-                url: r.url,
-                category: 'community',
-                isOwner: r.user_id === user.id
-            }));
-
-        dbReady = true;
-        setDbStatus(true);
-        document.getElementById('dbWarning').style.display = 'none';
-    } catch(e) {
-        console.error('DB load error:', e);
-        loadLocalSubs();
-    }
+  Progress.set(20);
+  if (!supabaseClient) { loadLocalSubs(); return; }
+  try {
+    const user = await ensureAuth();
+    if (!user) throw new Error('no auth');
+    const [myRes, pubRes] = await Promise.all([
+      supabaseClient.from('subscriptions').select('id,name,url,is_public,user_id').eq('user_id', user.id).order('created_at', { ascending: false }),
+      supabaseClient.from('subscriptions').select('id,name,url,is_public,user_id').eq('is_public', true).order('created_at', { ascending: false })
+    ]);
+    if (myRes.error) throw myRes.error;
+    customSubs = (myRes.data || []).map(r => ({ id: String(r.id), name: r.name, url: r.url, category: 'custom', isOwner: true }));
+    communitySubs = (pubRes.data || []).filter(r => r.user_id !== user.id).map(r => ({ id: String(r.id), name: r.name, url: r.url, category: 'community', isOwner: false }));
+    dbReady = true;
+    setDbStatus(true);
+    document.getElementById('dbWarning').style.display = 'none';
+  } catch(e) { loadLocalSubs(); }
+  Progress.set(60);
 }
 
 function loadLocalSubs() {
-    dbReady = false;
-    setDbStatus(false);
-    document.getElementById('dbWarning').style.display = 'block';
-    customSubs = JSON.parse(localStorage.getItem('flux_custom_subs') || '[]');
-    communitySubs = JSON.parse(localStorage.getItem('flux_community_subs') || '[]');
+  dbReady = false; setDbStatus(false);
+  document.getElementById('dbWarning').style.display = 'block';
+  customSubs = JSON.parse(localStorage.getItem('flux_custom_subs') || '[]');
+  communitySubs = JSON.parse(localStorage.getItem('flux_community_subs') || '[]');
 }
 
-// ============================
-// ЯЗЫК
-// ============================
+// ==============================
+// FAVORITES
+// ==============================
+let favorites = new Set(JSON.parse(localStorage.getItem('flux_favs') || '[]'));
+
+function saveFavorites() {
+  localStorage.setItem('flux_favs', JSON.stringify([...favorites]));
+}
+
+// Toggle by element ID containing URL
+window.toggleFavById = function(uid) {
+  const el = document.getElementById(uid);
+  if (!el) return;
+  const url = el.innerText.trim();
+  const favBtn = document.getElementById('fav_' + uid);
+  if (favorites.has(url)) {
+    favorites.delete(url);
+    if (favBtn) { favBtn.innerHTML = '🤍'; favBtn.classList.remove('active'); }
+    showToast('💔 <span class="ru">Убрано из избранного</span><span class="en">Removed from favorites</span>');
+  } else {
+    favorites.add(url);
+    if (favBtn) { favBtn.innerHTML = '❤️'; favBtn.classList.add('active'); }
+    showToast('⭐ <span class="ru">Добавлено в избранное!</span><span class="en">Added to favorites!</span>');
+    launchConfetti();
+    haptic([20, 40, 20]);
+  }
+  saveFavorites();
+  updateStats();
+  updateFilterCounts();
+  // If currently in favorites view, re-render
+  const af = document.querySelector('.filter-btn.active')?.dataset.filter;
+  if (af === 'favorites') renderSubs('favorites');
+};
+
+// Toggle by URL (for dynamic items)
+window.toggleFavUrl = function(uid, favBtnEl) {
+  const el = document.getElementById(uid);
+  if (!el) return;
+  const url = el.innerText.trim();
+  if (favorites.has(url)) {
+    favorites.delete(url);
+    favBtnEl.innerHTML = '🤍';
+    favBtnEl.classList.remove('active');
+    showToast('💔 <span class="ru">Убрано</span><span class="en">Removed</span>');
+  } else {
+    favorites.add(url);
+    favBtnEl.innerHTML = '❤️';
+    favBtnEl.classList.add('active');
+    showToast('⭐ <span class="ru">В избранном!</span><span class="en">Favorited!</span>');
+    launchConfetti();
+    haptic([20, 40, 20]);
+  }
+  saveFavorites();
+  updateStats();
+  updateFilterCounts();
+  const af = document.querySelector('.filter-btn.active')?.dataset.filter;
+  if (af === 'favorites') renderSubs('favorites');
+};
+
+// Sync fav buttons in popular section
+function syncStaticFavBtns() {
+  ['sub_goida1','sub_goida2','sub1'].forEach(uid => {
+    const el = document.getElementById(uid);
+    const btn = document.getElementById('fav_' + uid);
+    if (el && btn) {
+      const url = el.innerText.trim();
+      btn.innerHTML = favorites.has(url) ? '❤️' : '🤍';
+      if (favorites.has(url)) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+  });
+}
+
+// ==============================
+// LANGUAGE
+// ==============================
 let currentLang = localStorage.getItem('flux_lang') || 'ru';
 document.documentElement.lang = currentLang;
 document.getElementById('langBtn').innerText = currentLang === 'ru' ? 'EN' : 'RU';
 
 window.toggleLang = function() {
-    currentLang = currentLang === 'ru' ? 'en' : 'ru';
-    document.documentElement.lang = currentLang;
-    document.getElementById('langBtn').innerText = currentLang === 'ru' ? 'EN' : 'RU';
-    localStorage.setItem('flux_lang', currentLang);
-    showToast(currentLang === 'ru' ? '🇷🇺 Язык изменен' : '🇬🇧 Language changed');
-    const activeBtn = document.querySelector('.filter-btn.active');
-    renderSubs(activeBtn ? activeBtn.dataset.filter : 'all');
-    renderMegaBase();
+  currentLang = currentLang === 'ru' ? 'en' : 'ru';
+  document.documentElement.lang = currentLang;
+  document.getElementById('langBtn').innerText = currentLang === 'ru' ? 'EN' : 'RU';
+  localStorage.setItem('flux_lang', currentLang);
+  showToast(currentLang === 'ru' ? '🇷🇺 Язык: Русский' : '🇬🇧 Language: English');
+  const af = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+  renderSubs(af);
+  renderMegaBase();
+  updateStats();
 };
 
-// ============================
-// ЭНЕРГОСБЕРЕЖЕНИЕ
-// ============================
+// ==============================
+// PERF MODE
+// ==============================
 let perfMode = localStorage.getItem('flux_perf') === 'true';
-window.togglePerf = function() {
-    perfMode = !perfMode;
-    localStorage.setItem('flux_perf', perfMode);
-    applyPerf();
-    showToast(perfMode
-        ? (currentLang === 'ru' ? '🔋 Энергосбережение включено' : '🔋 Power saving ON')
-        : (currentLang === 'ru' ? '✨ Анимации включены' : '✨ Animations ON'));
-};
 function applyPerf() {
-    const p = document.getElementById('particles');
-    const g = document.getElementById('glow1');
-    if (p) p.style.display = perfMode ? 'none' : 'block';
-    if (g) g.style.display = perfMode ? 'none' : 'block';
+  const g = document.getElementById('glow1');
+  if (g) g.style.display = perfMode ? 'none' : 'block';
 }
 applyPerf();
 
-// ============================
-// ТЕМЫ
-// ============================
+window.togglePerf = function() {
+  perfMode = !perfMode;
+  localStorage.setItem('flux_perf', perfMode);
+  applyPerf();
+  showToast(perfMode ? '🔋 Power saving ON' : '✨ Full effects ON');
+};
+
+// ==============================
+// THEMES
+// ==============================
 const themes = [
-    {id:"default",color:"#0a84ff"},{id:"cyberpunk",color:"#ff007f"},{id:"matrix",color:"#00ff00"},
-    {id:"blood",color:"#ff2a2a"},{id:"ocean",color:"#00d4ff"},{id:"gold",color:"#ffd700"},
-    {id:"purple",color:"#b026ff"},{id:"sunset",color:"#ff6a00"},{id:"hacker",color:"#39ff14"},
-    {id:"amethyst",color:"#9b5de5"},{id:"midnight",color:"#3b82f6"},{id:"synthwave",color:"#ff9e00"},
-    {id:"mint",color:"#00ffaa"},{id:"neonpink",color:"#ff00aa"},{id:"aqua",color:"#00ffff"},
-    {id:"dracula",color:"#ff79c6"},{id:"monochrome",color:"#ffffff"},{id:"light",color:"#2563eb"}
+  {id:"default",c:"#0a84ff"},{id:"cyberpunk",c:"#ff007f"},{id:"matrix",c:"#00ff00"},
+  {id:"blood",c:"#ff2a2a"},{id:"ocean",c:"#00d4ff"},{id:"gold",c:"#ffd700"},
+  {id:"purple",c:"#b026ff"},{id:"sunset",c:"#ff6a00"},{id:"hacker",c:"#39ff14"},
+  {id:"amethyst",c:"#9b5de5"},{id:"midnight",c:"#3b82f6"},{id:"synthwave",c:"#ff9e00"},
+  {id:"mint",c:"#00ffaa"},{id:"neonpink",c:"#ff00aa"},{id:"aqua",c:"#00ffff"},
+  {id:"dracula",c:"#ff79c6"},{id:"monochrome",c:"#ffffff"},{id:"light",c:"#2563eb"}
 ];
-const themeGrid = document.getElementById('themeGrid');
-const root = document.documentElement;
 const savedTheme = localStorage.getItem('flux_theme') || 'default';
-root.setAttribute('data-theme', savedTheme);
+document.documentElement.setAttribute('data-theme', savedTheme);
+const themeGrid = document.getElementById('themeGrid');
 themes.forEach(t => {
-    const c = document.createElement('div');
-    c.className = `theme-circle ${savedTheme === t.id ? 'active-theme' : ''}`;
-    c.style.background = t.color;
-    c.title = t.id;
-    c.onclick = () => {
-        document.querySelectorAll('.theme-circle').forEach(x => x.classList.remove('active-theme'));
-        c.classList.add('active-theme');
-        root.setAttribute('data-theme', t.id);
-        localStorage.setItem('flux_theme', t.id);
-        showToast(currentLang === 'ru' ? '🎨 Тема применена' : '🎨 Theme applied');
-    };
-    themeGrid.appendChild(c);
+  const c = document.createElement('div');
+  c.className = `theme-circle ${savedTheme===t.id?'active-theme':''}`;
+  c.style.background = t.c;
+  c.title = t.id;
+  c.onclick = () => {
+    document.querySelectorAll('.theme-circle').forEach(x => x.classList.remove('active-theme'));
+    c.classList.add('active-theme');
+    document.documentElement.setAttribute('data-theme', t.id);
+    localStorage.setItem('flux_theme', t.id);
+    showToast('🎨 ' + t.id);
+  };
+  themeGrid.appendChild(c);
 });
 
-// ============================
-// КАТАЛОГ ПОДПИСОК (актуальные 2026)
-// ============================
-const masterSubPool = [
-    // 🔥 Лучшие
-    { name: "🔥 Goida Premium (Обход DPI)", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "best",
-      customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ DPI Bypass</span><span class="badge badge-speed">⚡ Fast</span>' },
-    { name: "⚡ Goida Standard", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt", category: "best",
-      customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-speed">⚡ Fast</span>' },
-    { name: "🌟 Основная (VLESS RU)", url: "https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt", category: "best",
-      customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ SNI/CIDR</span>' },
-    { name: "🛡 F0rc3Run VLESS (6h update)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", category: "best",
-      customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Auto-tested</span><span class="badge badge-speed">🔄 6h</span>' },
-    { name: "🔒 Epodonios Sub1 (30m update)", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", category: "best",
-      customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Reality</span><span class="badge badge-speed">🔄 30m</span>' },
-    { name: "💎 Barry-far Sub1 (актив. 2026)", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt", category: "best",
-      customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Mixed</span>' },
-
-    // 🎮 Игровые
-    { name: "🎮 STR Bypass Gaming", url: "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", category: "gaming" },
-    { name: "🎮 CidVPN General", url: "https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt", category: "gaming" },
-    { name: "🎮 TeknoVPN Servers", url: "https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt", category: "gaming" },
-    { name: "🎮 Danialsamadi All Configs", url: "https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt", category: "gaming" },
-
-    // 🇷🇺 RU сегмент
-    { name: "🇷🇺 KvRuVPN (Gitverse)", url: "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt", category: "ru" },
-    { name: "🇷🇺 VLESS для России (igareck)", url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", category: "ru" },
-    { name: "🇷🇺 Sevcator VL (RU)", url: "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", category: "ru" },
-    { name: "🇷🇺 Sakha1370 Valid Proxies", url: "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", category: "ru" },
-
-    // ▶️ Media
-    { name: "▶️ MatinGhanbari VLESS Filtered", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", category: "media" },
-    { name: "▶️ 10ium VLESS Scraped", url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt", category: "media" },
-    { name: "▶️ Firmfox Mixed Sub-1", url: "https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt", category: "media" },
-    { name: "▶️ Ebrasha Free V2Ray (15m)", url: "https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt", category: "media" },
-    { name: "▶️ LalatinaHub Mineral Nodes", url: "https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes", category: "media" },
-
-    // ✨ Новые
-    { name: "✨ Epodonios Sub2", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt", category: "new" },
-    { name: "✨ Epodonios Sub3", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt", category: "new" },
-    { name: "✨ Barry-far Sub2", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt", category: "new" },
-    { name: "✨ Mohamad TG VLESS Collector", url: "https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt", category: "new" },
-    { name: "✨ Ripaojiedian FreeNode Sub", url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub", category: "new" },
+// ==============================
+// SNI / REALITY CONFIGS (НОВЫЙ РАЗДЕЛ)
+// ==============================
+const sniSubPool = [
+  { name: "🔐 Reality XTLS — Telegram Collector", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt", category: "sni",
+    customBadges: '<span class="badge badge-reality">🔐 XTLS-Reality</span><span class="badge badge-success">✅ Auto-updated</span><span class="badge badge-speed">🔄 часто</span>' },
+  { name: "🔐 Barry-far VLESS Reality Protocol", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt", category: "sni",
+    customBadges: '<span class="badge badge-reality">🔐 XTLS-Reality</span><span class="badge badge-success">✅ Tested 2026</span>' },
+  { name: "🔐 V2RayRoot VLESS Reality", url: "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt", category: "sni",
+    customBadges: '<span class="badge badge-reality">🔐 XTLS-Reality</span><span class="badge badge-success">✅ Premium</span>' },
+  { name: "🔐 Wuqb2i4f Mix-URI (XTLS)", url: "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri", category: "sni",
+    customBadges: '<span class="badge badge-reality">🔐 XTLS Mixed</span><span class="badge badge-success">✅ Base64</span>' },
+  { name: "🔐 4n0nymou3 Multi-Proxy (Reality+SNI)", url: "https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt", category: "sni",
+    customBadges: '<span class="badge badge-reality">🔐 Reality+SNI</span><span class="badge badge-success">✅ Multi-protocol</span>' },
+  { name: "🌐 KvRuVPN — SNI/CIDR Bypass (RU)", url: "https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt", category: "sni",
+    customBadges: '<span class="badge badge-sni">🌐 SNI Bypass</span><span class="badge badge-cidr">🗺️ CIDR RU</span><span class="badge badge-success">✅ Online</span>' },
+  { name: "🌐 igareck — VLESS RU (SNI bypass)", url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", category: "sni",
+    customBadges: '<span class="badge badge-sni">🌐 SNI Bypass</span><span class="badge badge-ru">🇷🇺 RU Only</span>' },
+  { name: "🛡️ STR Bypass — DPI+SNI (RU)", url: "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", category: "sni",
+    customBadges: '<span class="badge badge-sni">🛡️ DPI+SNI</span><span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-speed">⚡ Fast</span>' },
+  { name: "🗺️ F0rc3Run VLESS — Auto-tested, CIDR (6h)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", category: "sni",
+    customBadges: '<span class="badge badge-cidr">🗺️ CIDR Routing</span><span class="badge badge-speed">🔄 6h update</span><span class="badge badge-success">✅ Auto-checked</span>' },
+  { name: "🗺️ MatinGhanbari VLESS Filtered (CIDR)", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", category: "sni",
+    customBadges: '<span class="badge badge-cidr">🗺️ Filtered CIDR</span><span class="badge badge-success">✅ Quality</span>' },
+  { name: "🔒 Epodonios Sub1 — Reality (30m update)", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", category: "sni",
+    customBadges: '<span class="badge badge-reality">🔐 Reality</span><span class="badge badge-speed">🔄 30m</span><span class="badge badge-success">✅ Online</span>' },
+  { name: "🔒 Sakha1370 — Auto-verified Proxies", url: "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", category: "sni",
+    customBadges: '<span class="badge badge-sni">✔️ Auto-verified</span><span class="badge badge-success">✅ Working</span>' },
+  { name: "🔐 Goida Premium — DPI Bypass", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "sni",
+    customBadges: '<span class="badge badge-sni">🛡️ DPI Bypass</span><span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-speed">⚡ Fast</span>' },
+  { name: "🌐 Sevcator VL — SNI aware", url: "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", category: "sni",
+    customBadges: '<span class="badge badge-sni">🌐 SNI aware</span><span class="badge badge-success">✅ Active</span>' },
 ];
 
+// ==============================
+// MASTER SUB POOL (каталог)
+// ==============================
+const masterSubPool = [
+  // 🔥 Лучшие
+  { name: "🔥 Goida Premium (Обход DPI)", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "best", sni: true,
+    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ DPI Bypass</span><span class="badge badge-speed">⚡ Fast</span>' },
+  { name: "⚡ Goida Standard", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt", category: "best",
+    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-speed">⚡ Fast</span>' },
+  { name: "🌟 Основная (VLESS RU)", url: "https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt", category: "best", sni: true,
+    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-sni">🌐 SNI/CIDR</span><span class="badge badge-ru">🇷🇺 RU</span>' },
+  { name: "🛡 F0rc3Run VLESS (6h update)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", category: "best", sni: true,
+    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Auto-tested</span><span class="badge badge-speed">🔄 6h</span>' },
+  { name: "🔒 Epodonios Sub1 (Reality, 30m)", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", category: "best", sni: true,
+    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-reality">🔐 Reality</span><span class="badge badge-speed">🔄 30m</span>' },
+  { name: "💎 Barry-far Sub1 (2026)", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt", category: "best",
+    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Mixed</span>' },
+  // 🎮 Игровые
+  { name: "🎮 STR Bypass Gaming", url: "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", category: "gaming" },
+  { name: "🎮 CidVPN General", url: "https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt", category: "gaming" },
+  { name: "🎮 TeknoVPN Servers", url: "https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt", category: "gaming" },
+  { name: "🎮 Danialsamadi All Configs", url: "https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt", category: "gaming" },
+  // 🇷🇺 RU
+  { name: "🇷🇺 KvRuVPN (Gitverse RU)", url: "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt", category: "ru", sni: true },
+  { name: "🇷🇺 VLESS для России (igareck)", url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", category: "ru", sni: true },
+  { name: "🇷🇺 Sevcator VL (SNI aware)", url: "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", category: "ru" },
+  { name: "🇷🇺 Sakha1370 Valid Proxies", url: "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", category: "ru" },
+  // ▶️ Media
+  { name: "▶️ MatinGhanbari VLESS Filtered", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", category: "media", sni: true },
+  { name: "▶️ 10ium VLESS Scraped", url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt", category: "media" },
+  { name: "▶️ Firmfox Mixed Sub-1", url: "https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt", category: "media" },
+  { name: "▶️ Ebrasha Free V2Ray (15m)", url: "https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt", category: "media" },
+  { name: "▶️ LalatinaHub Mineral Nodes", url: "https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes", category: "media" },
+  // ✨ Новые
+  { name: "✨ Epodonios Sub2", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt", category: "new" },
+  { name: "✨ Epodonios Sub3", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt", category: "new" },
+  { name: "✨ Barry-far Sub2", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt", category: "new" },
+  { name: "✨ Mohamad TG VLESS Collector", url: "https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt", category: "new" },
+  { name: "✨ Ripaojiedian FreeNode", url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub", category: "new" },
+];
+
+// ==============================
+// MEGA BASE
+// ==============================
+const megaBasePool = [
+  ...Array.from({length:25}, (_,i) => ({ name:`Goida Node ${i+1}`, url:`https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/${i+1}.txt`, dpi:false })),
+  { name:"F0rc3Run VLESS (6h)", url:"https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", dpi:false },
+  { name:"F0rc3Run VMess (6h)", url:"https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vmess.txt", dpi:false },
+  { name:"F0rc3Run Shadowsocks", url:"https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/shadowsocks.txt", dpi:false },
+  { name:"Epodonios Sub1 (Reality)", url:"https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", dpi:true },
+  { name:"Epodonios Sub2", url:"https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt", dpi:false },
+  { name:"Epodonios Sub3", url:"https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt", dpi:false },
+  { name:"Epodonios All Base64", url:"https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_base64_Sub.txt", dpi:false },
+  { name:"Barry-far Sub1", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt", dpi:false },
+  { name:"Barry-far Sub2", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt", dpi:false },
+  { name:"Barry-far Sub3", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt", dpi:false },
+  { name:"Barry-far VLESS Protocol", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt", dpi:true },
+  { name:"Barry-far VMess Protocol", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vmess.txt", dpi:false },
+  { name:"MatinGhanbari VLESS Filtered", url:"https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", dpi:true },
+  { name:"MatinGhanbari VMess Filtered", url:"https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt", dpi:false },
+  { name:"Ebrasha Free V2Ray (15m)", url:"https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt", dpi:true },
+  { name:"Mohamad TG VLESS Collector", url:"https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt", dpi:true },
+  { name:"Mohamad TG VMess Collector", url:"https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vmess.txt", dpi:false },
+  { name:"V2RayRoot VLESS Reality", url:"https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt", dpi:true },
+  { name:"10ium VLESS Scraped", url:"https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt", dpi:false },
+  { name:"10ium Trojan Scraped", url:"https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt", dpi:false },
+  { name:"CidVPN General", url:"https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt", dpi:false },
+  { name:"TeknoVPN Servers", url:"https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt", dpi:false },
+  { name:"Ripaojiedian FreeNode", url:"https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub", dpi:false },
+  { name:"KvRuVPN (Gitverse RU)", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt", dpi:true },
+  { name:"VLESS для России (igareck)", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", dpi:true },
+  { name:"STR Bypass RU", url:"https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", dpi:true },
+  { name:"Sevcator VL", url:"https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", dpi:false },
+  { name:"Sakha1370 Valid Proxies", url:"https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", dpi:false },
+  { name:"Firmfox Mixed Sub-1", url:"https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt", dpi:false },
+  { name:"Firmfox Mixed Sub-2", url:"https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-2.txt", dpi:false },
+  { name:"LalatinaHub Mineral", url:"https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes", dpi:false },
+  { name:"Danialsamadi AllConfigs", url:"https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt", dpi:false },
+  { name:"Yitong2333 Proxy Mining", url:"https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt", dpi:false },
+  { name:"Acymz AutoVPN", url:"https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt", dpi:false },
+  { name:"4n0nymou3 Multi Proxy", url:"https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt", dpi:true },
+  { name:"Wuqb2i4f Mix URI", url:"https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri", dpi:false },
+  { name:"Reality XTLS Collector", url:"https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt", dpi:true },
+];
+
+// ==============================
+// BADGES
+// ==============================
 function makeBadges(cat) {
-    const ru = currentLang === 'ru';
-    if (cat === 'custom') return `<span class="badge badge-purple">👤 ${ru?'Своя':'User'}</span>`;
-    if (cat === 'community') return `<span class="badge badge-community">🌍 ${ru?'Комьюнити':'Community'}</span>`;
-    if (cat === 'gaming') return `<span class="badge badge-ping">🎮 ${ru?'Игровая':'Gaming'}</span><span class="badge badge-success">📡 ${ru?'Низкий пинг':'Low Ping'}</span>`;
-    if (cat === 'ru') return `<span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-success">🏦 ${ru?'Без логов':'No Logs'}</span>`;
-    if (cat === 'media') return `<span class="badge badge-speed">▶️ Media</span><span class="badge badge-shield">🛡️ Reality</span>`;
-    if (cat === 'new') return `<span class="badge badge-speed">✨ ${ru?'Свежая':'New'}</span><span class="badge badge-success">🔄 Auto</span>`;
-    return `<span class="badge badge-success">✅ Online</span>`;
+  const ru = currentLang === 'ru';
+  if (cat === 'custom') return `<span class="badge badge-purple">👤 ${ru?'Своя':'User'}</span>`;
+  if (cat === 'community') return `<span class="badge badge-community">🌍 ${ru?'Комьюнити':'Community'}</span>`;
+  if (cat === 'sni') return `<span class="badge badge-sni">🔐 SNI/Reality</span><span class="badge badge-success">✅ ${ru?'Обход':'Bypass'}</span>`;
+  if (cat === 'gaming') return `<span class="badge badge-ping">🎮 ${ru?'Игровая':'Gaming'}</span><span class="badge badge-success">📡 ${ru?'Низкий пинг':'Low Ping'}</span>`;
+  if (cat === 'ru') return `<span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-success">✅ ${ru?'Активна':'Active'}</span>`;
+  if (cat === 'media') return `<span class="badge badge-speed">▶️ Media</span><span class="badge badge-shield">🛡️ Reality</span>`;
+  if (cat === 'new') return `<span class="badge badge-new-item">✨ ${ru?'Свежая':'New'}</span><span class="badge badge-success">🔄 Auto</span>`;
+  return `<span class="badge badge-success">✅ Online</span>`;
 }
 
+// ==============================
+// BUILD ITEM HTML
+// ==============================
 function buildSubItem(sub, uid) {
-    const canDelete = sub.category === 'custom' || (sub.category === 'community' && sub.isOwner);
-    const deleteBtn = canDelete
-        ? `<button type="button" class="btn-get btn-delete btn-icon" onclick="deleteCustomSub('${sub.id}')" title="Удалить">🗑</button>`
-        : '';
-    const badges = sub.customBadges || makeBadges(sub.category);
-    const url = sub.url || '';
-    const name = (sub.name || 'Unnamed').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    return `
-    <div class="ios-item">
-        <div class="ios-item-header">
-            <div class="ios-item-top">
-                <div class="ios-item-left">
-                    <div class="ios-item-title"><span class="status-dot"></span>${name}</div>
-                    <div class="tags-row">${badges}</div>
-                    <div class="ios-item-subtitle" id="${uid}">${url}</div>
-                </div>
-            </div>
-            <div class="btn-group">
-                <div class="btn-actions-row">
-                    ${deleteBtn}
-                    <button type="button" class="btn-get btn-icon" onclick="openQR('${uid}')" title="QR">📱</button>
-                    <button type="button" class="btn-get btn-icon" onclick="shareNode('${name}','${uid}')" title="Share">📤</button>
-                    <button type="button" class="btn-get" onclick="copyLink('${uid}')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-                </div>
-                <button type="button" class="btn-get btn-import" onclick="openInHapp('${uid}')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-            </div>
+  const isFav = favorites.has(sub.url || '');
+  const canDelete = sub.category === 'custom' || (sub.category === 'community' && sub.isOwner);
+  const deleteBtn = canDelete ? `<button class="btn-get btn-delete btn-icon" onclick="deleteCustomSub('${sub.id}')" title="Удалить">🗑</button>` : '';
+  const badges = sub.customBadges || makeBadges(sub.category);
+  const url = (sub.url || '').replace(/'/g,'&#39;').replace(/"/g,'&quot;');
+  const name = (sub.name || 'Unnamed').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return `
+  <div class="ios-item">
+    <div class="ios-item-header">
+      <div class="ios-item-top">
+        <div class="ios-item-title">
+          <span class="status-dot"></span>${name}
+          <button class="btn-fav ${isFav?'active':''}" onclick="toggleFavUrl('${uid}',this)" title="${isFav?'❤️ Убрать из избранного':'🤍 В избранное'}">${isFav?'❤️':'🤍'}</button>
         </div>
-    </div>`;
+        <div class="tags-row">${badges}</div>
+        <div class="ios-item-subtitle" id="${uid}" ondblclick="copyLink('${uid}')">${url}</div>
+      </div>
+      <div class="btn-group">
+        <div class="btn-actions-row">
+          ${deleteBtn}
+          <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('${uid}',this)" title="Проверить скорость">⚡</button>
+          <button class="btn-get btn-icon" onclick="openQR('${uid}')" title="QR">📱</button>
+          <button class="btn-get btn-icon" onclick="shareNode('${name.replace(/'/g,'\\\'').replace(/"/g,'')}','${uid}')" title="Поделиться">📤</button>
+          <button class="btn-get" onclick="copyLink('${uid}')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+        </div>
+        <button class="btn-get btn-import" onclick="openInHapp('${uid}')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
+      </div>
+    </div>
+  </div>`;
 }
+
+// ==============================
+// RENDER SUBS (FIXED FILTER LOGIC)
+// ==============================
+let renderDebounce = null;
+window.debouncedRender = function() {
+  clearTimeout(renderDebounce);
+  renderDebounce = setTimeout(() => renderSubs(document.querySelector('.filter-btn.active')?.dataset.filter || 'all'), 200);
+};
 
 window.renderSubs = function(filter) {
-    const container = document.getElementById('dynamic-subs-container');
-    if (!container) return;
-    const activeFilter = filter || document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-    const search = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+  const container = document.getElementById('dynamic-subs-container');
+  if (!container) return;
+  const activeFilter = filter || 'all';
+  const search = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
 
-    let pool = [];
-    if (activeFilter === 'all' || activeFilter === 'custom') pool = [...customSubs, ...pool];
-    if (activeFilter === 'all' || activeFilter === 'community') pool = [...pool, ...communitySubs];
-    
-    const masterFiltered = (activeFilter === 'all' || activeFilter === 'best' || activeFilter === 'gaming' || activeFilter === 'ru' || activeFilter === 'media' || activeFilter === 'new')
-        ? masterSubPool.filter(s => activeFilter === 'all' || s.category === activeFilter)
-        : [];
-    pool = [...pool, ...masterFiltered];
-
-    if (search) pool = pool.filter(s => (s.name||'').toLowerCase().includes(search) || (s.url||'').toLowerCase().includes(search));
-
-    if (pool.length === 0) {
-        container.innerHTML = `<div class="empty-state">
-            ${activeFilter === 'custom'
-                ? `<b>У вас нет своих подписок</b><p>Нажмите «+» чтобы добавить.</p>`
-                : `<b>Ничего не найдено</b><p>Попробуйте другой фильтр или поиск.</p>`}
-        </div>`;
-        return;
+  let pool = [];
+  switch(activeFilter) {
+    case 'all':
+      pool = [...customSubs, ...communitySubs, ...masterSubPool, ...sniSubPool];
+      // Deduplicate by URL
+      { const seen = new Set(); pool = pool.filter(s => { if (seen.has(s.url)) return false; seen.add(s.url); return true; }); }
+      break;
+    case 'favorites': {
+      const all = [...customSubs, ...communitySubs, ...masterSubPool, ...megaBasePool, ...sniSubPool];
+      const seen = new Set(); const deduped = all.filter(s => { if(seen.has(s.url)) return false; seen.add(s.url); return true; });
+      pool = deduped.filter(s => favorites.has(s.url || ''));
+      break;
     }
+    case 'custom': pool = [...customSubs]; break;
+    case 'community': pool = [...communitySubs]; break;
+    case 'sni': {
+      // SNI-capable from master + dedicated sni pool, deduped
+      const combined = [...masterSubPool.filter(s => s.sni), ...sniSubPool];
+      const seen = new Set(); pool = combined.filter(s => { if(seen.has(s.url)) return false; seen.add(s.url); return true; });
+      break;
+    }
+    default:
+      pool = masterSubPool.filter(s => s.category === activeFilter);
+  }
 
-    container.innerHTML = pool.map((sub, i) => buildSubItem(sub, `dyn_${activeFilter}_${i}`)).join('');
-};
+  if (search) pool = pool.filter(s => (s.name||'').toLowerCase().includes(search) || (s.url||'').toLowerCase().includes(search));
 
-// ============================
-// МЕГА-БАЗА (актуальные 2026)
-// ============================
-const megaBasePool = [
-    // Goida nodes 1-25
-    ...Array.from({length:25}, (_,i) => ({
-        name: `Goida Node ${i+1}`,
-        url: `https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/${i+1}.txt`,
-        dpi: false
-    })),
-    // Актуальные репозитории 2026
-    { name: "F0rc3Run VLESS (6h update)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", dpi: false },
-    { name: "F0rc3Run VMess (6h update)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vmess.txt", dpi: false },
-    { name: "F0rc3Run Shadowsocks", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/shadowsocks.txt", dpi: false },
-    { name: "Epodonios Sub1 (Reality)", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", dpi: true },
-    { name: "Epodonios Sub2", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt", dpi: false },
-    { name: "Epodonios Sub3", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt", dpi: false },
-    { name: "Epodonios All Base64", url: "https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_base64_Sub.txt", dpi: false },
-    { name: "Barry-far Sub1 (2026)", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt", dpi: false },
-    { name: "Barry-far Sub2", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt", dpi: false },
-    { name: "Barry-far Sub3", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt", dpi: false },
-    { name: "Barry-far VLESS Protocol", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt", dpi: true },
-    { name: "Barry-far VMess Protocol", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vmess.txt", dpi: false },
-    { name: "MatinGhanbari VLESS Filtered", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", dpi: true },
-    { name: "MatinGhanbari VMess Filtered", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt", dpi: false },
-    { name: "Ebrasha Free V2Ray (15m)", url: "https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt", dpi: true },
-    { name: "Mohamad TG VLESS Collector", url: "https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt", dpi: true },
-    { name: "Mohamad TG VMess Collector", url: "https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vmess.txt", dpi: false },
-    { name: "V2RayRoot Config VLESS", url: "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt", dpi: true },
-    { name: "10ium VLESS Scraped", url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt", dpi: false },
-    { name: "10ium Trojan Scraped", url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt", dpi: false },
-    { name: "CidVPN General (2026)", url: "https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt", dpi: false },
-    { name: "TeknoVPN Servers", url: "https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt", dpi: false },
-    { name: "Ripaojiedian FreeNode", url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub", dpi: false },
-    { name: "KvRuVPN (Gitverse RU)", url: "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt", dpi: true },
-    { name: "VLESS для России (igareck)", url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", dpi: true },
-    { name: "STR Bypass RU", url: "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", dpi: true },
-    { name: "Sevcator VL", url: "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", dpi: false },
-    { name: "Sakha1370 Valid Proxies", url: "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", dpi: false },
-    { name: "Firmfox Mixed Sub-1", url: "https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt", dpi: false },
-    { name: "Firmfox Mixed Sub-2", url: "https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-2.txt", dpi: false },
-    { name: "LalatinaHub Mineral", url: "https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes", dpi: false },
-    { name: "Danialsamadi AllConfigs", url: "https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt", dpi: false },
-    { name: "Yitong2333 Proxy Mining", url: "https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt", dpi: false },
-    { name: "Acymz AutoVPN", url: "https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt", dpi: false },
-    { name: "4n0nymou3 Multi Proxy", url: "https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt", dpi: true },
-    { name: "Wuqb2i4f Mix URI", url: "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri", dpi: false },
-];
-
-window.renderMegaBase = function() {
-    const container = document.getElementById('mega-base-container');
-    if (!container) return;
+  if (pool.length === 0) {
     const ru = currentLang === 'ru';
-    container.innerHTML = megaBasePool.map((sub, i) => {
-        const uid = `mb_${i}`;
-        let badges = `<span class="badge badge-success">✅ Online</span>`;
-        if (sub.dpi) badges += `<span class="badge badge-shield">🛡️ ${ru?'Обход DPI':'Bypass DPI'}</span>`;
-        return `
-        <div class="ios-item">
-            <div class="ios-item-header">
-                <div class="ios-item-top">
-                    <div class="ios-item-left">
-                        <div class="ios-item-title">${sub.name}</div>
-                        <div class="tags-row">${badges}</div>
-                        <div class="ios-item-subtitle" id="${uid}">${sub.url}</div>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <div class="btn-actions-row">
-                        <button type="button" class="btn-get btn-icon" onclick="openQR('${uid}')" title="QR">📱</button>
-                        <button type="button" class="btn-get btn-icon" onclick="shareNode('${sub.name}','${uid}')" title="Share">📤</button>
-                        <button type="button" class="btn-get" onclick="copyLink('${uid}')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-                    </div>
-                    <button type="button" class="btn-get btn-import" onclick="openInHapp('${uid}')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-                </div>
-            </div>
-        </div>`;
-    }).join('');
+    if (activeFilter === 'custom') {
+      container.innerHTML = `<div class="empty-state"><b>👤</b><p>${ru?'У вас нет своих подписок.<br>Нажмите «+» чтобы добавить.':'No personal configs yet.<br>Tap «+» to add one.'}</p></div>`;
+    } else if (activeFilter === 'favorites') {
+      container.innerHTML = `<div class="empty-state"><b>⭐</b><p>${ru?'Нет избранных конфигов.<br>Нажмите 🤍 рядом с любым конфигом.':'No favorites yet.<br>Tap 🤍 next to any config.'}</p></div>`;
+    } else {
+      container.innerHTML = `<div class="empty-state"><b>🔍</b><p>${ru?'Ничего не найдено.':'Nothing found.'}</p></div>`;
+    }
+    return;
+  }
+
+  container.innerHTML = pool.map((sub, i) => buildSubItem(sub, `dyn_${activeFilter}_${i}`)).join('');
 };
 
-// ============================
-// ДОБАВИТЬ ПОДПИСКУ
-// ============================
+// ==============================
+// RENDER MEGA BASE
+// ==============================
+window.renderMegaBase = function() {
+  const container = document.getElementById('mega-base-container');
+  if (!container) return;
+  const ru = currentLang === 'ru';
+  container.innerHTML = megaBasePool.map((sub, i) => {
+    const uid = `mb_${i}`;
+    const isFav = favorites.has(sub.url || '');
+    let badges = `<span class="badge badge-success">✅ Online</span>`;
+    if (sub.dpi) badges += `<span class="badge badge-shield">🛡️ ${ru?'Обход DPI':'Bypass DPI'}</span>`;
+    return `
+    <div class="ios-item">
+      <div class="ios-item-header">
+        <div class="ios-item-top">
+          <div class="ios-item-title">
+            ${sub.name}
+            <button class="btn-fav ${isFav?'active':''}" onclick="toggleFavUrl('${uid}',this)" title="Избранное">${isFav?'❤️':'🤍'}</button>
+          </div>
+          <div class="tags-row">${badges}</div>
+          <div class="ios-item-subtitle" id="${uid}" ondblclick="copyLink('${uid}')">${sub.url}</div>
+        </div>
+        <div class="btn-group">
+          <div class="btn-actions-row">
+            <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('${uid}',this)" title="Проверить">⚡</button>
+            <button class="btn-get btn-icon" onclick="openQR('${uid}')" title="QR">📱</button>
+            <button class="btn-get btn-icon" onclick="shareNode('${sub.name}','${uid}')" title="Поделиться">📤</button>
+            <button class="btn-get" onclick="copyLink('${uid}')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+          </div>
+          <button class="btn-get btn-import" onclick="openInHapp('${uid}')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+};
+
+// ==============================
+// SPEED CHECKER
+// ==============================
+window.checkSpeed = async function(uid, btn) {
+  const el = document.getElementById(uid);
+  if (!el) return;
+  const url = el.innerText.trim();
+  const orig = btn.innerHTML;
+  btn.innerHTML = '⏳';
+  btn.classList.add('ping-checking');
+  btn.disabled = true;
+  haptic([15]);
+  try {
+    const start = Date.now();
+    const ctrl = new AbortController();
+    const timeout = setTimeout(() => ctrl.abort(), 6000);
+    await fetch(url, { signal: ctrl.signal, mode: 'no-cors', cache: 'no-store' });
+    clearTimeout(timeout);
+    const ms = Date.now() - start;
+    const icon = ms < 800 ? '🟢' : ms < 2500 ? '🟡' : '🔴';
+    btn.innerHTML = icon;
+    showToast(`📡 ~${ms}ms — ${ms < 800 ? '✅ Отличный пинг' : ms < 2500 ? '⚠️ Средний пинг' : '❌ Высокий пинг'}`);
+    haptic([30]);
+  } catch(e) {
+    const isTimeout = e.name === 'AbortError';
+    btn.innerHTML = isTimeout ? '⏱️' : '❓';
+    showToast(isTimeout ? '⏱️ Таймаут (>6s)' : (currentLang==='ru' ? '⚠️ Не удалось — CORS' : '⚠️ Cannot check — CORS'));
+  } finally {
+    btn.classList.remove('ping-checking');
+    btn.disabled = false;
+    setTimeout(() => { btn.innerHTML = orig; }, 4000);
+  }
+};
+
+// ==============================
+// RANDOM CONFIG
+// ==============================
+window.pickRandom = function() {
+  const all = [...masterSubPool, ...sniSubPool, ...megaBasePool.slice(0, 20)];
+  const pick = all[Math.floor(Math.random() * all.length)];
+  if (!pick) return;
+  navigator.clipboard.writeText(pick.url).then(() => {
+    showToast(`🎲 ${pick.name}`);
+    launchConfetti();
+    haptic([20, 60, 20]);
+  }).catch(() => showToast('🎲 ' + pick.name));
+};
+
+// ==============================
+// EXPORT
+// ==============================
+window.exportConfigs = function() {
+  const all = [...masterSubPool, ...sniSubPool, ...megaBasePool, ...customSubs, ...communitySubs];
+  const seen = new Set();
+  const unique = all.filter(c => { if (seen.has(c.url)) return false; seen.add(c.url); return true; });
+  const lines = unique.map(c => `# ${c.name}\n${c.url}`).join('\n\n');
+  const header = `# Flux VPN Titanium — Экспорт конфигов\n# Дата: ${new Date().toLocaleDateString('ru-RU')}\n# Всего: ${unique.length}\n\n`;
+  const blob = new Blob([header + lines], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `flux-vpn-configs-${Date.now()}.txt`;
+  a.click();
+  showToast(currentLang === 'ru' ? `📥 Экспортировано ${unique.length} конфигов!` : `📥 Exported ${unique.length} configs!`);
+  haptic([30, 50, 30]);
+};
+
+// ==============================
+// URL VALIDATION
+// ==============================
+window.validateUrlInput = function() {
+  const input = document.getElementById('customUrl');
+  if (!input) return;
+  const v = input.value.trim();
+  if (v && !v.startsWith('http')) {
+    input.style.borderColor = 'var(--danger)';
+  } else {
+    input.style.borderColor = '';
+  }
+};
+
+// ==============================
+// FILTER COUNTS
+// ==============================
+function updateFilterCounts() {
+  const all = [...customSubs, ...communitySubs, ...masterSubPool, ...sniSubPool];
+  const seen = new Set(); const allUniq = all.filter(s=>{ if(seen.has(s.url)) return false; seen.add(s.url); return true; });
+  const favCount = allUniq.filter(s => favorites.has(s.url||'')).length;
+
+  const set = (id, n) => { const el = document.getElementById(id); if(el) el.textContent = n; };
+  set('fc-all', allUniq.length);
+  set('fc-favorites', favCount);
+  set('fc-custom', customSubs.length);
+  set('fc-community', communitySubs.length);
+}
+
+// ==============================
+// STATS
+// ==============================
+function updateStats() {
+  const all = [...masterSubPool, ...sniSubPool, ...megaBasePool, ...customSubs, ...communitySubs];
+  const seen = new Set(); const total = all.filter(s=>{ if(seen.has(s.url)) return false; seen.add(s.url); return true; }).length;
+  const favCount = [...new Set(all.map(s=>s.url))].filter(u => favorites.has(u)).length;
+
+  const s = (id, v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+  s('stat-total', total);
+  s('stat-fav', favCount);
+  s('stat-mine', customSubs.length);
+  s('stat-sni', sniSubPool.length);
+}
+
+// ==============================
+// SAVE CUSTOM SUB
+// ==============================
 window.saveCustomSub = async function() {
-    const name = document.getElementById('customName').value.trim();
-    const url = document.getElementById('customUrl').value.trim();
-    if (!name || !url) {
-        showToast(currentLang === 'ru' ? '⚠️ Заполните все поля!' : '⚠️ Fill all fields!');
-        return;
-    }
-    if (!url.startsWith('http')) {
-        showToast(currentLang === 'ru' ? '⚠️ URL должен начинаться с http' : '⚠️ URL must start with http');
-        return;
-    }
+  const name = document.getElementById('customName').value.trim();
+  const url = document.getElementById('customUrl').value.trim();
+  if (!name || !url) { showToast('⚠️ Заполните все поля!'); return; }
+  if (!url.startsWith('http')) { showToast('⚠️ URL должен начинаться с http'); return; }
 
-    const btn = document.querySelector('#addCustomModal .btn-main');
-    if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+  const btn = document.querySelector('#addCustomModal .btn-main');
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
 
-    try {
-        const user = await ensureAuth();
-        if (!user || !supabaseClient) throw new Error('No auth');
-
-        const { data, error } = await supabaseClient
-            .from('subscriptions')
-            .insert([{ user_id: user.id, name, url, is_public: true }])
-            .select().single();
-        if (error) throw error;
-
-        document.getElementById('addCustomModal').classList.remove('show');
-        document.getElementById('customName').value = '';
-        document.getElementById('customUrl').value = '';
-        await loadDbSubs();
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('[data-filter="community"]').classList.add('active');
-        renderSubs('community');
-        showToast(currentLang === 'ru' ? '✅ Сохранено в Supabase!' : '✅ Saved to Supabase!');
-    } catch(e) {
-        console.error('Save error:', e);
-        // Локальный фоллбек
-        const id = 'local_' + Date.now();
-        const newSub = { id, name, url, category: 'custom', isOwner: true };
-        customSubs.unshift(newSub);
-        communitySubs.unshift({ ...newSub, category: 'community' });
-        localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
-        localStorage.setItem('flux_community_subs', JSON.stringify(communitySubs));
-        document.getElementById('addCustomModal').classList.remove('show');
-        document.getElementById('customName').value = '';
-        document.getElementById('customUrl').value = '';
-        document.getElementById('dbWarning').style.display = 'block';
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('[data-filter="community"]').classList.add('active');
-        renderSubs('community');
-        showToast(currentLang === 'ru' ? '⚠️ БД недоступна, сохранено локально' : '⚠️ DB offline, saved locally');
-    } finally {
-        if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
-    }
+  try {
+    const user = await ensureAuth();
+    if (!user || !supabaseClient) throw new Error('no auth');
+    const { error } = await supabaseClient.from('subscriptions').insert([{ user_id: user.id, name, url, is_public: true }]);
+    if (error) throw error;
+    await loadDbSubs();
+    showToast('✅ ' + (currentLang==='ru' ? 'Сохранено в облаке!' : 'Saved to cloud!'));
+    launchConfetti();
+  } catch(e) {
+    const id = 'local_' + Date.now();
+    const newSub = { id, name, url, category: 'custom', isOwner: true };
+    customSubs.unshift(newSub);
+    communitySubs.unshift({ ...newSub, id: id+'c', category: 'community' });
+    localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
+    localStorage.setItem('flux_community_subs', JSON.stringify(communitySubs));
+    document.getElementById('dbWarning').style.display = 'block';
+    showToast('⚠️ ' + (currentLang==='ru' ? 'Сохранено локально' : 'Saved locally'));
+  } finally {
+    document.getElementById('addCustomModal').classList.remove('show');
+    document.getElementById('customName').value = '';
+    document.getElementById('customUrl').value = '';
+    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-filter="custom"]').classList.add('active');
+    renderSubs('custom');
+    updateStats();
+    updateFilterCounts();
+  }
 };
 
+// ==============================
+// DELETE CUSTOM SUB
+// ==============================
 window.deleteCustomSub = async function(id) {
-    if (!confirm(currentLang === 'ru' ? 'Удалить эту подписку?' : 'Delete this config?')) return;
-    try {
-        if (dbReady && supabaseClient) {
-            const { error } = await supabaseClient.from('subscriptions').delete().eq('id', id);
-            if (error) throw error;
-            await loadDbSubs();
-        } else {
-            customSubs = customSubs.filter(s => s.id !== id);
-            communitySubs = communitySubs.filter(s => s.id !== id);
-            localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
-            localStorage.setItem('flux_community_subs', JSON.stringify(communitySubs));
-        }
-        renderSubs(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
-        showToast(currentLang === 'ru' ? '🗑️ Удалено' : '🗑️ Deleted');
-    } catch(e) {
-        console.error('Delete error:', e);
-        showToast(currentLang === 'ru' ? '❌ Ошибка удаления' : '❌ Delete error');
+  if (!confirm(currentLang==='ru' ? 'Удалить эту подписку?' : 'Delete this config?')) return;
+  try {
+    if (dbReady && supabaseClient) {
+      const { error } = await supabaseClient.from('subscriptions').delete().eq('id', id);
+      if (error) throw error;
+      await loadDbSubs();
+    } else {
+      customSubs = customSubs.filter(s => s.id !== id);
+      communitySubs = communitySubs.filter(s => s.id !== id && s.id !== id+'c');
+      localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
+      localStorage.setItem('flux_community_subs', JSON.stringify(communitySubs));
     }
+    renderSubs(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+    updateStats(); updateFilterCounts();
+    showToast('🗑️ ' + (currentLang==='ru' ? 'Удалено' : 'Deleted'));
+  } catch(e) {
+    showToast('❌ ' + (currentLang==='ru' ? 'Ошибка удаления' : 'Delete error'));
+  }
 };
 
-// ============================
-// УТИЛИТЫ
-// ============================
-window.copyLink = function(elIdOrText) {
-    const el = document.getElementById(elIdOrText);
-    const text = el ? el.innerText.trim() : elIdOrText;
-    navigator.clipboard.writeText(text)
-        .then(() => showToast(currentLang === 'ru' ? '📋 Скопировано!' : '📋 Copied!'))
-        .catch(() => showToast('❌ Error'));
+// ==============================
+// UTILITIES
+// ==============================
+window.copyLink = function(elId) {
+  const el = document.getElementById(elId);
+  const text = el ? el.innerText.trim() : elId;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('📋 ' + (currentLang==='ru' ? 'Скопировано!' : 'Copied!'));
+    if (el) { el.closest('.ios-item')?.classList.add('copy-flash'); setTimeout(()=>el.closest('.ios-item')?.classList.remove('copy-flash'),400); }
+    haptic([25]);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('📋 ' + (currentLang==='ru' ? 'Скопировано!' : 'Copied!'));
+  });
 };
 
 window.openInHapp = function(elId) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    window.location.href = 'happ://add/' + el.innerText.trim();
+  const el = document.getElementById(elId);
+  if (!el) return;
+  haptic([30]);
+  window.location.href = 'happ://add/' + el.innerText.trim();
 };
 
 window.openQR = function(elId) {
-    const el = document.getElementById(elId);
-    if (!el) return;
-    const link = 'happ://add/' + el.innerText.trim();
-    document.getElementById('qrImage').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(link);
-    document.getElementById('qrModal').classList.add('show');
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const link = 'happ://add/' + el.innerText.trim();
+  document.getElementById('qrImage').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(link);
+  document.getElementById('qrModal').classList.add('show');
 };
 
 window.shareNode = function(name, elIdOrUrl) {
-    const el = document.getElementById(elIdOrUrl);
-    const url = el ? el.innerText.trim() : elIdOrUrl;
-    if (navigator.share) {
-        navigator.share({ title: name, text: 'VPN Config', url }).catch(() => {});
-    } else {
-        navigator.clipboard.writeText(url);
-        showToast(currentLang === 'ru' ? '📤 Ссылка скопирована' : '📤 Link copied');
-    }
+  const el = document.getElementById(elIdOrUrl);
+  const url = el ? el.innerText.trim() : elIdOrUrl;
+  haptic([20]);
+  if (navigator.share) {
+    navigator.share({ title: 'Flux VPN — ' + name, text: url, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url);
+    showToast('📤 ' + (currentLang==='ru' ? 'Ссылка скопирована' : 'Link copied'));
+  }
 };
 
-// ============================
+// ==============================
 // RADAR
-// ============================
+// ==============================
 async function checkPrivacyStatus() {
-    try {
-        const ctrl = new AbortController();
-        setTimeout(() => ctrl.abort(), 5000);
-        const r = await fetch('https://get.geojs.io/v1/ip/geo.json', { signal: ctrl.signal });
-        const d = await r.json();
-        document.getElementById('radar-ip').innerText = d.ip || '—';
-        document.getElementById('radar-loc').innerText = `${d.city || '?'}, ${d.country || '?'}`;
-        document.getElementById('radar-isp').innerText = d.organization || '—';
-        const badge = document.getElementById('radar-badge');
-        badge.classList.remove('loading');
-        if (['RU','BY','CN','IR'].includes(d.country)) {
-            badge.innerHTML = currentLang === 'ru' ? '⚠️ НЕ ЗАЩИЩЕНЫ' : '⚠️ UNPROTECTED';
-            badge.className = 'radar-status unsafe';
-        } else {
-            badge.innerHTML = currentLang === 'ru' ? '✅ ЗАЩИЩЕНО' : '✅ PROTECTED';
-            badge.className = 'radar-status safe';
-        }
-    } catch(e) {
-        const badge = document.getElementById('radar-badge');
-        badge.innerHTML = 'N/A'; badge.className = 'radar-status unsafe';
+  try {
+    const ctrl = new AbortController();
+    setTimeout(() => ctrl.abort(), 6000);
+    const r = await fetch('https://get.geojs.io/v1/ip/geo.json', { signal: ctrl.signal });
+    const d = await r.json();
+    document.getElementById('radar-ip').innerText = d.ip || '—';
+    document.getElementById('radar-loc').innerText = `${d.city||'?'}, ${d.country||'?'}`;
+    document.getElementById('radar-isp').innerText = d.organization || '—';
+    const badge = document.getElementById('radar-badge');
+    badge.classList.remove('loading');
+    const dangerCountries = ['RU','BY','CN','IR','KZ','TM','UZ'];
+    if (dangerCountries.includes(d.country)) {
+      badge.innerHTML = currentLang==='ru' ? '⚠️ НЕ ЗАЩИЩЕНЫ' : '⚠️ UNPROTECTED';
+      badge.className = 'radar-status unsafe';
+    } else {
+      badge.innerHTML = currentLang==='ru' ? '✅ ЗАЩИЩЕНО' : '✅ PROTECTED';
+      badge.className = 'radar-status safe';
     }
+  } catch(e) {
+    const badge = document.getElementById('radar-badge');
+    badge.innerHTML = '❓ N/A';
+    badge.className = 'radar-status loading';
+  }
 }
 
-// ============================
-// ФИЛЬТРЫ
-// ============================
+// ==============================
+// SCROLL TO TOP
+// ==============================
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// ==============================
+// KEYBOARD SHORTCUTS
+// ==============================
+document.addEventListener('keydown', e => {
+  const tag = document.activeElement?.tagName;
+  const inInput = tag === 'INPUT' || tag === 'TEXTAREA';
+
+  // Escape → close modals
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
+    return;
+  }
+  // / → focus search
+  if (e.key === '/' && !inInput) {
+    e.preventDefault();
+    const si = document.getElementById('searchInput');
+    if (si) { si.focus(); si.select(); si.scrollIntoView({ behavior:'smooth', block:'center' }); }
+    return;
+  }
+  // R → random
+  if ((e.key === 'r' || e.key === 'R') && !inInput) {
+    pickRandom();
+    return;
+  }
+  // E → export
+  if ((e.key === 'e' || e.key === 'E') && !inInput) {
+    exportConfigs();
+    return;
+  }
+});
+
+// ==============================
+// FILTER BUTTONS
+// ==============================
 document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        renderSubs(e.currentTarget.dataset.filter);
-    });
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    renderSubs(e.currentTarget.dataset.filter);
+    haptic([10]);
+  });
 });
 
-// ============================
+// ==============================
 // WIZARD TABS
-// ============================
+// ==============================
 document.querySelectorAll('.wizard-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-        document.querySelectorAll('.wizard-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.wizard-content').forEach(c => c.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.target).classList.add('active');
-    });
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.wizard-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.wizard-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    const target = document.getElementById(tab.dataset.target);
+    if (target) target.classList.add('active');
+  });
 });
 
-// ============================
+// ==============================
 // TAB BAR
-// ============================
+// ==============================
 document.querySelectorAll('.tab-item:not([target="_blank"])').forEach(tab => {
-    tab.addEventListener('click', () => {
-        document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-    });
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
 });
 
-// ============================
+// ==============================
 // INTERSECTION OBSERVER
-// ============================
+// ==============================
 document.addEventListener('DOMContentLoaded', () => {
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
-        else obs.observe(el);
-    });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+    else obs.observe(el);
+  });
 });
 
-// ============================
+// ==============================
 // INIT
-// ============================
+// ==============================
 (async () => {
-    await loadDbSubs();
-    renderSubs('all');
-    renderMegaBase();
-    checkPrivacyStatus();
+  Progress.init();
+  Progress.set(10);
+  await loadDbSubs();
+  Progress.set(70);
+  renderSubs('all');
+  renderMegaBase();
+  syncStaticFavBtns();
+  updateStats();
+  updateFilterCounts();
+  checkPrivacyStatus();
+  Progress.set(100);
 })();
 </script>
 </body>
