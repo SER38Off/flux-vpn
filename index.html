@@ -1,1458 +1,1272 @@
+cat > /home/claude/flux-vpn.html << 'ENDOFFILE'
 <!DOCTYPE html>
 <html lang="ru" data-theme="default">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" id="themeColor" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Flux VPN">
 <title>Flux VPN Titanium</title>
 <style>
-:root{--bg-body:#0a0a0c;--app-bg:#000000;--surface:#1c1c1e;--primary:#0a84ff;--primary-gradient:linear-gradient(135deg,#0a84ff,#5e5ce6);--text-main:#ffffff;--text-sec:#ebebf599;--danger:#ff453a;--success:#32d74b;--warning:#ffd60a;--purple:#bf5af2;--radius-lg:24px;--radius-md:16px;--radius-sm:10px}
-[data-theme="cyberpunk"]{--bg-body:#0d0221;--app-bg:#0d0221;--surface:#1a0033;--primary:#ff007f;--primary-gradient:linear-gradient(135deg,#ff007f,#00f0ff);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.7)}
-[data-theme="matrix"]{--bg-body:#000000;--app-bg:#000000;--surface:#051a05;--primary:#00ff00;--primary-gradient:linear-gradient(135deg,#00ff00,#005500);--text-main:#e0ffe0;--text-sec:rgba(0,255,0,0.6)}
-[data-theme="blood"]{--bg-body:#0a0000;--app-bg:#0a0000;--surface:#1f0000;--primary:#ff2a2a;--primary-gradient:linear-gradient(135deg,#ff2a2a,#aa0000);--text-main:#ffffff;--text-sec:rgba(255,150,150,0.7)}
-[data-theme="ocean"]{--bg-body:#000f1a;--app-bg:#000f1a;--surface:#001f33;--primary:#00d4ff;--primary-gradient:linear-gradient(135deg,#00d4ff,#0055ff);--text-main:#ffffff;--text-sec:rgba(200,240,255,0.7)}
-[data-theme="gold"]{--bg-body:#111111;--app-bg:#111111;--surface:#222222;--primary:#ffd700;--primary-gradient:linear-gradient(135deg,#ffd700,#ff8c00);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.6)}
-[data-theme="purple"]{--bg-body:#10001a;--app-bg:#10001a;--surface:#260040;--primary:#b026ff;--primary-gradient:linear-gradient(135deg,#b026ff,#5100ff);--text-main:#ffffff;--text-sec:rgba(230,200,255,0.7)}
-[data-theme="sunset"]{--bg-body:#1a0800;--app-bg:#1a0800;--surface:#331100;--primary:#ff6a00;--primary-gradient:linear-gradient(135deg,#ff6a00,#ff0040);--text-main:#ffffff;--text-sec:rgba(255,200,150,0.7)}
-[data-theme="hacker"]{--bg-body:#050505;--app-bg:#050505;--surface:#111111;--primary:#39ff14;--primary-gradient:linear-gradient(135deg,#39ff14,#006600);--text-main:#ffffff;--text-sec:rgba(150,255,150,0.6)}
-[data-theme="amethyst"]{--bg-body:#151020;--app-bg:#151020;--surface:#2a2040;--primary:#9b5de5;--primary-gradient:linear-gradient(135deg,#9b5de5,#f15bb5);--text-main:#ffffff;--text-sec:rgba(255,255,255,0.7)}
-[data-theme="midnight"]{--bg-body:#020617;--app-bg:#020617;--surface:#0f172a;--primary:#3b82f6;--primary-gradient:linear-gradient(135deg,#3b82f6,#1d4ed8);--text-main:#f8fafc;--text-sec:#94a3b8}
-[data-theme="synthwave"]{--bg-body:#0a0118;--app-bg:#0a0118;--surface:#1e053a;--primary:#ff9e00;--primary-gradient:linear-gradient(135deg,#ff9e00,#b000ff);--text-main:#ffffff;--text-sec:rgba(255,200,255,0.7)}
-[data-theme="mint"]{--bg-body:#001a14;--app-bg:#001a14;--surface:#003328;--primary:#00ffaa;--primary-gradient:linear-gradient(135deg,#00ffaa,#0099cc);--text-main:#ffffff;--text-sec:rgba(200,255,240,0.7)}
-[data-theme="neonpink"]{--bg-body:#1a0011;--app-bg:#1a0011;--surface:#330022;--primary:#ff00aa;--primary-gradient:linear-gradient(135deg,#ff00aa,#aa00ff);--text-main:#ffffff;--text-sec:rgba(255,200,230,0.7)}
-[data-theme="aqua"]{--bg-body:#00141a;--app-bg:#00141a;--surface:#002b33;--primary:#00ffff;--primary-gradient:linear-gradient(135deg,#00ffff,#0088ff);--text-main:#ffffff;--text-sec:rgba(200,255,255,0.7)}
-[data-theme="dracula"]{--bg-body:#282a36;--app-bg:#282a36;--surface:#44475a;--primary:#ff79c6;--primary-gradient:linear-gradient(135deg,#ff79c6,#bd93f9);--text-main:#f8f8f2;--text-sec:#6272a4}
-[data-theme="monochrome"]{--bg-body:#000000;--app-bg:#000000;--surface:#1a1a1a;--primary:#ffffff;--primary-gradient:linear-gradient(135deg,#ffffff,#888888);--text-main:#ffffff;--text-sec:#888888}
-[data-theme="light"]{--bg-body:#f4f4f5;--app-bg:#f4f4f5;--surface:#ffffff;--primary:#2563eb;--primary-gradient:linear-gradient(135deg,#2563eb,#60a5fa);--text-main:#0f172a;--text-sec:#64748b}
+:root{--bg:#0a0a0c;--app:#000;--surf:#1c1c1e;--surf2:#2c2c2e;--pri:#0a84ff;--grad:linear-gradient(135deg,#0a84ff,#5e5ce6);--txt:#fff;--sec:rgba(235,235,245,.6);--red:#ff453a;--green:#32d74b;--yellow:#ffd60a;--purple:#bf5af2;--rlg:24px;--rmd:16px;--rsm:10px}
+[data-theme=cyberpunk]{--bg:#0d0221;--app:#0d0221;--surf:#1a0033;--surf2:#2a0055;--pri:#ff007f;--grad:linear-gradient(135deg,#ff007f,#00f0ff);--txt:#fff;--sec:rgba(255,255,255,.7)}
+[data-theme=matrix]{--bg:#000;--app:#000;--surf:#051a05;--surf2:#0a2a0a;--pri:#00ff00;--grad:linear-gradient(135deg,#00ff00,#005500);--txt:#e0ffe0;--sec:rgba(0,255,0,.6)}
+[data-theme=blood]{--bg:#0a0000;--app:#0a0000;--surf:#1f0000;--surf2:#300000;--pri:#ff2a2a;--grad:linear-gradient(135deg,#ff2a2a,#aa0000);--txt:#fff;--sec:rgba(255,150,150,.7)}
+[data-theme=ocean]{--bg:#000f1a;--app:#000f1a;--surf:#001f33;--surf2:#003050;--pri:#00d4ff;--grad:linear-gradient(135deg,#00d4ff,#0055ff);--txt:#fff;--sec:rgba(200,240,255,.7)}
+[data-theme=gold]{--bg:#111;--app:#111;--surf:#222;--surf2:#333;--pri:#ffd700;--grad:linear-gradient(135deg,#ffd700,#ff8c00);--txt:#fff;--sec:rgba(255,255,255,.6)}
+[data-theme=purple]{--bg:#10001a;--app:#10001a;--surf:#260040;--surf2:#360060;--pri:#b026ff;--grad:linear-gradient(135deg,#b026ff,#5100ff);--txt:#fff;--sec:rgba(230,200,255,.7)}
+[data-theme=sunset]{--bg:#1a0800;--app:#1a0800;--surf:#331100;--surf2:#441800;--pri:#ff6a00;--grad:linear-gradient(135deg,#ff6a00,#ff0040);--txt:#fff;--sec:rgba(255,200,150,.7)}
+[data-theme=hacker]{--bg:#050505;--app:#050505;--surf:#111;--surf2:#1a1a1a;--pri:#39ff14;--grad:linear-gradient(135deg,#39ff14,#006600);--txt:#fff;--sec:rgba(150,255,150,.6)}
+[data-theme=amethyst]{--bg:#151020;--app:#151020;--surf:#2a2040;--surf2:#3a3050;--pri:#9b5de5;--grad:linear-gradient(135deg,#9b5de5,#f15bb5);--txt:#fff;--sec:rgba(255,255,255,.7)}
+[data-theme=midnight]{--bg:#020617;--app:#020617;--surf:#0f172a;--surf2:#1e293b;--pri:#3b82f6;--grad:linear-gradient(135deg,#3b82f6,#1d4ed8);--txt:#f8fafc;--sec:#94a3b8}
+[data-theme=synthwave]{--bg:#0a0118;--app:#0a0118;--surf:#1e053a;--surf2:#2e0f4a;--pri:#ff9e00;--grad:linear-gradient(135deg,#ff9e00,#b000ff);--txt:#fff;--sec:rgba(255,200,255,.7)}
+[data-theme=mint]{--bg:#001a14;--app:#001a14;--surf:#003328;--surf2:#004535;--pri:#00ffaa;--grad:linear-gradient(135deg,#00ffaa,#0099cc);--txt:#fff;--sec:rgba(200,255,240,.7)}
+[data-theme=neonpink]{--bg:#1a0011;--app:#1a0011;--surf:#330022;--surf2:#450030;--pri:#ff00aa;--grad:linear-gradient(135deg,#ff00aa,#aa00ff);--txt:#fff;--sec:rgba(255,200,230,.7)}
+[data-theme=dracula]{--bg:#282a36;--app:#282a36;--surf:#44475a;--surf2:#555869;--pri:#ff79c6;--grad:linear-gradient(135deg,#ff79c6,#bd93f9);--txt:#f8f8f2;--sec:#6272a4}
+[data-theme=light]{--bg:#f0f0f5;--app:#f0f0f5;--surf:#fff;--surf2:#f0f0f3;--pri:#2563eb;--grad:linear-gradient(135deg,#2563eb,#60a5fa);--txt:#0f172a;--sec:#64748b}
+[data-theme=mono]{--bg:#000;--app:#000;--surf:#1a1a1a;--surf2:#2a2a2a;--pri:#fff;--grad:linear-gradient(135deg,#fff,#888);--txt:#fff;--sec:#888}
+[data-theme=aqua]{--bg:#00141a;--app:#00141a;--surf:#002b33;--surf2:#003d45;--pri:#00ffff;--grad:linear-gradient(135deg,#00ffff,#0088ff);--txt:#fff;--sec:rgba(200,255,255,.7)}
 
-html[lang="en"] .ru{display:none!important}
-html[lang="ru"] .en{display:none!important}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background-color:var(--bg-body);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text-main);display:flex;justify-content:center;min-height:100vh;scroll-behavior:smooth;transition:background-color 0.5s ease;overflow-x:hidden}
-.app-container{width:100%;max-width:100%;background-color:var(--app-bg);position:relative;padding-bottom:140px;transition:background-color 0.5s ease}
-.ambient-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:80vw;max-width:800px;height:300px;background:radial-gradient(circle,var(--primary),transparent 70%);opacity:0.15;z-index:0;pointer-events:none;transition:background 0.5s ease}
-.content-wrapper{position:relative;z-index:1;padding:20px;max-width:900px;margin:0 auto}
-.top-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:30px;position:relative;z-index:50}
-.control-btn{width:44px;height:44px;background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:0.2s;color:var(--text-main);font-weight:bold;font-size:13px}
-.control-btn:hover{transform:scale(1.1)}
-.control-btn svg{width:22px;height:22px;fill:var(--primary)}
+html[lang=en] .ru{display:none!important}
+html[lang=ru] .en{display:none!important}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
+body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--txt);min-height:100vh;scroll-behavior:smooth;overflow-x:hidden;transition:background .4s}
+.wrap{position:relative;z-index:1;padding:18px;max-width:860px;margin:0 auto}
+.app{padding-bottom:130px;transition:background .4s}
+.glow{position:fixed;top:-80px;left:50%;transform:translateX(-50%);width:70vw;max-width:700px;height:260px;background:radial-gradient(circle,var(--pri),transparent 70%);opacity:.1;z-index:0;pointer-events:none;transition:background .5s}
 
-/* === PROGRESS BAR === */
-#progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--primary-gradient);z-index:9999;transition:width 0.3s ease,opacity 0.3s ease;pointer-events:none;width:0;opacity:0}
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;justify-content:flex-end;gap:8px;padding:10px 14px;background:linear-gradient(to bottom,var(--app) 55%,transparent);pointer-events:none}
+#topbar>*{pointer-events:all}
+.cb{width:42px;height:42px;background:var(--surf);border:1px solid rgba(128,128,128,.15);border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.28);transition:.2s;font-weight:700;font-size:12px;color:var(--txt);position:relative}
+.cb:hover{transform:scale(1.08)}
+.cb:active{transform:scale(.9)}
+.cb svg{width:20px;height:20px;fill:var(--pri)}
+.cb .notif{position:absolute;top:2px;right:2px;width:8px;height:8px;background:var(--red);border-radius:50%;border:1.5px solid var(--app)}
 
-/* === STATS BAR === */
-.stats-bar{display:flex;gap:10px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
-.stats-bar::-webkit-scrollbar{display:none}
-.stat-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:14px;padding:12px 16px;text-align:center;white-space:nowrap;flex-shrink:0;min-width:80px}
-.stat-num{font-size:24px;font-weight:800;color:var(--primary);display:block;line-height:1}
-.stat-label{font-size:10px;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.5px;display:block;margin-top:4px}
+/* SYSTEM BARS */
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:9999;width:0;opacity:0;transition:width .3s,opacity .3s;pointer-events:none}
+#offline{position:fixed;top:0;left:0;right:0;z-index:400;background:var(--red);color:#fff;text-align:center;padding:7px;font-size:13px;font-weight:700;transform:translateY(-100%);transition:transform .3s}
+#offline.show{transform:none}
 
-/* === FILTER COUNT BADGE === */
-.filter-count{background:rgba(128,128,128,0.25);border-radius:8px;padding:1px 5px;font-size:10px;margin-left:4px;color:var(--text-sec)}
-.filter-btn.active .filter-count{background:rgba(10,132,255,0.3);color:var(--primary)}
+/* TOASTS */
+.tc{position:fixed;bottom:108px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:7px;align-items:center;pointer-events:none;width:92%;max-width:360px}
+.toast{background:var(--surf);color:var(--txt);border:1px solid var(--pri);padding:10px 18px;border-radius:28px;box-shadow:0 6px 20px rgba(0,0,0,.5);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;animation:tslide 3s forwards;max-width:100%}
+.toast.has-btn{pointer-events:all;cursor:pointer}
+.toast-undo{background:var(--pri);color:#fff;border:none;border-radius:14px;padding:3px 10px;font-size:12px;font-weight:700;cursor:pointer;margin-left:auto;flex-shrink:0}
+@keyframes tslide{0%{transform:translateY(30px) scale(.9);opacity:0}10%{transform:none;opacity:1}85%{opacity:1}100%{transform:translateY(-20px) scale(.9);opacity:0}}
 
-/* === FAVORITES === */
-.btn-fav{background:none;border:none;cursor:pointer;font-size:16px;padding:0 2px 0 6px;line-height:1;transition:transform 0.2s;flex-shrink:0}
-.btn-fav:hover{transform:scale(1.4)}
-.btn-fav.active{animation:heartBeat 0.3s ease}
-@keyframes heartBeat{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+/* FABs */
+.fab{position:fixed;z-index:99;width:46px;height:46px;border-radius:50%;border:none;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 5px 18px rgba(0,0,0,.4);transition:.2s;font-size:20px}
+.fab:hover{transform:scale(1.1)}
+.fab:active{transform:scale(.9)}
+#fabUp{bottom:108px;right:14px;background:var(--surf);border:1px solid rgba(128,128,128,.2);color:var(--txt);opacity:0;pointer-events:none;transition:opacity .3s}
+#fabUp.show{opacity:1;pointer-events:all}
+#fabRnd{bottom:108px;left:14px;background:var(--grad)}
 
-/* === SCROLL TOP === */
-.scroll-top-btn{position:fixed;bottom:115px;right:16px;width:44px;height:44px;background:var(--surface);border:1px solid rgba(128,128,128,0.2);border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:18px;z-index:98;box-shadow:0 4px 15px rgba(0,0,0,0.3);transition:opacity 0.3s,transform 0.2s;opacity:0;pointer-events:none}
-.scroll-top-btn.visible{opacity:1;pointer-events:all}
-.scroll-top-btn:hover{transform:scale(1.1) translateY(-2px)}
+/* STATS */
+.stats{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;margin-bottom:18px}
+.stats::-webkit-scrollbar{display:none}
+.sc{background:var(--surf);border:1px solid rgba(128,128,128,.13);border-radius:13px;padding:11px 15px;text-align:center;flex-shrink:0;min-width:74px;cursor:default;transition:.2s}
+.sc:hover{border-color:var(--pri)}
+.sn{font-size:22px;font-weight:800;color:var(--pri);display:block;line-height:1;transition:color .3s}
+.sl{font-size:9px;color:var(--sec);text-transform:uppercase;letter-spacing:.5px;display:block;margin-top:3px}
+@keyframes bump{0%{transform:scale(.8);opacity:.5}100%{transform:none;opacity:1}}
+.bump{animation:bump .28s ease}
 
-/* === FAB RANDOM === */
-.fab-random{position:fixed;bottom:115px;left:16px;width:48px;height:48px;background:var(--primary-gradient);border:none;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;font-size:22px;z-index:98;box-shadow:0 6px 20px rgba(0,0,0,0.4);transition:transform 0.2s}
-.fab-random:hover{transform:scale(1.12) rotate(15deg)}
-.fab-random:active{transform:scale(0.9)}
+/* HEADINGS */
+h1{font-size:34px;font-weight:800;text-align:center;margin:8px 0}
+.sub{color:var(--sec);font-size:15px;line-height:1.5;text-align:center;margin-bottom:24px}
+h2{font-size:20px;font-weight:700;margin:34px 0 13px;border-bottom:1px solid rgba(128,128,128,.16);padding-bottom:9px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 
-/* === CONFETTI === */
-@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+/* CARDS */
+.card{background:var(--surf);border:1px solid rgba(128,128,128,.13);border-radius:var(--rlg);padding:26px 20px;text-align:center;margin-bottom:18px;box-shadow:0 8px 28px rgba(0,0,0,.22)}
+.card h2{border:none;margin:0 0 10px;font-size:20px;justify-content:center}
+.card p{margin:0 0 16px;font-size:14px;color:var(--sec)}
+.btn-pri{display:inline-flex;justify-content:center;align-items:center;background:var(--grad);color:#fff!important;font-weight:700;font-size:15px;padding:14px 32px;border-radius:28px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 7px 20px rgba(0,0,0,.26);transition:.12s;width:100%;max-width:300px}
+.btn-pri:active{transform:scale(.96)}
 
-/* === SNI BADGE === */
-.badge-sni{background:rgba(0,200,255,0.12);color:#00c8ff;border:1px solid rgba(0,200,255,0.35)}
-.badge-reality{background:rgba(147,51,234,0.12);color:#a855f7;border:1px solid rgba(147,51,234,0.35)}
-.badge-cidr{background:rgba(20,184,166,0.12);color:#14b8a6;border:1px solid rgba(20,184,166,0.35)}
-.badge-new-item{background:rgba(245,158,11,0.12);color:#f59e0b;border:1px solid rgba(245,158,11,0.35)}
+/* RADAR */
+.radar{background:var(--surf);border:1px solid rgba(128,128,128,.13);border-radius:var(--rlg);padding:20px;margin-bottom:32px}
+.radar-hd{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(128,128,128,.1);padding-bottom:13px;margin-bottom:13px}
+.radar-ti{display:flex;align-items:center;gap:11px}
+.rstatus{font-size:10px;font-weight:800;text-transform:uppercase;padding:5px 12px;border-radius:18px}
+.rs-load{background:rgba(128,128,128,.15);color:var(--txt)}
+.rs-bad{background:rgba(255,69,58,.1);color:var(--red);border:1px solid rgba(255,69,58,.28)}
+.rs-ok{background:rgba(50,215,75,.1);color:#4ade80;border:1px solid rgba(50,215,75,.3)}
+.radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.ri label{font-size:9px;color:var(--sec);text-transform:uppercase;display:block;margin-bottom:2px}
+.ri span{font-size:14px;font-weight:600;font-family:monospace;color:var(--pri)}
 
-/* === UPDATE BANNER === */
-.update-banner{background:rgba(10,132,255,0.08);border:1px solid rgba(10,132,255,0.25);border-radius:var(--radius-md);padding:15px;margin-bottom:25px;margin-top:20px}
-.update-banner h3{margin:0 0 8px 0;color:var(--primary);font-size:15px;display:flex;align-items:center;gap:8px}
-.update-banner p{margin:0;font-size:13px;color:var(--text-sec);line-height:1.6}
-.update-banner span{color:var(--text-main);font-weight:bold}
-h1{font-size:36px;font-weight:800;letter-spacing:0.3px;margin:10px 0 10px;text-align:center}
-.subtitle{color:var(--text-sec);font-size:16px;line-height:1.5;margin-top:0;text-align:center;margin-bottom:30px}
-h2{font-size:22px;font-weight:700;margin:40px 0 15px;border-bottom:1px solid rgba(128,128,128,0.2);padding-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.status-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);padding:30px 24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.3);margin-bottom:20px}
-.status-card h2{border:none;margin:0 0 10px 0;font-size:22px;justify-content:center}
-.status-card p{margin:0 0 20px 0;font-size:14px;color:var(--text-sec)}
-.btn-main{display:inline-flex;justify-content:center;align-items:center;background:var(--primary-gradient);color:#ffffff!important;font-weight:700;font-size:17px;padding:16px 40px;border-radius:30px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:transform 0.1s;width:100%;max-width:300px}
-.btn-main:active{transform:scale(0.96)}
-.radar-card{background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);padding:25px;margin-bottom:40px;transition:0.5s}
-.radar-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(128,128,128,0.15);padding-bottom:15px;margin-bottom:15px}
-.radar-title-box{display:flex;align-items:center;gap:12px}
-.radar-title-box .icon{font-size:28px;filter:drop-shadow(0 0 8px rgba(255,255,255,0.3))}
-.radar-title-text{font-weight:700;font-size:16px;line-height:1.2;text-align:left}
-.radar-status{font-weight:800;font-size:12px;text-transform:uppercase;padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px}
-.radar-status.loading{background:rgba(128,128,128,0.2);color:var(--text-main)}
-.radar-status.unsafe{background:rgba(239,68,68,0.15);color:var(--danger);border:1px solid rgba(239,68,68,0.3)}
-.radar-status.safe{background:rgba(50,215,75,0.1);color:#4ade80;border:1px solid rgba(50,215,75,0.4)}
-.radar-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.radar-item{display:flex;flex-direction:column;gap:4px}
-.radar-label{font-size:10px;color:var(--text-sec);text-transform:uppercase;letter-spacing:0.5px}
-.radar-value{font-size:15px;font-weight:600;font-family:monospace;color:var(--primary)}
-.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:40px}
-.btn-social{background:var(--surface);color:var(--text-main);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-md);padding:16px 10px;font-size:13px;font-weight:600;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:8px;transition:0.2s}
-.btn-social:hover{opacity:0.8}
-.btn-social:active{transform:scale(0.95)}
-.btn-social span{font-size:24px;transition:transform 0.3s}
-.btn-social:hover span{transform:translateY(-3px)}
-.search-bar{width:100%;background:rgba(128,128,128,0.05);border:1px solid rgba(128,128,128,0.2);padding:14px 20px;border-radius:var(--radius-md);color:var(--text-main);font-size:15px;outline:none;transition:0.3s;margin-bottom:15px}
-.search-bar:focus{border-color:var(--primary);background:rgba(128,128,128,0.08)}
-.filter-container{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
-.filter-container::-webkit-scrollbar{display:none}
-.filter-btn{background:rgba(128,128,128,0.1);border:1px solid rgba(128,128,128,0.2);color:var(--text-sec);padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:0.2s;display:flex;align-items:center}
-.filter-btn:hover{background:rgba(128,128,128,0.2)}
-.filter-btn.active{background:rgba(10,132,255,0.15);color:var(--primary);border-color:rgba(10,132,255,0.3)}
-.ios-list{background:var(--surface);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:30px;border:1px solid rgba(128,128,128,0.15);min-height:80px}
-.scrollable-list{max-height:550px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.scrollable-list::-webkit-scrollbar{width:5px}
-.scrollable-list::-webkit-scrollbar-thumb{background:rgba(128,128,128,0.3);border-radius:10px}
-.ios-item{flex-direction:column;align-items:stretch;gap:0;padding:0;border-bottom:1px solid rgba(128,128,128,0.08);transition:background 0.2s;position:relative}
-.ios-item:last-child{border-bottom:none}
-.ios-item:hover{background:rgba(128,128,128,0.03)}
-.ios-item-header{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
-.ios-item-top{display:flex;flex-direction:column;gap:4px;width:100%}
-.ios-item-title{font-size:15px;font-weight:600;display:flex;align-items:center;flex-wrap:wrap;gap:2px}
-.ios-item-subtitle{font-size:11px;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace;opacity:0.6;cursor:pointer;margin-top:2px}
-.ios-item-subtitle:hover{opacity:1;color:var(--primary)}
-.tags-row{display:flex;flex-wrap:wrap;gap:5px;margin:3px 0}
-.badge{padding:3px 7px;border-radius:6px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.3px;display:inline-flex;align-items:center;gap:3px}
-.badge-success{background:rgba(50,215,75,0.12);color:var(--success);border:1px solid rgba(50,215,75,0.3)}
-.badge-shield{background:rgba(10,132,255,0.12);color:var(--primary);border:1px solid rgba(10,132,255,0.3)}
-.badge-speed{background:rgba(255,214,10,0.12);color:var(--warning);border:1px solid rgba(255,214,10,0.3)}
-.badge-ping{background:rgba(191,90,242,0.12);color:var(--purple);border:1px solid rgba(191,90,242,0.3)}
-.badge-ru{background:rgba(128,128,128,0.18);color:var(--text-main);border:1px solid rgba(128,128,128,0.3)}
-.badge-purple{background:rgba(191,90,242,0.12);color:var(--purple);border:1px solid rgba(191,90,242,0.3)}
-.badge-community{background:rgba(255,140,0,0.12);color:#ff8c00;border:1px solid rgba(255,140,0,0.3)}
-.btn-group{display:flex;flex-direction:column;gap:7px;width:100%;margin-top:4px}
-.btn-actions-row{display:flex;gap:5px;width:100%}
-.btn-get{background:rgba(128,128,128,0.12);color:var(--text-main);border:none;border-radius:11px;padding:10px 12px;font-weight:700;font-size:12px;cursor:pointer;transition:0.2s;text-align:center;flex:1;display:flex;justify-content:center;align-items:center;gap:5px}
-.btn-get:hover{background:rgba(128,128,128,0.22)}
-.btn-get:active{transform:scale(0.94)}
-.btn-icon{width:38px;flex:none;padding:0;font-size:15px}
-.btn-icon svg{width:16px;height:16px;fill:currentColor}
-.btn-import{background:rgba(10,132,255,0.12);color:var(--primary);border:1px solid rgba(10,132,255,0.25)}
-.btn-import:hover{background:rgba(10,132,255,0.22)}
-.btn-delete{color:var(--danger);background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25)}
-.btn-delete:hover{background:rgba(239,68,68,0.18)}
-.btn-speed{color:#f59e0b;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);font-size:13px!important}
-.status-dot{display:inline-block;width:7px;height:7px;background-color:var(--success);border-radius:50%;margin-right:7px;box-shadow:0 0 6px var(--success);animation:blink 2s infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3;box-shadow:0 0 2px var(--success)}}
-.wizard-container{background:var(--surface);border-radius:var(--radius-lg);padding:25px;margin-bottom:20px;border:1px solid rgba(128,128,128,0.15)}
-.wizard-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
-.wizard-tab{background:rgba(128,128,128,0.05);border:1px solid rgba(128,128,128,0.15);padding:12px 8px;border-radius:var(--radius-md);text-align:center;cursor:pointer;color:var(--text-sec);font-weight:600;font-size:12px;transition:0.3s;display:flex;flex-direction:column;align-items:center;gap:6px}
-.wizard-tab svg{width:22px;height:22px;fill:currentColor}
-.wizard-tab.active{background:rgba(10,132,255,0.15);color:var(--primary);border-color:var(--primary)}
-.wizard-content{display:none;padding:10px 0}
-.wizard-content.active{display:block;animation:fadeIn 0.3s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.guide-steps{margin:0;padding-left:20px;color:var(--text-sec);font-size:14px;line-height:1.6}
-.guide-steps li{margin-bottom:12px}
-.guide-steps strong{color:var(--text-main)}
-.guide-steps code{background:rgba(128,128,128,0.15);padding:2px 6px;border-radius:4px;font-size:12px;font-family:monospace;color:var(--primary)}
-.donate-card{background:var(--surface);border-radius:var(--radius-lg);padding:30px;text-align:center;border:1px solid rgba(128,128,128,0.15)}
-.card-number{font-family:monospace;font-size:24px;color:var(--primary);letter-spacing:3px;margin:20px 0;background:rgba(128,128,128,0.08);padding:15px;border-radius:var(--radius-md);border:1px dashed var(--primary)}
-.tab-bar-container{position:fixed;bottom:30px;left:0;width:100%;display:flex;justify-content:center;z-index:100;pointer-events:none}
-.tab-bar{pointer-events:auto;background:rgba(15,17,26,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.05);border-radius:40px;display:flex;align-items:center;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,0.8);gap:4px}
-.tab-item{color:#7b819e;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:10px 16px;border-radius:30px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
-.tab-item svg{width:22px;height:22px;transition:all 0.3s;stroke:currentColor;fill:none;stroke-width:2}
-.tab-item.active{background:rgba(41,98,255,0.15);color:var(--primary)}
-@media(max-width:400px){.tab-item{padding:10px 10px}.wizard-tabs{grid-template-columns:repeat(3,1fr)}}
-.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);z-index:1000;display:none;justify-content:center;align-items:center;opacity:0;transition:opacity 0.3s}
-.modal-overlay.show{display:flex;opacity:1}
-.modal-content{background:var(--surface);width:90%;max-width:420px;border-radius:var(--radius-lg);padding:25px;border:1px solid rgba(128,128,128,0.15);transform:translateY(20px);transition:transform 0.3s;text-align:center;max-height:85vh;overflow-y:auto}
-.modal-overlay.show .modal-content{transform:translateY(0)}
-.theme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px;max-height:55vh;overflow-y:auto;padding-bottom:10px}
-.theme-circle{width:100%;aspect-ratio:1;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;transition:transform 0.2s;display:flex;justify-content:center;align-items:center}
-.theme-circle:hover{transform:scale(1.12)}
-.theme-circle.active-theme{border-color:#fff;box-shadow:0 0 12px rgba(255,255,255,0.5)}
-.close-modal{width:100%;background:rgba(128,128,128,0.18);color:var(--text-main);border:none;padding:12px;border-radius:var(--radius-md);margin-top:20px;font-weight:700;cursor:pointer;font-size:15px}
-#qrImage{width:200px;height:200px;margin:20px auto;display:block;border-radius:10px;background:#fff;padding:10px}
-.toast-container{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
-.toast{background:var(--surface);color:var(--text-main);border:1px solid var(--primary);padding:11px 22px;border-radius:30px;box-shadow:0 8px 25px rgba(0,0,0,0.5);font-size:14px;font-weight:600;animation:toastSlide 2.8s ease forwards;display:flex;align-items:center;gap:8px;white-space:nowrap}
-@keyframes toastSlide{0%{transform:translateY(40px) scale(0.9);opacity:0}10%{transform:translateY(0) scale(1);opacity:1}88%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-40px) scale(0.9);opacity:0}}
-.toggle-switch{display:flex;align-items:center;justify-content:flex-start;gap:10px;background:rgba(128,128,128,0.05);padding:12px;border-radius:var(--radius-md);margin-bottom:15px;border:1px solid rgba(128,128,128,0.2)}
-.loader{border:2px solid rgba(128,128,128,0.15);border-top:2px solid var(--primary);border-radius:50%;width:22px;height:22px;animation:spin 0.9s linear infinite;display:block;margin:32px auto}
-@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-.db-status{font-size:10px;padding:3px 9px;border-radius:20px;display:inline-flex;align-items:center;gap:4px;font-weight:600}
-.db-ok{background:rgba(50,215,75,0.1);color:var(--success);border:1px solid rgba(50,215,75,0.3)}
-.db-err{background:rgba(239,68,68,0.1);color:var(--danger);border:1px solid rgba(239,68,68,0.3)}
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease-out,transform 0.7s cubic-bezier(0.16,1,0.3,1);will-change:opacity,transform}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-.delay-1{transition-delay:0.1s}.delay-2{transition-delay:0.2s}
-.empty-state{text-align:center;padding:40px 20px;color:var(--text-sec);font-size:14px}
-.empty-state p{margin:8px 0 0;font-size:13px;line-height:1.5}
-/* SNI info box */
-.sni-info-box{background:rgba(0,200,255,0.06);border:1px solid rgba(0,200,255,0.2);border-radius:14px;padding:16px;margin-bottom:16px;font-size:13px;color:var(--text-sec);line-height:1.6}
-.sni-info-box strong{color:#00c8ff}
-/* Speed pulse */
-.ping-checking{animation:pulsePing 0.8s ease infinite}
-@keyframes pulsePing{0%,100%{opacity:1}50%{opacity:0.4}}
-/* Refresh btn */
-.btn-refresh{background:rgba(50,215,75,0.1);color:var(--success);border:1px solid rgba(50,215,75,0.25);font-size:13px!important}
-.btn-refresh:hover{background:rgba(50,215,75,0.2)}
-/* Copied flash */
-@keyframes copyFlash{0%{background:rgba(10,132,255,0.2)}100%{background:transparent}}
-.copy-flash{animation:copyFlash 0.4s ease}
-/* Shortcut hint */
-.shortcut-hint{font-size:11px;color:var(--text-sec);display:flex;align-items:center;gap:6px;margin-top:8px;justify-content:flex-end;opacity:0.6}
-.kbd{background:rgba(128,128,128,0.15);border:1px solid rgba(128,128,128,0.3);border-radius:4px;padding:1px 6px;font-size:10px;font-family:monospace;color:var(--text-sec)}
+/* SOCIAL */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px;margin-bottom:32px}
+.soc{background:var(--surf);border:1px solid rgba(128,128,128,.13);border-radius:var(--rmd);padding:13px 7px;font-size:12px;font-weight:600;text-align:center;text-decoration:none;color:var(--txt);display:flex;flex-direction:column;align-items:center;gap:6px;transition:.2s}
+.soc:hover{opacity:.8;transform:translateY(-2px)}
+.soc:active{transform:scale(.95)}
+.soc em{font-size:21px;font-style:normal;transition:transform .3s}
+.soc:hover em{transform:translateY(-3px)}
+
+/* RECENTLY */
+#recent-bar{background:var(--surf);border:1px solid rgba(128,128,128,.13);border-radius:var(--rmd);padding:11px 14px;margin-bottom:18px;display:none}
+#recent-bar h4{font-size:11px;color:var(--sec);text-transform:uppercase;margin-bottom:9px;letter-spacing:.5px}
+.chips{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:3px}
+.chips::-webkit-scrollbar{display:none}
+.chip{background:var(--surf2);border:1px solid rgba(128,128,128,.13);border-radius:18px;padding:5px 11px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:.15s;max-width:190px;overflow:hidden;text-overflow:ellipsis}
+.chip:hover{border-color:var(--pri);color:var(--pri)}
+.chip:active{transform:scale(.94)}
+
+/* SEARCH + FILTER */
+.sbar{width:100%;background:rgba(128,128,128,.06);border:1px solid rgba(128,128,128,.18);padding:12px 16px;border-radius:var(--rmd);color:var(--txt);font-size:14px;outline:none;transition:.22s;margin-bottom:10px}
+.sbar:focus{border-color:var(--pri);background:rgba(128,128,128,.1)}
+.frow{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:16px}
+.frow::-webkit-scrollbar{display:none}
+.fb{background:rgba(128,128,128,.1);border:1px solid rgba(128,128,128,.18);color:var(--sec);padding:6px 12px;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:.18s}
+.fb:hover{background:rgba(128,128,128,.2)}
+.fb.on{background:rgba(10,132,255,.14);color:var(--pri);border-color:rgba(10,132,255,.28)}
+.fc{background:rgba(128,128,128,.2);border-radius:7px;padding:1px 5px;font-size:10px;margin-left:3px;color:var(--sec)}
+.fb.on .fc{background:rgba(10,132,255,.22);color:var(--pri)}
+.cat-tools{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.sort-sel{background:var(--surf);border:1px solid rgba(128,128,128,.2);color:var(--txt);padding:7px 12px;border-radius:var(--rsm);font-size:12px;outline:none;cursor:pointer}
+.cat-tools .small-btn{background:rgba(128,128,128,.1);border:1px solid rgba(128,128,128,.18);color:var(--txt);padding:6px 11px;border-radius:var(--rsm);font-size:12px;cursor:pointer;font-weight:600;white-space:nowrap;transition:.18s}
+.cat-tools .small-btn:hover{background:rgba(128,128,128,.2)}
+.cat-tools .small-btn:active{transform:scale(.94)}
+
+/* LIST */
+.list{background:var(--surf);border-radius:var(--rlg);overflow:hidden;margin-bottom:26px;border:1px solid rgba(128,128,128,.12)}
+.sl-list{max-height:510px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sl-list::-webkit-scrollbar{width:4px}
+.sl-list::-webkit-scrollbar-thumb{background:rgba(128,128,128,.22);border-radius:8px}
+.li{border-bottom:1px solid rgba(128,128,128,.07);transition:background .16s}
+.li:last-child{border-bottom:none}
+.li:hover{background:rgba(128,128,128,.03)}
+.li-body{padding:13px 15px;display:flex;flex-direction:column;gap:8px}
+.li-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:4px;line-height:1.3}
+.li-url{font-size:10px;color:var(--sec);font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;opacity:.6}
+.li-url:hover{opacity:1;color:var(--pri)}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+
+/* BADGES */
+.badge{padding:2px 6px;border-radius:5px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;display:inline-flex;align-items:center;gap:2px}
+.b-ok{background:rgba(50,215,75,.1);color:#32d74b;border:1px solid rgba(50,215,75,.25)}
+.b-sh{background:rgba(10,132,255,.1);color:var(--pri);border:1px solid rgba(10,132,255,.25)}
+.b-sp{background:rgba(255,214,10,.1);color:#ffd60a;border:1px solid rgba(255,214,10,.25)}
+.b-ru{background:rgba(128,128,128,.13);color:var(--txt);border:1px solid rgba(128,128,128,.22)}
+.b-pu{background:rgba(191,90,242,.1);color:#bf5af2;border:1px solid rgba(191,90,242,.25)}
+.b-co{background:rgba(255,140,0,.1);color:#ff8c00;border:1px solid rgba(255,140,0,.25)}
+.b-sni{background:rgba(0,200,255,.1);color:#00c8ff;border:1px solid rgba(0,200,255,.28)}
+.b-re{background:rgba(147,51,234,.1);color:#a855f7;border:1px solid rgba(147,51,234,.25)}
+.b-ci{background:rgba(20,184,166,.1);color:#14b8a6;border:1px solid rgba(20,184,166,.25)}
+.b-nw{background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.25)}
+.b-pr{background:rgba(99,102,241,.1);color:#818cf8;border:1px solid rgba(99,102,241,.25)}
+.b-chk{background:rgba(50,215,75,.1);color:#32d74b;border:1px solid rgba(50,215,75,.25)}
+
+/* ITEM BUTTONS */
+.brow{display:flex;gap:4px}
+.bg{background:rgba(128,128,128,.1);color:var(--txt);border:none;border-radius:9px;padding:8px 10px;font-weight:700;font-size:11px;cursor:pointer;transition:.16s;flex:1;display:flex;justify-content:center;align-items:center;gap:3px}
+.bg:hover{background:rgba(128,128,128,.2)}
+.bg:active{transform:scale(.92)}
+.bi{width:34px;flex:none;padding:0;font-size:13px}
+.b-imp{background:rgba(10,132,255,.11);color:var(--pri);border:1px solid rgba(10,132,255,.2)}
+.b-imp:hover{background:rgba(10,132,255,.2)}
+.b-del{color:var(--red);background:rgba(255,69,58,.07);border:1px solid rgba(255,69,58,.18)}
+.b-del:hover{background:rgba(255,69,58,.15)}
+.b-pg{color:#f59e0b;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18)}
+.b-pg:hover{background:rgba(245,158,11,.15)}
+.b-fav{background:none;border:none;cursor:pointer;font-size:14px;padding:0 2px 0 4px;line-height:1;transition:transform .18s;flex-shrink:0}
+.b-fav:hover{transform:scale(1.4)}
+.b-fav.on{animation:hb .28s ease}
+@keyframes hb{0%{transform:scale(1)}50%{transform:scale(1.6)}100%{transform:scale(1)}}
+.sdot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:6px;box-shadow:0 0 5px var(--green);animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* MODALS */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.83);backdrop-filter:blur(12px);z-index:1000;display:none;justify-content:center;align-items:center;opacity:0;transition:opacity .25s}
+.mo.open{display:flex;opacity:1}
+.mb{background:var(--surf);width:91%;max-width:420px;border-radius:var(--rlg);padding:22px;border:1px solid rgba(128,128,128,.14);transform:translateY(16px);transition:transform .25s;text-align:center;max-height:88vh;overflow-y:auto}
+.mo.open .mb{transform:none}
+.mb h3{margin:0 0 14px;font-size:17px}
+.mb-close{width:100%;background:rgba(128,128,128,.15);color:var(--txt);border:none;padding:11px;border-radius:var(--rmd);margin-top:14px;font-weight:700;cursor:pointer;font-size:14px}
+#qrImg{width:190px;height:190px;margin:14px auto;display:block;border-radius:9px;background:#fff;padding:9px}
+
+/* PING MODAL */
+#pingMo{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);z-index:1000;display:none;justify-content:center;align-items:center}
+#pingMo.open{display:flex}
+#pingBox{background:var(--surf);width:92%;max-width:480px;border-radius:var(--rlg);padding:20px;border:1px solid rgba(128,128,128,.14);max-height:82vh;display:flex;flex-direction:column;gap:10px}
+#pingBox h3{margin:0;font-size:17px}
+#pingBox .psub{font-size:12px;color:var(--sec);margin:0}
+#pingRes{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:5px;max-height:50vh;scrollbar-width:thin}
+.pr{display:flex;align-items:center;gap:9px;background:var(--surf2);border-radius:9px;padding:8px 11px;font-size:12px}
+.pr-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.pr-name{flex:1;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pr-ms{font-family:monospace;font-size:11px;color:var(--sec);flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.pls{animation:pulse .75s infinite}
+
+/* IMPORT FILE */
+#dropzone{border:2px dashed rgba(128,128,128,.3);border-radius:var(--rmd);padding:20px;text-align:center;cursor:pointer;transition:.2s;margin:10px 0;font-size:13px;color:var(--sec)}
+#dropzone:hover,#dropzone.over{border-color:var(--pri);background:rgba(10,132,255,.05);color:var(--pri)}
+#dropzone input{display:none}
+
+/* THEMES */
+.tg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px;max-height:55vh;overflow-y:auto;padding-bottom:4px}
+.td{width:100%;aspect-ratio:1;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform .18s}
+.td:hover{transform:scale(1.12)}
+.td.on{border-color:#fff;box-shadow:0 0 10px rgba(255,255,255,.38)}
+
+/* WIZARD */
+.wiz{background:var(--surf);border-radius:var(--rlg);padding:20px;margin-bottom:16px;border:1px solid rgba(128,128,128,.13)}
+.wtabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px}
+.wt{background:rgba(128,128,128,.06);border:1px solid rgba(128,128,128,.14);padding:10px 5px;border-radius:var(--rmd);text-align:center;cursor:pointer;color:var(--sec);font-weight:600;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:5px;transition:.22s}
+.wt svg{width:19px;height:19px;fill:currentColor}
+.wt.on{background:rgba(10,132,255,.12);color:var(--pri);border-color:var(--pri)}
+.wp{display:none;padding:4px 0}
+.wp.on{display:block;animation:fi .25s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.gs{padding-left:17px;color:var(--sec);font-size:13px;line-height:1.65}
+.gs li{margin-bottom:10px}
+.gs strong{color:var(--txt)}
+.gs code{background:rgba(128,128,128,.13);padding:2px 5px;border-radius:4px;font-size:11px;font-family:monospace;color:var(--pri)}
+.sni-box{background:rgba(0,200,255,.05);border:1px solid rgba(0,200,255,.17);border-radius:12px;padding:13px;margin-bottom:13px;font-size:13px;color:var(--sec);line-height:1.55}
+.sni-box strong{color:#00c8ff}
+
+/* DONATE */
+.dcard{background:var(--surf);border-radius:var(--rlg);padding:26px 20px;text-align:center;border:1px solid rgba(128,128,128,.13);margin-bottom:8px}
+.cardno{font-family:monospace;font-size:20px;color:var(--pri);letter-spacing:2px;margin:16px 0;background:rgba(128,128,128,.07);padding:13px;border-radius:var(--rmd);border:1px dashed var(--pri)}
+
+/* MISC */
+.upd-box{background:rgba(10,132,255,.06);border:1px solid rgba(10,132,255,.2);border-radius:var(--rmd);padding:13px;margin-bottom:20px;margin-top:18px}
+.upd-box h3{margin:0 0 7px;color:var(--pri);font-size:13px}
+.upd-box p{margin:0;font-size:12px;color:var(--sec);line-height:1.55}
+.upd-box span{color:var(--txt);font-weight:700}
+.db-b{font-size:10px;padding:3px 8px;border-radius:12px;font-weight:600}
+.db-ok{background:rgba(50,215,75,.1);color:var(--green);border:1px solid rgba(50,215,75,.25)}
+.db-err{background:rgba(255,69,58,.1);color:var(--red);border:1px solid rgba(255,69,58,.25)}
+.loader{border:2px solid rgba(128,128,128,.12);border-top:2px solid var(--pri);border-radius:50%;width:22px;height:22px;animation:spin .9s linear infinite;display:block;margin:28px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:34px 16px;color:var(--sec);font-size:14px}
+.empty p{margin:7px 0 0;font-size:13px}
+.hint{font-size:11px;color:var(--sec);display:flex;align-items:center;gap:5px;justify-content:flex-end;margin:4px 0 12px;opacity:.65}
+kbd{background:rgba(128,128,128,.13);border:1px solid rgba(128,128,128,.26);border-radius:4px;padding:1px 5px;font-size:10px;font-family:monospace;color:var(--sec)}
+@keyframes cf{0%{transform:translateY(-8px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes cpf{0%{background:rgba(10,132,255,.18)}100%{background:transparent}}
+.cpf{animation:cpf .35s ease}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .65s,transform .65s cubic-bezier(.16,1,.3,1)}
+.fu.v{opacity:1;transform:none}
+
+/* TABBAR */
+.tbar-w{position:fixed;bottom:22px;left:0;width:100%;display:flex;justify-content:center;z-index:100;pointer-events:none}
+.tbar{pointer-events:auto;background:rgba(14,16,25,.93);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.05);border-radius:38px;display:flex;align-items:center;padding:6px;box-shadow:0 8px 28px rgba(0,0,0,.7);gap:2px}
+.ti{color:#7b819e;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;font-weight:500;padding:8px 12px;border-radius:26px;transition:.26s}
+.ti svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+.ti.on{background:rgba(41,98,255,.13);color:var(--pri)}
+@media(max-width:370px){.ti{padding:8px 8px}.wtabs{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
 
-<!-- Progress Bar -->
-<div id="progress-bar"></div>
+<div id="offline">📵 <span class="ru">Нет интернета</span><span class="en">No connection</span></div>
+<div id="progress"></div>
+<div class="tc" id="tc"></div>
+<button class="fab" id="fabUp" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
+<button class="fab" id="fabRnd">🎲</button>
 
-<!-- Toast -->
-<div id="toast-container" class="toast-container"></div>
-
-<!-- Scroll to top -->
-<button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
-
-<!-- FAB Random -->
-<button class="fab-random" onclick="pickRandom()" title="🎲 Случайный конфиг">🎲</button>
-
-<!-- Fixed Header Controls -->
-<div class="content-wrapper" style="position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;padding-top:12px;z-index:50;pointer-events:none;">
-  <div class="top-controls" style="pointer-events:all;">
-    <div class="control-btn" onclick="exportConfigs()" title="Экспорт / Export">📥</div>
-    <div class="control-btn" onclick="toggleLang()" id="langBtn">EN</div>
-    <div class="control-btn" onclick="togglePerf()" id="perfBtn">🔋</div>
-    <div class="control-btn" onclick="document.getElementById('themeModal').classList.add('show')" title="Тема">
-      <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5c-.828 0-1.5.672-1.5 1.5 0 .393.152.754.4 1.026.242.242.35.58.35.974 0 1.93-1.57 3.5-3.5 3.5zm-5.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3-4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
-    </div>
-  </div>
+<div id="topbar">
+  <div class="cb" id="pingBtn" title="Пинг-тест">📡</div>
+  <div class="cb" id="exportBtn" title="Экспорт">📥</div>
+  <div class="cb" id="langBtn">EN</div>
+  <div class="cb" id="perfBtn">🔋</div>
+  <div class="cb" id="themeBtn"><svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5c-.828 0-1.5.672-1.5 1.5 0 .393.152.754.4 1.026.242.242.35.58.35.974 0 1.93-1.57 3.5-3.5 3.5zm-5.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3-4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></div>
 </div>
 
-<div class="app-container" style="padding-top:65px;">
-  <div class="ambient-glow" id="glow1"></div>
+<div class="app" style="padding-top:64px">
+  <div class="glow" id="glow"></div>
+  <div class="wrap" id="home">
 
-  <div class="content-wrapper" id="home">
-
-    <!-- Update Banner -->
-    <div class="update-banner fade-up visible">
-      <h3>⚡ Обновление 8.0 (Titanium Ultra)</h3>
+    <div class="upd-box fu v">
+      <h3>🚀 v10.0 TITANIUM — полное обновление!</h3>
       <p>
-        • <span>SNI/Reality:</span> новая вкладка с конфигами обхода белых списков.<br>
-        • <span>Избранное ⭐:</span> сохраняйте лучшие конфиги кнопкой сердечка.<br>
-        • <span>Speed-чек ⚡:</span> проверяйте доступность конфига в один клик.<br>
-        • <span>Экспорт 📥:</span> скачайте все конфиги одним файлом.<br>
-        • <span>Случайный 🎲:</span> кнопка снизу-слева — рандомный конфиг.<br>
-        • <span>Горячие клавиши:</span> <kbd class="kbd">/</kbd> поиск · <kbd class="kbd">Esc</kbd> закрыть · <kbd class="kbd">R</kbd> рандом
+        • <span>Фикс всех багов</span> — шаблонные литералы, кавычки в onclick, Supabase.<br>
+        • <span>📡 Пинг-тестер</span> — кнопка вверху, тест всех конфигов сразу.<br>
+        • <span>📁 Импорт .txt</span> — перетащи файл со ссылками для массового добавления.<br>
+        • <span>🔃 Сортировка</span> — A-Z, Z-A, избранные первыми.<br>
+        • <span>📋 Копировать всё</span> — кнопка в панели инструментов каталога.<br>
+        • <span>↩️ Отмена удаления</span> — 5 секунд на отмену.<br>
+        Клавиши: <kbd>/</kbd> поиск · <kbd>R</kbd> рандом · <kbd>P</kbd> пинг · <kbd>Esc</kbd> закрыть
       </p>
     </div>
 
-    <h1 class="fade-up visible">Flux VPN</h1>
-    <p class="subtitle fade-up visible">
-      <span class="ru">Цифровая свобода без ограничений.</span>
-      <span class="en">Digital freedom without limits.</span>
-    </p>
+    <h1 class="fu v">Flux VPN</h1>
+    <p class="sub fu v"><span class="ru">Цифровая свобода без ограничений.</span><span class="en">Digital freedom without limits.</span></p>
 
-    <!-- Stats Bar -->
-    <div class="stats-bar fade-up visible" id="stats-bar">
-      <div class="stat-card"><span class="stat-num" id="stat-total">—</span><span class="stat-label"><span class="ru">Конфигов</span><span class="en">Configs</span></span></div>
-      <div class="stat-card"><span class="stat-num" id="stat-fav" style="color:#ff6b9d">—</span><span class="stat-label"><span class="ru">Избранных</span><span class="en">Favorites</span></span></div>
-      <div class="stat-card"><span class="stat-num" id="stat-mine" style="color:#bf5af2">—</span><span class="stat-label"><span class="ru">Моих</span><span class="en">Mine</span></span></div>
-      <div class="stat-card"><span class="stat-num" id="stat-sni" style="color:#00c8ff">—</span><span class="stat-label">SNI/Reality</span></div>
+    <div class="stats fu v">
+      <div class="sc"><span class="sn" id="st">—</span><span class="sl"><span class="ru">Конфигов</span><span class="en">Configs</span></span></div>
+      <div class="sc"><span class="sn" id="sf" style="color:#ff6b9d">—</span><span class="sl"><span class="ru">Избранных</span><span class="en">Favorites</span></span></div>
+      <div class="sc"><span class="sn" id="sm" style="color:#bf5af2">—</span><span class="sl"><span class="ru">Моих</span><span class="en">Mine</span></span></div>
+      <div class="sc"><span class="sn" id="ss" style="color:#00c8ff">—</span><span class="sl">SNI/Reality</span></div>
     </div>
 
-    <!-- Install card -->
-    <div class="status-card fade-up visible">
+    <div id="recent-bar"><h4>🕐 <span class="ru">Недавно скопированы</span><span class="en">Recently Copied</span></h4><div class="chips" id="chips"></div></div>
+
+    <div class="card fu v">
       <h2><span class="ru">Официальное приложение</span><span class="en">Official App</span></h2>
-      <p><span class="ru">Скачай Happ, добавь подписку и наслаждайся свободным интернетом.</span><span class="en">Download Happ, add a config, enjoy free internet.</span></p>
-      <a href="https://happ.info/" target="_blank" class="btn-main">📥 <span class="ru">Установить Happ</span><span class="en">Install Happ</span></a>
+      <p><span class="ru">Скачай Happ, добавь подписку — свободный интернет за 30 секунд.</span><span class="en">Download Happ, add a config — free internet in 30 seconds.</span></p>
+      <a href="https://happ.info/" target="_blank" class="btn-pri">📥 <span class="ru">Установить Happ</span><span class="en">Install Happ</span></a>
     </div>
 
-    <!-- Privacy Radar -->
-    <div class="radar-card fade-up delay-1 visible" id="privacy-radar">
-      <div class="radar-header">
-        <div class="radar-title-box">
-          <span class="icon">📡</span>
-          <div class="radar-title-text">
-            <span class="ru">Ваш статус<br>сети</span>
-            <span class="en">Your Network<br>Status</span>
-          </div>
-        </div>
-        <div id="radar-badge" class="radar-status loading">
-          <span class="ping-checking">⏳</span>
-        </div>
+    <div class="radar fu v">
+      <div class="radar-hd">
+        <div class="radar-ti"><span style="font-size:24px">📡</span><strong style="font-size:15px"><span class="ru">Ваша сеть</span><span class="en">Your Network</span></strong></div>
+        <span id="rbadge" class="rstatus rs-load pls">⏳</span>
       </div>
-      <div class="radar-info-grid">
-        <div class="radar-item">
-          <span class="radar-label"><span class="ru">IP Адрес</span><span class="en">IP Address</span></span>
-          <span class="radar-value" id="radar-ip">...</span>
-        </div>
-        <div class="radar-item">
-          <span class="radar-label"><span class="ru">Локация</span><span class="en">Location</span></span>
-          <span class="radar-value" id="radar-loc">...</span>
-        </div>
-        <div class="radar-item" style="grid-column:span 2;">
-          <span class="radar-label"><span class="ru">Провайдер</span><span class="en">ISP</span></span>
-          <span class="radar-value" id="radar-isp" style="color:var(--text-main)">...</span>
-        </div>
+      <div class="radar-grid">
+        <div class="ri"><label>IP</label><span id="rip">...</span></div>
+        <div class="ri"><label><span class="ru">Локация</span><span class="en">Location</span></label><span id="rloc">...</span></div>
+        <div class="ri" style="grid-column:span 2"><label><span class="ru">Провайдер</span><span class="en">ISP</span></label><span id="risp" style="color:var(--txt)">...</span></div>
       </div>
     </div>
 
-    <!-- Social -->
-    <div class="social-grid">
-      <a href="https://t.me/FluxVPNOff" target="_blank" class="btn-social fade-up delay-1"><span>✈️</span><span class="ru">Канал</span><span class="en">Channel</span></a>
-      <a href="https://t.me/FluxVPNOff_bot" target="_blank" class="btn-social fade-up delay-2"><span>🤖</span><span class="ru">Бот</span><span class="en">Bot</span></a>
-      <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-social fade-up"><span>🛠</span><span class="ru">Поддержка</span><span class="en">Support</span></a>
-      <a href="https://vk.com/club236107757" target="_blank" class="btn-social fade-up delay-1"><span>🌐</span>ВКонтакте</a>
-      <a href="https://www.tiktok.com/@fluxvpnoff" target="_blank" class="btn-social fade-up delay-2"><span>🎵</span>TikTok</a>
-      <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="btn-social fade-up"><span>🚀</span><span class="ru">Буст</span><span class="en">Boost</span></a>
+    <div class="sg">
+      <a href="https://t.me/FluxVPNOff" target="_blank" class="soc fu"><em>✈️</em><span class="ru">Канал</span><span class="en">Channel</span></a>
+      <a href="https://t.me/FluxVPNOff_bot" target="_blank" class="soc fu"><em>🤖</em><span class="ru">Бот</span><span class="en">Bot</span></a>
+      <a href="https://t.me/FluxVPNSup" target="_blank" class="soc fu"><em>🛠</em><span class="ru">Поддержка</span><span class="en">Support</span></a>
+      <a href="https://vk.com/club236107757" target="_blank" class="soc fu"><em>🌐</em>ВКонтакте</a>
+      <a href="https://www.tiktok.com/@fluxvpnoff" target="_blank" class="soc fu"><em>🎵</em>TikTok</a>
+      <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="soc fu"><em>🚀</em><span class="ru">Буст</span><span class="en">Boost</span></a>
     </div>
 
-    <!-- Popular Configs -->
-    <h2 id="subs" class="fade-up">
-      <span class="ru">⭐ Популярные конфигурации</span>
-      <span class="en">⭐ Popular Configurations</span>
-    </h2>
-    <div class="ios-list fade-up">
-      <div class="ios-item">
-        <div class="ios-item-header">
-          <div class="ios-item-top">
-            <div class="ios-item-title"><span class="status-dot"></span>🔥 Goida Premium (Обход DPI)<button class="btn-fav" onclick="toggleFavById('sub_goida1')" id="fav_sub_goida1">🤍</button></div>
-            <div class="tags-row"><span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ DPI Bypass</span><span class="badge badge-speed">⚡ Fast</span></div>
-            <div class="ios-item-subtitle" id="sub_goida1" ondblclick="copyLink('sub_goida1')">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt</div>
-          </div>
-          <div class="btn-group">
-            <div class="btn-actions-row">
-              <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('sub_goida1',this)" title="Проверить">⚡</button>
-              <button class="btn-get btn-icon" onclick="openQR('sub_goida1')" title="QR">📱</button>
-              <button class="btn-get btn-icon" onclick="shareNode('Goida Premium','sub_goida1')" title="Поделиться">📤</button>
-              <button class="btn-get" onclick="copyLink('sub_goida1')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-            </div>
-            <button class="btn-get btn-import" onclick="openInHapp('sub_goida1')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-          </div>
-        </div>
-      </div>
-      <div class="ios-item">
-        <div class="ios-item-header">
-          <div class="ios-item-top">
-            <div class="ios-item-title"><span class="status-dot"></span>⚡ Goida Standard<button class="btn-fav" onclick="toggleFavById('sub_goida2')" id="fav_sub_goida2">🤍</button></div>
-            <div class="tags-row"><span class="badge badge-success">✅ Online</span><span class="badge badge-speed">⚡ Fast</span></div>
-            <div class="ios-item-subtitle" id="sub_goida2" ondblclick="copyLink('sub_goida2')">https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt</div>
-          </div>
-          <div class="btn-group">
-            <div class="btn-actions-row">
-              <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('sub_goida2',this)" title="Проверить">⚡</button>
-              <button class="btn-get btn-icon" onclick="openQR('sub_goida2')" title="QR">📱</button>
-              <button class="btn-get btn-icon" onclick="shareNode('Goida Standard','sub_goida2')" title="Поделиться">📤</button>
-              <button class="btn-get" onclick="copyLink('sub_goida2')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-            </div>
-            <button class="btn-get btn-import" onclick="openInHapp('sub_goida2')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-          </div>
-        </div>
-      </div>
-      <div class="ios-item">
-        <div class="ios-item-header">
-          <div class="ios-item-top">
-            <div class="ios-item-title"><span class="status-dot"></span>🌟 Основная (VLESS RU)<button class="btn-fav" onclick="toggleFavById('sub1')" id="fav_sub1">🤍</button></div>
-            <div class="tags-row"><span class="badge badge-success">✅ Online</span><span class="badge badge-sni">🌐 SNI/CIDR</span><span class="badge badge-ru">🇷🇺 RU</span></div>
-            <div class="ios-item-subtitle" id="sub1" ondblclick="copyLink('sub1')">https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt</div>
-          </div>
-          <div class="btn-group">
-            <div class="btn-actions-row">
-              <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('sub1',this)" title="Проверить">⚡</button>
-              <button class="btn-get btn-icon" onclick="openQR('sub1')" title="QR">📱</button>
-              <button class="btn-get btn-icon" onclick="shareNode('VLESS RU','sub1')" title="Поделиться">📤</button>
-              <button class="btn-get" onclick="copyLink('sub1')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-            </div>
-            <button class="btn-get btn-import" onclick="openInHapp('sub1')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-          </div>
-        </div>
-      </div>
+    <h2 id="subs" class="fu">⭐ <span class="ru">Популярные</span><span class="en">Popular Configs</span></h2>
+    <div class="list fu" id="pop-list"></div>
+
+    <h2 class="fu">📚 <span class="ru">Каталог</span><span class="en">Catalog</span> <span class="db-b db-err" id="dbb">⏳</span></h2>
+
+    <div style="display:flex;gap:8px;margin-bottom:10px" class="fu">
+      <input class="sbar" id="search" placeholder="🔍 Поиск / Search..." style="margin:0;flex:1">
+      <button class="btn-pri" id="addBtn" style="padding:0 15px;font-size:21px;border-radius:var(--rmd);width:auto;max-width:none">+</button>
     </div>
 
-    <!-- Catalog -->
-    <h2 class="fade-up">
-      <span class="ru">📚 Каталог подписок</span><span class="en">📚 Catalog</span>
-      <span id="db-status-badge" class="db-status db-err">⏳</span>
-    </h2>
-    <p style="font-size:13px;color:var(--text-sec);margin-top:-10px;margin-bottom:15px;" class="fade-up">
-      <span class="ru">Только активно поддерживаемые репозитории 2026 года.</span>
-      <span class="en">Only actively maintained 2026 repositories.</span>
-    </p>
+    <div class="hint fu"><kbd>/</kbd><span class="ru">поиск</span><span class="en">search</span>·<kbd>R</kbd><span class="ru">рандом</span><span class="en">random</span>·<kbd>P</kbd><span class="ru">пинг</span><span class="en">ping</span></div>
 
-    <div style="display:flex;gap:8px;margin-bottom:12px;" class="fade-up">
-      <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Поиск / Search..." oninput="debouncedRender()" style="margin-bottom:0;flex:1;">
-      <button type="button" class="btn-main" onclick="document.getElementById('addCustomModal').classList.add('show')" style="padding:0 18px;font-size:22px;border-radius:var(--radius-md);width:auto;max-width:none;" title="Добавить">+</button>
+    <div class="frow fu v" id="frow">
+      <button class="fb on" data-f="all"><span class="ru">Все</span><span class="en">All</span><span class="fc" id="fc-all">0</span></button>
+      <button class="fb" data-f="favorites">⭐ <span class="ru">Избр.</span><span class="en">Fav</span><span class="fc" id="fc-fav" style="color:#ff6b9d">0</span></button>
+      <button class="fb" data-f="custom">👤 <span class="ru">Мои</span><span class="en">Mine</span><span class="fc" id="fc-mine">0</span></button>
+      <button class="fb" data-f="community">🌍 <span class="ru">Комьюнити</span><span class="en">Community</span><span class="fc" id="fc-comm">0</span></button>
+      <button class="fb" data-f="sni">🔐 SNI/Reality</button>
+      <button class="fb" data-f="best">🔥 <span class="ru">Лучшие</span><span class="en">Best</span></button>
+      <button class="fb" data-f="gaming">🎮 Gaming</button>
+      <button class="fb" data-f="ru">🇷🇺 RU</button>
+      <button class="fb" data-f="media">▶️ Media</button>
+      <button class="fb" data-f="new">✨ <span class="ru">Новые</span><span class="en">New</span></button>
     </div>
 
-    <div class="shortcut-hint fade-up"><span class="kbd">/</span> <span class="ru">фокус поиска</span><span class="en">focus search</span> · <span class="kbd">R</span> <span class="ru">рандом</span><span class="en">random</span></div>
-
-    <div class="filter-container fade-up visible" style="margin-top:12px;">
-      <button type="button" class="filter-btn active" data-filter="all"><span class="ru">Все</span><span class="en">All</span> <span class="filter-count" id="fc-all">0</span></button>
-      <button type="button" class="filter-btn" data-filter="favorites">⭐ <span class="ru">Избр.</span><span class="en">Fav</span> <span class="filter-count" id="fc-favorites" style="color:#ff6b9d">0</span></button>
-      <button type="button" class="filter-btn" data-filter="custom">👤 <span class="ru">Мои</span><span class="en">Mine</span> <span class="filter-count" id="fc-custom">0</span></button>
-      <button type="button" class="filter-btn" data-filter="community">🌍 <span class="ru">Комьюнити</span><span class="en">Community</span> <span class="filter-count" id="fc-community">0</span></button>
-      <button type="button" class="filter-btn" data-filter="sni">🔐 SNI/Reality</button>
-      <button type="button" class="filter-btn" data-filter="best">🔥 <span class="ru">Лучшие</span><span class="en">Best</span></button>
-      <button type="button" class="filter-btn" data-filter="gaming">🎮 <span class="ru">Игровые</span><span class="en">Gaming</span></button>
-      <button type="button" class="filter-btn" data-filter="ru">🇷🇺 RU</button>
-      <button type="button" class="filter-btn" data-filter="media">▶️ Media</button>
-      <button type="button" class="filter-btn" data-filter="new">✨ <span class="ru">Новые</span><span class="en">New</span></button>
+    <div class="cat-tools fu">
+      <select class="sort-sel" id="sortSel">
+        <option value="def">🔡 <span class="ru">По умолчанию</span><span class="en">Default</span></option>
+        <option value="az">🔤 A → Z</option>
+        <option value="za">🔤 Z → A</option>
+        <option value="fav">⭐ <span class="ru">Избранные первыми</span><span class="en">Favorites first</span></option>
+      </select>
+      <button class="small-btn" id="copyViewBtn">📋 <span class="ru">Копировать всё</span><span class="en">Copy all</span></button>
+      <button class="small-btn" id="copyFavsBtn">❤️ <span class="ru">Копир. избранные</span><span class="en">Copy favs</span></button>
     </div>
 
-    <div id="dynamic-subs-container" class="ios-list fade-up">
-      <div class="loader"></div>
-    </div>
+    <div class="list fu" id="catalog"><div class="loader"></div></div>
 
-    <!-- Guide -->
-    <h2 id="guide" class="fade-up"><span class="ru">📖 Инструкция</span><span class="en">📖 Setup Guide</span></h2>
-    <div class="wizard-container fade-up">
-      <div class="wizard-tabs">
-        <div class="wizard-tab active" data-target="w-ios">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.14 14.5c-.32.06-.42-.14-.42-.31v-1.2c0-1.12-.39-1.85-.82-2.22 2.65-.3 5.43-1.32 5.43-5.89 0-1.3-.46-2.37-1.23-3.21.12-.3.54-1.52-.12-3.17 0 0-1-.32-3.3 1.23a11.5 11.5 0 00-6 0C6.38 3.1 5.38 3.42 5.38 3.42c-.66 1.65-.24 2.87-.12 3.17-.77.84-1.23 1.91-1.23 3.21 0 4.56 2.77 5.59 5.41 5.89-.35.31-.66.86-.77 1.66-.69.31-2.45.85-3.53-1.01 0 0-.64-1.16-1.86-1.25 0 0-1.18-.01-.08.76 0 0 .79.37 1.34 1.77 0 0 .71 2.15 4.09 1.45v1.65c0 .17-.1.37-.42.31A10.005 10.005 0 0112 22z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
-          Apple
-        </div>
-        <div class="wizard-tab" data-target="w-android">
-          <svg viewBox="0 0 24 24"><path d="M17.523 15.341l1.834-3.177a.236.236 0 00-.086-.322.242.242 0 00-.325.086l-1.868 3.238c-1.428-.65-3.056-1.014-4.81-1.014-1.753 0-3.382.365-4.81 1.014l-1.868-3.238a.242.242 0 00-.325-.086.236.236 0 00-.086.322l1.834 3.177C4.195 16.924 2 19.986 2 23.5h20c0-3.514-2.195-6.576-4.477-8.159zM8.17 20.355c-.563 0-1.02-.452-1.02-1.01 0-.558.457-1.01 1.02-1.01.562 0 1.018.452 1.018 1.01 0 .558-.456 1.01-1.018 1.01zm7.66 0c-.563 0-1.02-.452-1.02-1.01 0-.558.457-1.01 1.02-1.01.562 0 1.018.452 1.018 1.01 0 .558-.456 1.01-1.018 1.01z"/></svg>
-          Android
-        </div>
-        <div class="wizard-tab" data-target="w-pc">
-          <svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zM4 19h16v2H4z"/></svg>
-          Windows
-        </div>
-        <div class="wizard-tab" data-target="w-tv">
-          <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"></path></svg>
-          Smart TV
-        </div>
-        <div class="wizard-tab" data-target="w-sni">
-          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-          SNI/CIDR
-        </div>
+    <h2 id="guide" class="fu">📖 <span class="ru">Инструкция</span><span class="en">Setup Guide</span></h2>
+    <div class="wiz fu">
+      <div class="wtabs">
+        <div class="wt on" data-wp="wp-ios"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.14 14.5c-.32.06-.42-.14-.42-.31v-1.2c0-1.12-.39-1.85-.82-2.22 2.65-.3 5.43-1.32 5.43-5.89 0-1.3-.46-2.37-1.23-3.21.12-.3.54-1.52-.12-3.17 0 0-1-.32-3.3 1.23a11.5 11.5 0 00-6 0C6.38 3.1 5.38 3.42 5.38 3.42c-.66 1.65-.24 2.87-.12 3.17-.77.84-1.23 1.91-1.23 3.21 0 4.56 2.77 5.59 5.41 5.89-.35.31-.66.86-.77 1.66-.69.31-2.45.85-3.53-1.01 0 0-.64-1.16-1.86-1.25 0 0-1.18-.01-.08.76 0 0 .79.37 1.34 1.77 0 0 .71 2.15 4.09 1.45v1.65c0 .17-.1.37-.42.31A10 10 0 0112 22z"/></svg>Apple</div>
+        <div class="wt" data-wp="wp-android"><svg viewBox="0 0 24 24"><path d="M17.523 15.341l1.834-3.177a.236.236 0 00-.086-.322.242.242 0 00-.325.086l-1.868 3.238C16.65 14.516 14.93 14 13 14c-1.753 0-3.382.365-4.81 1.014l-1.868-3.238a.242.242 0 00-.325-.086.236.236 0 00-.086.322l1.834 3.177C4.195 16.924 2 19.986 2 23.5h20c0-3.514-2.195-6.576-4.477-8.159zM8.17 20.355c-.563 0-1.02-.452-1.02-1.01s.457-1.01 1.02-1.01 1.018.452 1.018 1.01-.456 1.01-1.018 1.01zm7.66 0c-.563 0-1.02-.452-1.02-1.01s.457-1.01 1.02-1.01 1.018.452 1.018 1.01-.456 1.01-1.018 1.01z"/></svg>Android</div>
+        <div class="wt" data-wp="wp-pc"><svg viewBox="0 0 24 24"><path d="M2 3h20v14H2zM4 19h16v2H4z"/></svg>Windows</div>
+        <div class="wt" data-wp="wp-tv"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" fill="none" stroke-width="2"/><line x1="8" y1="23" x2="16" y2="23" stroke="currentColor" stroke-width="2"/><line x1="12" y1="19" x2="12" y2="23" stroke="currentColor" stroke-width="2"/></svg>TV</div>
+        <div class="wt" data-wp="wp-sni"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>SNI</div>
       </div>
-      <div id="w-ios" class="wizard-content active">
-        <ul class="guide-steps">
-          <li><span class="ru">Скачайте <strong>Happ</strong> из App Store.</span><span class="en">Download <strong>Happ</strong> from the App Store.</span></li>
-          <li><span class="ru">Нажмите <strong>Добавить в Happ</strong> у выбранного конфига.</span><span class="en">Tap <strong>Add to Happ</strong> next to a config.</span></li>
-          <li><span class="ru">Нажмите <strong>Save / Import</strong>.</span><span class="en">Tap <strong>Save / Import</strong>.</span></li>
-          <li><span class="ru">Подключитесь большой кнопкой в центре экрана.</span><span class="en">Connect with the big button in the center.</span></li>
-        </ul>
-      </div>
-      <div id="w-android" class="wizard-content">
-        <ul class="guide-steps">
-          <li><span class="ru">Установите <strong>Happ</strong> из Google Play.</span><span class="en">Install <strong>Happ</strong> from Google Play.</span></li>
-          <li><span class="ru">Нажмите <strong>Добавить в Happ</strong>.</span><span class="en">Tap <strong>Add to Happ</strong>.</span></li>
-          <li><span class="ru"><strong>Важно:</strong> Нажмите 🔄 (обновить) после импорта.</span><span class="en"><strong>Important:</strong> Tap 🔄 to refresh after import.</span></li>
-          <li><span class="ru">Выберите сервер и подключитесь.</span><span class="en">Select a server and connect.</span></li>
-        </ul>
-      </div>
-      <div id="w-pc" class="wizard-content">
-        <ul class="guide-steps">
-          <li><span class="ru">Скачайте <strong>Happ</strong> для Windows с сайта happ.info.</span><span class="en">Download <strong>Happ</strong> for Windows from happ.info.</span></li>
-          <li><span class="ru">Нажмите <strong>Копировать</strong> у нужного конфига.</span><span class="en">Click <strong>Copy</strong> on the desired config.</span></li>
-          <li><span class="ru">В Happ выберите <em>Import → From Clipboard</em>.</span><span class="en">In Happ choose <em>Import → From Clipboard</em>.</span></li>
-          <li><span class="ru">Нажмите <strong>Connect</strong>.</span><span class="en">Click <strong>Connect</strong>.</span></li>
-        </ul>
-      </div>
-      <div id="w-tv" class="wizard-content">
-        <ul class="guide-steps">
-          <li><span class="ru">Установите <strong>Happ</strong> на Smart TV через APK.</span><span class="en">Install <strong>Happ</strong> on TV via APK.</span></li>
-          <li><span class="ru">Скопируйте ссылку конфига и отправьте в Telegram.</span><span class="en">Copy config link and send via Telegram.</span></li>
-          <li><span class="ru">В Happ: <em>Subscriptions → Add from URL</em>.</span><span class="en">In Happ: <em>Subscriptions → Add from URL</em>.</span></li>
-        </ul>
-      </div>
-      <div id="w-sni" class="wizard-content">
-        <div class="sni-info-box">
-          <strong>SNI Bypass</strong> — маскирует VPN-трафик под обычный HTTPS. Провайдер видит запрос к легальному сайту (напр. cloudflare.com), а не к VPN-серверу.<br><br>
-          <strong>XTLS-Reality</strong> — копирует TLS-отпечаток настоящего сайта. Невозможно отличить от легального HTTPS даже при глубоком анализе.<br><br>
-          <strong>CIDR Routing</strong> — только заблокированные IP идут через VPN. Скорость не падает для разблокированных сайтов.
-        </div>
-        <ul class="guide-steps">
-          <li><span class="ru">Выберите конфиг с фильтром <strong>🔐 SNI/Reality</strong> в каталоге.</span><span class="en">Choose a config with the <strong>🔐 SNI/Reality</strong> filter.</span></li>
-          <li><span class="ru">В Happ после импорта: <em>Settings → Routing → «Только заблокированные»</em> — включить белый список РКН/ЦБРФ.</span><span class="en">In Happ after import: <em>Settings → Routing → «Blocked only»</em> to enable RU whitelist mode.</span></li>
-          <li><span class="ru">Для Reality: ищите конфиги с тегом <code>🔐 XTLS-Reality</code> — они обходят даже усиленный DPI.</span><span class="en">For Reality: look for <code>🔐 XTLS-Reality</code> tagged configs — they bypass even deep DPI.</span></li>
-          <li><span class="ru">Если конфиг не работает — нажмите <strong>⚡ Speed-чек</strong> чтобы проверить доступность URL.</span><span class="en">If a config fails — click <strong>⚡ Speed-check</strong> to verify the URL is reachable.</span></li>
-          <li><span class="ru">Конфиги обновляются каждые 30 мин–6 ч автоматически — просто нажмите 🔄 в Happ.</span><span class="en">Configs auto-update every 30 min–6h — just tap 🔄 in Happ.</span></li>
+      <div id="wp-ios" class="wp on"><ul class="gs"><li><span class="ru">Скачайте <strong>Happ</strong> из App Store.</span><span class="en">Download <strong>Happ</strong> from the App Store.</span></li><li><span class="ru">Нажмите <strong>Добавить в Happ</strong> у конфига.</span><span class="en">Tap <strong>Add to Happ</strong> on any config.</span></li><li><span class="ru">Нажмите <strong>Save</strong>.</span><span class="en">Tap <strong>Save</strong>.</span></li><li><span class="ru">Подключитесь большой кнопкой.</span><span class="en">Connect with the big button.</span></li></ul></div>
+      <div id="wp-android" class="wp"><ul class="gs"><li><span class="ru">Установите <strong>Happ</strong> из Google Play.</span><span class="en">Install <strong>Happ</strong> from Google Play.</span></li><li><span class="ru">Нажмите <strong>Добавить в Happ</strong>.</span><span class="en">Tap <strong>Add to Happ</strong>.</span></li><li><span class="ru"><strong>Важно:</strong> нажмите 🔄 для обновления.</span><span class="en"><strong>Important:</strong> tap 🔄 to refresh.</span></li></ul></div>
+      <div id="wp-pc" class="wp"><ul class="gs"><li><span class="ru">Скачайте Happ на happ.info.</span><span class="en">Download Happ at happ.info.</span></li><li><span class="ru">Нажмите <strong>Копировать</strong> у конфига.</span><span class="en">Click <strong>Copy</strong> on the config.</span></li><li><span class="ru">Happ: <em>Import → From Clipboard</em>.</span><span class="en">Happ: <em>Import → From Clipboard</em>.</span></li></ul></div>
+      <div id="wp-tv" class="wp"><ul class="gs"><li><span class="ru">Установите Happ через APK.</span><span class="en">Install Happ via APK.</span></li><li><span class="ru">Скопируйте ссылку → Telegram себе.</span><span class="en">Copy link → send to yourself via Telegram.</span></li><li>Happ: <em>Subscriptions → Add from URL</em>.</li></ul></div>
+      <div id="wp-sni" class="wp">
+        <div class="sni-box"><strong>XTLS-Reality</strong> — копирует TLS-отпечаток настоящего HTTPS-сайта. DPI не может отличить от легального трафика.<br><br><strong>SNI Bypass</strong> — маскирует VPN под запрос к доверенному домену (cloudflare.com и др.).<br><br><strong>CIDR Routing</strong> — только заблокированные IP идут через VPN. Остальной трафик — напрямую, без потери скорости.</div>
+        <ul class="gs">
+          <li><span class="ru">Выберите фильтр <strong>🔐 SNI/Reality</strong> — там только обход-конфиги.</span><span class="en">Use filter <strong>🔐 SNI/Reality</strong> — only bypass configs.</span></li>
+          <li>Happ → <em>Settings → Routing → <strong>Только заблокированные</strong></em> (белый список РКН).</li>
+          <li><span class="ru">Reality-конфиги с тегом <code>🔐 XTLS</code> обходят даже усиленный ТСПУ.</span><span class="en">Reality configs with <code>🔐 XTLS</code> tag bypass even deep DPI.</span></li>
+          <li><span class="ru">Кнопка <strong>⚡</strong> рядом с конфигом — проверить доступность прямо сейчас.</span><span class="en">The <strong>⚡</strong> button — check availability right now.</span></li>
         </ul>
       </div>
     </div>
 
-    <!-- Donate -->
-    <h2 id="donate" class="fade-up"><span class="ru">❤️ Поддержать проект</span><span class="en">❤️ Support Us</span></h2>
-    <div class="donate-card fade-up">
-      <p><span class="ru">Ваша поддержка помогает оплачивать серверы!</span><span class="en">Your support keeps the servers running!</span></p>
-      <div class="card-number" id="cardNum">2202 2067 8926 6512</div>
-      <button class="btn-get" style="width:100%;padding:14px;margin-bottom:18px;font-size:15px;border-radius:12px;" onclick="copyLink('cardNum')">
-        <span class="ru">Скопировать номер карты</span><span class="en">Copy Card Number</span>
-      </button>
-      <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn-main" style="width:100%;max-width:100%;background:#ff8c00;padding:14px;border-radius:12px;">
-        <span class="ru">Отправить донат 💸</span><span class="en">Send Donation 💸</span>
-      </a>
+    <h2 id="donate" class="fu">❤️ <span class="ru">Поддержать</span><span class="en">Support</span></h2>
+    <div class="dcard fu">
+      <p style="color:var(--sec);font-size:14px;margin-bottom:14px"><span class="ru">Ваша поддержка помогает платить за серверы!</span><span class="en">Your support keeps the servers alive!</span></p>
+      <div class="cardno" id="cardNo">2202 2067 8926 6512</div>
+      <button class="bg" style="padding:12px;font-size:14px;border-radius:11px;width:100%;margin-bottom:13px" data-action="copy-card">📋 <span class="ru">Скопировать номер карты</span><span class="en">Copy Card Number</span></button>
+      <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn-pri" style="max-width:100%;background:#ff8c00;padding:13px;border-radius:11px">💸 <span class="ru">Отправить донат</span><span class="en">Send Donation</span></a>
     </div>
 
-    <!-- Mega Base -->
-    <h2 id="backup" class="fade-up"><span class="ru">🗄 Мега-База (Резерв)</span><span class="en">🗄 Mega Base (Backup)</span></h2>
-    <p class="fade-up" style="font-size:13px;color:var(--text-sec);margin-top:-10px;">
-      <span class="ru">Десятки актуальных конфигов от проверенных репозиториев 2026 года.</span>
-      <span class="en">Dozens of current configs from verified 2026 repositories.</span>
-    </p>
-    <div class="ios-list scrollable-list fade-up" id="mega-base-container"><div class="loader"></div></div>
+    <h2 id="backup" class="fu">🗄 <span class="ru">Мега-База</span><span class="en">Mega Base</span></h2>
+    <p style="font-size:12px;color:var(--sec);margin:-10px 0 12px" class="fu"><span class="ru">60+ конфигов из проверенных репозиториев. С поддержкой SNI/Reality/CIDR.</span><span class="en">60+ configs from verified repos. With SNI/Reality/CIDR support.</span></p>
+    <div class="list sl-list fu" id="mega"><div class="loader"></div></div>
 
-    <!-- Footer CTA -->
-    <div class="fade-up" style="text-align:center;margin-top:40px;padding:28px 20px;background:var(--surface);border:1px solid rgba(128,128,128,0.15);border-radius:var(--radius-lg);">
-      <h2 style="margin-top:0;border:none;padding-bottom:0;justify-content:center;"><span class="ru">Остались вопросы?</span><span class="en">Any questions?</span></h2>
-      <p style="color:var(--text-sec);margin-bottom:22px;font-size:14px;"><span class="ru">Наша поддержка готова помочь.</span><span class="en">Our support is ready to help.</span></p>
-      <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-main" style="max-width:100%;padding:14px 25px;border-radius:12px;">
-        <span class="ru">👨‍💻 Написать в поддержку</span><span class="en">👨‍💻 Contact Support</span>
-      </a>
+    <div class="fu" style="text-align:center;margin-top:32px;padding:24px 18px;background:var(--surf);border:1px solid rgba(128,128,128,.12);border-radius:var(--rlg)">
+      <h2 style="margin:0 0 8px;border:none;padding:0;justify-content:center"><span class="ru">Остались вопросы?</span><span class="en">Any questions?</span></h2>
+      <p style="color:var(--sec);font-size:13px;margin-bottom:18px"><span class="ru">Поддержка всегда рядом.</span><span class="en">Support is always here.</span></p>
+      <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-pri" style="max-width:100%;padding:12px 20px;border-radius:11px">👨‍💻 <span class="ru">Написать в поддержку</span><span class="en">Contact Support</span></a>
     </div>
-
-    <div style="text-align:center;margin-top:40px;color:var(--text-sec);font-size:13px;" class="fade-up">
-      Flux VPN &copy; 2026.<br>
-      <span style="color:var(--primary);font-weight:800;margin-top:8px;display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Версия 8.0.0 (Titanium Ultra)</span>
-    </div>
+    <div style="text-align:center;margin-top:32px;color:var(--sec);font-size:11px;padding-bottom:10px" class="fu">Flux VPN © 2026 · <span style="color:var(--pri);font-weight:800;letter-spacing:1px">v10.0 TITANIUM</span></div>
   </div>
 
-  <!-- Tab Bar -->
-  <div class="tab-bar-container">
-    <div class="tab-bar">
-      <a href="#home" class="tab-item active">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-        <span class="ru">Главная</span><span class="en">Home</span>
-      </a>
-      <a href="#subs" class="tab-item">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-        <span class="ru">Конфиги</span><span class="en">Configs</span>
-      </a>
-      <a href="#guide" class="tab-item">
-        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-        <span class="ru">Гайд</span><span class="en">Guide</span>
-      </a>
-      <a href="#donate" class="tab-item">
-        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-        <span class="ru">Донат</span><span class="en">Donate</span>
-      </a>
-      <a href="https://t.me/FluxVPNSup" target="_blank" class="tab-item">
-        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-        <span class="ru">Саппорт</span><span class="en">Support</span>
-      </a>
-    </div>
-  </div>
+  <div class="tbar-w"><div class="tbar">
+    <a href="#home" class="ti on"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span class="ru">Главная</span><span class="en">Home</span></a>
+    <a href="#subs" class="ti"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg><span class="ru">Конфиги</span><span class="en">Configs</span></a>
+    <a href="#guide" class="ti"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg><span class="ru">Гайд</span><span class="en">Guide</span></a>
+    <a href="#donate" class="ti"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span class="ru">Донат</span><span class="en">Donate</span></a>
+    <a href="https://t.me/FluxVPNSup" target="_blank" class="ti"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg><span class="ru">Саппорт</span><span class="en">Support</span></a>
+  </div></div>
 </div>
 
-<!-- MODALS -->
-<div id="themeModal" class="modal-overlay" onclick="this.classList.remove('show')">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <h3 style="margin-top:0;"><span class="ru">Выберите тему</span><span class="en">Select Theme</span></h3>
-    <div class="theme-grid" id="themeGrid"></div>
-    <button class="close-modal" onclick="document.getElementById('themeModal').classList.remove('show')"><span class="ru">Закрыть</span><span class="en">Close</span></button>
-  </div>
-</div>
+<!-- PING MODAL -->
+<div id="pingMo"><div id="pingBox">
+  <h3>📡 <span class="ru">Пинг-тестер</span><span class="en">Ping Tester</span></h3>
+  <p class="psub"><span class="ru">🟢 до 800ms · 🟡 до 2500ms · 🔴 выше · ❌ недоступен</span><span class="en">🟢 up to 800ms · 🟡 up to 2500ms · 🔴 high · ❌ unavailable</span></p>
+  <div id="pingRes"></div>
+  <button class="mb-close" id="pingClose"><span class="ru">Закрыть</span><span class="en">Close</span></button>
+</div></div>
 
-<div id="qrModal" class="modal-overlay" onclick="this.classList.remove('show')">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <h3 style="margin-top:0;"><span class="ru">Сканируйте из Happ</span><span class="en">Scan from Happ</span></h3>
-    <p style="font-size:13px;color:var(--text-sec);margin-bottom:10px;"><span class="ru">Откройте Happ и выберите «Import from QR».</span><span class="en">Open Happ and choose «Import from QR».</span></p>
-    <img id="qrImage" src="" alt="QR Code">
-    <button class="close-modal" onclick="document.getElementById('qrModal').classList.remove('show')"><span class="ru">Закрыть</span><span class="en">Close</span></button>
-  </div>
-</div>
+<!-- THEME MODAL -->
+<div class="mo" id="themeMo"><div class="mb"><h3><span class="ru">Тема</span><span class="en">Theme</span></h3><div class="tg" id="tg"></div><button class="mb-close" data-close="themeMo"><span class="ru">Закрыть</span><span class="en">Close</span></button></div></div>
 
-<div id="addCustomModal" class="modal-overlay" onclick="this.classList.remove('show')">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <h3 style="margin-top:0;"><span class="ru">Добавить подписку</span><span class="en">Add Custom Config</span></h3>
-    <p style="font-size:13px;color:var(--text-sec);margin-bottom:18px;">
-      <span class="ru">Сохранится в облаке Supabase и будет видна в Комьюнити.</span>
-      <span class="en">Saved to Supabase cloud and visible in Community.</span>
-    </p>
-    <input type="text" id="customName" placeholder="Название / Name" class="search-bar" style="margin-bottom:10px;">
-    <input type="text" id="customUrl" placeholder="URL (https://...)" class="search-bar" style="margin-bottom:15px;" onpaste="setTimeout(()=>validateUrlInput(),50)">
-    <p style="font-size:11px;color:var(--warning);text-align:left;margin-top:0;display:none;" id="dbWarning">
-      ⚠️ <span class="ru">Supabase недоступна — сохранится только локально.</span><span class="en">Supabase unavailable — saved locally only.</span>
-    </p>
-    <button class="btn-main" onclick="saveCustomSub()" style="width:100%;margin-top:12px;border-radius:12px;padding:13px;">
-      <span class="ru">💾 Сохранить</span><span class="en">💾 Save</span>
-    </button>
-    <button class="close-modal" onclick="document.getElementById('addCustomModal').classList.remove('show')">
-      <span class="ru">Отмена</span><span class="en">Cancel</span>
-    </button>
-  </div>
-</div>
+<!-- QR MODAL -->
+<div class="mo" id="qrMo"><div class="mb"><h3><span class="ru">Сканируйте в Happ</span><span class="en">Scan in Happ</span></h3><p style="font-size:12px;color:var(--sec)"><span class="ru">Happ → Import from QR</span><span class="en">Happ → Import from QR</span></p><img id="qrImg" src="" alt="QR"><button class="mb-close" data-close="qrMo"><span class="ru">Закрыть</span><span class="en">Close</span></button></div></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ADD MODAL -->
+<div class="mo" id="addMo"><div class="mb">
+  <h3><span class="ru">Добавить подписку</span><span class="en">Add Config</span></h3>
+  <input id="cName" class="sbar" placeholder="Название / Name" style="margin-bottom:8px">
+  <input id="cUrl" class="sbar" placeholder="URL (https://...)" style="margin-bottom:6px">
+  <div id="dropzone" title="Перетащи .txt или кликни"><input type="file" id="fileIn" accept=".txt"><span class="ru">📁 Импорт .txt файла (перетащи или нажми)<br><small>Файл с URL — по одному на строку</small></span><span class="en">📁 Import .txt file (drag or click)<br><small>File with URLs — one per line</small></span></div>
+  <p id="urlWarn" style="font-size:11px;color:var(--yellow);display:none;margin:4px 0">⚠️ URL должен начинаться с https://</p>
+  <p id="dbWarn" style="font-size:11px;color:var(--yellow);display:none;margin:4px 0">⚠️ <span class="ru">Supabase offline — сохранено локально</span><span class="en">Supabase offline — saved locally</span></p>
+  <button class="btn-pri" id="saveBtn" style="width:100%;border-radius:11px;padding:11px;margin-top:12px">💾 <span class="ru">Сохранить</span><span class="en">Save</span></button>
+  <button class="mb-close" data-close="addMo"><span class="ru">Отмена</span><span class="en">Cancel</span></button>
+</div></div>
+
 <script>
-'use strict';
+// ═══════════════════════════════════════════════════════
+// 🔧 GLOBAL ERROR GUARD — fixes "Failed to fetch"
+// ═══════════════════════════════════════════════════════
+window.addEventListener('unhandledrejection', e => {
+  e.preventDefault();
+  if (!DB.ready) { DB.loadLocal(); render(); upStats(); upCounts(); }
+});
+window.addEventListener('error', e => { if (e.message && e.message.includes('fetch')) e.preventDefault(); });
 
-// ==============================
+// ═══════════════════════════════════════════════════════
 // PROGRESS BAR
-// ==============================
-const Progress = {
-  el: null,
-  init() { this.el = document.getElementById('progress-bar'); },
-  set(v) {
-    if (!this.el) return;
-    this.el.style.opacity = '1';
-    this.el.style.width = v + '%';
-    if (v >= 100) setTimeout(() => { this.el.style.opacity = '0'; this.el.style.width = '0'; }, 400);
-  }
-};
+// ═══════════════════════════════════════════════════════
+const PB = { el: null, init() { this.el = document.getElementById('progress'); },
+  set(v) { if (!this.el) return; this.el.style.opacity = '1'; this.el.style.width = v + '%';
+    if (v >= 100) setTimeout(() => { this.el.style.opacity = '0'; this.el.style.width = '0'; }, 420); } };
 
-// ==============================
+// ═══════════════════════════════════════════════════════
 // TOAST
-// ==============================
-window.showToast = function(msg, duration = 2800) {
-  const c = document.getElementById('toast-container');
-  const t = document.createElement('div');
-  t.className = 'toast';
-  t.innerHTML = msg;
-  c.appendChild(t);
-  setTimeout(() => t.remove(), duration + 200);
-};
+// ═══════════════════════════════════════════════════════
+function toast(msg, dur = 2800) {
+  const c = document.getElementById('tc'), t = document.createElement('div');
+  t.className = 'toast'; t.innerHTML = msg; c.appendChild(t);
+  setTimeout(() => t.remove(), dur + 300);
+}
+function toastUndo(msg, cb) {
+  const c = document.getElementById('tc'), t = document.createElement('div');
+  t.className = 'toast has-btn';
+  t.innerHTML = msg + ' <button class="toast-undo">↩️ Отмена</button>';
+  t.querySelector('.toast-undo').onclick = () => { cb(); t.remove(); };
+  c.appendChild(t); setTimeout(() => t.remove(), 5200);
+}
 
-// ==============================
+// ═══════════════════════════════════════════════════════
 // CONFETTI
-// ==============================
-function launchConfetti() {
-  if (perfMode) return;
-  const colors = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#c77dff','#ff9500','#00c8ff'];
-  for (let i = 0; i < 35; i++) {
-    const p = document.createElement('div');
-    const size = Math.random() * 10 + 5;
-    const isCircle = Math.random() > 0.4;
-    p.style.cssText = `position:fixed;left:${10 + Math.random()*80}%;top:-10px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${isCircle?'50%':'3px'};z-index:9999;pointer-events:none;animation:confettiFall ${0.6+Math.random()*1.2}s ease-in forwards;animation-delay:${Math.random()*0.4}s;`;
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 2000);
-  }
-}
-
-// ==============================
-// HAPTIC
-// ==============================
-function haptic(pattern = [30]) {
-  if (navigator.vibrate) navigator.vibrate(pattern);
-}
-
-// ==============================
-// SUPABASE
-// ==============================
-const SUPABASE_URL = 'https://ikgmsaoxlwmhccntdqdp.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls';
-let supabaseClient, dbReady = false, currentUser = null;
-let customSubs = [], communitySubs = [];
-
-try { supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); } catch(e) {}
-
-function setDbStatus(ok) {
-  const badge = document.getElementById('db-status-badge');
-  if (!badge) return;
-  badge.className = 'db-status ' + (ok ? 'db-ok' : 'db-err');
-  badge.textContent = ok ? '✅ Cloud' : '⚠️ Local';
-}
-
-async function ensureAuth() {
-  if (currentUser) return currentUser;
-  if (!supabaseClient) return null;
-  try {
-    const { data: { user } } = await supabaseClient.auth.getUser();
-    if (user) { currentUser = user; return user; }
-    const { data, error } = await supabaseClient.auth.signInAnonymously();
-    if (error) throw error;
-    currentUser = data.user;
-    return currentUser;
-  } catch(e) { return null; }
-}
-
-async function loadDbSubs() {
-  Progress.set(20);
-  if (!supabaseClient) { loadLocalSubs(); return; }
-  try {
-    const user = await ensureAuth();
-    if (!user) throw new Error('no auth');
-    const [myRes, pubRes] = await Promise.all([
-      supabaseClient.from('subscriptions').select('id,name,url,is_public,user_id').eq('user_id', user.id).order('created_at', { ascending: false }),
-      supabaseClient.from('subscriptions').select('id,name,url,is_public,user_id').eq('is_public', true).order('created_at', { ascending: false })
-    ]);
-    if (myRes.error) throw myRes.error;
-    customSubs = (myRes.data || []).map(r => ({ id: String(r.id), name: r.name, url: r.url, category: 'custom', isOwner: true }));
-    communitySubs = (pubRes.data || []).filter(r => r.user_id !== user.id).map(r => ({ id: String(r.id), name: r.name, url: r.url, category: 'community', isOwner: false }));
-    dbReady = true;
-    setDbStatus(true);
-    document.getElementById('dbWarning').style.display = 'none';
-  } catch(e) { loadLocalSubs(); }
-  Progress.set(60);
-}
-
-function loadLocalSubs() {
-  dbReady = false; setDbStatus(false);
-  document.getElementById('dbWarning').style.display = 'block';
-  customSubs = JSON.parse(localStorage.getItem('flux_custom_subs') || '[]');
-  communitySubs = JSON.parse(localStorage.getItem('flux_community_subs') || '[]');
-}
-
-// ==============================
-// FAVORITES
-// ==============================
-let favorites = new Set(JSON.parse(localStorage.getItem('flux_favs') || '[]'));
-
-function saveFavorites() {
-  localStorage.setItem('flux_favs', JSON.stringify([...favorites]));
-}
-
-// Toggle by element ID containing URL
-window.toggleFavById = function(uid) {
-  const el = document.getElementById(uid);
-  if (!el) return;
-  const url = el.innerText.trim();
-  const favBtn = document.getElementById('fav_' + uid);
-  if (favorites.has(url)) {
-    favorites.delete(url);
-    if (favBtn) { favBtn.innerHTML = '🤍'; favBtn.classList.remove('active'); }
-    showToast('💔 <span class="ru">Убрано из избранного</span><span class="en">Removed from favorites</span>');
-  } else {
-    favorites.add(url);
-    if (favBtn) { favBtn.innerHTML = '❤️'; favBtn.classList.add('active'); }
-    showToast('⭐ <span class="ru">Добавлено в избранное!</span><span class="en">Added to favorites!</span>');
-    launchConfetti();
-    haptic([20, 40, 20]);
-  }
-  saveFavorites();
-  updateStats();
-  updateFilterCounts();
-  // If currently in favorites view, re-render
-  const af = document.querySelector('.filter-btn.active')?.dataset.filter;
-  if (af === 'favorites') renderSubs('favorites');
-};
-
-// Toggle by URL (for dynamic items)
-window.toggleFavUrl = function(uid, favBtnEl) {
-  const el = document.getElementById(uid);
-  if (!el) return;
-  const url = el.innerText.trim();
-  if (favorites.has(url)) {
-    favorites.delete(url);
-    favBtnEl.innerHTML = '🤍';
-    favBtnEl.classList.remove('active');
-    showToast('💔 <span class="ru">Убрано</span><span class="en">Removed</span>');
-  } else {
-    favorites.add(url);
-    favBtnEl.innerHTML = '❤️';
-    favBtnEl.classList.add('active');
-    showToast('⭐ <span class="ru">В избранном!</span><span class="en">Favorited!</span>');
-    launchConfetti();
-    haptic([20, 40, 20]);
-  }
-  saveFavorites();
-  updateStats();
-  updateFilterCounts();
-  const af = document.querySelector('.filter-btn.active')?.dataset.filter;
-  if (af === 'favorites') renderSubs('favorites');
-};
-
-// Sync fav buttons in popular section
-function syncStaticFavBtns() {
-  ['sub_goida1','sub_goida2','sub1'].forEach(uid => {
-    const el = document.getElementById(uid);
-    const btn = document.getElementById('fav_' + uid);
-    if (el && btn) {
-      const url = el.innerText.trim();
-      btn.innerHTML = favorites.has(url) ? '❤️' : '🤍';
-      if (favorites.has(url)) btn.classList.add('active');
-      else btn.classList.remove('active');
-    }
-  });
-}
-
-// ==============================
-// LANGUAGE
-// ==============================
-let currentLang = localStorage.getItem('flux_lang') || 'ru';
-document.documentElement.lang = currentLang;
-document.getElementById('langBtn').innerText = currentLang === 'ru' ? 'EN' : 'RU';
-
-window.toggleLang = function() {
-  currentLang = currentLang === 'ru' ? 'en' : 'ru';
-  document.documentElement.lang = currentLang;
-  document.getElementById('langBtn').innerText = currentLang === 'ru' ? 'EN' : 'RU';
-  localStorage.setItem('flux_lang', currentLang);
-  showToast(currentLang === 'ru' ? '🇷🇺 Язык: Русский' : '🇬🇧 Language: English');
-  const af = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
-  renderSubs(af);
-  renderMegaBase();
-  updateStats();
-};
-
-// ==============================
-// PERF MODE
-// ==============================
+// ═══════════════════════════════════════════════════════
 let perfMode = localStorage.getItem('flux_perf') === 'true';
-function applyPerf() {
-  const g = document.getElementById('glow1');
-  if (g) g.style.display = perfMode ? 'none' : 'block';
-}
-applyPerf();
-
-window.togglePerf = function() {
-  perfMode = !perfMode;
-  localStorage.setItem('flux_perf', perfMode);
-  applyPerf();
-  showToast(perfMode ? '🔋 Power saving ON' : '✨ Full effects ON');
-};
-
-// ==============================
-// THEMES
-// ==============================
-const themes = [
-  {id:"default",c:"#0a84ff"},{id:"cyberpunk",c:"#ff007f"},{id:"matrix",c:"#00ff00"},
-  {id:"blood",c:"#ff2a2a"},{id:"ocean",c:"#00d4ff"},{id:"gold",c:"#ffd700"},
-  {id:"purple",c:"#b026ff"},{id:"sunset",c:"#ff6a00"},{id:"hacker",c:"#39ff14"},
-  {id:"amethyst",c:"#9b5de5"},{id:"midnight",c:"#3b82f6"},{id:"synthwave",c:"#ff9e00"},
-  {id:"mint",c:"#00ffaa"},{id:"neonpink",c:"#ff00aa"},{id:"aqua",c:"#00ffff"},
-  {id:"dracula",c:"#ff79c6"},{id:"monochrome",c:"#ffffff"},{id:"light",c:"#2563eb"}
-];
-const savedTheme = localStorage.getItem('flux_theme') || 'default';
-document.documentElement.setAttribute('data-theme', savedTheme);
-const themeGrid = document.getElementById('themeGrid');
-themes.forEach(t => {
-  const c = document.createElement('div');
-  c.className = `theme-circle ${savedTheme===t.id?'active-theme':''}`;
-  c.style.background = t.c;
-  c.title = t.id;
-  c.onclick = () => {
-    document.querySelectorAll('.theme-circle').forEach(x => x.classList.remove('active-theme'));
-    c.classList.add('active-theme');
-    document.documentElement.setAttribute('data-theme', t.id);
-    localStorage.setItem('flux_theme', t.id);
-    showToast('🎨 ' + t.id);
-  };
-  themeGrid.appendChild(c);
-});
-
-// ==============================
-// SNI / REALITY CONFIGS (НОВЫЙ РАЗДЕЛ)
-// ==============================
-const sniSubPool = [
-  { name: "🔐 Reality XTLS — Telegram Collector", url: "https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt", category: "sni",
-    customBadges: '<span class="badge badge-reality">🔐 XTLS-Reality</span><span class="badge badge-success">✅ Auto-updated</span><span class="badge badge-speed">🔄 часто</span>' },
-  { name: "🔐 Barry-far VLESS Reality Protocol", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt", category: "sni",
-    customBadges: '<span class="badge badge-reality">🔐 XTLS-Reality</span><span class="badge badge-success">✅ Tested 2026</span>' },
-  { name: "🔐 V2RayRoot VLESS Reality", url: "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt", category: "sni",
-    customBadges: '<span class="badge badge-reality">🔐 XTLS-Reality</span><span class="badge badge-success">✅ Premium</span>' },
-  { name: "🔐 Wuqb2i4f Mix-URI (XTLS)", url: "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri", category: "sni",
-    customBadges: '<span class="badge badge-reality">🔐 XTLS Mixed</span><span class="badge badge-success">✅ Base64</span>' },
-  { name: "🔐 4n0nymou3 Multi-Proxy (Reality+SNI)", url: "https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt", category: "sni",
-    customBadges: '<span class="badge badge-reality">🔐 Reality+SNI</span><span class="badge badge-success">✅ Multi-protocol</span>' },
-  { name: "🌐 KvRuVPN — SNI/CIDR Bypass (RU)", url: "https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt", category: "sni",
-    customBadges: '<span class="badge badge-sni">🌐 SNI Bypass</span><span class="badge badge-cidr">🗺️ CIDR RU</span><span class="badge badge-success">✅ Online</span>' },
-  { name: "🌐 igareck — VLESS RU (SNI bypass)", url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", category: "sni",
-    customBadges: '<span class="badge badge-sni">🌐 SNI Bypass</span><span class="badge badge-ru">🇷🇺 RU Only</span>' },
-  { name: "🛡️ STR Bypass — DPI+SNI (RU)", url: "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", category: "sni",
-    customBadges: '<span class="badge badge-sni">🛡️ DPI+SNI</span><span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-speed">⚡ Fast</span>' },
-  { name: "🗺️ F0rc3Run VLESS — Auto-tested, CIDR (6h)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", category: "sni",
-    customBadges: '<span class="badge badge-cidr">🗺️ CIDR Routing</span><span class="badge badge-speed">🔄 6h update</span><span class="badge badge-success">✅ Auto-checked</span>' },
-  { name: "🗺️ MatinGhanbari VLESS Filtered (CIDR)", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", category: "sni",
-    customBadges: '<span class="badge badge-cidr">🗺️ Filtered CIDR</span><span class="badge badge-success">✅ Quality</span>' },
-  { name: "🔒 Epodonios Sub1 — Reality (30m update)", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", category: "sni",
-    customBadges: '<span class="badge badge-reality">🔐 Reality</span><span class="badge badge-speed">🔄 30m</span><span class="badge badge-success">✅ Online</span>' },
-  { name: "🔒 Sakha1370 — Auto-verified Proxies", url: "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", category: "sni",
-    customBadges: '<span class="badge badge-sni">✔️ Auto-verified</span><span class="badge badge-success">✅ Working</span>' },
-  { name: "🔐 Goida Premium — DPI Bypass", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "sni",
-    customBadges: '<span class="badge badge-sni">🛡️ DPI Bypass</span><span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-speed">⚡ Fast</span>' },
-  { name: "🌐 Sevcator VL — SNI aware", url: "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", category: "sni",
-    customBadges: '<span class="badge badge-sni">🌐 SNI aware</span><span class="badge badge-success">✅ Active</span>' },
-];
-
-// ==============================
-// MASTER SUB POOL (каталог)
-// ==============================
-const masterSubPool = [
-  // 🔥 Лучшие
-  { name: "🔥 Goida Premium (Обход DPI)", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt", category: "best", sni: true,
-    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ DPI Bypass</span><span class="badge badge-speed">⚡ Fast</span>' },
-  { name: "⚡ Goida Standard", url: "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt", category: "best",
-    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-speed">⚡ Fast</span>' },
-  { name: "🌟 Основная (VLESS RU)", url: "https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt", category: "best", sni: true,
-    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-sni">🌐 SNI/CIDR</span><span class="badge badge-ru">🇷🇺 RU</span>' },
-  { name: "🛡 F0rc3Run VLESS (6h update)", url: "https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", category: "best", sni: true,
-    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Auto-tested</span><span class="badge badge-speed">🔄 6h</span>' },
-  { name: "🔒 Epodonios Sub1 (Reality, 30m)", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", category: "best", sni: true,
-    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-reality">🔐 Reality</span><span class="badge badge-speed">🔄 30m</span>' },
-  { name: "💎 Barry-far Sub1 (2026)", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt", category: "best",
-    customBadges: '<span class="badge badge-success">✅ Online</span><span class="badge badge-shield">🛡️ Mixed</span>' },
-  // 🎮 Игровые
-  { name: "🎮 STR Bypass Gaming", url: "https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", category: "gaming" },
-  { name: "🎮 CidVPN General", url: "https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt", category: "gaming" },
-  { name: "🎮 TeknoVPN Servers", url: "https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt", category: "gaming" },
-  { name: "🎮 Danialsamadi All Configs", url: "https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt", category: "gaming" },
-  // 🇷🇺 RU
-  { name: "🇷🇺 KvRuVPN (Gitverse RU)", url: "https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt", category: "ru", sni: true },
-  { name: "🇷🇺 VLESS для России (igareck)", url: "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", category: "ru", sni: true },
-  { name: "🇷🇺 Sevcator VL (SNI aware)", url: "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", category: "ru" },
-  { name: "🇷🇺 Sakha1370 Valid Proxies", url: "https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", category: "ru" },
-  // ▶️ Media
-  { name: "▶️ MatinGhanbari VLESS Filtered", url: "https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", category: "media", sni: true },
-  { name: "▶️ 10ium VLESS Scraped", url: "https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt", category: "media" },
-  { name: "▶️ Firmfox Mixed Sub-1", url: "https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt", category: "media" },
-  { name: "▶️ Ebrasha Free V2Ray (15m)", url: "https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt", category: "media" },
-  { name: "▶️ LalatinaHub Mineral Nodes", url: "https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes", category: "media" },
-  // ✨ Новые
-  { name: "✨ Epodonios Sub2", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt", category: "new" },
-  { name: "✨ Epodonios Sub3", url: "https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt", category: "new" },
-  { name: "✨ Barry-far Sub2", url: "https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt", category: "new" },
-  { name: "✨ Mohamad TG VLESS Collector", url: "https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt", category: "new" },
-  { name: "✨ Ripaojiedian FreeNode", url: "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub", category: "new" },
-];
-
-// ==============================
-// MEGA BASE
-// ==============================
-const megaBasePool = [
-  ...Array.from({length:25}, (_,i) => ({ name:`Goida Node ${i+1}`, url:`https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/${i+1}.txt`, dpi:false })),
-  { name:"F0rc3Run VLESS (6h)", url:"https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt", dpi:false },
-  { name:"F0rc3Run VMess (6h)", url:"https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vmess.txt", dpi:false },
-  { name:"F0rc3Run Shadowsocks", url:"https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/shadowsocks.txt", dpi:false },
-  { name:"Epodonios Sub1 (Reality)", url:"https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt", dpi:true },
-  { name:"Epodonios Sub2", url:"https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt", dpi:false },
-  { name:"Epodonios Sub3", url:"https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt", dpi:false },
-  { name:"Epodonios All Base64", url:"https://github.com/Epodonios/v2ray-configs/raw/main/All_Configs_base64_Sub.txt", dpi:false },
-  { name:"Barry-far Sub1", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt", dpi:false },
-  { name:"Barry-far Sub2", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt", dpi:false },
-  { name:"Barry-far Sub3", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt", dpi:false },
-  { name:"Barry-far VLESS Protocol", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt", dpi:true },
-  { name:"Barry-far VMess Protocol", url:"https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vmess.txt", dpi:false },
-  { name:"MatinGhanbari VLESS Filtered", url:"https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt", dpi:true },
-  { name:"MatinGhanbari VMess Filtered", url:"https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt", dpi:false },
-  { name:"Ebrasha Free V2Ray (15m)", url:"https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt", dpi:true },
-  { name:"Mohamad TG VLESS Collector", url:"https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt", dpi:true },
-  { name:"Mohamad TG VMess Collector", url:"https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vmess.txt", dpi:false },
-  { name:"V2RayRoot VLESS Reality", url:"https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt", dpi:true },
-  { name:"10ium VLESS Scraped", url:"https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt", dpi:false },
-  { name:"10ium Trojan Scraped", url:"https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt", dpi:false },
-  { name:"CidVPN General", url:"https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt", dpi:false },
-  { name:"TeknoVPN Servers", url:"https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt", dpi:false },
-  { name:"Ripaojiedian FreeNode", url:"https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub", dpi:false },
-  { name:"KvRuVPN (Gitverse RU)", url:"https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt", dpi:true },
-  { name:"VLESS для России (igareck)", url:"https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt", dpi:true },
-  { name:"STR Bypass RU", url:"https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS", dpi:true },
-  { name:"Sevcator VL", url:"https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt", dpi:false },
-  { name:"Sakha1370 Valid Proxies", url:"https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt", dpi:false },
-  { name:"Firmfox Mixed Sub-1", url:"https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt", dpi:false },
-  { name:"Firmfox Mixed Sub-2", url:"https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-2.txt", dpi:false },
-  { name:"LalatinaHub Mineral", url:"https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes", dpi:false },
-  { name:"Danialsamadi AllConfigs", url:"https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt", dpi:false },
-  { name:"Yitong2333 Proxy Mining", url:"https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt", dpi:false },
-  { name:"Acymz AutoVPN", url:"https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt", dpi:false },
-  { name:"4n0nymou3 Multi Proxy", url:"https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt", dpi:true },
-  { name:"Wuqb2i4f Mix URI", url:"https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri", dpi:false },
-  { name:"Reality XTLS Collector", url:"https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt", dpi:true },
-];
-
-// ==============================
-// BADGES
-// ==============================
-function makeBadges(cat) {
-  const ru = currentLang === 'ru';
-  if (cat === 'custom') return `<span class="badge badge-purple">👤 ${ru?'Своя':'User'}</span>`;
-  if (cat === 'community') return `<span class="badge badge-community">🌍 ${ru?'Комьюнити':'Community'}</span>`;
-  if (cat === 'sni') return `<span class="badge badge-sni">🔐 SNI/Reality</span><span class="badge badge-success">✅ ${ru?'Обход':'Bypass'}</span>`;
-  if (cat === 'gaming') return `<span class="badge badge-ping">🎮 ${ru?'Игровая':'Gaming'}</span><span class="badge badge-success">📡 ${ru?'Низкий пинг':'Low Ping'}</span>`;
-  if (cat === 'ru') return `<span class="badge badge-ru">🇷🇺 RU</span><span class="badge badge-success">✅ ${ru?'Активна':'Active'}</span>`;
-  if (cat === 'media') return `<span class="badge badge-speed">▶️ Media</span><span class="badge badge-shield">🛡️ Reality</span>`;
-  if (cat === 'new') return `<span class="badge badge-new-item">✨ ${ru?'Свежая':'New'}</span><span class="badge badge-success">🔄 Auto</span>`;
-  return `<span class="badge badge-success">✅ Online</span>`;
-}
-
-// ==============================
-// BUILD ITEM HTML
-// ==============================
-function buildSubItem(sub, uid) {
-  const isFav = favorites.has(sub.url || '');
-  const canDelete = sub.category === 'custom' || (sub.category === 'community' && sub.isOwner);
-  const deleteBtn = canDelete ? `<button class="btn-get btn-delete btn-icon" onclick="deleteCustomSub('${sub.id}')" title="Удалить">🗑</button>` : '';
-  const badges = sub.customBadges || makeBadges(sub.category);
-  const url = (sub.url || '').replace(/'/g,'&#39;').replace(/"/g,'&quot;');
-  const name = (sub.name || 'Unnamed').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  return `
-  <div class="ios-item">
-    <div class="ios-item-header">
-      <div class="ios-item-top">
-        <div class="ios-item-title">
-          <span class="status-dot"></span>${name}
-          <button class="btn-fav ${isFav?'active':''}" onclick="toggleFavUrl('${uid}',this)" title="${isFav?'❤️ Убрать из избранного':'🤍 В избранное'}">${isFav?'❤️':'🤍'}</button>
-        </div>
-        <div class="tags-row">${badges}</div>
-        <div class="ios-item-subtitle" id="${uid}" ondblclick="copyLink('${uid}')">${url}</div>
-      </div>
-      <div class="btn-group">
-        <div class="btn-actions-row">
-          ${deleteBtn}
-          <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('${uid}',this)" title="Проверить скорость">⚡</button>
-          <button class="btn-get btn-icon" onclick="openQR('${uid}')" title="QR">📱</button>
-          <button class="btn-get btn-icon" onclick="shareNode('${name.replace(/'/g,'\\\'').replace(/"/g,'')}','${uid}')" title="Поделиться">📤</button>
-          <button class="btn-get" onclick="copyLink('${uid}')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-        </div>
-        <button class="btn-get btn-import" onclick="openInHapp('${uid}')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-      </div>
-    </div>
-  </div>`;
-}
-
-// ==============================
-// RENDER SUBS (FIXED FILTER LOGIC)
-// ==============================
-let renderDebounce = null;
-window.debouncedRender = function() {
-  clearTimeout(renderDebounce);
-  renderDebounce = setTimeout(() => renderSubs(document.querySelector('.filter-btn.active')?.dataset.filter || 'all'), 200);
-};
-
-window.renderSubs = function(filter) {
-  const container = document.getElementById('dynamic-subs-container');
-  if (!container) return;
-  const activeFilter = filter || 'all';
-  const search = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
-
-  let pool = [];
-  switch(activeFilter) {
-    case 'all':
-      pool = [...customSubs, ...communitySubs, ...masterSubPool, ...sniSubPool];
-      // Deduplicate by URL
-      { const seen = new Set(); pool = pool.filter(s => { if (seen.has(s.url)) return false; seen.add(s.url); return true; }); }
-      break;
-    case 'favorites': {
-      const all = [...customSubs, ...communitySubs, ...masterSubPool, ...megaBasePool, ...sniSubPool];
-      const seen = new Set(); const deduped = all.filter(s => { if(seen.has(s.url)) return false; seen.add(s.url); return true; });
-      pool = deduped.filter(s => favorites.has(s.url || ''));
-      break;
-    }
-    case 'custom': pool = [...customSubs]; break;
-    case 'community': pool = [...communitySubs]; break;
-    case 'sni': {
-      // SNI-capable from master + dedicated sni pool, deduped
-      const combined = [...masterSubPool.filter(s => s.sni), ...sniSubPool];
-      const seen = new Set(); pool = combined.filter(s => { if(seen.has(s.url)) return false; seen.add(s.url); return true; });
-      break;
-    }
-    default:
-      pool = masterSubPool.filter(s => s.category === activeFilter);
+function confetti() {
+  if (perfMode) return;
+  const cols = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#c77dff','#00c8ff','#ff9e00'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div'), s = 4 + Math.random() * 9;
+    p.style.cssText = `position:fixed;left:${10+Math.random()*80}%;top:-6px;width:${s}px;height:${s}px;background:${cols[i%cols.length]};border-radius:${Math.random()>.4?'50%':'2px'};z-index:9999;pointer-events:none;animation:cf ${.5+Math.random()*1.1}s ease-in forwards;animation-delay:${Math.random()*.35}s`;
+    document.body.appendChild(p); setTimeout(() => p.remove(), 2100);
   }
+}
+function haptic(p = [25]) { navigator.vibrate && navigator.vibrate(p); }
 
-  if (search) pool = pool.filter(s => (s.name||'').toLowerCase().includes(search) || (s.url||'').toLowerCase().includes(search));
-
-  if (pool.length === 0) {
-    const ru = currentLang === 'ru';
-    if (activeFilter === 'custom') {
-      container.innerHTML = `<div class="empty-state"><b>👤</b><p>${ru?'У вас нет своих подписок.<br>Нажмите «+» чтобы добавить.':'No personal configs yet.<br>Tap «+» to add one.'}</p></div>`;
-    } else if (activeFilter === 'favorites') {
-      container.innerHTML = `<div class="empty-state"><b>⭐</b><p>${ru?'Нет избранных конфигов.<br>Нажмите 🤍 рядом с любым конфигом.':'No favorites yet.<br>Tap 🤍 next to any config.'}</p></div>`;
-    } else {
-      container.innerHTML = `<div class="empty-state"><b>🔍</b><p>${ru?'Ничего не найдено.':'Nothing found.'}</p></div>`;
-    }
-    return;
+// ═══════════════════════════════════════════════════════
+// SUPABASE — fully isolated, 6s timeout
+// ═══════════════════════════════════════════════════════
+const DB = {
+  url: 'https://ikgmsaoxlwmhccntdqdp.supabase.co',
+  key: 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls',
+  client: null, ready: false, user: null,
+  mine: [], comm: [],
+  init() {
+    try { this.client = window.supabase?.createClient(this.url, this.key); } catch(_) {}
+  },
+  timeout(p, ms = 6000) { return Promise.race([p, new Promise((_,r) => setTimeout(() => r(new Error('timeout')), ms))]); },
+  async getUser() {
+    if (this.user) return this.user;
+    if (!this.client) return null;
+    try {
+      const r1 = await this.timeout(this.client.auth.getUser(), 4000).catch(() => null);
+      if (r1?.data?.user) { this.user = r1.data.user; return this.user; }
+      const r2 = await this.timeout(this.client.auth.signInAnonymously(), 5000).catch(() => null);
+      if (r2?.data?.user) { this.user = r2.data.user; return this.user; }
+    } catch(_) {}
+    return null;
+  },
+  async load() {
+    if (!this.client) { this.loadLocal(); return; }
+    try {
+      const user = await this.timeout(this.getUser(), 5500);
+      if (!user) throw new Error('no user');
+      const [r1, r2] = await this.timeout(Promise.allSettled([
+        this.client.from('subscriptions').select('id,name,url,user_id').eq('user_id', user.id).order('created_at', {ascending:false}),
+        this.client.from('subscriptions').select('id,name,url,user_id').eq('is_public', true).order('created_at', {ascending:false})
+      ]), 7000);
+      if (r1.status === 'fulfilled' && !r1.value.error)
+        this.mine = (r1.value.data||[]).map(r => ({id:String(r.id),name:r.name,url:r.url,cat:'custom',own:true}));
+      if (r2.status === 'fulfilled' && !r2.value.error)
+        this.comm = (r2.value.data||[]).filter(r => r.user_id !== user.id).map(r => ({id:String(r.id),name:r.name,url:r.url,cat:'community',own:false}));
+      this.ready = true; setBadge(true);
+      document.getElementById('dbWarn').style.display = 'none';
+    } catch(_) { this.loadLocal(); }
+  },
+  loadLocal() {
+    this.ready = false; setBadge(false);
+    document.getElementById('dbWarn').style.display = 'block';
+    this.mine = JSON.parse(localStorage.getItem('flux_mine') || '[]');
+    this.comm = JSON.parse(localStorage.getItem('flux_comm') || '[]');
+  },
+  saveLocal() {
+    localStorage.setItem('flux_mine', JSON.stringify(this.mine));
+    localStorage.setItem('flux_comm', JSON.stringify(this.comm));
   }
-
-  container.innerHTML = pool.map((sub, i) => buildSubItem(sub, `dyn_${activeFilter}_${i}`)).join('');
 };
+function setBadge(ok) {
+  const b = document.getElementById('dbb');
+  if (b) { b.className = 'db-b ' + (ok ? 'db-ok' : 'db-err'); b.textContent = ok ? '✅ Cloud' : '⚠️ Local'; }
+}
 
-// ==============================
-// RENDER MEGA BASE
-// ==============================
-window.renderMegaBase = function() {
-  const container = document.getElementById('mega-base-container');
-  if (!container) return;
-  const ru = currentLang === 'ru';
-  container.innerHTML = megaBasePool.map((sub, i) => {
-    const uid = `mb_${i}`;
-    const isFav = favorites.has(sub.url || '');
-    let badges = `<span class="badge badge-success">✅ Online</span>`;
-    if (sub.dpi) badges += `<span class="badge badge-shield">🛡️ ${ru?'Обход DPI':'Bypass DPI'}</span>`;
-    return `
-    <div class="ios-item">
-      <div class="ios-item-header">
-        <div class="ios-item-top">
-          <div class="ios-item-title">
-            ${sub.name}
-            <button class="btn-fav ${isFav?'active':''}" onclick="toggleFavUrl('${uid}',this)" title="Избранное">${isFav?'❤️':'🤍'}</button>
-          </div>
-          <div class="tags-row">${badges}</div>
-          <div class="ios-item-subtitle" id="${uid}" ondblclick="copyLink('${uid}')">${sub.url}</div>
-        </div>
-        <div class="btn-group">
-          <div class="btn-actions-row">
-            <button class="btn-get btn-speed btn-icon" onclick="checkSpeed('${uid}',this)" title="Проверить">⚡</button>
-            <button class="btn-get btn-icon" onclick="openQR('${uid}')" title="QR">📱</button>
-            <button class="btn-get btn-icon" onclick="shareNode('${sub.name}','${uid}')" title="Поделиться">📤</button>
-            <button class="btn-get" onclick="copyLink('${uid}')"><span class="ru">Копировать</span><span class="en">Copy</span></button>
-          </div>
-          <button class="btn-get btn-import" onclick="openInHapp('${uid}')" style="width:100%;"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
-        </div>
-      </div>
-    </div>`;
+// ═══════════════════════════════════════════════════════
+// FAVORITES
+// ═══════════════════════════════════════════════════════
+let favs = new Set(JSON.parse(localStorage.getItem('flux_favs') || '[]'));
+function saveFavs() { localStorage.setItem('flux_favs', JSON.stringify([...favs])); }
+
+// ═══════════════════════════════════════════════════════
+// RECENTLY COPIED
+// ═══════════════════════════════════════════════════════
+let recent = JSON.parse(localStorage.getItem('flux_recent') || '[]');
+function addRecent(name, url) {
+  recent = recent.filter(r => r.url !== url);
+  recent.unshift({name: (name||'Config').substring(0,30), url});
+  recent = recent.slice(0, 7);
+  localStorage.setItem('flux_recent', JSON.stringify(recent));
+  renderRecent();
+}
+function renderRecent() {
+  const bar = document.getElementById('recent-bar'), chips = document.getElementById('chips');
+  if (!recent.length) { bar.style.display = 'none'; return; }
+  bar.style.display = 'block';
+  chips.innerHTML = recent.map(r => {
+    const safe = r.url.replace(/'/g, '%27');
+    const nm = (r.name||'Config').replace(/'/g,'&apos;').replace(/"/g,'&quot;');
+    return `<div class="chip" data-action="quick-copy" data-url="${safe}" data-name="${nm}">${nm}</div>`;
   }).join('');
-};
-
-// ==============================
-// SPEED CHECKER
-// ==============================
-window.checkSpeed = async function(uid, btn) {
-  const el = document.getElementById(uid);
-  if (!el) return;
-  const url = el.innerText.trim();
-  const orig = btn.innerHTML;
-  btn.innerHTML = '⏳';
-  btn.classList.add('ping-checking');
-  btn.disabled = true;
-  haptic([15]);
-  try {
-    const start = Date.now();
-    const ctrl = new AbortController();
-    const timeout = setTimeout(() => ctrl.abort(), 6000);
-    await fetch(url, { signal: ctrl.signal, mode: 'no-cors', cache: 'no-store' });
-    clearTimeout(timeout);
-    const ms = Date.now() - start;
-    const icon = ms < 800 ? '🟢' : ms < 2500 ? '🟡' : '🔴';
-    btn.innerHTML = icon;
-    showToast(`📡 ~${ms}ms — ${ms < 800 ? '✅ Отличный пинг' : ms < 2500 ? '⚠️ Средний пинг' : '❌ Высокий пинг'}`);
-    haptic([30]);
-  } catch(e) {
-    const isTimeout = e.name === 'AbortError';
-    btn.innerHTML = isTimeout ? '⏱️' : '❓';
-    showToast(isTimeout ? '⏱️ Таймаут (>6s)' : (currentLang==='ru' ? '⚠️ Не удалось — CORS' : '⚠️ Cannot check — CORS'));
-  } finally {
-    btn.classList.remove('ping-checking');
-    btn.disabled = false;
-    setTimeout(() => { btn.innerHTML = orig; }, 4000);
-  }
-};
-
-// ==============================
-// RANDOM CONFIG
-// ==============================
-window.pickRandom = function() {
-  const all = [...masterSubPool, ...sniSubPool, ...megaBasePool.slice(0, 20)];
-  const pick = all[Math.floor(Math.random() * all.length)];
-  if (!pick) return;
-  navigator.clipboard.writeText(pick.url).then(() => {
-    showToast(`🎲 ${pick.name}`);
-    launchConfetti();
-    haptic([20, 60, 20]);
-  }).catch(() => showToast('🎲 ' + pick.name));
-};
-
-// ==============================
-// EXPORT
-// ==============================
-window.exportConfigs = function() {
-  const all = [...masterSubPool, ...sniSubPool, ...megaBasePool, ...customSubs, ...communitySubs];
-  const seen = new Set();
-  const unique = all.filter(c => { if (seen.has(c.url)) return false; seen.add(c.url); return true; });
-  const lines = unique.map(c => `# ${c.name}\n${c.url}`).join('\n\n');
-  const header = `# Flux VPN Titanium — Экспорт конфигов\n# Дата: ${new Date().toLocaleDateString('ru-RU')}\n# Всего: ${unique.length}\n\n`;
-  const blob = new Blob([header + lines], { type: 'text/plain;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `flux-vpn-configs-${Date.now()}.txt`;
-  a.click();
-  showToast(currentLang === 'ru' ? `📥 Экспортировано ${unique.length} конфигов!` : `📥 Exported ${unique.length} configs!`);
-  haptic([30, 50, 30]);
-};
-
-// ==============================
-// URL VALIDATION
-// ==============================
-window.validateUrlInput = function() {
-  const input = document.getElementById('customUrl');
-  if (!input) return;
-  const v = input.value.trim();
-  if (v && !v.startsWith('http')) {
-    input.style.borderColor = 'var(--danger)';
-  } else {
-    input.style.borderColor = '';
-  }
-};
-
-// ==============================
-// FILTER COUNTS
-// ==============================
-function updateFilterCounts() {
-  const all = [...customSubs, ...communitySubs, ...masterSubPool, ...sniSubPool];
-  const seen = new Set(); const allUniq = all.filter(s=>{ if(seen.has(s.url)) return false; seen.add(s.url); return true; });
-  const favCount = allUniq.filter(s => favorites.has(s.url||'')).length;
-
-  const set = (id, n) => { const el = document.getElementById(id); if(el) el.textContent = n; };
-  set('fc-all', allUniq.length);
-  set('fc-favorites', favCount);
-  set('fc-custom', customSubs.length);
-  set('fc-community', communitySubs.length);
 }
 
-// ==============================
-// STATS
-// ==============================
-function updateStats() {
-  const all = [...masterSubPool, ...sniSubPool, ...megaBasePool, ...customSubs, ...communitySubs];
-  const seen = new Set(); const total = all.filter(s=>{ if(seen.has(s.url)) return false; seen.add(s.url); return true; }).length;
-  const favCount = [...new Set(all.map(s=>s.url))].filter(u => favorites.has(u)).length;
-
-  const s = (id, v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
-  s('stat-total', total);
-  s('stat-fav', favCount);
-  s('stat-mine', customSubs.length);
-  s('stat-sni', sniSubPool.length);
+// ═══════════════════════════════════════════════════════
+// PROTOCOL DETECTION
+// ═══════════════════════════════════════════════════════
+function proto(url = '') {
+  const u = url.toLowerCase();
+  if (u.includes('reality')) return 'Reality';
+  if (u.includes('vless') || /\/vl(\.txt|\/|$)/.test(u)) return 'VLESS';
+  if (u.includes('vmess')) return 'VMess';
+  if (u.includes('trojan')) return 'Trojan';
+  if (u.includes('shadowsocks') || u.includes('/ss.txt')) return 'SS';
+  if (u.includes('hysteria')) return 'Hysteria';
+  return null;
 }
 
-// ==============================
-// SAVE CUSTOM SUB
-// ==============================
-window.saveCustomSub = async function() {
-  const name = document.getElementById('customName').value.trim();
-  const url = document.getElementById('customUrl').value.trim();
-  if (!name || !url) { showToast('⚠️ Заполните все поля!'); return; }
-  if (!url.startsWith('http')) { showToast('⚠️ URL должен начинаться с http'); return; }
+// ═══════════════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════════════
+let lang = localStorage.getItem('flux_lang') || 'ru';
+document.documentElement.lang = lang;
+document.getElementById('langBtn').textContent = lang === 'ru' ? 'EN' : 'RU';
 
-  const btn = document.querySelector('#addCustomModal .btn-main');
-  if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
+// ═══════════════════════════════════════════════════════
+// DATA — SNI/CIDR BYPASS CONFIGS (рабочие 2025-2026)
+// ═══════════════════════════════════════════════════════
+const SNI = [
+  {name:'🔐 Reality XTLS — Telegram Collector (авто-обновление)',url:'https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt',cat:'sni',cb:'<span class="badge b-re">🔐 XTLS-Reality</span><span class="badge b-ok">✅ Авто-обновление</span>'},
+  {name:'🔐 Barry-far — VLESS Reality Protocol',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt',cat:'sni',cb:'<span class="badge b-re">🔐 XTLS-Reality</span><span class="badge b-ok">✅ 2026</span>'},
+  {name:'🔐 V2RayRoot — VLESS Reality Premium',url:'https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt',cat:'sni',cb:'<span class="badge b-re">🔐 XTLS-Reality</span><span class="badge b-ok">✅ Premium</span>'},
+  {name:'🔐 Epodonios Sub1 — Reality (обновление 30м)',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt',cat:'sni',cb:'<span class="badge b-re">🔐 Reality</span><span class="badge b-sp">🔄 30м</span><span class="badge b-ok">✅ Online</span>'},
+  {name:'🔐 4n0nymou3 — Reality+SNI Multi-Proxy',url:'https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt',cat:'sni',cb:'<span class="badge b-re">🔐 Reality+SNI</span><span class="badge b-ok">✅ Multi</span>'},
+  {name:'🔐 Wuqb2i4f — XTLS Mix-URI Base64',url:'https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri',cat:'sni',cb:'<span class="badge b-re">🔐 XTLS Mixed</span><span class="badge b-ok">✅ Base64</span>'},
+  {name:'🌐 KvRuVPN — SNI/CIDR Bypass Россия',url:'https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt',cat:'sni',cb:'<span class="badge b-sni">🌐 SNI Bypass</span><span class="badge b-ci">🗺️ CIDR</span><span class="badge b-ru">🇷🇺 RU</span>'},
+  {name:'🌐 igareck — VLESS Russia SNI Bypass',url:'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt',cat:'sni',cb:'<span class="badge b-sni">🌐 SNI Bypass</span><span class="badge b-ru">🇷🇺 RU Only</span>'},
+  {name:'🛡️ STR97 — DPI+SNI Bypass (Россия)',url:'https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS',cat:'sni',cb:'<span class="badge b-sni">🛡️ DPI+SNI</span><span class="badge b-ru">🇷🇺 RU</span><span class="badge b-sp">⚡ Fast</span>'},
+  {name:'🗺️ F0rc3Run — VLESS CIDR Auto-tested (6ч)',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt',cat:'sni',cb:'<span class="badge b-ci">🗺️ CIDR Auto</span><span class="badge b-sp">🔄 6ч</span><span class="badge b-ok">✅ Tested</span>'},
+  {name:'🗺️ MatinGhanbari — VLESS Filtered CIDR',url:'https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt',cat:'sni',cb:'<span class="badge b-ci">🗺️ Filtered CIDR</span><span class="badge b-ok">✅ Quality</span>'},
+  {name:'🔒 Sakha1370 — Auto-verified Proxies',url:'https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt',cat:'sni',cb:'<span class="badge b-sni">✔️ Auto-verified</span><span class="badge b-ok">✅ Working</span>'},
+  {name:'🌐 Sevcator VL — SNI-aware RU',url:'https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt',cat:'sni',cb:'<span class="badge b-sni">🌐 SNI</span><span class="badge b-ru">🇷🇺 RU</span><span class="badge b-ok">✅ Active</span>'},
+  {name:'🔐 Goida Premium — DPI+SNI Bypass',url:'https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt',cat:'sni',cb:'<span class="badge b-sni">🛡️ DPI+SNI</span><span class="badge b-ru">🇷🇺 RU</span><span class="badge b-sp">⚡ Fast</span>'},
+  {name:'🔐 Barry-far VMess Reality+SNI',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vmess.txt',cat:'sni',cb:'<span class="badge b-re">🔐 Reality+VMess</span><span class="badge b-ok">✅ Online</span>'},
+  {name:'🗺️ KvRuVPN2 — Whitelist CIDR (gitverse)',url:'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt',cat:'sni',cb:'<span class="badge b-ci">🗺️ Whitelist CIDR</span><span class="badge b-ru">🇷🇺 RU</span><span class="badge b-ok">✅ Online</span>'},
+];
 
-  try {
-    const user = await ensureAuth();
-    if (!user || !supabaseClient) throw new Error('no auth');
-    const { error } = await supabaseClient.from('subscriptions').insert([{ user_id: user.id, name, url, is_public: true }]);
-    if (error) throw error;
-    await loadDbSubs();
-    showToast('✅ ' + (currentLang==='ru' ? 'Сохранено в облаке!' : 'Saved to cloud!'));
-    launchConfetti();
-  } catch(e) {
-    const id = 'local_' + Date.now();
-    const newSub = { id, name, url, category: 'custom', isOwner: true };
-    customSubs.unshift(newSub);
-    communitySubs.unshift({ ...newSub, id: id+'c', category: 'community' });
-    localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
-    localStorage.setItem('flux_community_subs', JSON.stringify(communitySubs));
-    document.getElementById('dbWarning').style.display = 'block';
-    showToast('⚠️ ' + (currentLang==='ru' ? 'Сохранено локально' : 'Saved locally'));
-  } finally {
-    document.getElementById('addCustomModal').classList.remove('show');
-    document.getElementById('customName').value = '';
-    document.getElementById('customUrl').value = '';
-    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('[data-filter="custom"]').classList.add('active');
-    renderSubs('custom');
-    updateStats();
-    updateFilterCounts();
+const MASTER = [
+  {name:'🔥 Goida Premium (Обход DPI)',url:'https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt',cat:'best',sni:true,cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sh">🛡️ DPI Bypass</span><span class="badge b-sp">⚡ Fast</span>'},
+  {name:'⚡ Goida Standard',url:'https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt',cat:'best',cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sp">⚡ Fast</span>'},
+  {name:'🌟 Основная VLESS (SNI/CIDR Россия)',url:'https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt',cat:'best',sni:true,cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sni">🌐 SNI/CIDR</span><span class="badge b-ru">🇷🇺 RU</span>'},
+  {name:'🛡 F0rc3Run VLESS Auto-tested (6ч)',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt',cat:'best',sni:true,cb:'<span class="badge b-ok">✅ Tested</span><span class="badge b-sh">🛡️ CIDR</span><span class="badge b-sp">🔄 6ч</span>'},
+  {name:'🔒 Epodonios Sub1 Reality (30м)',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt',cat:'best',sni:true,cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-re">🔐 Reality</span><span class="badge b-sp">🔄 30м</span>'},
+  {name:'💎 Barry-far Sub1 2026',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt',cat:'best',cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sh">🛡️ Mixed</span>'},
+  {name:'🎮 STR Bypass Gaming RU',url:'https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS',cat:'gaming',sni:true},
+  {name:'🎮 CidVPN General 2026',url:'https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt',cat:'gaming'},
+  {name:'🎮 TeknoVPN Servers',url:'https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt',cat:'gaming'},
+  {name:'🎮 Danialsamadi All Configs',url:'https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt',cat:'gaming'},
+  {name:'🇷🇺 KvRuVPN Gitverse (CIDR)',url:'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt',cat:'ru',sni:true},
+  {name:'🇷🇺 VLESS для России igareck (SNI)',url:'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt',cat:'ru',sni:true},
+  {name:'🇷🇺 Sevcator VL (SNI-aware)',url:'https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt',cat:'ru'},
+  {name:'🇷🇺 Sakha1370 Valid Proxies',url:'https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt',cat:'ru'},
+  {name:'▶️ MatinGhanbari VLESS Filtered (CIDR)',url:'https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt',cat:'media',sni:true},
+  {name:'▶️ 10ium VLESS Scraped',url:'https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt',cat:'media'},
+  {name:'▶️ Firmfox Mixed Sub-1',url:'https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt',cat:'media'},
+  {name:'▶️ Ebrasha Free V2Ray (15м)',url:'https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt',cat:'media'},
+  {name:'▶️ LalatinaHub Mineral Nodes',url:'https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes',cat:'media'},
+  {name:'✨ Epodonios Sub2',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt',cat:'new'},
+  {name:'✨ Epodonios Sub3',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt',cat:'new'},
+  {name:'✨ Barry-far Sub2',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt',cat:'new'},
+  {name:'✨ Barry-far Sub3',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt',cat:'new'},
+  {name:'✨ Mohamad TG VLESS Collector',url:'https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt',cat:'new'},
+  {name:'✨ Ripaojiedian FreeNode Sub',url:'https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub',cat:'new'},
+  {name:'✨ Reality XTLS Collector (Telegram)',url:'https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt',cat:'new',sni:true},
+];
+
+const MEGA = [
+  ...Array.from({length:25},(_,i)=>({name:`Goida Node ${i+1}`,url:`https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/${i+1}.txt`,dpi:false})),
+  {name:'F0rc3Run VLESS 6h',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt',dpi:false},
+  {name:'F0rc3Run VMess 6h',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vmess.txt',dpi:false},
+  {name:'F0rc3Run Shadowsocks',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/shadowsocks.txt',dpi:false},
+  {name:'Epodonios Sub1 Reality 30м',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub1.txt',dpi:true},
+  {name:'Epodonios Sub2',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub2.txt',dpi:false},
+  {name:'Epodonios Sub3',url:'https://raw.githubusercontent.com/Epodonios/v2ray-configs/refs/heads/main/Sub3.txt',dpi:false},
+  {name:'Barry-far Sub1 2026',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub1.txt',dpi:false},
+  {name:'Barry-far Sub2',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub2.txt',dpi:false},
+  {name:'Barry-far Sub3',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Sub3.txt',dpi:false},
+  {name:'Barry-far VLESS Reality Protocol',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vless.txt',dpi:true},
+  {name:'Barry-far VMess',url:'https://raw.githubusercontent.com/barry-far/V2ray-config/main/Splitted-By-Protocol/vmess.txt',dpi:false},
+  {name:'MatinGhanbari VLESS Filtered CIDR',url:'https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vless.txt',dpi:true},
+  {name:'MatinGhanbari VMess Filtered',url:'https://raw.githubusercontent.com/MatinGhanbari/v2ray-configs/main/subscriptions/filtered/subs/vmess.txt',dpi:false},
+  {name:'Ebrasha Free V2Ray 15м',url:'https://raw.githubusercontent.com/ebrasha/free-v2ray-public-list/refs/heads/main/vless_configs.txt',dpi:true},
+  {name:'Mohamad TG VLESS',url:'https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vless.txt',dpi:true},
+  {name:'Mohamad TG VMess',url:'https://raw.githubusercontent.com/mohamadfg-dev/telegram-v2ray-configs-collector/refs/heads/main/category/vmess.txt',dpi:false},
+  {name:'V2RayRoot VLESS Reality',url:'https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt',dpi:true},
+  {name:'10ium VLESS Scraped',url:'https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Vless.txt',dpi:false},
+  {name:'10ium Trojan Scraped',url:'https://raw.githubusercontent.com/10ium/ScrapeAndCategorize/refs/heads/main/output_configs/Trojan.txt',dpi:false},
+  {name:'CidVPN General',url:'https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt',dpi:false},
+  {name:'TeknoVPN Servers',url:'https://raw.githubusercontent.com/teknovpnhub/v2ray-subscription/refs/heads/main/servers.txt',dpi:false},
+  {name:'Ripaojiedian FreeNode',url:'https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub',dpi:false},
+  {name:'KvRuVPN Gitverse CIDR',url:'https://gitverse.ru/api/repos/ru-wbl/wl/raw/branch/master/KvRuVPN/KvRuVPN.txt',dpi:true},
+  {name:'VLESS для России SNI igareck',url:'https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt',dpi:true},
+  {name:'STR Bypass DPI+SNI RU',url:'https://raw.githubusercontent.com/STR97/STRUGOV/refs/heads/main/STR.BYPASS',dpi:true},
+  {name:'Sevcator VL SNI',url:'https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt',dpi:false},
+  {name:'Sakha1370 Auto-verified',url:'https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt',dpi:false},
+  {name:'Firmfox Mixed Sub-1',url:'https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-1.txt',dpi:false},
+  {name:'Firmfox Mixed Sub-2',url:'https://raw.githubusercontent.com/Firmfox/Proxify/refs/heads/main/v2ray_configs/mixed/subscription-2.txt',dpi:false},
+  {name:'LalatinaHub Mineral',url:'https://github.com/LalatinaHub/Mineral/raw/refs/heads/master/result/nodes',dpi:false},
+  {name:'Danialsamadi AllConfigs',url:'https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt',dpi:false},
+  {name:'4n0nymou3 Multi Proxy Reality+SNI',url:'https://github.com/4n0nymou3/multi-proxy-config-fetcher/raw/refs/heads/main/configs/proxy_configs.txt',dpi:true},
+  {name:'Wuqb2i4f XTLS Mix URI',url:'https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri',dpi:false},
+  {name:'Reality XTLS Telegram Collector',url:'https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt',dpi:true},
+  {name:'Yitong2333 Proxy Mining',url:'https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt',dpi:false},
+  {name:'Acymz AutoVPN',url:'https://raw.githubusercontent.com/acymz/AutoVPN/refs/heads/main/data/V2.txt',dpi:false},
+  {name:'F0rc3Run Trojan',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/trojan.txt',dpi:false},
+];
+
+const POPULAR = [
+  {id:'p0',name:'🔥 Goida Premium (Обход DPI)',url:'https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt',cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sh">🛡️ DPI Bypass</span><span class="badge b-sp">⚡ Fast</span>'},
+  {id:'p1',name:'⚡ Goida Standard',url:'https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt',cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sp">⚡ Fast</span>'},
+  {id:'p2',name:'🌟 Основная VLESS (SNI/CIDR · RU)',url:'https://gitverse.ru/api/repos/kfwlru/sub/raw/branch/main/212.txt',cb:'<span class="badge b-ok">✅ Online</span><span class="badge b-sni">🌐 SNI/CIDR</span><span class="badge b-ru">🇷🇺 RU</span>'},
+  {id:'p3',name:'🔐 Reality XTLS Collector (авто-обновление)',url:'https://raw.githubusercontent.com/soroushmirzaei/telegram-configs-collector/main/protocols/reality.txt',cb:'<span class="badge b-re">🔐 XTLS-Reality</span><span class="badge b-ok">✅ Auto</span>'},
+  {id:'p4',name:'🗺️ F0rc3Run VLESS CIDR (каждые 6ч)',url:'https://raw.githubusercontent.com/F0rc3Run/F0rc3Run/refs/heads/main/splitted-by-protocol/vless.txt',cb:'<span class="badge b-ci">🗺️ CIDR</span><span class="badge b-sp">🔄 6ч</span><span class="badge b-ok">✅ Tested</span>'},
+];
+
+// ═══════════════════════════════════════════════════════
+// BUILD ITEM — NO inline onclick with user strings!
+// Uses data-* attributes only → fixes quote/apostrophe bugs
+// ═══════════════════════════════════════════════════════
+function catBadge(cat) {
+  const r = lang === 'ru';
+  if (cat === 'custom') return `<span class="badge b-pu">👤 ${r?'Своя':'User'}</span>`;
+  if (cat === 'community') return `<span class="badge b-co">🌍 ${r?'Комьюнити':'Community'}</span>`;
+  if (cat === 'sni') return `<span class="badge b-sni">🔐 SNI</span><span class="badge b-ok">✅ Bypass</span>`;
+  if (cat === 'gaming') return `<span class="badge b-pu">🎮 Gaming</span><span class="badge b-ok">📡 Low Ping</span>`;
+  if (cat === 'ru') return `<span class="badge b-ru">🇷🇺 RU</span><span class="badge b-ok">✅ Active</span>`;
+  if (cat === 'media') return `<span class="badge b-sp">▶️ Media</span><span class="badge b-sh">🛡️ Reality</span>`;
+  if (cat === 'new') return `<span class="badge b-nw">✨ New</span><span class="badge b-ok">🔄 Auto</span>`;
+  return `<span class="badge b-ok">✅ Online</span>`;
+}
+
+function buildItem(s, uid) {
+  const isFav = favs.has(s.url || '');
+  const pr = proto(s.url || '');
+  const badges = (s.cb || catBadge(s.cat || '')) + (pr ? ` <span class="badge b-pr">⚙️ ${pr}</span>` : '');
+  const canDel = s.cat === 'custom' || (s.cat === 'community' && s.own);
+  const safeUrl = (s.url || '').replace(/&/g,'&amp;');
+  const safeName = (s.name || 'Config').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return `<div class="li">
+  <div class="li-body">
+    <div class="li-title">
+      <span class="sdot"></span>${safeName}
+      <button class="b-fav ${isFav?'on':''}" data-action="fav" data-uid="${uid}" title="Избранное">${isFav?'❤️':'🤍'}</button>
+    </div>
+    <div class="tags">${badges}</div>
+    <div class="li-url" id="${uid}" data-action="dbl-copy" data-uid="${uid}" title="Двойной клик — копировать">${safeUrl}</div>
+    <div class="brow">
+      ${canDel ? `<button class="bg bi b-del" data-action="del" data-id="${s.id}" title="Удалить">🗑</button>` : ''}
+      <button class="bg bi b-pg" data-action="ping" data-uid="${uid}" title="Проверить">⚡</button>
+      <button class="bg bi" data-action="qr" data-uid="${uid}" title="QR">📱</button>
+      <button class="bg bi" data-action="share" data-uid="${uid}" data-name="${safeName}" title="Поделиться">📤</button>
+      <button class="bg" data-action="copy" data-uid="${uid}"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+    </div>
+    <button class="bg b-imp" data-action="happ" data-uid="${uid}" style="width:100%">
+      <span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span>
+    </button>
+  </div></div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER POPULAR
+// ═══════════════════════════════════════════════════════
+function renderPop() {
+  document.getElementById('pop-list').innerHTML = POPULAR.map(p => {
+    const isFav = favs.has(p.url);
+    return `<div class="li"><div class="li-body">
+      <div class="li-title"><span class="sdot"></span>${p.name.replace(/</g,'&lt;')}
+        <button class="b-fav ${isFav?'on':''}" data-action="fav" data-uid="${p.id}" title="Избранное">${isFav?'❤️':'🤍'}</button>
+      </div>
+      <div class="tags">${p.cb}</div>
+      <div class="li-url" id="${p.id}" data-action="dbl-copy" data-uid="${p.id}">${p.url}</div>
+      <div class="brow">
+        <button class="bg bi b-pg" data-action="ping" data-uid="${p.id}">⚡</button>
+        <button class="bg bi" data-action="qr" data-uid="${p.id}">📱</button>
+        <button class="bg bi" data-action="share" data-uid="${p.id}" data-name="${p.name.replace(/"/g,'&quot;')}">📤</button>
+        <button class="bg" data-action="copy" data-uid="${p.id}"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+      </div>
+      <button class="bg b-imp" data-action="happ" data-uid="${p.id}" style="width:100%">
+        <span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span>
+      </button>
+    </div></div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER CATALOG — clean filter logic
+// ═══════════════════════════════════════════════════════
+let curFilter = 'all', renderT = null;
+function getFilter() { return document.querySelector('.fb.on')?.dataset.f || 'all'; }
+function debouncedRender() { clearTimeout(renderT); renderT = setTimeout(() => render(), 170); }
+
+function getPool(f) {
+  let pool;
+  const dedup = arr => { const s = new Set(); return arr.filter(x => { if (s.has(x.url)) return false; s.add(x.url); return true; }); };
+  if (f === 'all') pool = dedup([...DB.mine, ...DB.comm, ...MASTER, ...SNI]);
+  else if (f === 'favorites') { const all = dedup([...DB.mine,...DB.comm,...MASTER,...MEGA,...SNI]); pool = all.filter(s => favs.has(s.url||'')); }
+  else if (f === 'custom') pool = [...DB.mine];
+  else if (f === 'community') pool = [...DB.comm];
+  else if (f === 'sni') pool = dedup([...MASTER.filter(s=>s.sni), ...SNI]);
+  else pool = MASTER.filter(s => s.cat === f);
+  return pool;
+}
+
+function sortPool(pool) {
+  const sv = document.getElementById('sortSel')?.value || 'def';
+  if (sv === 'az') return [...pool].sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+  if (sv === 'za') return [...pool].sort((a,b)=>(b.name||'').localeCompare(a.name||''));
+  if (sv === 'fav') return [...pool].sort((a,b)=>(favs.has(b.url)?1:0)-(favs.has(a.url)?1:0));
+  return pool;
+}
+
+function render() {
+  const el = document.getElementById('catalog'); if (!el) return;
+  const f = getFilter();
+  const q = (document.getElementById('search')?.value || '').toLowerCase().trim();
+  let pool = getPool(f);
+  if (q) pool = pool.filter(s => (s.name||'').toLowerCase().includes(q) || (s.url||'').toLowerCase().includes(q));
+  pool = sortPool(pool);
+  if (!pool.length) {
+    const r = lang === 'ru';
+    el.innerHTML = `<div class="empty">${
+      f==='custom' ? `👤<p>${r?'Нет своих подписок. Нажмите «+».':'No personal configs. Tap «+».'}</p>` :
+      f==='favorites' ? `⭐<p>${r?'Нет избранных. Нажмите 🤍 у любого конфига.':'No favorites. Tap 🤍 on any config.'}</p>` :
+      `🔍<p>${r?'Ничего не найдено.':'Nothing found.'}</p>`
+    }</div>`;
+    return;
   }
-};
+  el.innerHTML = pool.map((s,i) => buildItem(s, `c_${f}_${i}`)).join('');
+}
 
-// ==============================
-// DELETE CUSTOM SUB
-// ==============================
-window.deleteCustomSub = async function(id) {
-  if (!confirm(currentLang==='ru' ? 'Удалить эту подписку?' : 'Delete this config?')) return;
-  try {
-    if (dbReady && supabaseClient) {
-      const { error } = await supabaseClient.from('subscriptions').delete().eq('id', id);
-      if (error) throw error;
-      await loadDbSubs();
-    } else {
-      customSubs = customSubs.filter(s => s.id !== id);
-      communitySubs = communitySubs.filter(s => s.id !== id && s.id !== id+'c');
-      localStorage.setItem('flux_custom_subs', JSON.stringify(customSubs));
-      localStorage.setItem('flux_community_subs', JSON.stringify(communitySubs));
-    }
-    renderSubs(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
-    updateStats(); updateFilterCounts();
-    showToast('🗑️ ' + (currentLang==='ru' ? 'Удалено' : 'Deleted'));
-  } catch(e) {
-    showToast('❌ ' + (currentLang==='ru' ? 'Ошибка удаления' : 'Delete error'));
-  }
-};
+// ═══════════════════════════════════════════════════════
+// RENDER MEGA
+// ═══════════════════════════════════════════════════════
+function renderMega() {
+  const el = document.getElementById('mega'); if (!el) return;
+  const r = lang === 'ru';
+  el.innerHTML = MEGA.map((s,i) => {
+    const uid = `m_${i}`, isFav = favs.has(s.url), pr = proto(s.url);
+    let b = `<span class="badge b-ok">✅ Online</span>`;
+    if (s.dpi) b += `<span class="badge b-sh">🛡️ ${r?'Обход DPI':'Bypass DPI'}</span>`;
+    if (pr) b += ` <span class="badge b-pr">⚙️ ${pr}</span>`;
+    return `<div class="li"><div class="li-body">
+      <div class="li-title">${s.name}<button class="b-fav ${isFav?'on':''}" data-action="fav" data-uid="${uid}">${isFav?'❤️':'🤍'}</button></div>
+      <div class="tags">${b}</div>
+      <div class="li-url" id="${uid}">${s.url}</div>
+      <div class="brow">
+        <button class="bg bi b-pg" data-action="ping" data-uid="${uid}">⚡</button>
+        <button class="bg bi" data-action="qr" data-uid="${uid}">📱</button>
+        <button class="bg bi" data-action="share" data-uid="${uid}" data-name="${s.name.replace(/"/g,'&quot;')}">📤</button>
+        <button class="bg" data-action="copy" data-uid="${uid}"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+      </div>
+      <button class="bg b-imp" data-action="happ" data-uid="${uid}" style="width:100%"><span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span></button>
+    </div></div>`;
+  }).join('');
+}
 
-// ==============================
-// UTILITIES
-// ==============================
-window.copyLink = function(elId) {
-  const el = document.getElementById(elId);
-  const text = el ? el.innerText.trim() : elId;
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('📋 ' + (currentLang==='ru' ? 'Скопировано!' : 'Copied!'));
-    if (el) { el.closest('.ios-item')?.classList.add('copy-flash'); setTimeout(()=>el.closest('.ios-item')?.classList.remove('copy-flash'),400); }
-    haptic([25]);
-  }).catch(() => {
-    // Fallback
-    const ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    showToast('📋 ' + (currentLang==='ru' ? 'Скопировано!' : 'Copied!'));
+// ═══════════════════════════════════════════════════════
+// STATS + COUNTS
+// ═══════════════════════════════════════════════════════
+function setNum(id, val) {
+  const el = document.getElementById(id); if (!el || el.textContent === String(val)) return;
+  el.textContent = val; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
+}
+function upStats() {
+  const all = [...MASTER,...SNI,...MEGA,...DB.mine,...DB.comm];
+  const seen = new Set(); const total = all.filter(s=>{if(seen.has(s.url))return false;seen.add(s.url);return true;}).length;
+  setNum('st', total); setNum('sf', favs.size); setNum('sm', DB.mine.length); setNum('ss', SNI.length);
+}
+function upCounts() {
+  const all = [...DB.mine,...DB.comm,...MASTER,...SNI];
+  const seen = new Set(); const u = all.filter(s=>{if(seen.has(s.url))return false;seen.add(s.url);return true;});
+  const $ = (id,n) => { const e=document.getElementById(id); if(e) e.textContent=n; };
+  $('fc-all',u.length); $('fc-fav',favs.size); $('fc-mine',DB.mine.length); $('fc-comm',DB.comm.length);
+}
+
+// ═══════════════════════════════════════════════════════
+// ACTIONS (copy, happ, qr, ping, share, fav, del)
+// ═══════════════════════════════════════════════════════
+function getUrl(uid) { return (document.getElementById(uid)?.innerText || '').trim(); }
+function getName(uid) { return document.getElementById(uid)?.closest('.li,.li-body')?.querySelector('.li-title')?.innerText?.replace(/[❤️🤍]/g,'').trim() || 'Config'; }
+
+function doCopy(uid) {
+  const url = getUrl(uid), name = getName(uid);
+  if (!url) return;
+  const write = () => { toast('📋 ' + (lang==='ru'?'Скопировано!':'Copied!')); haptic([22]); addRecent(name,url);
+    const li = document.getElementById(uid)?.closest('.li'); if (li) { li.classList.add('cpf'); setTimeout(()=>li.classList.remove('cpf'),350); }
+  };
+  navigator.clipboard.writeText(url).then(write).catch(() => {
+    const ta = Object.assign(document.createElement('textarea'),{value:url,style:'position:fixed;opacity:0'});
+    document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(_){} ta.remove(); write();
   });
-};
+}
 
-window.openInHapp = function(elId) {
-  const el = document.getElementById(elId);
-  if (!el) return;
-  haptic([30]);
-  window.location.href = 'happ://add/' + el.innerText.trim();
-};
+function doHapp(uid) { const url = getUrl(uid); if (url) { haptic([30]); location.href = 'happ://add/' + url; } }
+function doQr(uid) {
+  const url = getUrl(uid); if (!url) return;
+  document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent('happ://add/'+url);
+  openMo('qrMo');
+}
+function doShare(uid, nameAttr) {
+  const url = getUrl(uid); if (!url) return; haptic([20]);
+  const name = nameAttr || getName(uid);
+  if (navigator.share) navigator.share({title:'Flux VPN — '+name, text:url, url}).catch(()=>{});
+  else { navigator.clipboard.writeText(url).then(()=>toast('📤 '+(lang==='ru'?'Скопировано':'Copied'))); }
+}
 
-window.openQR = function(elId) {
-  const el = document.getElementById(elId);
-  if (!el) return;
-  const link = 'happ://add/' + el.innerText.trim();
-  document.getElementById('qrImage').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(link);
-  document.getElementById('qrModal').classList.add('show');
-};
-
-window.shareNode = function(name, elIdOrUrl) {
-  const el = document.getElementById(elIdOrUrl);
-  const url = el ? el.innerText.trim() : elIdOrUrl;
-  haptic([20]);
-  if (navigator.share) {
-    navigator.share({ title: 'Flux VPN — ' + name, text: url, url }).catch(() => {});
-  } else {
-    navigator.clipboard.writeText(url);
-    showToast('📤 ' + (currentLang==='ru' ? 'Ссылка скопирована' : 'Link copied'));
-  }
-};
-
-// ==============================
-// RADAR
-// ==============================
-async function checkPrivacyStatus() {
+async function doPing(uid, btn) {
+  const url = getUrl(uid); if (!url) return;
+  const orig = btn.textContent; btn.textContent = '⏳'; btn.classList.add('pls'); btn.disabled = true; haptic([15]);
   try {
-    const ctrl = new AbortController();
-    setTimeout(() => ctrl.abort(), 6000);
-    const r = await fetch('https://get.geojs.io/v1/ip/geo.json', { signal: ctrl.signal });
-    const d = await r.json();
-    document.getElementById('radar-ip').innerText = d.ip || '—';
-    document.getElementById('radar-loc').innerText = `${d.city||'?'}, ${d.country||'?'}`;
-    document.getElementById('radar-isp').innerText = d.organization || '—';
-    const badge = document.getElementById('radar-badge');
-    badge.classList.remove('loading');
-    const dangerCountries = ['RU','BY','CN','IR','KZ','TM','UZ'];
-    if (dangerCountries.includes(d.country)) {
-      badge.innerHTML = currentLang==='ru' ? '⚠️ НЕ ЗАЩИЩЕНЫ' : '⚠️ UNPROTECTED';
-      badge.className = 'radar-status unsafe';
-    } else {
-      badge.innerHTML = currentLang==='ru' ? '✅ ЗАЩИЩЕНО' : '✅ PROTECTED';
-      badge.className = 'radar-status safe';
-    }
+    const t0 = Date.now(), ctrl = new AbortController();
+    const tmr = setTimeout(() => ctrl.abort(), 6000);
+    await fetch(url, {mode:'no-cors', signal:ctrl.signal, cache:'no-store'});
+    clearTimeout(tmr);
+    const ms = Date.now()-t0;
+    btn.textContent = ms<800?'🟢':ms<2500?'🟡':'🔴';
+    toast(`📡 ~${ms}ms — ${ms<800?'✅ Отличный':ms<2500?'⚠️ Средний':'❌ Высокий'} пинг`); haptic([30]);
   } catch(e) {
-    const badge = document.getElementById('radar-badge');
-    badge.innerHTML = '❓ N/A';
-    badge.className = 'radar-status loading';
+    btn.textContent = e.name==='AbortError'?'⏱️':'❓';
+    toast(lang==='ru'?'⚠️ Нет ответа':'⚠️ No response');
+  } finally {
+    btn.classList.remove('pls'); btn.disabled = false;
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 4200);
   }
 }
 
-// ==============================
-// SCROLL TO TOP
-// ==============================
-const scrollTopBtn = document.getElementById('scrollTopBtn');
-window.addEventListener('scroll', () => {
-  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+function doFav(uid, btn) {
+  const url = getUrl(uid);
+  if (!url) return;
+  if (favs.has(url)) {
+    favs.delete(url); btn.textContent='🤍'; btn.classList.remove('on');
+    toast(lang==='ru'?'💔 Убрано':'💔 Removed from favorites');
+  } else {
+    favs.add(url); btn.textContent='❤️'; btn.classList.add('on');
+    toast(lang==='ru'?'⭐ В избранном!':'⭐ Favorited!'); confetti(); haptic([20,40,20]);
+  }
+  saveFavs(); upStats(); upCounts();
+  if (getFilter() === 'favorites') render();
+}
+
+function doDel(id) {
+  const snap = { mine: [...DB.mine], comm: [...DB.comm] };
+  DB.mine = DB.mine.filter(s => s.id !== id);
+  DB.comm = DB.comm.filter(s => s.id !== id && s.id !== id+'c');
+  DB.saveLocal();
+  render(); upStats(); upCounts();
+  toastUndo('🗑️ ' + (lang==='ru'?'Удалено':'Deleted'), async () => {
+    DB.mine = snap.mine; DB.comm = snap.comm; DB.saveLocal(); render(); upStats(); upCounts();
+    if (DB.ready && DB.client && DB.user) {
+      DB.client.from('subscriptions').insert(snap.mine.filter(s=>s.id===id)).catch(()=>{});
+    }
+  });
+  if (DB.ready && DB.client && DB.user) DB.client.from('subscriptions').delete().eq('id',id).catch(()=>{});
+}
+
+// ═══════════════════════════════════════════════════════
+// EVENT DELEGATION — single listener for ALL clicks
+// ═══════════════════════════════════════════════════════
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-action]'); if (!el) return;
+  const a = el.dataset.action, uid = el.dataset.uid;
+  if (a === 'copy')      { doCopy(uid); }
+  else if (a === 'happ') { doHapp(uid); }
+  else if (a === 'qr')   { doQr(uid); }
+  else if (a === 'ping') { doPing(uid, el); }
+  else if (a === 'share'){ doShare(uid, el.dataset.name); }
+  else if (a === 'fav')  { doFav(uid, el); }
+  else if (a === 'del')  { doDel(el.dataset.id); }
+  else if (a === 'close') { openMo(el.dataset.close, false); }
+  else if (a === 'close-ping') { document.getElementById('pingMo').classList.remove('open'); }
+  else if (a === 'quick-copy') { navigator.clipboard.writeText(el.dataset.url).then(()=>toast('📋 '+el.dataset.name)); }
+  else if (a === 'copy-card') { const t=document.getElementById('cardNo').textContent; navigator.clipboard.writeText(t).then(()=>toast('📋 Номер скопирован!')); }
+  // Prevent double-click copy
+  else if (a === 'dbl-copy') { /* handled via dblclick */ }
 });
 
-// ==============================
-// KEYBOARD SHORTCUTS
-// ==============================
-document.addEventListener('keydown', e => {
-  const tag = document.activeElement?.tagName;
-  const inInput = tag === 'INPUT' || tag === 'TEXTAREA';
-
-  // Escape → close modals
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
-    return;
-  }
-  // / → focus search
-  if (e.key === '/' && !inInput) {
-    e.preventDefault();
-    const si = document.getElementById('searchInput');
-    if (si) { si.focus(); si.select(); si.scrollIntoView({ behavior:'smooth', block:'center' }); }
-    return;
-  }
-  // R → random
-  if ((e.key === 'r' || e.key === 'R') && !inInput) {
-    pickRandom();
-    return;
-  }
-  // E → export
-  if ((e.key === 'e' || e.key === 'E') && !inInput) {
-    exportConfigs();
-    return;
-  }
+document.addEventListener('dblclick', e => {
+  const el = e.target.closest('[data-action=dbl-copy]'); if (!el) return;
+  doCopy(el.dataset.uid);
 });
 
-// ==============================
+// ═══════════════════════════════════════════════════════
 // FILTER BUTTONS
-// ==============================
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    e.currentTarget.classList.add('active');
-    renderSubs(e.currentTarget.dataset.filter);
-    haptic([10]);
-  });
+// ═══════════════════════════════════════════════════════
+document.getElementById('frow').addEventListener('click', e => {
+  const btn = e.target.closest('.fb'); if (!btn) return;
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on'); render(); haptic([10]);
 });
 
-// ==============================
+// ═══════════════════════════════════════════════════════
+// SORT + COPY VIEW + COPY FAVS
+// ═══════════════════════════════════════════════════════
+document.getElementById('sortSel').addEventListener('change', () => render());
+
+document.getElementById('copyViewBtn').addEventListener('click', () => {
+  const f = getFilter(), q = (document.getElementById('search')?.value||'').toLowerCase().trim();
+  let pool = getPool(f);
+  if (q) pool = pool.filter(s=>(s.name||'').toLowerCase().includes(q)||(s.url||'').toLowerCase().includes(q));
+  pool = sortPool(pool);
+  if (!pool.length) { toast(lang==='ru'?'❌ Нет конфигов в текущем виде':'❌ No configs in current view'); return; }
+  const urls = pool.map(s=>s.url).join('\n');
+  navigator.clipboard.writeText(urls).then(() => { toast(`📋 ${pool.length} URL скопировано!`); confetti(); haptic([25]); });
+});
+
+document.getElementById('copyFavsBtn').addEventListener('click', () => {
+  if (!favs.size) { toast(lang==='ru'?'⭐ Нет избранных':'⭐ No favorites'); return; }
+  const all = [...MASTER,...SNI,...MEGA,...DB.mine,...DB.comm];
+  const seen = new Set(); const u = all.filter(s=>{if(seen.has(s.url))return false;seen.add(s.url);return true;});
+  const favList = u.filter(s => favs.has(s.url||''));
+  if (!favList.length) { toast(lang==='ru'?'⭐ Нет избранных':'⭐ No favorites'); return; }
+  const urls = favList.map(s=>s.url).join('\n');
+  navigator.clipboard.writeText(urls).then(() => { toast(`❤️ ${favList.length} ${lang==='ru'?'избранных скопировано':'favorites copied'}`); confetti(); haptic([25,40,25]); });
+});
+
+// ═══════════════════════════════════════════════════════
+// PING TESTER (batch)
+// ═══════════════════════════════════════════════════════
+async function openPingTester() {
+  document.getElementById('pingMo').classList.add('open');
+  const res = document.getElementById('pingRes');
+  const f = getFilter();
+  let items = f === 'sni' ? SNI.slice(0,10) : f === 'ru' ? MASTER.filter(s=>s.cat==='ru') : MASTER.filter(s=>s.cat==='best').concat(SNI.slice(0,4));
+  items = items.slice(0, 12);
+  res.innerHTML = items.map((_,i) =>
+    `<div class="pr"><span class="pr-icon pls" id="pi${i}">⏳</span><span class="pr-name" id="pn${i}">${items[i].name.substring(0,35)}</span><span class="pr-ms" id="pm${i}">—</span></div>`
+  ).join('');
+  for (let i = 0; i < items.length; i++) {
+    try {
+      const t0 = Date.now(), ctrl = new AbortController();
+      const tmr = setTimeout(() => ctrl.abort(), 5500);
+      await fetch(items[i].url, {mode:'no-cors', signal:ctrl.signal, cache:'no-store'});
+      clearTimeout(tmr);
+      const ms = Date.now()-t0;
+      const ic = ms<800?'🟢':ms<2500?'🟡':'🔴';
+      const pi=document.getElementById('pi'+i),pm=document.getElementById('pm'+i);
+      if(pi){pi.textContent=ic;pi.classList.remove('pls');}
+      if(pm) pm.textContent=ms+'ms';
+    } catch(e) {
+      const pi=document.getElementById('pi'+i),pm=document.getElementById('pm'+i);
+      if(pi){pi.textContent=e.name==='AbortError'?'⏱️':'❌';pi.classList.remove('pls');}
+      if(pm) pm.textContent=e.name==='AbortError'?'timeout':'error';
+    }
+  }
+}
+document.getElementById('pingClose').addEventListener('click', () => document.getElementById('pingMo').classList.remove('open'));
+document.getElementById('pingMo').addEventListener('click', e => { if(e.target===document.getElementById('pingMo')) document.getElementById('pingMo').classList.remove('open'); });
+
+// ═══════════════════════════════════════════════════════
+// IMPORT FILE (.txt with URLs)
+// ═══════════════════════════════════════════════════════
+function processFile(file) {
+  if (!file || !file.name.endsWith('.txt')) { toast('⚠️ Только .txt файлы'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const lines = e.target.result.split('\n').map(l=>l.trim()).filter(l=>l.startsWith('http'));
+    if (!lines.length) { toast('❌ Нет URL в файле'); return; }
+    lines.forEach((url,i) => {
+      const name = `Import #${DB.mine.length+i+1}`;
+      const id = 'local_'+Date.now()+'_'+i;
+      DB.mine.unshift({id, name, url, cat:'custom', own:true});
+    });
+    DB.saveLocal(); render(); upStats(); upCounts();
+    toast(`✅ ${lines.length} конфигов импортировано!`); confetti();
+    document.getElementById('addMo').classList.remove('open');
+  };
+  reader.readAsText(file);
+}
+const dz = document.getElementById('dropzone'), fi = document.getElementById('fileIn');
+dz.addEventListener('click', () => fi.click());
+fi.addEventListener('change', () => fi.files[0] && processFile(fi.files[0]));
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); processFile(e.dataTransfer.files[0]); });
+
+// ═══════════════════════════════════════════════════════
+// SAVE CONFIG
+// ═══════════════════════════════════════════════════════
+document.getElementById('saveBtn').addEventListener('click', async () => {
+  const name = document.getElementById('cName').value.trim();
+  const url  = document.getElementById('cUrl').value.trim();
+  if (!name || !url) { toast('⚠️ Заполните все поля!'); return; }
+  if (!url.startsWith('http')) { document.getElementById('urlWarn').style.display='block'; return; }
+  document.getElementById('urlWarn').style.display='none';
+  const btn = document.getElementById('saveBtn'); btn.disabled=true; btn.style.opacity='.7';
+  try {
+    const user = await DB.timeout(DB.getUser(), 4500).catch(()=>null);
+    if (!user || !DB.client) throw new Error('no auth');
+    const {error} = await DB.timeout(DB.client.from('subscriptions').insert([{user_id:user.id,name,url,is_public:true}]),5000);
+    if (error) throw error;
+    await DB.load(); toast('✅ '+(lang==='ru'?'Сохранено в облаке!':'Saved to cloud!')); confetti();
+  } catch(_) {
+    const id='local_'+Date.now(), ns={id,name,url,cat:'custom',own:true};
+    DB.mine.unshift(ns); DB.comm.unshift({...ns,id:id+'c',cat:'community'});
+    DB.saveLocal(); document.getElementById('dbWarn').style.display='block';
+    toast('⚠️ '+(lang==='ru'?'Сохранено локально':'Saved locally'));
+  } finally {
+    btn.disabled=false; btn.style.opacity='1';
+    document.getElementById('addMo').classList.remove('open');
+    document.getElementById('cName').value=''; document.getElementById('cUrl').value='';
+    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+    document.querySelector('[data-f=custom]').classList.add('on');
+    render(); upStats(); upCounts();
+  }
+});
+
+// ═══════════════════════════════════════════════════════
+// MODAL HELPERS
+// ═══════════════════════════════════════════════════════
+function openMo(id, open=true) {
+  const el = document.getElementById(id); if (!el) return;
+  if (open) el.classList.add('open'); else el.classList.remove('open');
+}
+document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => openMo(b.dataset.close, false)));
+document.querySelectorAll('.mo').forEach(mo => mo.addEventListener('click', e => { if(e.target===mo) mo.classList.remove('open'); }));
+
+// ═══════════════════════════════════════════════════════
+// RANDOM
+// ═══════════════════════════════════════════════════════
+document.getElementById('fabRnd').addEventListener('click', () => {
+  const pool = [...MASTER,...SNI,...MEGA.slice(0,20)];
+  const s = pool[Math.floor(Math.random()*pool.length)];
+  if (!s) return;
+  navigator.clipboard.writeText(s.url).then(() => { toast('🎲 '+s.name.substring(0,40)); confetti(); haptic([20,50,20]); }).catch(()=>toast('🎲 '+s.name.substring(0,40)));
+});
+
+// ═══════════════════════════════════════════════════════
+// EXPORT ALL
+// ═══════════════════════════════════════════════════════
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const all=[...MASTER,...SNI,...MEGA,...DB.mine,...DB.comm];
+  const seen=new Set(); const u=all.filter(s=>{if(seen.has(s.url))return false;seen.add(s.url);return true;});
+  const txt='# Flux VPN Export — '+new Date().toLocaleDateString('ru-RU')+'\n# Total: '+u.length+'\n\n'+u.map(s=>'# '+s.name+'\n'+s.url).join('\n\n');
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([txt],{type:'text/plain'})),download:'flux-vpn-'+Date.now()+'.txt'});
+  a.click(); toast('📥 '+u.length+' '+(lang==='ru'?'конфигов!':'configs!')); haptic([30,50,30]);
+});
+
+// ═══════════════════════════════════════════════════════
+// PING BUTTON
+// ═══════════════════════════════════════════════════════
+document.getElementById('pingBtn').addEventListener('click', openPingTester);
+
+// ═══════════════════════════════════════════════════════
+// ADD BUTTON
+// ═══════════════════════════════════════════════════════
+document.getElementById('addBtn').addEventListener('click', () => openMo('addMo'));
+
+// ═══════════════════════════════════════════════════════
+// THEMES
+// ═══════════════════════════════════════════════════════
+const THEMES = [
+  {id:'default',c:'#0a84ff'},{id:'cyberpunk',c:'#ff007f'},{id:'matrix',c:'#00ff00'},
+  {id:'blood',c:'#ff2a2a'},{id:'ocean',c:'#00d4ff'},{id:'gold',c:'#ffd700'},
+  {id:'purple',c:'#b026ff'},{id:'sunset',c:'#ff6a00'},{id:'hacker',c:'#39ff14'},
+  {id:'amethyst',c:'#9b5de5'},{id:'midnight',c:'#3b82f6'},{id:'synthwave',c:'#ff9e00'},
+  {id:'mint',c:'#00ffaa'},{id:'neonpink',c:'#ff00aa'},{id:'dracula',c:'#ff79c6'},
+  {id:'light',c:'#2563eb'},{id:'mono',c:'#fff'},{id:'aqua',c:'#00ffff'}
+];
+let curTheme = localStorage.getItem('flux_theme') || (matchMedia('(prefers-color-scheme: light)').matches?'light':'default');
+document.documentElement.setAttribute('data-theme', curTheme);
+const tg = document.getElementById('tg');
+THEMES.forEach(t => {
+  const d = document.createElement('div'); d.className='td'+(curTheme===t.id?' on':'');
+  d.style.background=t.c; d.title=t.id;
+  d.addEventListener('click', () => {
+    document.querySelectorAll('.td').forEach(x=>x.classList.remove('on')); d.classList.add('on');
+    curTheme=t.id; document.documentElement.setAttribute('data-theme',t.id);
+    localStorage.setItem('flux_theme',t.id); toast('🎨 '+t.id);
+  });
+  tg.appendChild(d);
+});
+document.getElementById('themeBtn').addEventListener('click', () => openMo('themeMo'));
+
+// ═══════════════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════════════
+document.getElementById('langBtn').addEventListener('click', () => {
+  lang = lang==='ru'?'en':'ru'; document.documentElement.lang=lang;
+  document.getElementById('langBtn').textContent=lang==='ru'?'EN':'RU';
+  localStorage.setItem('flux_lang',lang); toast(lang==='ru'?'🇷🇺 Русский':'🇬🇧 English');
+  render(); renderMega(); renderPop(); renderRecent(); upStats();
+});
+
+// ═══════════════════════════════════════════════════════
+// PERF MODE
+// ═══════════════════════════════════════════════════════
+function applyPerf() { const g=document.getElementById('glow'); if(g) g.style.display=perfMode?'none':'block'; }
+applyPerf();
+document.getElementById('perfBtn').addEventListener('click', () => {
+  perfMode=!perfMode; localStorage.setItem('flux_perf',perfMode); applyPerf();
+  toast(perfMode?'🔋 Power saving ON':'✨ Effects ON');
+});
+
+// ═══════════════════════════════════════════════════════
+// SCROLL + FAB UP
+// ═══════════════════════════════════════════════════════
+const fabUp = document.getElementById('fabUp');
+window.addEventListener('scroll', () => fabUp.classList.toggle('show', scrollY > 400));
+
+// ═══════════════════════════════════════════════════════
+// KEYBOARD SHORTCUTS
+// ═══════════════════════════════════════════════════════
+document.addEventListener('keydown', e => {
+  const inInput = ['INPUT','TEXTAREA'].includes(document.activeElement?.tagName);
+  if (e.key==='Escape') { document.querySelectorAll('.mo.open').forEach(m=>m.classList.remove('open')); document.getElementById('pingMo').classList.remove('open'); return; }
+  if (e.key==='/' && !inInput) { e.preventDefault(); document.getElementById('search').focus(); }
+  if ((e.key==='r'||e.key==='R') && !inInput) document.getElementById('fabRnd').click();
+  if ((e.key==='p'||e.key==='P') && !inInput) openPingTester();
+  if ((e.key==='e'||e.key==='E') && !inInput) document.getElementById('exportBtn').click();
+});
+
+// ═══════════════════════════════════════════════════════
+// SEARCH INPUT
+// ═══════════════════════════════════════════════════════
+document.getElementById('search').addEventListener('input', () => debouncedRender());
+
+// ═══════════════════════════════════════════════════════
 // WIZARD TABS
-// ==============================
-document.querySelectorAll('.wizard-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.wizard-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.wizard-content').forEach(c => c.classList.remove('active'));
-    tab.classList.add('active');
-    const target = document.getElementById(tab.dataset.target);
-    if (target) target.classList.add('active');
-  });
-});
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.wt').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.wt').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.wp').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on'); document.getElementById(t.dataset.wp)?.classList.add('on');
+}));
 
-// ==============================
+// ═══════════════════════════════════════════════════════
 // TAB BAR
-// ==============================
-document.querySelectorAll('.tab-item:not([target="_blank"])').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.ti:not([target=_blank])').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.ti').forEach(x=>x.classList.remove('on')); t.classList.add('on');
+}));
 
-// ==============================
-// INTERSECTION OBSERVER
-// ==============================
+// ═══════════════════════════════════════════════════════
+// ONLINE/OFFLINE
+// ═══════════════════════════════════════════════════════
+const ofb = document.getElementById('offline');
+window.addEventListener('offline', () => ofb.classList.add('show'));
+window.addEventListener('online', () => ofb.classList.remove('show'));
+if (!navigator.onLine) ofb.classList.add('show');
+
+// ═══════════════════════════════════════════════════════
+// RADAR
+// ═══════════════════════════════════════════════════════
+async function radar() {
+  try {
+    const ctrl = new AbortController(); setTimeout(() => ctrl.abort(), 7000);
+    const d = await fetch('https://get.geojs.io/v1/ip/geo.json',{signal:ctrl.signal}).then(r=>r.json());
+    document.getElementById('rip').textContent=d.ip||'—';
+    document.getElementById('rloc').textContent=`${d.city||'?'}, ${d.country||'?'}`;
+    document.getElementById('risp').textContent=d.organization||'—';
+    const b=document.getElementById('rbadge'); b.classList.remove('pls');
+    const danger=['RU','BY','CN','IR','KZ','TM','UZ'];
+    if (danger.includes(d.country)) { b.innerHTML=lang==='ru'?'⚠️ НЕ ЗАЩИЩЕНЫ':'⚠️ UNPROTECTED'; b.className='rstatus rs-bad'; }
+    else { b.innerHTML=lang==='ru'?'✅ ЗАЩИЩЕНО':'✅ PROTECTED'; b.className='rstatus rs-ok'; }
+  } catch(_) { const b=document.getElementById('rbadge'); if(b){b.textContent='❓ N/A';b.className='rstatus rs-load';b.classList.remove('pls');} }
+}
+
+// ═══════════════════════════════════════════════════════
+// SCROLL ANIMATIONS
+// ═══════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-up').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
-    else obs.observe(el);
+  const obs = new IntersectionObserver(en => en.forEach(e => { if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target);} }), {threshold:.07});
+  document.querySelectorAll('.fu').forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight) el.classList.add('v'); else obs.observe(el);
   });
 });
 
-// ==============================
+// ═══════════════════════════════════════════════════════
 // INIT
-// ==============================
+// ═══════════════════════════════════════════════════════
 (async () => {
-  Progress.init();
-  Progress.set(10);
-  await loadDbSubs();
-  Progress.set(70);
-  renderSubs('all');
-  renderMegaBase();
-  syncStaticFavBtns();
-  updateStats();
-  updateFilterCounts();
-  checkPrivacyStatus();
-  Progress.set(100);
+  PB.init(); PB.set(10); DB.init();
+  await DB.load().catch(() => DB.loadLocal());
+  PB.set(65);
+  renderPop(); render(); renderMega(); renderRecent(); upStats(); upCounts();
+  PB.set(100);
+  radar();
 })();
 </script>
 </body>
