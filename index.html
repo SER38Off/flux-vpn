@@ -2,11 +2,17 @@
 <html lang="ru" data-theme="default">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" id="themeColor" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" id="themeColor" content="#07111f">
+    <meta name="description" content="Flux VPN — каталог VPN-подписок, быстрый импорт в Happ и понятные инструкции для всех устройств.">
+    <meta name="color-scheme" content="dark light">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta property="og:title" content="Flux VPN — свобода подключения">
+    <meta property="og:description" content="Подберите конфигурацию, добавьте её в Happ и подключитесь за несколько шагов.">
+    <meta property="og:type" content="website">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Flux VPN">
-    <title>Flux VPN Titanium</title>
+    <title>Flux VPN — каталог и быстрый старт</title>
     <style>
         :root{--bg:#0a0a0c;--app:#000;--surf:#1c1c1e;--surf2:#2c2c2e;--pri:#0a84ff;--grad:linear-gradient(135deg,#0a84ff,#5e5ce6);--txt:#fff;--sec:rgba(235,235,245,.6);--red:#ff453a;--green:#32d74b;--yellow:#ffd60a;--purple:#bf5af2;--rlg:24px;--rmd:16px;--rsm:10px}
         [data-theme=cyberpunk]{--bg:#0d0221;--app:#0d0221;--surf:#1a0033;--surf2:#2a0055;--pri:#ff007f;--grad:linear-gradient(135deg,#ff007f,#00f0ff);--txt:#fff;--sec:rgba(255,255,255,.7)}
@@ -260,9 +266,84 @@
         .ti svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
         .ti.on{background:rgba(41,98,255,.13);color:var(--pri)}
         @media(max-width:370px){.ti{padding:8px 8px}.wtabs{grid-template-columns:repeat(3,1fr)}}
+
+        /* NOVA UI — product-focused redesign */
+        :root{--line:rgba(148,163,184,.16);--glass:rgba(9,15,27,.74);--shadow:0 28px 80px rgba(0,0,0,.34);--container:1180px}
+        html{scroll-padding-top:108px}
+        body{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:
+          radial-gradient(circle at 8% 4%,color-mix(in srgb,var(--pri) 17%,transparent),transparent 28rem),
+          radial-gradient(circle at 92% 12%,rgba(94,92,230,.12),transparent 30rem),var(--bg);line-height:1.5}
+        body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 72%)}
+        a,button,input,select{font:inherit}
+        button{color:inherit}
+        :focus-visible{outline:3px solid color-mix(in srgb,var(--pri) 60%,white);outline-offset:3px}
+        .skip-link{position:fixed;z-index:10000;left:16px;top:10px;padding:10px 14px;border-radius:12px;background:var(--pri);color:#fff;transform:translateY(-160%);transition:transform .2s}
+        .skip-link:focus{transform:none}
+        .app{padding-top:104px!important;padding-bottom:100px}
+        .wrap{max-width:var(--container);padding:28px 24px 60px}
+        #topbar{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(calc(100% - 28px),var(--container));min-height:66px;padding:9px 10px 9px 16px;justify-content:space-between;align-items:center;gap:14px;background:color-mix(in srgb,var(--app) 75%,transparent);border:1px solid var(--line);border-radius:22px;box-shadow:0 16px 50px rgba(0,0,0,.22);backdrop-filter:blur(20px);pointer-events:auto}
+        .brand{display:flex;align-items:center;gap:10px;color:var(--txt);text-decoration:none;font-weight:850;letter-spacing:-.02em;white-space:nowrap}
+        .brand-mark{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:var(--grad);box-shadow:0 8px 24px color-mix(in srgb,var(--pri) 28%,transparent);font-size:20px}
+        .brand small{display:block;color:var(--sec);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+        .desktop-nav{display:flex;align-items:center;gap:5px}
+        .desktop-nav a{padding:9px 12px;border-radius:12px;color:var(--sec);text-decoration:none;font-size:13px;font-weight:700;transition:.2s}
+        .desktop-nav a:hover{background:rgba(148,163,184,.1);color:var(--txt)}
+        .top-actions{display:flex;gap:7px}
+        #topbar .cb{width:40px;height:40px;border-radius:13px;background:rgba(148,163,184,.08);box-shadow:none}
+        #topbar .cb:hover{background:rgba(148,163,184,.15);transform:translateY(-1px)}
+        .hero{position:relative;display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:42px;align-items:center;padding:54px 48px;min-height:520px;border:1px solid var(--line);border-radius:36px;overflow:hidden;background:linear-gradient(145deg,color-mix(in srgb,var(--surf) 88%,transparent),color-mix(in srgb,var(--app) 92%,transparent));box-shadow:var(--shadow)}
+        .hero::before{content:"";position:absolute;width:440px;height:440px;right:-100px;top:-150px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--pri) 30%,transparent),transparent 66%);pointer-events:none}
+        .eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:7px 11px;border:1px solid color-mix(in srgb,var(--pri) 28%,transparent);border-radius:999px;color:color-mix(in srgb,var(--pri) 72%,white);background:color-mix(in srgb,var(--pri) 8%,transparent);font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+        .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 5px rgba(74,222,128,.1)}
+        .hero h1{text-align:left;font-size:clamp(42px,6vw,76px);line-height:.98;letter-spacing:-.055em;margin:0 0 22px;max-width:760px}
+        .hero h1 span{display:block;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .hero-copy{max-width:650px;color:var(--sec);font-size:clamp(16px,2vw,19px);line-height:1.65;margin-bottom:28px}
+        .hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:25px}
+        .hero-actions .btn-pri{width:auto;min-width:190px;padding:14px 22px;border-radius:14px}
+        .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:170px;padding:13px 20px;border:1px solid var(--line);border-radius:14px;background:rgba(148,163,184,.07);color:var(--txt);text-decoration:none;font-weight:750;transition:.2s}
+        .btn-ghost:hover{border-color:color-mix(in srgb,var(--pri) 48%,transparent);background:rgba(148,163,184,.12);transform:translateY(-2px)}
+        .trust-row{display:flex;flex-wrap:wrap;gap:8px;color:var(--sec);font-size:11px;font-weight:700}
+        .trust-row span{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(148,163,184,.045)}
+        .connection-card{position:relative;z-index:1;padding:24px;border:1px solid rgba(255,255,255,.13);border-radius:28px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.025));box-shadow:0 24px 50px rgba(0,0,0,.28);backdrop-filter:blur(18px)}
+        .connection-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+        .connection-top strong{font-size:13px}.live-pill{padding:5px 9px;border-radius:999px;background:rgba(74,222,128,.1);color:#4ade80;font-size:10px;font-weight:850;text-transform:uppercase}
+        .shield-orbit{position:relative;display:grid;place-items:center;width:190px;height:190px;margin:4px auto 30px;border-radius:50%;border:1px solid color-mix(in srgb,var(--pri) 32%,transparent);background:radial-gradient(circle,color-mix(in srgb,var(--pri) 18%,transparent),transparent 64%);box-shadow:inset 0 0 50px rgba(0,0,0,.2)}
+        .shield-orbit::before,.shield-orbit::after{content:"";position:absolute;inset:16px;border:1px dashed color-mix(in srgb,var(--pri) 28%,transparent);border-radius:50%;animation:spin 20s linear infinite}.shield-orbit::after{inset:39px;animation-direction:reverse;animation-duration:13s}
+        .shield-core{display:grid;place-items:center;width:78px;height:78px;border-radius:24px;background:var(--grad);font-size:36px;box-shadow:0 15px 38px color-mix(in srgb,var(--pri) 30%,transparent)}
+        .connection-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{padding:12px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.1)}.metric small{display:block;color:var(--sec);font-size:9px;text-transform:uppercase;letter-spacing:.1em}.metric strong{display:block;margin-top:4px;font-size:13px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .stats{margin:20px 0 30px;display:grid;grid-template-columns:repeat(4,1fr);overflow:visible}
+        .sc{min-width:0;padding:18px;border-radius:18px;background:color-mix(in srgb,var(--surf) 90%,transparent)}
+        .sn{font-size:28px}.sl{font-size:10px;margin-top:6px}
+        .section-intro{display:flex;justify-content:space-between;gap:24px;align-items:end;margin:58px 0 18px}
+        .section-intro h2{margin:0;border:0;padding:0;font-size:clamp(25px,4vw,36px);letter-spacing:-.035em}.section-intro p{max-width:520px;color:var(--sec);font-size:13px;text-align:right}
+        .card,.radar,.wiz,.dcard{border-color:var(--line);background:color-mix(in srgb,var(--surf) 88%,transparent);box-shadow:0 14px 45px rgba(0,0,0,.16)}
+        .radar{padding:24px;border-radius:26px}.radar-hd{padding-bottom:18px}.radar-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);color:var(--sec);font-size:11px;line-height:1.55}
+        .radar-action{border:1px solid color-mix(in srgb,var(--pri) 34%,transparent);border-radius:11px;padding:7px 10px;background:color-mix(in srgb,var(--pri) 10%,transparent);color:var(--pri);font-size:11px;font-weight:800;cursor:pointer}
+        .safety-note{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;margin:0 0 34px;border:1px solid rgba(245,158,11,.24);border-radius:20px;background:rgba(245,158,11,.055);color:var(--sec);font-size:12px}.safety-note strong{display:block;color:var(--txt);margin-bottom:3px}.safety-note-icon{font-size:22px}
+        .sg{grid-template-columns:repeat(6,1fr)}
+        .soc{min-height:92px;justify-content:center;border-color:var(--line);background:color-mix(in srgb,var(--surf) 88%,transparent)}
+        .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:28px 0 48px}.quick-step{position:relative;padding:22px;border:1px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--surf) 88%,transparent)}.quick-step b{display:grid;place-items:center;width:34px;height:34px;margin-bottom:18px;border-radius:11px;background:color-mix(in srgb,var(--pri) 12%,transparent);color:var(--pri)}.quick-step h3{font-size:15px;margin-bottom:7px}.quick-step p{font-size:12px;color:var(--sec)}
+        #pop-list,#catalog{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;overflow:visible;background:transparent;border:0;border-radius:0}
+        #pop-list .li,#catalog .li{border:1px solid var(--line);border-radius:20px;background:color-mix(in srgb,var(--surf) 91%,transparent);overflow:hidden}
+        #pop-list .li:hover,#catalog .li:hover{border-color:color-mix(in srgb,var(--pri) 38%,transparent);transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.16)}
+        .li{transition:border-color .2s,transform .2s,box-shadow .2s}.li-body{padding:17px}.li-title{font-size:14px}.brow{gap:7px}.bg{min-height:38px;border-radius:10px}
+        .sbar{min-height:48px;background:color-mix(in srgb,var(--surf) 80%,transparent);border-color:var(--line)}
+        .frow{padding:2px 2px 8px}.fb{padding:8px 13px;border-color:var(--line)}
+        .wiz{padding:20px;border-radius:26px}.wtabs{gap:8px}.wt{border-radius:13px}
+        .mo,.mb,#pingMo{backdrop-filter:blur(18px)}.mb,#pingBox{border:1px solid var(--line);box-shadow:var(--shadow)}
+        .tbar-w{background:transparent}.tbar{border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.32);backdrop-filter:blur(18px)}
+        .fu{opacity:1!important;transform:none!important}
+        .footer-note{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:36px;padding:24px;border:1px solid var(--line);border-radius:24px;color:var(--sec);font-size:12px}.footer-note strong{color:var(--txt)}
+        @media(min-width:901px){.tbar-w{display:none}}
+        @media(max-width:900px){.desktop-nav{display:none}.hero{grid-template-columns:1fr;padding:42px 30px}.connection-card{max-width:520px;width:100%;margin:auto}.sg{grid-template-columns:repeat(3,1fr)}.wrap{padding-top:16px}}
+        @media(max-width:640px){#topbar{top:8px;width:calc(100% - 16px);min-height:58px;border-radius:17px;padding:7px 8px 7px 11px}.brand-mark{width:35px;height:35px}.brand small{display:none}#topbar .cb{width:36px;height:36px}.top-actions{gap:4px}#exportBtn,#perfBtn{display:none}.app{padding-top:78px!important}.wrap{padding:14px 14px 42px}.hero{padding:34px 21px;min-height:0;border-radius:27px;gap:30px}.hero h1{font-size:44px}.hero-copy{font-size:15px}.hero-actions{display:grid}.hero-actions .btn-pri,.btn-ghost{width:100%;min-width:0}.connection-card{padding:18px;border-radius:22px}.shield-orbit{width:150px;height:150px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.sc{padding:14px}.section-intro{display:block;margin-top:44px}.section-intro p{text-align:left;margin-top:8px}.sg{grid-template-columns:repeat(3,1fr)}.quick-grid{grid-template-columns:1fr;margin-bottom:38px}#pop-list,#catalog{grid-template-columns:1fr}.radar-grid{grid-template-columns:1fr}.ri[style]{grid-column:auto!important}.safety-note{padding:15px}.footer-note{display:block}.footer-note span{display:block;margin-top:8px}}
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.fu{transform:none!important;opacity:1!important}}
     </style>
 </head>
 <body>
+
+<a class="skip-link" href="#subs">Перейти к каталогу</a>
 
 <div id="offline">📵 <span class="ru">Нет интернета</span><span class="en">No connection</span></div>
 <div id="progress"></div>
@@ -270,33 +351,54 @@
 <button class="fab" id="fabUp" onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆️</button>
 <button class="fab" id="fabRnd">🎲</button>
 
-<div id="topbar">
-    <div class="cb" id="pingBtn" title="Пинг-тест">📡</div>
-    <div class="cb" id="exportBtn" title="Экспорт">📥</div>
-    <div class="cb" id="langBtn">EN</div>
-    <div class="cb" id="perfBtn">🔋</div>
-    <div class="cb" id="themeBtn"><svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5c-.828 0-1.5.672-1.5 1.5 0 .393.152.754.4 1.026.242.242.35.58.35.974 0 1.93-1.57 3.5-3.5 3.5zm-5.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3-4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></div>
-</div>
+<header id="topbar">
+    <a class="brand" href="#home" aria-label="Flux VPN — главная">
+        <span class="brand-mark" aria-hidden="true">⚡</span>
+        <span>Flux VPN<small>Connection hub</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+        <a href="#subs"><span class="ru">Каталог</span><span class="en">Catalog</span></a>
+        <a href="#guide"><span class="ru">Инструкция</span><span class="en">Guide</span></a>
+        <a href="#backup"><span class="ru">Мега-база</span><span class="en">Mega base</span></a>
+        <a href="https://t.me/FluxVPNSup" target="_blank" rel="noopener noreferrer"><span class="ru">Поддержка</span><span class="en">Support</span></a>
+    </nav>
+    <div class="top-actions">
+        <button type="button" class="cb" id="pingBtn" title="Проверка доступности" aria-label="Открыть проверку доступности">📡</button>
+        <button type="button" class="cb" id="exportBtn" title="Экспорт" aria-label="Экспортировать каталог">📥</button>
+        <button type="button" class="cb" id="langBtn" aria-label="Сменить язык">EN</button>
+        <button type="button" class="cb" id="perfBtn" title="Режим энергосбережения" aria-label="Режим энергосбережения">🔋</button>
+        <button type="button" class="cb" id="themeBtn" aria-label="Выбрать тему"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5c-.828 0-1.5.672-1.5 1.5 0 .393.152.754.4 1.026.242.242.35.58.35.974 0 1.93-1.57 3.5-3.5 3.5zm-5.5-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3-4a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm3 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg></button>
+    </div>
+</header>
 
 <div class="app" style="padding-top:64px">
     <div class="glow" id="glow"></div>
     <div class="wrap" id="home">
 
-        <div class="upd-box fu v">
-            <h3>🚀 v10.0 TITANIUM — полное обновление!</h3>
-            <p>
-                • <span>Фикс всех багов</span> — шаблонные литералы, кавычки в onclick, Supabase.<br>
-                • <span>📡 Пинг-тестер</span> — кнопка вверху, тест всех конфигов сразу.<br>
-                • <span>📁 Импорт .txt</span> — перетащи файл со ссылками для массового добавления.<br>
-                • <span>🔃 Сортировка</span> — A-Z, Z-A, избранные первыми.<br>
-                • <span>📋 Копировать всё</span> — кнопка в панели инструментов каталога.<br>
-                • <span>↩️ Отмена удаления</span> — 5 секунд на отмену.<br>
-                Клавиши: <kbd>/</kbd> поиск · <kbd>R</kbd> рандом · <kbd>P</kbd> пинг · <kbd>Esc</kbd> закрыть
-            </p>
-        </div>
-
-        <h1 class="fu v">Flux VPN</h1>
-        <p class="sub fu v"><span class="ru">Цифровая свобода без ограничений.</span><span class="en">Digital freedom without limits.</span></p>
+        <section class="hero fu v" aria-labelledby="hero-title">
+            <div>
+                <div class="eyebrow"><span class="eyebrow-dot"></span> v11 NOVA · <span class="ru">новый интерфейс</span><span class="en">new interface</span></div>
+                <h1 id="hero-title"><span class="ru">Интернет без лишних границ.</span><span class="en">Internet without needless borders.</span><span>Flux VPN.</span></h1>
+                <p class="hero-copy"><span class="ru">Выберите подписку, добавьте её в Happ одним нажатием и подключитесь. Каталог, инструкции и инструменты собраны в одном месте.</span><span class="en">Choose a subscription, add it to Happ in one tap and connect. Catalog, guides and tools — all in one place.</span></p>
+                <div class="hero-actions">
+                    <a href="#subs" class="btn-pri"><span class="ru">Открыть каталог</span><span class="en">Open catalog</span>&nbsp; →</a>
+                    <a href="https://happ.info/" target="_blank" rel="noopener noreferrer" class="btn-ghost">📥 <span class="ru">Установить Happ</span><span class="en">Install Happ</span></a>
+                </div>
+                <div class="trust-row" aria-label="Преимущества">
+                    <span>⚡ <span class="ru">Быстрый импорт</span><span class="en">Quick import</span></span><span>🧭 <span class="ru">Понятные фильтры</span><span class="en">Clear filters</span></span><span>💾 <span class="ru">Локальное избранное</span><span class="en">Local favorites</span></span>
+                </div>
+            </div>
+            <div class="connection-card" aria-label="Демонстрация подключения">
+                <div class="connection-top"><strong>Flux Secure Link</strong><span class="live-pill">● Ready</span></div>
+                <div class="shield-orbit"><div class="shield-core">⚡</div></div>
+                <div class="connection-grid">
+                    <div class="metric"><small><span class="ru">Клиент</span><span class="en">Client</span></small><strong>Happ</strong></div>
+                    <div class="metric"><small><span class="ru">Протоколы</span><span class="en">Protocols</span></small><strong>VLESS · Reality</strong></div>
+                    <div class="metric"><small><span class="ru">Импорт</span><span class="en">Import</span></small><strong><span class="ru">В один клик</span><span class="en">One click</span></strong></div>
+                    <div class="metric"><small><span class="ru">Каталог</span><span class="en">Catalog</span></small><strong><span class="ru">Автообновление</span><span class="en">Auto-update</span></strong></div>
+                </div>
+            </div>
+        </section>
 
         <div class="stats fu v">
             <div class="sc"><span class="sn" id="st">—</span><span class="sl"><span class="ru">Конфигов</span><span class="en">Configs</span></span></div>
@@ -307,23 +409,20 @@
 
         <div id="recent-bar"><h4>🕐 <span class="ru">Недавно скопированы</span><span class="en">Recently Copied</span></h4><div class="chips" id="chips"></div></div>
 
-        <div class="card fu v">
-            <h2><span class="ru">Официальное приложение</span><span class="en">Official App</span></h2>
-            <p><span class="ru">Скачай Happ, добавь подписку — свободный интернет за 30 секунд.</span><span class="en">Download Happ, add a config — free internet in 30 seconds.</span></p>
-            <a href="https://happ.info/" target="_blank" class="btn-pri">📥 <span class="ru">Установить Happ</span><span class="en">Install Happ</span></a>
-        </div>
-
         <div class="radar fu v">
             <div class="radar-hd">
                 <div class="radar-ti"><span style="font-size:24px">📡</span><strong style="font-size:15px"><span class="ru">Ваша сеть</span><span class="en">Your Network</span></strong></div>
-                <span id="rbadge" class="rstatus rs-load pls">⏳</span>
+                <div style="display:flex;align-items:center;gap:8px"><span id="rbadge" class="rstatus rs-load"><span class="ru">Не проверено</span><span class="en">Not checked</span></span><button type="button" class="radar-action" id="radarBtn"><span class="ru">Проверить IP</span><span class="en">Check IP</span></button></div>
             </div>
             <div class="radar-grid">
                 <div class="ri"><label>IP</label><span id="rip">...</span></div>
                 <div class="ri"><label><span class="ru">Локация</span><span class="en">Location</span></label><span id="rloc">...</span></div>
                 <div class="ri" style="grid-column:span 2"><label><span class="ru">Провайдер</span><span class="en">ISP</span></label><span id="risp" style="color:var(--txt)">...</span></div>
             </div>
+            <p class="radar-note"><span class="ru">Проверка запускается только по вашему нажатию и обращается к внешнему сервису GeoJS. Геолокация IP помогает увидеть маршрут, но сама по себе не доказывает безопасность соединения.</span><span class="en">The check only starts after your click and contacts the external GeoJS service. IP geolocation shows the route, but does not prove connection security.</span></p>
         </div>
+
+        <div class="safety-note fu"><span class="safety-note-icon">🛡️</span><div><span class="ru"><strong>Используйте публичные подписки осознанно</strong>Flux VPN собирает ссылки из независимых открытых источников и не управляет их серверами. Не передавайте через неизвестные узлы пароли, банковские данные и другую чувствительную информацию.</span><span class="en"><strong>Use public subscriptions responsibly</strong>Flux VPN lists links from independent open sources and does not operate their servers. Do not send passwords, banking data or other sensitive information through unknown nodes.</span></div></div>
 
         <div class="sg">
             <a href="https://t.me/FluxVPNOff" target="_blank" class="soc fu"><em>✈️</em><span class="ru">Канал</span><span class="en">Channel</span></a>
@@ -334,10 +433,17 @@
             <a href="https://t.me/boost/FluxVPNOff" target="_blank" class="soc fu"><em>🚀</em><span class="ru">Буст</span><span class="en">Boost</span></a>
         </div>
 
-        <h2 id="subs" class="fu">⭐ <span class="ru">Популярные</span><span class="en">Popular Configs</span></h2>
+        <div class="section-intro fu"><h2><span class="ru">Подключение за три шага</span><span class="en">Connect in three steps</span></h2><p><span class="ru">Никаких сложных ручных настроек: установите клиент, выберите источник и импортируйте ссылку.</span><span class="en">No complex manual setup: install the client, choose a source and import its URL.</span></p></div>
+        <div class="quick-grid fu">
+            <article class="quick-step"><b>01</b><h3><span class="ru">Установите Happ</span><span class="en">Install Happ</span></h3><p><span class="ru">Доступен для Android, iOS, Windows и других платформ.</span><span class="en">Available for Android, iOS, Windows and more.</span></p></article>
+            <article class="quick-step"><b>02</b><h3><span class="ru">Выберите подписку</span><span class="en">Choose a subscription</span></h3><p><span class="ru">Используйте поиск, категории и избранное, чтобы найти подходящий источник.</span><span class="en">Use search, categories and favorites to find a suitable source.</span></p></article>
+            <article class="quick-step"><b>03</b><h3><span class="ru">Добавьте в приложение</span><span class="en">Add it to the app</span></h3><p><span class="ru">Нажмите «Добавить в Happ», сохраните подписку и выберите доступный узел.</span><span class="en">Tap “Add to Happ”, save the subscription and choose an available node.</span></p></article>
+        </div>
+
+        <div class="section-intro fu"><h2 id="subs">⭐ <span class="ru">Популярные источники</span><span class="en">Popular sources</span></h2><p><span class="ru">Быстрый выбор из наиболее востребованных подписок. Доступность конкретных узлов может меняться.</span><span class="en">A quick selection of frequently used subscriptions. Individual node availability may change.</span></p></div>
         <div class="list fu" id="pop-list"></div>
 
-        <h2 class="fu">📚 <span class="ru">Каталог</span><span class="en">Catalog</span> <span class="db-b db-err" id="dbb">⏳</span></h2>
+        <div class="section-intro fu"><h2>📚 <span class="ru">Весь каталог</span><span class="en">Full catalog</span> <span class="db-b db-err" id="dbb">⏳</span></h2><p><span class="ru">Ищите по названию или протоколу, фильтруйте категории и сохраняйте нужное локально.</span><span class="en">Search by name or protocol, filter categories and save items locally.</span></p></div>
 
         <div style="display:flex;gap:8px;margin-bottom:10px" class="fu">
             <input class="sbar" id="search" placeholder="🔍 Поиск / Search..." style="margin:0;flex:1">
@@ -372,7 +478,7 @@
 
         <div class="list fu" id="catalog"><div class="loader"></div></div>
 
-        <h2 id="guide" class="fu">📖 <span class="ru">Инструкция</span><span class="en">Setup Guide</span></h2>
+        <div class="section-intro fu"><h2 id="guide">📖 <span class="ru">Инструкция</span><span class="en">Setup Guide</span></h2><p><span class="ru">Выберите платформу — покажем только нужные шаги без лишней технической информации.</span><span class="en">Choose your platform to see only the steps you need.</span></p></div>
         <div class="wiz fu">
             <div class="wtabs">
                 <div class="wt on" data-wp="wp-ios"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.14 14.5c-.32.06-.42-.14-.42-.31v-1.2c0-1.12-.39-1.85-.82-2.22 2.65-.3 5.43-1.32 5.43-5.89 0-1.3-.46-2.37-1.23-3.21.12-.3.54-1.52-.12-3.17 0 0-1-.32-3.3 1.23a11.5 11.5 0 00-6 0C6.38 3.1 5.38 3.42 5.38 3.42c-.66 1.65-.24 2.87-.12 3.17-.77.84-1.23 1.91-1.23 3.21 0 4.56 2.77 5.59 5.41 5.89-.35.31-.66.86-.77 1.66-.69.31-2.45.85-3.53-1.01 0 0-.64-1.16-1.86-1.25 0 0-1.18-.01-.08.76 0 0 .79.37 1.34 1.77 0 0 .71 2.15 4.09 1.45v1.65c0 .17-.1.37-.42.31A10 10 0 0112 22z"/></svg>Apple</div>
@@ -396,7 +502,7 @@
             </div>
         </div>
 
-        <h2 id="donate" class="fu">❤️ <span class="ru">Поддержать</span><span class="en">Support</span></h2>
+        <div class="section-intro fu"><h2 id="donate">❤️ <span class="ru">Поддержать проект</span><span class="en">Support the project</span></h2><p><span class="ru">Помогите развивать каталог, инструкции и поддержку пользователей Flux VPN.</span><span class="en">Help improve the catalog, guides and user support.</span></p></div>
         <div class="dcard fu">
             <p style="color:var(--sec);font-size:14px;margin-bottom:14px"><span class="ru">Ваша поддержка помогает платить за серверы!</span><span class="en">Your support keeps the servers alive!</span></p>
             <div class="cardno" id="cardNo">2202 2067 8926 6512</div>
@@ -404,7 +510,7 @@
             <a href="https://www.donationalerts.com/r/ser_38" target="_blank" class="btn-pri" style="max-width:100%;background:#ff8c00;padding:13px;border-radius:11px">💸 <span class="ru">Отправить донат</span><span class="en">Send Donation</span></a>
         </div>
 
-        <h2 id="backup" class="fu">🗄 <span class="ru">Мега-База</span><span class="en">Mega Base</span></h2>
+        <div class="section-intro fu"><h2 id="backup">🗄 <span class="ru">Мега-база</span><span class="en">Mega Base</span></h2><p><span class="ru">Расширенный архив открытых источников для ручного выбора и резервного подключения.</span><span class="en">An extended archive of open sources for manual selection and backup access.</span></p></div>
         <p style="font-size:12px;color:var(--sec);margin:-10px 0 12px" class="fu"><span class="ru">60+ конфигов из проверенных репозиториев. С поддержкой SNI/Reality/CIDR.</span><span class="en">60+ configs from verified repos. With SNI/Reality/CIDR support.</span></p>
         <div class="list sl-list fu" id="mega"><div class="loader"></div></div>
 
@@ -413,7 +519,7 @@
             <p style="color:var(--sec);font-size:13px;margin-bottom:18px"><span class="ru">Поддержка всегда рядом.</span><span class="en">Support is always here.</span></p>
             <a href="https://t.me/FluxVPNSup" target="_blank" class="btn-pri" style="max-width:100%;padding:12px 20px;border-radius:11px">👨‍💻 <span class="ru">Написать в поддержку</span><span class="en">Contact Support</span></a>
         </div>
-        <div style="text-align:center;margin-top:32px;color:var(--sec);font-size:11px;padding-bottom:10px" class="fu">Flux VPN © 2026 · <span style="color:var(--pri);font-weight:800;letter-spacing:1px">v10.0 TITANIUM</span></div>
+        <footer class="footer-note fu"><strong>Flux VPN © 2026 · v11 NOVA</strong><span><span class="ru">Каталог не является VPN-провайдером. Проверяйте источник и соблюдайте законодательство вашей страны.</span><span class="en">This catalog is not a VPN provider. Verify sources and follow your local laws.</span></span></footer>
     </div>
 
     <div class="tbar-w"><div class="tbar">
@@ -425,9 +531,9 @@
     </div></div>
 </div>
 
-<div id="pingMo"><div id="pingBox">
-    <h3>📡 <span class="ru">Пинг-тестер</span><span class="en">Ping Tester</span></h3>
-    <p class="psub"><span class="ru">🟢 до 800ms · 🟡 до 2500ms · 🔴 выше · ❌ недоступен</span><span class="en">🟢 up to 800ms · 🟡 up to 2500ms · 🔴 high · ❌ unavailable</span></p>
+<div id="pingMo" role="dialog" aria-modal="true" aria-labelledby="pingTitle"><div id="pingBox">
+    <h3 id="pingTitle">📡 <span class="ru">Проверка источников</span><span class="en">Source check</span></h3>
+    <p class="psub"><span class="ru">Это время ответа URL в браузере, а не задержка VPN-сервера. CORS и сеть могут влиять на результат.</span><span class="en">This is browser URL response time, not VPN server latency. CORS and network conditions may affect the result.</span></p>
     <div id="pingRes"></div>
     <button class="mb-close" id="pingClose"><span class="ru">Закрыть</span><span class="en">Close</span></button>
 </div></div>
@@ -469,14 +575,15 @@ const PB = { el: null, init() { this.el = document.getElementById('progress'); }
 // ═══════════════════════════════════════════════════════
 function toast(msg, dur = 2800) {
   const c = document.getElementById('tc'), t = document.createElement('div');
-  t.className = 'toast'; t.innerHTML = msg; c.appendChild(t);
+  t.className = 'toast'; t.textContent = String(msg); t.setAttribute('role','status'); c.appendChild(t);
   setTimeout(() => t.remove(), dur + 300);
 }
 function toastUndo(msg, cb) {
   const c = document.getElementById('tc'), t = document.createElement('div');
   t.className = 'toast has-btn';
-  t.innerHTML = msg + ' <button class="toast-undo">↩️ Отмена</button>';
-  t.querySelector('.toast-undo').onclick = () => { cb(); t.remove(); };
+  const label = document.createElement('span'); label.textContent = String(msg);
+  const undo = document.createElement('button'); undo.type = 'button'; undo.className = 'toast-undo'; undo.textContent = '↩️ Отмена';
+  undo.onclick = () => { cb(); t.remove(); }; t.append(label, undo);
   c.appendChild(t); setTimeout(() => t.remove(), 5200);
 }
 
@@ -494,52 +601,27 @@ function confetti() {
   }
 }
 function haptic(p = [25]) { navigator.vibrate && navigator.vibrate(p); }
+function escapeHTML(value='') { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function escapeAttr(value='') { return escapeHTML(value).replace(/`/g, '&#96;'); }
+function safeHTTPS(value='') {
+  try { const parsed = new URL(String(value)); return parsed.protocol === 'https:' ? parsed.href : null; }
+  catch (_) { return null; }
+}
 
 // ═══════════════════════════════════════════════════════
-// SUPABASE — fully isolated, 6s timeout
+// LOCAL STORAGE — privacy-first, works without accounts or cloud SDKs
 // ═══════════════════════════════════════════════════════
 const DB = {
-  url: 'https://ikgmsaoxlwmhccntdqdp.supabase.co',
-  key: 'sb_publishable_WOuKqgXhfQ0u9psPi2alsg_aOPGM3ls',
-  client: null, ready: false, user: null,
-  mine: [], comm: [],
-  init() {
-    try { this.client = window.supabase?.createClient(this.url, this.key); } catch(_) {}
-  },
+  client: null, ready: true, user: null, mine: [], comm: [],
+  init() {},
   timeout(p, ms = 6000) { return Promise.race([p, new Promise((_,r) => setTimeout(() => r(new Error('timeout')), ms))]); },
-  async getUser() {
-    if (this.user) return this.user;
-    if (!this.client) return null;
-    try {
-      const r1 = await this.timeout(this.client.auth.getUser(), 4000).catch(() => null);
-      if (r1?.data?.user) { this.user = r1.data.user; return this.user; }
-      const r2 = await this.timeout(this.client.auth.signInAnonymously(), 5000).catch(() => null);
-      if (r2?.data?.user) { this.user = r2.data.user; return this.user; }
-    } catch(_) {}
-    return null;
-  },
-  async load() {
-    if (!this.client) { this.loadLocal(); return; }
-    try {
-      const user = await this.timeout(this.getUser(), 5500);
-      if (!user) throw new Error('no user');
-      const [r1, r2] = await this.timeout(Promise.allSettled([
-        this.client.from('subscriptions').select('id,name,url,user_id').eq('user_id', user.id).order('created_at', {ascending:false}),
-        this.client.from('subscriptions').select('id,name,url,user_id').eq('is_public', true).order('created_at', {ascending:false})
-      ]), 7000);
-      if (r1.status === 'fulfilled' && !r1.value.error)
-        this.mine = (r1.value.data||[]).map(r => ({id:String(r.id),name:r.name,url:r.url,cat:'custom',own:true}));
-      if (r2.status === 'fulfilled' && !r2.value.error)
-        this.comm = (r2.value.data||[]).filter(r => r.user_id !== user.id).map(r => ({id:String(r.id),name:r.name,url:r.url,cat:'community',own:false}));
-      this.ready = true; setBadge(true);
-      document.getElementById('dbWarn').style.display = 'none';
-    } catch(_) { this.loadLocal(); }
-  },
+  async getUser() { return null; },
+  async load() { this.loadLocal(); },
   loadLocal() {
-    this.ready = false; setBadge(false);
-    document.getElementById('dbWarn').style.display = 'block';
-    this.mine = JSON.parse(localStorage.getItem('flux_mine') || '[]');
-    this.comm = JSON.parse(localStorage.getItem('flux_comm') || '[]');
+    try { this.mine = JSON.parse(localStorage.getItem('flux_mine') || '[]'); } catch (_) { this.mine = []; }
+    try { this.comm = JSON.parse(localStorage.getItem('flux_comm') || '[]'); } catch (_) { this.comm = []; }
+    this.ready = true; setBadge(true);
+    const warning = document.getElementById('dbWarn'); if (warning) warning.style.display = 'none';
   },
   saveLocal() {
     localStorage.setItem('flux_mine', JSON.stringify(this.mine));
@@ -548,7 +630,7 @@ const DB = {
 };
 function setBadge(ok) {
   const b = document.getElementById('dbb');
-  if (b) { b.className = 'db-b ' + (ok ? 'db-ok' : 'db-err'); b.textContent = ok ? '✅ Cloud' : '⚠️ Local'; }
+  if (b) { b.className = 'db-b db-ok'; b.textContent = lang==='ru'?'💾 На устройстве':'💾 On device'; b.title = lang==='ru'?'Ваши ссылки не отправляются в облако':'Your links are not uploaded to the cloud'; }
 }
 
 // ═══════════════════════════════════════════════════════
@@ -573,9 +655,9 @@ function renderRecent() {
   if (!recent.length) { bar.style.display = 'none'; return; }
   bar.style.display = 'block';
   chips.innerHTML = recent.map(r => {
-    const safe = r.url.replace(/'/g, '%27');
-    const nm = (r.name||'Config').replace(/'/g,'&apos;').replace(/"/g,'&quot;');
-    return `<div class="chip" data-action="quick-copy" data-url="${safe}" data-name="${nm}">${nm}</div>`;
+    const safe = escapeAttr(safeHTTPS(r.url) || '');
+    const nm = escapeHTML((r.name||'Config').slice(0,30));
+    return `<button type="button" class="chip" data-action="quick-copy" data-url="${safe}" data-name="${escapeAttr(r.name||'Config')}">${nm}</button>`;
   }).join('');
 }
 
@@ -721,24 +803,26 @@ function buildItem(s, uid) {
   const pr = proto(s.url || '');
   const badges = (s.cb || catBadge(s.cat || '')) + (pr ? ` <span class="badge b-pr">⚙️ ${pr}</span>` : '');
   const canDel = s.cat === 'custom' || (s.cat === 'community' && s.own);
-  const safeUrl = (s.url || '').replace(/&/g,'&amp;');
-  const safeName = (s.name || 'Config').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const safeUrl = escapeHTML(safeHTTPS(s.url) || '');
+  const safeName = escapeHTML(s.name || 'Config');
+  const safeUid = escapeAttr(uid);
+  const safeId = escapeAttr(String(s.id || ''));
   return `<div class="li">
   <div class="li-body">
     <div class="li-title">
       <span class="sdot"></span>${safeName}
-      <button class="b-fav ${isFav?'on':''}" data-action="fav" data-uid="${uid}" title="Избранное">${isFav?'❤️':'🤍'}</button>
+      <button type="button" class="b-fav ${isFav?'on':''}" data-action="fav" data-uid="${safeUid}" title="Избранное">${isFav?'❤️':'🤍'}</button>
     </div>
     <div class="tags">${badges}</div>
-    <div class="li-url" id="${uid}" data-action="dbl-copy" data-uid="${uid}" title="Двойной клик — копировать">${safeUrl}</div>
+    <div class="li-url" id="${safeUid}" data-action="dbl-copy" data-uid="${safeUid}" title="Двойной клик — копировать">${safeUrl}</div>
     <div class="brow">
-      ${canDel ? `<button class="bg bi b-del" data-action="del" data-id="${s.id}" title="Удалить">🗑</button>` : ''}
-      <button class="bg bi b-pg" data-action="ping" data-uid="${uid}" title="Проверить">⚡</button>
-      <button class="bg bi" data-action="qr" data-uid="${uid}" title="QR">📱</button>
-      <button class="bg bi" data-action="share" data-uid="${uid}" data-name="${safeName}" title="Поделиться">📤</button>
-      <button class="bg" data-action="copy" data-uid="${uid}"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+      ${canDel ? `<button type="button" class="bg bi b-del" data-action="del" data-id="${safeId}" title="Удалить">🗑</button>` : ''}
+      <button type="button" class="bg bi b-pg" data-action="ping" data-uid="${safeUid}" title="Проверить ответ источника">⚡</button>
+      <button type="button" class="bg bi" data-action="qr" data-uid="${safeUid}" title="QR">📱</button>
+      <button type="button" class="bg bi" data-action="share" data-uid="${safeUid}" data-name="${escapeAttr(s.name || 'Config')}" title="Поделиться">📤</button>
+      <button type="button" class="bg" data-action="copy" data-uid="${safeUid}"><span class="ru">Копировать</span><span class="en">Copy</span></button>
     </div>
-    <button class="bg b-imp" data-action="happ" data-uid="${uid}" style="width:100%">
+    <button type="button" class="bg b-imp" data-action="happ" data-uid="${safeUid}" style="width:100%">
       <span class="ru">Добавить в Happ</span><span class="en">Add to Happ</span>
     </button>
   </div></div>`;
@@ -878,21 +962,21 @@ function doCopy(uid) {
   });
 }
 
-function doHapp(uid) { const url = getUrl(uid); if (url) { haptic([30]); location.href = 'happ://add/' + url; } }
+function doHapp(uid) { const url = safeHTTPS(getUrl(uid)); if (url) { haptic([30]); location.href = 'happ://add/' + url; } }
 function doQr(uid) {
-  const url = getUrl(uid); if (!url) return;
+  const url = safeHTTPS(getUrl(uid)); if (!url) return;
   document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent('happ://add/'+url);
   openMo('qrMo');
 }
 function doShare(uid, nameAttr) {
-  const url = getUrl(uid); if (!url) return; haptic([20]);
+  const url = safeHTTPS(getUrl(uid)); if (!url) return; haptic([20]);
   const name = nameAttr || getName(uid);
   if (navigator.share) navigator.share({title:'Flux VPN — '+name, text:url, url}).catch(()=>{});
   else { navigator.clipboard.writeText(url).then(()=>toast('📤 '+(lang==='ru'?'Скопировано':'Copied'))); }
 }
 
 async function doPing(uid, btn) {
-  const url = getUrl(uid); if (!url) return;
+  const url = safeHTTPS(getUrl(uid)); if (!url) return;
   const orig = btn.textContent; btn.textContent = '⏳'; btn.classList.add('pls'); btn.disabled = true; haptic([15]);
   try {
     const t0 = Date.now(), ctrl = new AbortController();
@@ -901,7 +985,7 @@ async function doPing(uid, btn) {
     clearTimeout(tmr);
     const ms = Date.now()-t0;
     btn.textContent = ms<800?'🟢':ms<2500?'🟡':'🔴';
-    toast(`📡 ~${ms}ms — ${ms<800?'✅ Отличный':ms<2500?'⚠️ Средний':'❌ Высокий'} пинг`); haptic([30]);
+    toast(`📡 Ответ источника: ~${ms} мс`); haptic([30]);
   } catch(e) {
     btn.textContent = e.name==='AbortError'?'⏱️':'❓';
     toast(lang==='ru'?'⚠️ Нет ответа':'⚠️ No response');
@@ -1038,9 +1122,10 @@ document.getElementById('pingMo').addEventListener('click', e => { if(e.target==
 // ═══════════════════════════════════════════════════════
 function processFile(file) {
   if (!file || !file.name.endsWith('.txt')) { toast('⚠️ Только .txt файлы'); return; }
+  if (file.size > 1024 * 1024) { toast('⚠️ Файл слишком большой (максимум 1 МБ)'); return; }
   const reader = new FileReader();
   reader.onload = e => {
-    const lines = e.target.result.split('\n').map(l=>l.trim()).filter(l=>l.startsWith('http'));
+    const lines = [...new Set(e.target.result.split(/\r?\n/).map(l=>safeHTTPS(l.trim())).filter(Boolean))].slice(0,500);
     if (!lines.length) { toast('❌ Нет URL в файле'); return; }
     lines.forEach((url,i) => {
       const name = `Import #${DB.mine.length+i+1}`;
@@ -1063,24 +1148,19 @@ dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over
 // ═══════════════════════════════════════════════════════
 // SAVE CONFIG
 // ═══════════════════════════════════════════════════════
-document.getElementById('saveBtn').addEventListener('click', async () => {
-  const name = document.getElementById('cName').value.trim();
-  const url  = document.getElementById('cUrl').value.trim();
-  if (!name || !url) { toast('⚠️ Заполните все поля!'); return; }
-  if (!url.startsWith('http')) { document.getElementById('urlWarn').style.display='block'; return; }
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const name = document.getElementById('cName').value.trim().slice(0,80);
+  const rawUrl = document.getElementById('cUrl').value.trim();
+  if (!name || !rawUrl) { toast('⚠️ Заполните все поля!'); return; }
+  const url = safeHTTPS(rawUrl);
+  if (!url) { document.getElementById('urlWarn').style.display='block'; return; }
   document.getElementById('urlWarn').style.display='none';
   const btn = document.getElementById('saveBtn'); btn.disabled=true; btn.style.opacity='.7';
   try {
-    const user = await DB.timeout(DB.getUser(), 4500).catch(()=>null);
-    if (!user || !DB.client) throw new Error('no auth');
-    const {error} = await DB.timeout(DB.client.from('subscriptions').insert([{user_id:user.id,name,url,is_public:true}]),5000);
-    if (error) throw error;
-    await DB.load(); toast('✅ '+(lang==='ru'?'Сохранено в облаке!':'Saved to cloud!')); confetti();
-  } catch(_) {
+    if (DB.mine.some(item => item.url === url)) { toast(lang==='ru'?'ℹ️ Такая ссылка уже добавлена':'ℹ️ This URL is already saved'); return; }
     const id='local_'+Date.now(), ns={id,name,url,cat:'custom',own:true};
-    DB.mine.unshift(ns); DB.comm.unshift({...ns,id:id+'c',cat:'community'});
-    DB.saveLocal(); document.getElementById('dbWarn').style.display='block';
-    toast('⚠️ '+(lang==='ru'?'Сохранено локально':'Saved locally'));
+    DB.mine.unshift(ns); DB.saveLocal();
+    toast(lang==='ru'?'✅ Сохранено на устройстве':'✅ Saved on this device'); confetti();
   } finally {
     btn.disabled=false; btn.style.opacity='1';
     document.getElementById('addMo').classList.remove('open');
@@ -1096,7 +1176,8 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
 // ═══════════════════════════════════════════════════════
 function openMo(id, open=true) {
   const el = document.getElementById(id); if (!el) return;
-  if (open) el.classList.add('open'); else el.classList.remove('open');
+  el.classList.toggle('open', open); el.setAttribute('aria-hidden', String(!open));
+  if (open) setTimeout(() => el.querySelector('button,input,select,a')?.focus(), 30);
 }
 document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => openMo(b.dataset.close, false)));
 document.querySelectorAll('.mo').forEach(mo => mo.addEventListener('click', e => { if(e.target===mo) mo.classList.remove('open'); }));
@@ -1165,7 +1246,7 @@ document.getElementById('langBtn').addEventListener('click', () => {
   lang = lang==='ru'?'en':'ru'; document.documentElement.lang=lang;
   document.getElementById('langBtn').textContent=lang==='ru'?'EN':'RU';
   localStorage.setItem('flux_lang',lang); toast(lang==='ru'?'🇷🇺 Русский':'🇬🇧 English');
-  render(); renderMega(); renderPop(); renderRecent(); upStats();
+  render(); renderMega(); renderPop(); renderRecent(); upStats(); setBadge(true);
 });
 
 // ═══════════════════════════════════════════════════════
@@ -1229,18 +1310,23 @@ if (!navigator.onLine) ofb.classList.add('show');
 // RADAR
 // ═══════════════════════════════════════════════════════
 async function radar() {
+  const button = document.getElementById('radarBtn');
+  const badge = document.getElementById('rbadge');
+  button.disabled = true; button.textContent = lang==='ru'?'Проверяем…':'Checking…';
+  badge.textContent = '⏳'; badge.className = 'rstatus rs-load pls';
   try {
-    const ctrl = new AbortController(); setTimeout(() => ctrl.abort(), 7000);
+    const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 7000);
     const d = await fetch('https://get.geojs.io/v1/ip/geo.json',{signal:ctrl.signal}).then(r=>r.json());
+    clearTimeout(timer);
     document.getElementById('rip').textContent=d.ip||'—';
     document.getElementById('rloc').textContent=`${d.city||'?'}, ${d.country||'?'}`;
     document.getElementById('risp').textContent=d.organization||'—';
-    const b=document.getElementById('rbadge'); b.classList.remove('pls');
-    const danger=['RU','BY','CN','IR','KZ','TM','UZ'];
-    if (danger.includes(d.country)) { b.innerHTML=lang==='ru'?'⚠️ НЕ ЗАЩИЩЕНЫ':'⚠️ UNPROTECTED'; b.className='rstatus rs-bad'; }
-    else { b.innerHTML=lang==='ru'?'✅ ЗАЩИЩЕНО':'✅ PROTECTED'; b.className='rstatus rs-ok'; }
-  } catch(_) { const b=document.getElementById('rbadge'); if(b){b.textContent='❓ N/A';b.className='rstatus rs-load';b.classList.remove('pls');} }
+    const countryCode = String(d.country_code || '??').toUpperCase();
+    badge.textContent = `IP · ${countryCode}`; badge.className='rstatus rs-ok';
+  } catch(_) { badge.textContent='❓ N/A'; badge.className='rstatus rs-load'; }
+  finally { button.disabled=false; button.textContent=lang==='ru'?'Проверить снова':'Check again'; }
 }
+document.getElementById('radarBtn').addEventListener('click', radar);
 
 // ═══════════════════════════════════════════════════════
 // SCROLL ANIMATIONS
@@ -1256,12 +1342,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // INIT
 // ═══════════════════════════════════════════════════════
 (async () => {
+  document.querySelectorAll('a[target="_blank"]').forEach(link => link.rel = 'noopener noreferrer');
   PB.init(); PB.set(10); DB.init();
   await DB.load().catch(() => DB.loadLocal());
   PB.set(65);
   renderPop(); render(); renderMega(); renderRecent(); upStats(); upCounts();
   PB.set(100);
-  radar();
 })();
 </script>
 </body>
